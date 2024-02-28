@@ -1,0 +1,17 @@
+//Structs
+
+Struct tInfo{                   //declaramos el Struct
+    Int var1;
+    Int var2;
+    Bool varB1;
+    Bool varB2;
+};
+
+Int var3 = 3;
+Bool varB4 = True;
+
+tInfo str;
+str.var1 = var3;                //asignamos la var3 al campo var1 de la variable de tipo Struct
+str.varB1 = not varB4;          //asignamos not varB4 al campo varB1 de la variable de tipo Struct
+
+tInfo str2 = str;               //asignamos la varible de tipo Struct str a str2

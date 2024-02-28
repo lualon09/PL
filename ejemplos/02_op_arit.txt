@@ -1,0 +1,11 @@
+//Expresiones con operadores aritméticos
+//Observamos como según el tipo de operador, asociatividad, prioridad y la colocación de los paréntesis, obtenemos distintos resultados
+
+Int var1 = 2 * 3 + 6 / 6;       //var1 = 6 + 1 = 7
+Int var2 = (2 * 3 + 6) / 6;     //var2 = 12 / 6 = 2
+Int var3 = (2 * (3 + 6)) / 6;   //var3 = 18 / 6 = 3
+Int var4 = (4 * 5) mod 8;       //var4 = 4
+Int var5 = 4 + 5 mod 8;         //var5 = 4 + 5 = 9 
+Int var6 = -10 div 5;           //var6 = -2
+Int var7 = 3 - 20 div 5;        //var7 = -1
+

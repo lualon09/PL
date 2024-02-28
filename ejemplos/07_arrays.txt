@@ -1,0 +1,17 @@
+//Arrays
+
+Int array1[6] = [1..6];                     //inicializamos el array con valores consecutivos de 1 a 6
+Int array2[5] = [1,4,6,7,8];                //inicializamos el array asignando los valores que queramos. No tiene por que ser una sucesión numérica
+
+
+Int array3[7];                              //inicializamos el array mediante un bucle for
+for(Int i = 0; i < 7; i = i + 1){
+    array3[i] = i;
+}
+
+Int var1 = array1[2] + array2[4];           //var1 = 3 + 8 = 11
+
+Bool arrayB1[2] = [True,False];
+Bool varB1 = arrayB1[1];                    //varB1 = False
+
+????Int arrayMult[7][6]

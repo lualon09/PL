@@ -1,0 +1,19 @@
+ //Bloques
+ 
+ Int x = 5;                 //Variable en el ámbito global
+ show(x);                   //Se imprimirá un 5
+
+    while (x > 0) {         //Comienza un bloque con el while
+        Int y = 10;         //Variable en el ámbito del while
+
+        Int x = 6;          
+        show(x);            //Se imprimirá un 6
+        
+        if (y > 5) {        //Comienza un bloque con el if
+           
+            Int z = 20;     //Variable en el ámbito del if
+
+        }                   //Fin del bloque del if
+        
+    }                       //Fin del bloque del while
+

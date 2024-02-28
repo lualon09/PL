@@ -1,0 +1,15 @@
+//Factorial
+//Calcula el factorial de un número
+
+factorial (n:Int) -> Int {
+
+    Int fact = 1;
+    for (Int i=1 ; i<=a ; i = i + 1)
+    {
+        fact=i*fact;
+    }
+
+    show(fact);
+
+    return fact;
+}

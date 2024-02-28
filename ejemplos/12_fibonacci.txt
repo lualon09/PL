@@ -1,0 +1,12 @@
+//Fibonacci
+//Calcula el N-ésimo número de la secuencia de Fibonacci
+
+calculaFibonacci(n: Int) -> Int{
+	Int res;
+	if (n <= 1) {
+		res = 1;
+	} else {
+		res = fibonacci(n - 1) + fibonacci(n - 2);
+	}
+	return res;
+}
