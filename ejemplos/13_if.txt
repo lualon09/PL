@@ -1,0 +1,26 @@
+main() -> Int {
+    
+    Int x = 3; //inicializamos x a 3
+    if(x == 3){ //esta condición debe cumplirse y cambiar el valor de x a 5
+        x = 5;
+    }
+
+    show(x);
+
+    Bool ok = False;
+    if(ok){ 
+        x = 7;
+    }
+    else{ //debe entrar aquí y modificar el valor de x a 1
+        x = 1;
+    }
+    show(x);
+
+    if(Not ok) { //debe entrar aquí y  cambiar el valor de x a 2
+        x = 2;
+    }
+
+    show(x);
+
+    return 0;
+}

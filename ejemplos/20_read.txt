@@ -1,0 +1,10 @@
+// No probamos el show porque ya se ha usado en casi todos los documentos. Probaremos solo el show.
+
+main()-> Int {
+    // Ambos show deberán imprimir los valores que el usuario introduzca por teclado.
+    Int a = read();
+    show(a);
+    Int b = read();
+    show(b);
+    return 0;
+}

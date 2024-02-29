@@ -1,0 +1,18 @@
+main() -> Int {
+   
+   Int x = 2;
+   Int resultado;
+   switch(x) {
+    |0: resultado = 0;
+        break;
+    |1: resultado = 1;
+        break;
+    |2: resultado = 2;
+        break;
+    |default: resultado = 10;
+   }
+
+   show(resultado); //resultado debe valer 2.
+
+   return 0;
+}

@@ -1,0 +1,11 @@
+main() -> Int {
+   
+   Int x = 10;
+   repeat(10){
+     x = x - 1;
+   }
+
+   show(x); // x debe valer 0
+
+   return 0;
+}

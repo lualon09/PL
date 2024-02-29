@@ -1,0 +1,16 @@
+main() -> Int {
+    
+   Int x = 0;
+   Int maximo = 10;
+   Bool siempre = True;
+
+   show(x);
+
+   while(x < 10 & siempre){ //el bucle deberá dar 10 vueltas
+      x = x+1;
+   }
+
+   show(x); //debe imprimir como valor de x 10
+
+   return 0;
+}
