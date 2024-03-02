@@ -27,7 +27,7 @@ main() -> Int{
 
     tInfo variable;
     variable.v1 = varB1;            //Error de tipos: varB1 no es de tipo Bool
-
+    variable.noExiste = True; //Error de tipos: noExiste no es un campo del struct tInfo
 
     if(var1){
             //Error de tipos: en la condición del if no hay una expresión booleana
@@ -37,6 +37,12 @@ main() -> Int{
     array[3] = varB1;       //Error de tipos: varB1 no es de tipo Int
 
     Int var3 = sum var1;    //Error de tipos: var1 necesita ser un array para poder aplicarle el operador sum
+
+    Int x;
+    valuefor(x){
+        | True = True; //error de tipos, la x es de tipo Int.
+        | default = 0;
+    }
 
     return 0;
 }
