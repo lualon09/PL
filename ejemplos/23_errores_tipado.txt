@@ -26,7 +26,7 @@ main() -> Int{
 
 
     tInfo variable;
-    variable.v1 = varB1;            //Error de tipos: varB1 no es de tipo Bool
+    variable.v1 = varB1;            //Error de tipos: varB1 no es de tipo Int
     variable.noExiste = True; //Error de tipos: noExiste no es un campo del struct tInfo
 
     if(var1){
@@ -40,7 +40,7 @@ main() -> Int{
 
     Int x;
     valuefor(x){
-        | True = True; //error de tipos, la x es de tipo Int.
+        | True = True; //Error de tipos: la x es de tipo Int.
         | default = 0;
     }
 

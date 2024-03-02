@@ -17,6 +17,8 @@ main() -> Int{
     Int n = 5;
 
     Int sol = calculaMax(array,length);
+
+	show(sol);
     
     return 0;
 }   

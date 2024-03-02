@@ -7,7 +7,7 @@ main() -> Int{
     Int var1 = 4;
     Int var2 = 3;
 
-    Bool varB1 = False & False | True                   //varB1 = False
+    Bool varB1 = False & False | True                   //varB1 = True
     Bool varB2 = (False & False) | True                 //varB2 = True
     Bool varB3 = var1 > var2 | var1 == var2             //varB3 = True
     Bool varB4 = var1 <= var2 & True                    //varB4 = False

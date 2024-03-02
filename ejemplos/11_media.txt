@@ -21,6 +21,8 @@ main() -> Int{
     Int array[5] = [1,2,3,4,5];
 
     Int sol = calculaMedia(array,length);
+
+	show(sol);
     
     return 0;
 }   
