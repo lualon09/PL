@@ -1,0 +1,42 @@
+//Errores Tipado
+
+
+funcProbando(v1:Int, v2:Bool) -> Int{
+        //codigo de la funcion
+        return 0;
+}
+
+Struct tInfo{
+    Int v1;
+    Bool v2;
+}
+
+
+
+main() -> Int{
+
+    Int var1 = 3;
+    Bool varB1 = False;
+
+    Int var2 = var1 + varB1;    //Error de tipos: varB1 no es de tipo Int
+    Bool varB2 = var1 & varB1;  //Error de tipos: var1 no es de tipo Bool
+
+    
+    Int var1 = funcProbando(var1, var2)     //Error de tipos: var2 no es una variable de tipo Bool
+
+
+    tInfo variable;
+    variable.v1 = varB1;            //Error de tipos: varB1 no es de tipo Bool
+
+
+    if(var1){
+            //Error de tipos: en la condición del if no hay una expresión booleana
+    }
+
+    Int array[5] = [1..5];
+    array[3] = varB1;       //Error de tipos: varB1 no es de tipo Int
+
+    Int var3 = sum var1;    //Error de tipos: var1 necesita ser un array para poder aplicarle el operador sum
+
+    return 0;
+}

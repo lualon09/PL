@@ -1,14 +1,20 @@
 //Operadores booleanos
 //Observamos como según el tipo de operador, asociatividad, prioridad y la colocación de los paréntesis, obtenemos distintos resultados
 
-Int var1 = 4;
-Int var2 = 3;
 
-Bool varB1 = False & False | True                   //varB1 = False
-Bool varB2 = (False & False) | True                 //varB2 = True
-Bool varB3 = var1 > var2 | var1 == var2             //varB3 = True
-Bool varB4 = var1 <= var2 & True                    //varB4 = False
-Bool varB5 = var1 != var2 | var1 > var2 & False     //varB5 = False
-Bool varB6 = var1 != var2 | (var1 > var2 & False)   //varB6 = True
-Bool varB7 = not True == False & var2 < var1        //varB7 = True
-Bool varB8 = not (True != False) & var2 < var1      //varB8 = False
+main() -> Int{
+
+    Int var1 = 4;
+    Int var2 = 3;
+
+    Bool varB1 = False & False | True                   //varB1 = False
+    Bool varB2 = (False & False) | True                 //varB2 = True
+    Bool varB3 = var1 > var2 | var1 == var2             //varB3 = True
+    Bool varB4 = var1 <= var2 & True                    //varB4 = False
+    Bool varB5 = var1 != var2 | var1 > var2 & False     //varB5 = False
+    Bool varB6 = var1 != var2 | (var1 > var2 & False)   //varB6 = True
+    Bool varB7 = not True == False & var2 < var1        //varB7 = True
+    Bool varB8 = not (True != False) & var2 < var1      //varB8 = False
+
+    return 0;
+}

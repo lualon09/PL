@@ -10,3 +10,13 @@ calculaFibonacci(n: Int) -> Int{
 	}
 	return res;
 }
+
+
+main() -> Int{
+
+    Int n = 5;
+
+    Int sol = calculaMax(array,length);
+    
+    return 0;
+}   

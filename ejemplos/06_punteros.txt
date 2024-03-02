@@ -1,12 +1,18 @@
 //Punteros
 
-Int var1 = 2;
-Int * var2 = &var1;                      //asignamos a la direccion de memoria del puntero var2 la de la variable var1
-Int var3 = *var2;                       //var3 = 2
-Int * var4 = var2;                     //asignamos a la dirección de memoria del puntero var4 la del puntero var2
+
+main() -> Int{
+
+    nt var1 = 2;
+    Int * var2 = &var1;                      //asignamos a la direccion de memoria del puntero var2 la de la variable var1
+    Int var3 = *var2;                       //var3 = 2
+    Int * var4 = var2;                     //asignamos a la dirección de memoria del puntero var4 la del puntero var2
 
 
-Bool varB1 = False;
-Bool * varB2 = &varB1;                   //asignamos a la direccion de memoria del puntero varB2 la de la variable varB1
-Bool * varB3 = varB2;                  //asignamos a la direccion de memoria del puntero varB3 la de la variable varB2
-Bool varB4 = not(*varB2) & not(*varB3)  //varB4 = True
+    Bool varB1 = False;
+    Bool * varB2 = &varB1;                   //asignamos a la direccion de memoria del puntero varB2 la de la variable varB1
+    Bool * varB3 = varB2;                  //asignamos a la direccion de memoria del puntero varB3 la de la variable varB2
+    Bool varB4 = not(*varB2) & not(*varB3)  //varB4 = True
+
+    return 0;
+}      

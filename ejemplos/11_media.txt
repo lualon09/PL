@@ -14,3 +14,13 @@ calculaMedia(arr:Int[], n:Int) -> Int{
 		return 0;
 	}
 }
+
+main() -> Int{
+
+    Int length = 5;
+    Int array[5] = [1,2,3,4,5];
+
+    Int sol = calculaMedia(array,length);
+    
+    return 0;
+}   

@@ -13,3 +13,12 @@ factorial (n:Int) -> Int {
 
     return fact;
 }
+
+
+main() -> Int{
+
+    Int n = 5;
+    Int sol = factorial(n);
+    
+    return 0;
+}   
