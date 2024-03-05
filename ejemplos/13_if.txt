@@ -16,7 +16,7 @@ main() -> Int {
     }
     show(x);
 
-    if(Not ok) { //debe entrar aquí y  cambiar el valor de x a 2
+    if(not ok) { //debe entrar aquí y  cambiar el valor de x a 2
         x = 2;
     }
 
