@@ -1,10 +1,10 @@
 // Paso por valor
-incrementarPorValor(num:Int) -> void {
+incrementarPorValor(num:Int) -> Void {
     num = num + 1;
 }
 
 // Paso por referencia
-incrementarPorReferencia(num:&Int) -> void{
+incrementarPorReferencia(num:&Int) -> Void{
     num = num + 1;
 }
 
