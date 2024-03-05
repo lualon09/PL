@@ -1,0 +1,5 @@
+* cambiar la forma del switch a la forma normal de C++
+* creo que poner el and como & en vez de && nos confunde con la memoria y los punteros
+* añadir la palabra array antes de un array igual nos lo simplifica?
+* quitar div de división entera?
+* cambiar alias a typedef para que se parezca más a C++.
