@@ -19,7 +19,7 @@ main() -> Int{
     Bool varB1 = False;
 
     Int var2 = var1 + varB1;    //Error de tipos: varB1 no es de tipo Int
-    Bool varB2 = var1 & varB1;  //Error de tipos: var1 no es de tipo Bool
+    Bool varB2 = var1 && varB1;  //Error de tipos: var1 no es de tipo Bool
 
     
     Int var1 = funcProbando(var1, var2)     //Error de tipos: var2 no es una variable de tipo Bool
