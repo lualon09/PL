@@ -3,10 +3,10 @@ main() -> Int {
    Int x = 2;
    Int resultado;
    valuefor(resultado){
-    | (x < 2) = 0;
-    | (x > 2) = 1;
-    | (x == 2) = 2;
-    | default = 3;
+    case (x < 2) = 0; break;
+    case (x > 2) = 1; break;
+    case (x == 2) = 2; break;
+    case default = 3;
    }
 
    show(resultado); //resultado debe valer 2.

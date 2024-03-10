@@ -9,8 +9,12 @@ main() -> Int{
     Int var3 = (2 * (3 + 6)) / 6;   //var3 = 18 / 6 = 3
     Int var4 = (4 * 5) mod 8;       //var4 = 4
     Int var5 = 4 + 5 mod 8;         //var5 = 4 + 5 = 9 
-    Int var6 = -10 div 5;           //var6 = -2
-    Int var7 = 3 - 20 div 5;        //var7 = -1
+    
+    show(var1);
+    show(var2);
+    show(var3);
+    show(var4);
+    show(var5);
 
     return 0;
 }

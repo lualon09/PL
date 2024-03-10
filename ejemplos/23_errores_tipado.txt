@@ -33,15 +33,15 @@ main() -> Int{
             //Error de tipos: en la condición del if no hay una expresión booleana
     }
 
-    Int array[5] = [1..5];
+    List<Int>[5] array = {1,2,3,4,5};
     array[3] = varB1;       //Error de tipos: varB1 no es de tipo Int
 
     Int var3 = sum var1;    //Error de tipos: var1 necesita ser un array para poder aplicarle el operador sum
 
     Int x;
     valuefor(x){
-        | True = True; //Error de tipos: la x es de tipo Int.
-        | default = 0;
+        case True = True; //Error de tipos: la x es de tipo Int.
+        case default = 0;
     }
 
     return 0;

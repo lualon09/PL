@@ -6,7 +6,7 @@ main() -> Int {
 
    show(x);
 
-   while(x < 10 & siempre){ //el bucle deberá dar 10 vueltas
+   while(x < 10 && siempre){ //el bucle deberá dar 10 vueltas
       x = x+1;
    }
 

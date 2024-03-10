@@ -1,14 +1,15 @@
 //Declaracion y asignacion de variables de tipo Int y Bool
 
 
-main() -> Int{
+main() -> Int {
 
     Int varI;           //declaracion de variables enteras
     varI = 2;           //asignación de un valor a una variable entera
-
+    show(varI);
     Bool varB,varB2;    //declaracion de variables booleanas
     varB = False;       //asignacion de un valor a una variable booleana
     varB2 = varB;       //asignacion del valor de la variable varB a la variable varB2
-
+    show(varB);
+    show(varB2);
     return 0;
 }

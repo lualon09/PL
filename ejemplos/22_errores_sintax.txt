@@ -33,22 +33,21 @@ main() -> Int{
     }
 
     valuefor(var1){
-        | False = 5;
-        | 4 = 2; //La primera expresión debe ser de tipo booleano.
+        case False = 5;
+        case 4 = 2; //La primera expresión debe ser de tipo booleano.
     }
 
     Int x = 0;
     valuefor(var1){ //falla porque no hemos puesto el default y no se cumple ni la condición x > 0 ni la x < 0.
-        | (x > 0) = 1;
-        | (x < 0) = -1;
+        case (x > 0) = 1; 
+        case (x < 0) = -1;
     }
 
     Int y; 
     switch x{ //Error de sintaxis: faltan los paréntesis.
-        | 0: y = 1; 
+        case 0: y = 1; 
         break;
-        | default: y = 2;
-        break;
+        default: y = 2;
     }
 
     while(){} //Error de sintaxis: falta condición del while.
