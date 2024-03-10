@@ -2,24 +2,17 @@
 
 calculaMax(arr:Int[], length:Int) -> Int{
     Int max = arr[0];
-
     for(Int i = 0; i < length; i = i + 1){
         if(arr[i] > max){
             max = arr[i];
         }
     }
-
-    show(max);                  //mostramos el máximo
-
+    show(max);                  //mostramos el maximo
     return max;
 }
-
 main() -> Int{
-
     Int length = 5;
-    Int array[5] = [1,2,3,4,5];
-
-    Int sol = calculaMax(array,length);
-    
+    List<Int>[5] array = {1,2,3,4,5};
+    Int sol = calculaMax(array,length);    
     return 0;
 }    

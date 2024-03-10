@@ -2,37 +2,30 @@
 
 
 main() -> Int{
-
-    Int array1[6] = [1..6];                     //inicializamos el array con valores consecutivos de 1 a 6
-    Int array2[5] = [1,4,6,7,8];                //inicializamos el array asignando los valores que queramos. No tiene por que ser una sucesión numérica
-
-
-    Int array3[7];                              //inicializamos el array mediante un bucle for
+    List<Int>[5] array1 = {1,4,6,7,8};                
+    List<Int>[7] array3;  //inicializamos el array mediante un bucle
     for(Int i = 0; i < 7; i = i + 1){
         array3[i] = i;
+        show(array3[i]);
     }
-
     Int var1 = array1[2] + array2[4];           //var1 = 3 + 8 = 11
-
-    Bool arrayB1[2] = [True,False];
+    List<Bool>[2] arrayB1 = {True,False};
     Bool varB1 = arrayB1[1];                    //varB1 = False
-
-    Int arrayMult[7][6];                        //declaración de un array de 2 dimensiones
-    for(Int i = 0; i < 7; i = i + 1){           //inicializamos el array mediante dos bucles anidados
-        for(Int j = 0; j < 6; j = j + 1){
-            arrayMult[i][j] = j;
+    show(varB1);
+    List<List<Int>[2]>[2] arrayMult = {{1,2},{2,3}};                        //declaración de un array de 2 dimensiones
+    for(Int i = 0; i < 2; i = i + 1){ //usamos dos bucles anidados
+        for(Int j = 0; j < 2; j = j + 1){
+            show(arrayMult[i][j]);
         }
     }
-
-    Int arrayMult3[7][6][5];                    //declaración de un array de 3 dimensiones
-    for(Int i = 0; i < 7; i = i + 1){           //inicializamos el array mediante tres bucles anidados
+    List<List<List<Int>[5]>[6]>[7] arrayMult3; //declaración de un array de 3 dimensiones
+    for(Int i = 0; i < 7; i = i + 1){ //usamos tres bucles anidados
         for(Int j = 0; j < 6; j = j + 1){
             for(Int k = 0; k < 5; k = k + 1){
                 arrayMult3[i][j][k] = k;
+                show(arrayMult3[i][j][k]);
             }
-            
         }
     }
-
     return 0;
-}    
+}      
