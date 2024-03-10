@@ -75,7 +75,6 @@ operadorDivision = \/
 operadorMod = \%
 operadorSum = sum
 operadorProd = prod
-operadorConcat = \++
 
 operadorIgualdad = \==
 operadorMayor = \>
@@ -125,8 +124,6 @@ flecha = \->
 {operadorMod}             {return ops.unidadMod();}
 {operadorSum}             {return ops.unidadSumLista();}
 {operadorProd}            {return ops.unidadProdLista();}
-{operadorConcat}          {return ops.unidadConcat();}
-
 
 {operadorMayor}           {return ops.unidadMayor();}
 {operadorMenor}           {return ops.unidadMenor();}
