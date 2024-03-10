@@ -1,7 +1,7 @@
 //Factorial
 //Calcula el factorial de un número
 
-factorial (n:Int) -> Int {
+factorial (n:Int) -> Void {
 
     Int fact = 1;
     for (Int i=1 ; i<=a ; i = i + 1)
@@ -10,15 +10,14 @@ factorial (n:Int) -> Int {
     }
 
     show(fact);
-
-    return fact;
+    // Probamos el caso de función que devuelve Void sin return 
 }
 
 
 main() -> Int{
 
     Int n = 5;
-    Int sol = factorial(n);
+    factorial(n);
     
     return 0;
 }   
