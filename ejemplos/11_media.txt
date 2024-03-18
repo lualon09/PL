@@ -1,7 +1,7 @@
 //Media
 //Calcula la media de los N primeros elementos de un array suponiendo que todos los elementos son no nulos
 
-calculaMedia(arr:Int[], n:Int) -> Int{
+calculaMedia(arr:List<Int>[5], n:Int) -> Int{
     Int i = 0;
     Int suma = 0;
     if (n > 0) {

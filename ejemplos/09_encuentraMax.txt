@@ -1,6 +1,6 @@
 //Calcula el máximo de un array
 
-calculaMax(arr:Int[], length:Int) -> Int{
+calculaMax(arr:List<Int>[5], length:Int) -> Int{
     Int max = arr[0];
     for(Int i = 0; i < length; i = i + 1){
         if(arr[i] > max){

@@ -29,6 +29,9 @@ public class ALexOperations {
    public UnidadLexica unidadFalse() {
       return new UnidadLexica(alex.fila(),alex.columna(), ClaseLexica.FALSE, alex.lexema());
    }
+   public UnidadLexica unidadList(){
+      return new UnidadLexica(alex.fila(), alex.columna(), ClaseLexica.LIST);
+   }
    public UnidadLexica unidadSuma() {
       return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.MAS); 
    } 
@@ -49,9 +52,6 @@ public class ALexOperations {
    }
    public UnidadLexica unidadProdLista() {
       return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.PRODLIST); 
-   }
-   public UnidadLexica unidadConcat() {
-      return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.CONCAT); 
    }
    public UnidadLexica unidadMayor() {
    return new UnidadLexica(alex.fila(), alex.columna(), ClaseLexica.MAYOR);
@@ -78,7 +78,7 @@ public class ALexOperations {
       return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.OR);
    }
    public UnidadLexica unidadNegacion() {
-   return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.NEGACION);
+   return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.NOT);
    }
    public UnidadLexica unidadPAp() {
       return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.PAP); 
@@ -158,20 +158,11 @@ public class ALexOperations {
    public UnidadLexica unidadAmpersand(){
       return new UnidadLexica(alex.fila(), alex.columna(), ClaseLexica.AMPERSAND);
    }
-   public UnidadLexica unidadAlmohadilla(){
-      return new UnidadLexica(alex.fila(), alex.columna(), ClaseLexica.ALMOHADILLA);
-   }
-   public UnidadLexica unidadComillasDobles(){
-      return new UnidadLexica(alex.fila(),  alex.columna(), ClaseLexica.COMILLASDOBLES);
-   }
    public UnidadLexica unidadPunto(){
       return new UnidadLexica(alex.fila(),  alex.columna(), ClaseLexica.PUNTO);
    }
    public UnidadLexica unidadDosPuntos(){
       return new UnidadLexica(alex.fila(),  alex.columna(), ClaseLexica.DOSPUNTOS);
-   }
-   public UnidadLexica unidadArroba(){
-      return new UnidadLexica(alex.fila(),  alex.columna(), ClaseLexica.ARROBA);
    }
    public UnidadLexica unidadTypedef(){
       return new UnidadLexica(alex.fila(), alex.columna(), ClaseLexica.TYPEDEF);
@@ -179,11 +170,8 @@ public class ALexOperations {
    public UnidadLexica unidadFlecha(){
       return new UnidadLexica(alex.fila(), alex.columna(), ClaseLexica.FLECHA);
    }
-   public UnidadLexica unidadBarra(){
-      return new UnidadLexica(alex.fila(), alex.columna(), ClaseLexica.BARRA);
-   }
-   public UnidadLexica unidadPuntos(){
-      return new UnidadLexica(alex.fila(), alex.columna(), ClaseLexica.PUNTOS);
+   public UnidadLexica unidadNew(){
+      return new UnidadLexica(alex.fila(), alex.columna(), ClaseLexica.NEW);
    }
    public void error() {
       System.err.println("***"+alex.fila()+", "+alex.columna()+" Caracter inesperado: "+alex.lexema());

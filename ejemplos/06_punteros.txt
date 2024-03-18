@@ -17,7 +17,7 @@ main() -> Int{
     varB3 = varB2; //asignamos a la direccion de memoria del puntero varB3 la de la variable varB2
     show(*varB3);
     Bool varB4 = new Bool;
-    *varB4 = not(*varB2) && not(*varB3)  //varB4 = True
+    *varB4 = not(*varB2) && not(*varB3);  //varB4 = True
     
     return 0;
 }      

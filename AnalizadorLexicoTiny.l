@@ -35,6 +35,9 @@ Bool = Bool
 False = False
 True = True
 Void = Void
+List = List
+
+new = new
 
 if = if
 else = else
@@ -65,14 +68,14 @@ identificador = {letra}({letra}|{digito})*
 
 digitoPositivo = [1-9]
 digito = ({digitoPositivo}|0)
-parteEntera = {digitoPositivo}{digito}*
+parteEntera = ({digitoPositivo}{digito}*|0)
 numeroEntero = [\+\-]?{parteEntera}
 
 operadorSuma = \+
 operadorResta = \-
 operadorMultiplicacion = \*
 operadorDivision = \/
-operadorMod = \%
+operadorMod = mod
 operadorSum = sum
 operadorProd = prod
 
@@ -97,15 +100,10 @@ llaveCierre = \}
 coma  = ,
 puntoYComa = ;
 punto = \.
-puntos = \.\.
-barra = \|
 dosPuntos = \:
 comentario = \/\/[^\n]* 
 comentarioLargo = "/*" ~"*/"
 igual = \=
-arroba = \@
-comillasDobles = \"
-almohadilla = \#
 ampersand = \&
 flecha = \->
 
@@ -136,8 +134,6 @@ flecha = \->
 {operadorOr}              {return ops.unidadOr();}
 {operadorNegacion}        {return ops.unidadNegacion();}
 
-{comillasDobles}          {return ops.unidadComillasDobles();}
-{almohadilla}             {return ops.unidadAlmohadilla();}
 {ampersand}               {return ops.unidadAmpersand();}
 {igual}                   {return ops.unidadIgual();} 
 {coma}                    {return ops.unidadComa();}
@@ -150,9 +146,6 @@ flecha = \->
 {llaveCierre}             {return ops.unidadLLCierre();}
 {punto}                   {return ops.unidadPunto();}
 {dosPuntos}               {return ops.unidadDosPuntos();}
-{arroba}                  {return ops.unidadArroba();}
-{puntos}                  {return ops.unidadPuntos();}
-{barra}                   {return ops.unidadBarra();}
 {flecha}                  {return ops.unidadFlecha();}
 
 {Int}		                  {return ops.unidadTipoInt();}
@@ -160,6 +153,7 @@ flecha = \->
 {Void}                    {return ops.unidadTipoVoid();} 
 {True}                    {return ops.unidadTrue();}
 {False}                   {return ops.unidadFalse();}
+{List}                    {return ops.unidadList();}
 
 {while}                   {return ops.unidadWhile();}
 {for}                     {return ops.unidadFor();}
@@ -177,6 +171,7 @@ flecha = \->
 {read}                    {return ops.unidadRead();}
 {main}                    {return ops.unidadMain();}
 {typedef}                 {return ops.unidadTypedef();}
+{new}                     {return ops.unidadNew();}
 
 {identificador}           {return ops.unidadId();}
 [^]                       {errores.errorLexico(fila(),columna(),lexema());}  
