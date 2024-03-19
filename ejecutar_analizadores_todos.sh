@@ -17,5 +17,12 @@ mv ../AnalizadorLexicoTiny.java alex/
 # Compilar archivos java generados por CUP
 javac -cp "../cup.jar" */*.java
 
-# Ejecutar el analizador sintáctico
-java -cp ".:../cup.jar" asint.Main ../ejemplos/01_dec_var.txt
+# Iterar sobre todos los archivos en la carpeta ejemplos/
+for archivo in ../ejemplos/*; do
+    # Verificar si el archivo es un archivo regular
+    if [ -f "$archivo" ]; then
+        echo "Estoy probando ahora con el archivo $archivo"
+        # Ejecutar el analizador sintáctico para el archivo actual
+        java -cp ".:../cup.jar" asint.Main "$archivo"
+    fi
+done

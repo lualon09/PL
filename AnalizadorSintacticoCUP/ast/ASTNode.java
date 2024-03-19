@@ -1,10 +1,10 @@
 package ast;
 
-import ast.Types.*;
+// import ast.Types.*;
 
 public abstract class ASTNode {
 
-    public Type type;
+    // public Type type;
     public ASTNode bondNode;
 
     // public ?? type() // for the future
