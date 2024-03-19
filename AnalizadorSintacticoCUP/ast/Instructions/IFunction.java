@@ -22,7 +22,4 @@ public class IFunction extends I{
     public String toString(){
         return "call to " + name + "(" + p.toString() + ")";
     }
-
-
-    
 }
