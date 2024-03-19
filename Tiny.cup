@@ -149,7 +149,7 @@ NEWEXP ::= NEW TYPE ;
 //--------------------------------------Tipos--------------------------------------------
 TYPE ::= TIPOINT | TIPOBOOL | VOID | IDEN | LIST MENOR TYPE MAYOR CAP ENT CCIERRE | TYPE POR ;
 // el IDEN es para el struct
-
+// en ent se puede poner 3 + 4
 
 //-------------------------------------Accesos------------------------------------------
 ACCESO ::= ACCESO CAP E0 CCIERRE | ACCESO PUNTO IDEN | NACCESO ;        //PODER LLAMAR A FUNCIONES DESDE UNA VARIABLE, ROLLO var1.getInt() o con structs???'
