@@ -4,11 +4,11 @@ import ast.Types.*;
 
 public class ENew extends E{
 
-    Type typeP;
+    private Type type;
 
     public ENew(Type t){
-        this.typeP = t; //El puntero es de tipo t
-        this.type = new Pointer(typeP); //creamos el puntero de tipo typeP
+        this.type = t; //El puntero es de tipo t
+        // this.type = new Pointer(typeP); //creamos el puntero de tipo typeP
     }
 
     @Override
@@ -17,6 +17,6 @@ public class ENew extends E{
     }
 
     public String toString(){
-        return "new " + typeP.toString();
+        return "new " + type.toString();
     }
 }

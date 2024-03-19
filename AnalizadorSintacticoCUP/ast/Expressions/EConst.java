@@ -1,13 +1,10 @@
 package ast.Expressions;
 
-import ast.Types.Type;;
-
 public class EConst extends E{
     private String name; //nombre de la constante
 
-    public EConst(String c, Type t){
+    public EConst(String c){
         this.name = c;  
-        this.type = t;
     }
 
     @Override
@@ -16,6 +13,6 @@ public class EConst extends E{
     }
 
     public String toString(){
-        return name;
+        return "const" + name; //las constantes no tienen tipo porque solo pueden ser enteras
     }
 }

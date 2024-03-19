@@ -17,7 +17,7 @@ public class Array extends Type{
     }
 
     public String toString(){
-        return "List " + "<" + type.toString() + ">";
+        return "List " + "<" + type.toString() + ">[" + size.toString() + "]";
     }
     
 }

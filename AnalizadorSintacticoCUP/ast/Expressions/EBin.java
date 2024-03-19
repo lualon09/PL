@@ -6,6 +6,7 @@ public class EBin extends E {
    private E opnd1;
    private E opnd2;
    private KindE tExp;
+   private Type type;
 
    public EBin(E opnd1, E opnd2,  KindE tExp, Type t) {
      this.opnd1 = opnd1;

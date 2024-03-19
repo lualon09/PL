@@ -1,11 +1,9 @@
 package ast.Expressions;
 
-import ast.Types.*;
-
 public class ERead extends E{
 
     public ERead(){
-        this.type = new BasicTypes(KindTypes.INT); //solo leemos enteros
+        // this.type = new BasicTypes(KindTypes.INT); //solo leemos enteros
     }
 
     @Override
@@ -14,6 +12,6 @@ public class ERead extends E{
     }
 
     public String toString(){
-        return "read"; 
+        return "read()"; 
     }
 }
