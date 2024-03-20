@@ -2,12 +2,12 @@ package ast.Instructions;
 
 import java.util.List;
 
-public class Block extends I{
+public class IBlock extends I{
     public List<I> inst;
 
-    public Block() {}
+    public IBlock() {}
 
-    public Block(List<I> inst){ 
+    public IBlock(List<I> inst){ 
         this.inst = inst;
     }
 

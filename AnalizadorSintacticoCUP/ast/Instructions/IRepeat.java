@@ -4,10 +4,10 @@ import java.util.List;
 
 import ast.Expressions.E;
 
-public class Repeat extends Block {
+public class IRepeat extends IBlock {
     private E cond;
 
-    public Repeat(E exp, List<I> inst) {
+    public IRepeat(E exp, List<I> inst) {
         super(inst);
         this.cond = exp;
     }

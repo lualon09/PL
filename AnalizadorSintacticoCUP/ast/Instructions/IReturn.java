@@ -2,14 +2,14 @@ package ast.Instructions;
 
 import ast.Expressions.E;
 
-public class Return extends I{
+public class IReturn extends I{
 
     private E expReturn;
 
-    public Return (E exp){
+    public IReturn (E exp){
         this.expReturn = exp;
     }
-    public Return (){
+    public IReturn (){
         this.expReturn = null;
     }
 

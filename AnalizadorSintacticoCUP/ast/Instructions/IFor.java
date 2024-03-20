@@ -4,12 +4,12 @@ import java.util.List;
 
 import ast.Expressions.E;
 
-public class For extends Block {
+public class IFor extends IBlock {
     private E cond;
-    private Assignation assign;
-    private Declaration dec;
+    private IAssignation assign;
+    private IDeclaration dec;
 
-    public For(Declaration dec, E exp, Assignation a, List<I> inst) {
+    public IFor(IDeclaration dec, E exp, IAssignation a, List<I> inst) {
         super(inst);
         this.assign = a;
         this.cond = exp;

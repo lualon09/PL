@@ -2,11 +2,11 @@ package ast.Instructions;
 
 import ast.Expressions.E;
 
-public class Show extends I{
+public class IShow extends I{
 
     private E exp;
 
-    public Show(E exp){
+    public IShow(E exp){
         super();
         this.exp = exp;
     }

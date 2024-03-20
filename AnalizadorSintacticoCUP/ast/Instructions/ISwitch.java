@@ -4,18 +4,18 @@ import java.util.List;
 
 import ast.Expressions.E;
 
-public class Switch extends Block {
+public class ISwitch extends IBlock {
     private E cond;
     private List<SwitchInstruction> cases;
     private SwitchInstruction defaultCase;
 
-    public Switch(E exp, List<SwitchInstruction> cases) {
+    public ISwitch(E exp, List<SwitchInstruction> cases) {
         super();
         this.cases = cases;
         this.cond = exp;
         this.defaultCase = null;
     }
-    public Switch(E exp, List<SwitchInstruction> cases, SwitchInstruction defaultCase) {
+    public ISwitch(E exp, List<SwitchInstruction> cases, SwitchInstruction defaultCase) {
         super();
         this.cases = cases;
         this.cond = exp;

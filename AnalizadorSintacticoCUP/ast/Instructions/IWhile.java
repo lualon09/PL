@@ -4,10 +4,10 @@ import java.util.List;
 
 import ast.Expressions.E;
 
-public class While extends Block {
+public class IWhile extends IBlock {
     private E cond;
 
-    public While(E exp, List<I> inst) {
+    public IWhile(E exp, List<I> inst) {
         super(inst);
         this.cond = exp;
     }

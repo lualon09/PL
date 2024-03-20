@@ -4,18 +4,18 @@ import java.util.List;
 
 import ast.Expressions.E;
 
-public class Valuefor extends Block {
+public class IValuefor extends IBlock {
     private E cond;
     private List<ValueforInstruction> cases;
     private E defaultCase;
 
-    public Valuefor(E exp, List<ValueforInstruction> cases) {
+    public IValuefor(E exp, List<ValueforInstruction> cases) {
         super();
         this.cases = cases;
         this.cond = exp;
         this.defaultCase = null;
     }
-    public Valuefor(E exp, List<ValueforInstruction> cases, E defaultCase) {
+    public IValuefor(E exp, List<ValueforInstruction> cases, E defaultCase) {
         super();
         this.cases = cases;
         this.cond = exp;

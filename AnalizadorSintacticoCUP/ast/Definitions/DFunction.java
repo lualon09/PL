@@ -4,14 +4,14 @@ import java.util.List;
 import ast.Instructions.I;
 import ast.Types.Type;
 
-public class Function extends D {
+public class DFunction extends D {
 
     private String name;
     private List<I> body;
     private List<Parameter> params;
     private Type returnType;
 
-    public Function(String name, List<I> body, List<Parameter> params, Type returnType){
+    public DFunction(String name, List<I> body, List<Parameter> params, Type returnType){
         this.name = name;
         this.body = body;
         this.params = params;

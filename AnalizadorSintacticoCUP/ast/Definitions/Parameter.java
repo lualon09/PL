@@ -1,10 +1,10 @@
 package ast.Definitions;
 
-import ast.Instructions.Declaration;
+import ast.Instructions.IDeclaration;
 import ast.Types.Type;
 
 
-public class Parameter extends Declaration {
+public class Parameter extends IDeclaration {
 
     private boolean ref = false;
 

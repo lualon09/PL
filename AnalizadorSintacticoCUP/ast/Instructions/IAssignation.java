@@ -3,11 +3,11 @@ package ast.Instructions;
 import ast.Expressions.*;
 import ast.Expressions.Accesses.*;
 
-public class Assignation extends I{
+public class IAssignation extends I{
 
     private A access;
     private E exp;
-    public Assignation(A a, E e){ //access para acceder a la variable, E es la expresion de la variable
+    public IAssignation(A a, E e){ //access para acceder a la variable, E es la expresion de la variable
         this.access = a;
         this.exp = e;
     }
