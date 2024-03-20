@@ -18,4 +18,4 @@ mv ../AnalizadorLexicoTiny.java alex/
 javac -cp "../cup.jar" */*.java
 
 # Ejecutar el analizador sintáctico
-java -cp ".:../cup.jar" asint.Main ../ejemplos/01_dec_var.txt
+java -cp ".:../cup.jar" asint.Main ../ejemplos/06_punteros.txt

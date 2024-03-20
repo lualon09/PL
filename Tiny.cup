@@ -131,7 +131,7 @@ E4 ::= E4 OP2 E5 | E5 ;
 E5 ::= E5 OP3 E6 | E6 ;
 E6 ::= NOT E6 | E7;
 E7 ::= OP4 E7 | E8;
-E8 ::= ENT | TRUE | FALSE | ACCESO | LLAMADAFUNC | READFUNC | PAP E0 PCIERRE | LLAP E0 E9 LLCIERRE;
+E8 ::= ENT | TRUE | FALSE | ACCESO | LLAMADAFUNC | READFUNC | LLAP E0 E9 LLCIERRE;
 E9 ::= COMA E0 E9 | ;
 
 //----Operadores----
@@ -144,15 +144,12 @@ OP4 ::= SUMLIST | PRODLIST ;
 //----New--------
 NEWEXP ::= NEW TYPE ;
 
-
-
 //--------------------------------------Tipos--------------------------------------------
 TYPE ::= TIPOINT | TIPOBOOL | VOID | IDEN | LIST MENOR TYPE MAYOR CAP E0 CCIERRE | TYPE POR ;
 // el IDEN es para el struct
-// en ent se puede poner 3 + 4
 
 //-------------------------------------Accesos------------------------------------------
-ACCESO ::= ACCESO CAP E0 CCIERRE | ACCESO PUNTO IDEN | NACCESO ;        //PODER LLAMAR A FUNCIONES DESDE UNA VARIABLE, ROLLO var1.getInt() o con structs???'
+ACCESO ::= ACCESO CAP E0 CCIERRE | ACCESO PUNTO IDEN | PAP E0 PCIERRE | NACCESO ;        //PODER LLAMAR A FUNCIONES DESDE UNA VARIABLE, ROLLO var1.getInt() o con structs???'
 NACCESO ::= IDEN | POR NACCESO | AMPERSAND NACCESO ;                    //FALTARIA PUNTEROS DE PUNTEROS??????? LO PERMITIMOS????
 
 

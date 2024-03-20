@@ -1,5 +1,10 @@
 //Punteros
 
+Struct tInfo {
+    Int campo;
+    Int *campoPuntero;
+};
+
 main() -> Int{
     Int var1 = 2;
     Int * var2 = new Int; 
@@ -19,5 +24,11 @@ main() -> Int{
     Bool varB4 = new Bool;
     *varB4 = not(*varB2) && not(*varB3);  //varB4 = True
     
+    tInfo * nombrePuntero; //puntero de un array
+    (*nombrePuntero).campo = 0;
+
+    tInfo nombre;
+    *nombre.campo = 1; //accedemos a un campo puntero de un struct
+
     return 0;
 }      
