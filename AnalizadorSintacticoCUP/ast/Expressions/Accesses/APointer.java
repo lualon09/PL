@@ -2,12 +2,14 @@ package ast.Expressions.Accesses;
 
 public class APointer extends A {
 
+    private A access;
+
     public APointer(A ac){
-        this.bondNode = ac;  
+          this.access = ac;
     }
 
     @Override
     public String toString(){
-        return "APointer (*" + bondNode + ")";
+        return "APointer (*" +  access.toString() + ")";
     }
 }

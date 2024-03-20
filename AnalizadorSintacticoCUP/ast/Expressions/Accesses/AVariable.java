@@ -10,6 +10,6 @@ public class AVariable extends A {
 
     @Override
     public String toString(){
-        return var;
+        return "AVar(" + var + ")";
     }
 }
