@@ -147,7 +147,7 @@ NEWEXP ::= NEW TYPE ;
 
 
 //--------------------------------------Tipos--------------------------------------------
-TYPE ::= TIPOINT | TIPOBOOL | VOID | IDEN | LIST MENOR TYPE MAYOR CAP ENT CCIERRE | TYPE POR ;
+TYPE ::= TIPOINT | TIPOBOOL | VOID | IDEN | LIST MENOR TYPE MAYOR CAP E0 CCIERRE | TYPE POR ;
 // el IDEN es para el struct
 // en ent se puede poner 3 + 4
 
