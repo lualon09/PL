@@ -1,19 +1,19 @@
-package ast.Types;
+package ast.types;
 
 import ast.Expressions.EConst;
 
-public class Array extends Type{
+public class TArray extends T{
 
     protected EConst size;
     
-    public Array(Type t, EConst tam){
+    public TArray(T t, EConst tam){
         this.type = t;
         this.size = tam;
     }
 
     @Override
-    public KindTypes kind() {
-        return KindTypes.ARRAY;
+    public KindT kind() {
+        return KindT.ARRAY;
     }
 
     public String toString(){

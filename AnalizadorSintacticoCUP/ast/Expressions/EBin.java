@@ -1,14 +1,14 @@
 package ast.Expressions;
 
-import ast.Types.Type;
+import ast.types.T;
 
 public class EBin extends E {
    private E opnd1;
    private E opnd2;
    private KindE tExp;
-   private Type type;
+   private T type;
 
-   public EBin(E opnd1, E opnd2,  KindE tExp, Type t) {
+   public EBin(E opnd1, E opnd2,  KindE tExp, T t) {
      this.opnd1 = opnd1;
      this.opnd2 = opnd2;
      this.type = t;

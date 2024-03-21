@@ -1,14 +1,14 @@
 package ast.Definitions;
 
 import ast.Instructions.IDeclaration;
-import ast.Types.Type;
+import ast.types.T;
 
 
 public class Parameter extends IDeclaration {
 
     private boolean ref = false;
 
-    public Parameter(String name, Type t, boolean ref){
+    public Parameter(String name, T t, boolean ref){
         super(t, name);
         this.ref = ref;
     }

@@ -3,12 +3,12 @@ package ast.Definitions;
 import java.util.List;
 
 import ast.Instructions.I;
-import ast.Types.*;
+import ast.types.*;
 
 public class Main extends DFunction {
 
-    public Main(String name, List<I> body, Type returnType) {
-        super("main", body, null, new BasicTypes(KindTypes.INT));
+    public Main(String name, List<I> body, T returnType) {
+        super("main", body, null, new TBasics(KindT.INT));
     }
     
 }

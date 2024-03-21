@@ -1,12 +1,12 @@
 package ast.Expressions;
 
-import ast.Types.*;
+import ast.types.*;
 
 public class ENew extends E{
 
-    private Type type;
+    private T type;
 
-    public ENew(Type t){
+    public ENew(T t){
         this.type = t; //El puntero es de tipo t
         // this.type = new Pointer(typeP); //creamos el puntero de tipo typeP
     }

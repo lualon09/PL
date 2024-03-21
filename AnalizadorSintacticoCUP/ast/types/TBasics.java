@@ -1,15 +1,15 @@
-package ast.Types;
+package ast.types;
 
-public class BasicTypes extends Type{
+public class TBasics extends T{
 
-    private KindTypes tipo;
+    private KindT tipo;
 
-    public BasicTypes(KindTypes tipo){
+    public TBasics(KindT tipo){
         this.tipo = tipo;
     }
 
     @Override
-    public KindTypes kind() {
+    public KindT kind() {
         return this.tipo;
     }
 

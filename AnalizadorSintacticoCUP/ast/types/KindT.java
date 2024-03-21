@@ -1,5 +1,5 @@
-package ast.Types;
+package ast.types;
 
-public enum KindTypes {
+public enum KindT {
     INT, BOOL, VOID, ARRAY, STRUCT, POINTER, NULL
 }

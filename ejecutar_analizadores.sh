@@ -18,4 +18,8 @@ mv ../AnalizadorLexicoTiny.java alex/
 javac -cp "../cup.jar" */*.java
 
 # Ejecutar el analizador sintáctico
-java -cp ".:../cup.jar" asint.Main ../ejemplos/06_punteros.txt
+# java -cp ".:../cup.jar" asint.Main ../ejemplos/06_punteros.txt
+
+#javac -cp "../cup.jar" ast/Definitions/*.java ast/Instructions/*.java ast/Expressions/*.java ast/Types/*.java ast/*.java ast/Expressions/Accesses/*.java
+
+

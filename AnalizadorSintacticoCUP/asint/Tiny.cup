@@ -4,6 +4,9 @@ import java_cup.runtime.*;
 import alex.AnalizadorLexicoTiny;
 import alex.UnidadLexica;
 import errors.GestionErroresTiny;
+import alex.TokenValue;
+import ast.*;
+import ast.types.*;
 
 scan with {: return getScanner().next_token(); :};
 parser code {: 
@@ -145,8 +148,18 @@ OP4 ::= SUMLIST | PRODLIST ;
 NEWEXP ::= NEW TYPE ;
 
 //--------------------------------------Tipos--------------------------------------------
-TYPE ::= TIPOINT | TIPOBOOL | VOID | IDEN | LIST MENOR TYPE MAYOR CAP E0 CCIERRE | TYPE POR ;
-// el IDEN es para el struct
+TYPE ::= TIPOINT
+         {: RESULT = new TBasics(KindT.INT);:}
+         | TIPOBOOL 
+         {: RESULT = new TBasics(KindT.BOOL);:}
+         | VOID 
+         {: RESULT = new TBasics(KindT.VOID);:}
+         | IDEN:id
+         {: RESULT = new TStruct(id.lexema);:}
+         | LIST MENOR TYPE:t MAYOR CAP E0:size CCIERRE 
+         {: sizeConst = new EConst(size.lexema, new TBasics(KindT.INT)); RESULT = new TArray(t, sizeConst);:}
+         | TYPE:t POR 
+         {: RESULT = new TPointer(t);:};
 
 //-------------------------------------Accesos------------------------------------------
 ACCESO ::= ACCESO CAP E0 CCIERRE | ACCESO PUNTO IDEN | PAP E0 PCIERRE | NACCESO ;        //PODER LLAMAR A FUNCIONES DESDE UNA VARIABLE, ROLLO var1.getInt() o con structs???'

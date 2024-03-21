@@ -1,20 +1,20 @@
 package ast.Instructions;
 
 import ast.Expressions.E;
-import ast.Types.Type;
+import ast.types.T;
 
 public class IDeclaration extends I{
-    public Type type;
+    public T type;
     public String name;
     private E exp;
 
-    public IDeclaration(Type t, String name){ 
+    public IDeclaration(T t, String name){ 
         this.name = name;
         this.type = t;
         this.exp = null;
     }
 
-    public IDeclaration(Type t, String name, E exp){ 
+    public IDeclaration(T t, String name, E exp){ 
         this.type = t;
         this.name = name;
         this.exp = exp;

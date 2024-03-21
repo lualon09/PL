@@ -1,13 +1,13 @@
 package ast.Definitions;
 
-import ast.Types.Type;
+import ast.types.T;
 
 public class DTypedef extends D {
     
-    private Type t;
+    private T t;
     private String name;
 
-    public DTypedef(String name, Type t){
+    public DTypedef(String name, T t){
         this.name = name;
         this.t = t;
     }

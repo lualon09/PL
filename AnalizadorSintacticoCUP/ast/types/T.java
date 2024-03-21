@@ -1,12 +1,12 @@
-package ast.Types;
+package ast.types;
 
 import ast.NodeKind;
 
-public abstract class Type {
+public abstract class T {
 
-    public Type type;
+    public T type;
 
-    public abstract KindTypes kind();
+    public abstract KindT kind();
     public NodeKind nodeKind() {
         return NodeKind.TYPE;
     }
