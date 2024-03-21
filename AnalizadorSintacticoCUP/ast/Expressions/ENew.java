@@ -1,6 +1,6 @@
 package ast.Expressions;
 
-import ast.types.*;
+import ast.Types.*;
 
 public class ENew extends E{
 

@@ -6,7 +6,9 @@ import alex.UnidadLexica;
 import alex.TokenValue;
 import errors.GestionErroresTiny;
 // import ast.*;
+import java.util.ArrayList;
 import ast.Types.*;
+import ast.Expressions.*;
 
 scan with {: return getScanner().next_token(); :};
 parser code {: 
@@ -22,21 +24,27 @@ init with {:
 :};
 
 
-terminal  IDEN, TIPOINT, TIPOBOOL, VOID,
-         ENT, TRUE, FALSE, MAS, MENOS, POR, DIV, MOD, SUMLIST, PRODLIST, 
+terminal TIPOINT, TIPOBOOL, VOID,
+         MAS, MENOS, POR, DIV, MOD, SUMLIST, PRODLIST, 
          MAYOR, MENOR, MAYORIGUAL, MENORIGUAL, DISTINTO, IGUALDAD,
          AND, OR, NOT, PAP, PCIERRE, CAP, CCIERRE, LLAP, LLCIERRE, FLECHA,
          IGUAL, COMA, PUNTOYCOMA, AMPERSAND, PUNTO, DOSPUNTOS, 
          WHILE, FOR, REPEAT, IF, ELSE, STRUCT, SWITCH, VALUEFOR, CASE, BREAK, DEFAULT,
          RETURN, SHOW, READ, MAIN, TYPEDEF, CONST, LIST, NEW;
 
-non terminal S, CONSTVAR, TYPE, E0, E1, E2, E3, E4, E5, E6, E7, E8, E9,
-         OP0, OP1, OP2, OP3, OP4, ACCESO, NACCESO, STRUCTDEC, MAINFUNC,
-         INST, BLOQUE , WHILEEXP, FOREXP, REPEATEXP, VALUEFOREXP, 
-         SWITCHEXP, CASEEXP, CASEEXPVF, ASIG, FUNCDEC, PARAMS, ALIAS, LLAMADAFUNC, 
-         ARGS, CAMPOS, DECLARACION, LISTAINST, RETURNFUNC, SHOWFUNC, READFUNC, LLAMADAFUNCAUX,
-         CONDICIONALES, BUCLES, SWITCHES, BINST, DEFAULTEXP, DEFAULTEXPVF, PARAM, LISTAPARAMS, LISTAARGS, NEWEXP, LISTADEC;
+terminal TokenValue IDEN, ENT, TRUE, FALSE;
 
+non terminal S, CONSTVAR,  
+         NACCESO, STRUCTDEC, MAINFUNC,
+         INST, BLOQUE , WHILEEXP, FOREXP, REPEATEXP, VALUEFOREXP, 
+         SWITCHEXP, CASEEXP, CASEEXPVF, ASIG, FUNCDEC, PARAMS, ALIAS, 
+         ARGS, CAMPOS, DECLARACION, LISTAINST, RETURNFUNC, SHOWFUNC, LLAMADAFUNCAUX,
+         CONDICIONALES, BUCLES, SWITCHES, BINST, DEFAULTEXP, DEFAULTEXPVF, PARAM, LISTAPARAMS, LISTAARGS, LISTADEC;
+
+non terminal T TYPE;
+non terminal E E0, E1, E2, E3, E4, E5, E6, E7, E8, NEWEXP, ACCESO, READFUNC, LLAMADAFUNC;
+non terminal ArrayList<E> E9;
+non terminal KindE OP0, OP1, OP2, OP3, OP4;
 
 //------------Declaraciones de constantes, funciones, alias, structs y la función main--------------  ?????VARIABLES GLOBALES????'
 
@@ -126,26 +134,99 @@ DEFAULTEXPVF ::= DEFAULT IGUAL E0 PUNTOYCOMA ;
 //-------------------------------------Expresiones----------------------------------------
 
 //----Expresiones----
-E0 ::= E0 OR E1 | E1 ;
-E1 ::= E1 AND E2 | E2 ;
-E2 ::= E2 OP0 E3 | E3 ;
-E3 ::= E3 OP1 E4 | E4 | NEWEXP ;
-E4 ::= E4 OP2 E5 | E5 ;
-E5 ::= E5 OP3 E6 | E6 ;
-E6 ::= NOT E6 | E7;
-E7 ::= OP4 E7 | E8;
-E8 ::= ENT | TRUE | FALSE | ACCESO | LLAMADAFUNC | READFUNC | LLAP E0 E9 LLCIERRE;
+E0 ::= E0:op1 OR E1:op2
+      {: RESULT = new EBin(op1, op2, KindE.OR, new TBasics(KindT.BOOL));:}
+      | E1:e 
+      {:RESULT = e;:};
+
+E1 ::= E1:op1 AND E2:op2
+      {: RESULT = new EBin(op1, op2, KindE.AND, new TBasics(KindT.BOOL)); :}
+      | E2:e 
+      {:RESULT = e;:};
+
+E2 ::= E2:op1 OP0:operator E3:op2 
+      {: RESULT = new EBin(op1, op2, operator, new TBasics(KindT.BOOL)); :}
+      | E3:e 
+      {:RESULT = e;:};
+
+E3 ::= E3:op1 OP1:operator E4:op2
+      {: RESULT = new EBin(op1, op2, operator, new TBasics(KindT.BOOL)); :}
+      | E4:e
+      {:RESULT = e;:}
+      | NEWEXP:nexp 
+      {:RESULT = nexp;:};
+
+E4 ::= E4:op1 OP2:operator E5:op2 
+      {: RESULT = new EBin(op1, op2, operator, new TBasics(KindT.INT));:}
+      | E5:e
+      {:RESULT = e;:} ;
+
+E5 ::= E5:op1 OP3:operator E6:op2
+      {: RESULT = new EBin(op1, op2, operator, new TBasics(KindT.INT));:}
+      | E6:e 
+      {:RESULT = e;:};
+
+E6 ::= NOT E6:op1 
+      {:RESULT = new EUnary(op1, KindE.NOT, new TBasics(KindT.BOOL));:}
+      | E7:e 
+      {:RESULT = e;:};
+
+E7 ::= OP4:operator E7:op1
+      {:RESULT = new EUnary(op1, operator, new TArray(new TBasics(KindT.INT)));:} //estos operadores solo se pueden con arrays de enteros
+      | E8:e 
+      {:RESULT = e;:};
+
+E8 ::= ENT:value
+      {:RESULT = new EConst(value.lexema, new TBasics(KindT.INT));:}
+      | TRUE:value
+      {:RESULT = new EConst(value.lexema, new TBasics(KindT.BOOL));:} 
+      | FALSE:value
+      {:RESULT = new EConst(value.lexema, new TBasics(KindT.BOOL));:} 
+      | ACCESO:access 
+      {:RESULT = access;:} 
+      | LLAMADAFUNC:callFunc
+      {:RESULT = callFunc;:} 
+      | READFUNC:read
+      {:RESULT = read;:} 
+      | LLAP E0 E9 LLCIERRE;
+
 E9 ::= COMA E0 E9 | ;
 
 //----Operadores----
-OP0 ::= DISTINTO | IGUALDAD ;
-OP1 ::= MENOR | MAYOR | MENORIGUAL | MAYORIGUAL ;
-OP2 ::= MAS  | MENOS ;
-OP3 ::= POR | DIV | MOD ;
-OP4 ::= SUMLIST | PRODLIST ;
+OP0 ::= DISTINTO:d
+      {:d = KindE.DISTINCT;:}
+      | IGUALDAD:e
+      {:e = KindE.EQUAL;:};
+
+OP1 ::= MENOR:m
+       {:m = KindE.LESS;:}
+       | MAYOR:ma
+       {:ma = KindE.GREATER;:}
+       | MENORIGUAL:me
+       {:me = KindE.LEQ;:} 
+       | MAYORIGUAL:may
+       {:may = KindE.GREQ;:};
+
+OP2 ::= MAS:m
+      {:m = KindE.SUM;:}
+      | MENOS:me
+      {:me = KindE.SUB;:};
+
+OP3 ::= POR:p
+       {:p = KindE.MUL;:}
+       | DIV:d
+       {:d = KindE.DIV;:} 
+       | MOD:m
+       {:m = KindE.MOD;:};
+
+OP4 ::= SUMLIST:s
+      {:s = KindE.SUML;:}
+      | PRODLIST:p 
+      {:p= KindE.PRODL;:} ;
 
 //----New--------
-NEWEXP ::= NEW TYPE ;
+NEWEXP ::= NEW TYPE:t 
+         {:RESULT = new ENew(t);:};
 
 //--------------------------------------Tipos--------------------------------------------
 TYPE ::= TIPOINT
@@ -156,14 +237,12 @@ TYPE ::= TIPOINT
          {: RESULT = new TBasics(KindT.VOID);:}
          | IDEN:id
          {: RESULT = new TStruct(id.lexema);:}
-         | LIST MENOR TYPE:t MAYOR CAP E0:size CCIERRE 
-         {: sizeConst = new EConst(size.lexema, new TBasics(KindT.INT)); RESULT = new TArray(t, sizeConst);:}
+         | LIST MENOR TYPE:t MAYOR CAP ENT:size CCIERRE //hemos puesto ENT en vez de E0 para el token value
+         {: EConst sizeConst = new EConst(size.lexema, new TBasics(KindT.INT)); RESULT = new TArray(t, sizeConst);:}
          | TYPE:t POR 
          {: RESULT = new TPointer(t);:};
 
 //-------------------------------------Accesos------------------------------------------
 ACCESO ::= ACCESO CAP E0 CCIERRE | ACCESO PUNTO IDEN | PAP E0 PCIERRE | NACCESO ;        //PODER LLAMAR A FUNCIONES DESDE UNA VARIABLE, ROLLO var1.getInt() o con structs???'
 NACCESO ::= IDEN | POR NACCESO | AMPERSAND NACCESO ;                    //FALTARIA PUNTEROS DE PUNTEROS??????? LO PERMITIMOS????
-
-
 

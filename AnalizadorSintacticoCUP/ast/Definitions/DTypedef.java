@@ -1,6 +1,6 @@
 package ast.Definitions;
 
-import ast.types.T;
+import ast.Types.T;
 
 public class DTypedef extends D {
     

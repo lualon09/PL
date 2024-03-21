@@ -1,6 +1,6 @@
 package ast.Expressions;
 
-import ast.types.T;
+import ast.Types.T;
 
 public class EBin extends E {
    private E opnd1;

@@ -2,7 +2,7 @@ package ast.Definitions;
 
 import java.util.List;
 import ast.Instructions.I;
-import ast.types.T;
+import ast.Types.T;
 
 public class DFunction extends D {
 

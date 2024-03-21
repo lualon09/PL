@@ -1,7 +1,7 @@
 package ast.Instructions;
 
 import ast.Expressions.E;
-import ast.types.T;
+import ast.Types.T;
 
 public class IDeclaration extends I{
     public T type;

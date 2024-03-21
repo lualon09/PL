@@ -11,6 +11,10 @@ public class TArray extends T{
         this.size = tam;
     }
 
+    public TArray(T t){
+        this.type = t;
+    }
+
     @Override
     public KindT kind() {
         return KindT.ARRAY;

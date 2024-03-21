@@ -3,7 +3,7 @@ package ast.Definitions;
 import java.util.List;
 
 import ast.Instructions.I;
-import ast.types.*;
+import ast.Types.*;
 
 public class Main extends DFunction {
 
