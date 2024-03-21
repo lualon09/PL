@@ -1,7 +1,7 @@
 package ast.Definitions;
 
 import ast.Instructions.IDeclaration;
-import ast.types.T;
+import ast.Types.T;
 
 
 public class Parameter extends IDeclaration {

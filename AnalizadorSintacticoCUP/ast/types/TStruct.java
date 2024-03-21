@@ -1,4 +1,4 @@
-package ast.types;
+package ast.Types;
 
 public class TStruct extends T {
 

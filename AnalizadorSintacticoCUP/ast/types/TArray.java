@@ -1,4 +1,4 @@
-package ast.types;
+package ast.Types;
 
 import ast.Expressions.EConst;
 
