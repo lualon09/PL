@@ -1,17 +1,13 @@
 package ast.Instructions;
 
-import java.util.ArrayList;
-
-import ast.Expressions.E;
+import ast.Expressions.EFunction;
 
 public class IFunction extends I{
 
-  private String name;
-    public ArrayList<E> p; //lista de parámetros de la funcion
+    private EFunction exp;
 
-    public IFunction(String f, ArrayList<E> p){
-        this.name = f; 
-        this.p = p;
+    public IFunction(EFunction e){
+        this.exp = e;
     }
 
     @Override
@@ -20,6 +16,6 @@ public class IFunction extends I{
     }
 
     public String toString(){
-        return "call to " + name + "(" + p.toString() + ")";
+        return "call to " + exp.toString();
     }
 }

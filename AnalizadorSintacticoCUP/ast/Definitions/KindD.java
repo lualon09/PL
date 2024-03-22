@@ -1,5 +1,5 @@
 package ast.Definitions;
 
 public enum KindD {
-    ALIAS, FUNCTION, STRUCT
+    ALIAS, FUNCTION, STRUCT, CONST
 }

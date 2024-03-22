@@ -149,9 +149,6 @@ public class ALexOperations {
    public UnidadLexica unidadRead() {
    return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.READ);
    }
-   public UnidadLexica unidadMain() {
-   return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.MAIN);
-   }
    public UnidadLexica unidadEof() {
       return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.EOF); 
    }

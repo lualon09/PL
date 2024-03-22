@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import ast.Types.*;
 import ast.Expressions.*;
 import ast.Expressions.Accesses.*;
+import ast.Definitions.*;
+import ast.Instructions.*;
 
 scan with {: return getScanner().next_token(); :};
 parser code {: 
@@ -35,107 +37,201 @@ terminal TIPOINT, TIPOBOOL, VOID,
 
 terminal TokenValue IDEN, ENT, TRUE, FALSE;
 
-non terminal S, CONSTVAR,  
-         STRUCTDEC,
-         INST, BLOQUE , WHILEEXP, FOREXP, REPEATEXP, VALUEFOREXP, 
-         SWITCHEXP, CASEEXP, CASEEXPVF, ASIG, FUNCDEC, PARAMS, ALIAS, 
-         ARGS, CAMPOS, DECLARACION, LISTAINST, RETURNFUNC, SHOWFUNC, LLAMADAFUNCAUX,
-         CONDICIONALES, BUCLES, SWITCHES, BINST, DEFAULTEXP, DEFAULTEXPVF, PARAM, LISTAPARAMS, LISTAARGS;
+non terminal S,
+         VALUEFOREXP, CASEEXPVF, DEFAULTEXPVF;
 
 non terminal T TYPE;
-non terminal E E0, E1, E2, E3, E4, E5, E6, E7, E8, NEWEXP, READFUNC, LLAMADAFUNC, ACCESO, NACCESO;
+non terminal E E0, E1, E2, E3, E4, E5, E6, E7, E8, ACCESO, NACCESO;
+non terminal ENew NEWEXP;
+non terminal ERead READFUNC;
+non terminal EFunction LLAMADAFUNC;
 non terminal ArrayList<E> E9;
 non terminal KindE OP0, OP1, OP2, OP3, OP4;
-non terminal DefinitionList LISTADEC;
+non terminal DefinitionList DECLARATIONS;
+non terminal IDeclaration DECLARACION;
+non terminal DConst CONSTVAR;
+non terminal DStruct STRUCTDEC;
+non terminal DFunction  FUNCDEC;
+non terminal DTypedef ALIAS;
+non terminal IAssignation ASIG;
+non terminal ArrayList<IDeclaration> CAMPOS;
+non terminal Parameter PARAM;
+non terminal ArrayList<Parameter> LISTAPARAMS, PARAMS;
+non terminal ArrayList<I> BINST, LISTAINST;
+non terminal IShow SHOWFUNC;
+non terminal IReturn RETURNFUNC; 
+non terminal ArrayList<E> ARGS, LISTAARGS;
+non terminal IFunction LLAMADAFUNCINST;
+non terminal IIfElse CONDICIONALES;
+non terminal IBlock BLOQUE,BUCLES, SWITCHES;
+non terminal I INST;
+non terminal IFor FOREXP;
+non terminal IWhile WHILEEXP;
+non terminal IRepeat REPEATEXP;
+non terminal ISwitch SWITCHEXP;
+non terminal ArrayList<SwitchInstruction> CASEEXP;
+non terminal SwitchInstruction DEFAULTEXP;
+
 
 //------------Declaraciones de constantes, funciones, alias, structs y la función main--------------  ?????VARIABLES GLOBALES????'
 
 //----Programa Principal----
-S ::=  DECLARACION S 
-      // me está rayando
-      | CONSTVAR S
-      | STRUCTDEC S 
-      | ALIAS S 
-      | FUNCDEC S 
-      | ;
+S ::=  DECLARATIONS;
 
-//----Declaracion de variables y asignacion---
+//----Declaracion de variables y asignacion--
 
+DECLARATIONS ::= DECLARACION:d DECLARATIONS:list
+                 {:list.addVar(d); RESULT = list;:}
+                 | CONSTVAR:c DECLARATIONS:list
+                 {:list.addConst(c); RESULT = list;:}
+                 | STRUCTDEC:s DECLARATIONS:list
+                 {:list.addStruct(s); RESULT = list;:}
+                 | ALIAS:t DECLARATIONS:list
+                 {:list.addTypedef(t); RESULT = list;:} 
+                 | FUNCDEC:f DECLARATIONS:list
+                 {:list.addFunc(f); RESULT = list;:} 
+                 | 
+                 {:RESULT = new DefinitionList();:};
 
-DECLARACION ::= TYPE:t IDEN:name LISTADEC:list PUNTOYCOMA
-                {:IDeclaration var = new IDeclaration(t, name.lexema); list.addVar(var); RESULT = list;:}
-               | TYPE IDEN:name IGUAL E0:e LISTADEC:list PUNTOYCOMA
-               {:IDeclaration var = new IDeclaration(t, name.lexema, e); list.addVar(var); RESULT = list;:};
+DECLARACION ::= TYPE:t IDEN:name PUNTOYCOMA
+                {:IDeclaration var = new IDeclaration(t, name.lexema); RESULT = var;:}
+               | TYPE:t IDEN:name IGUAL E0:e PUNTOYCOMA
+               {:IDeclaration var = new IDeclaration(t, name.lexema, e); RESULT = var;:};
 
-LISTADEC ::= COMA IDEN:name LISTADEC:list
-            {::}
-            | COMA IDEN:name IGUAL E0:e LISTADEC:list 
-            | 
-            {:RESULT = new DefinitionList();:};
-
-ASIG ::= ACCESO IGUAL E0 PUNTOYCOMA ;
+ASIG ::= ACCESO:a IGUAL E0:e PUNTOYCOMA 
+         {:RESULT = new IAssignation((A) a, e);:};
 
 //----Constantes----
-CONSTVAR ::= CONST DECLARACION;
+CONSTVAR ::= CONST TYPE:t IDEN:name IGUAL E0:e PUNTOYCOMA
+            {:RESULT = new DConst(t, name.lexema, e);:};
 
 //----Declaracion de Structs----
-STRUCTDEC ::= STRUCT IDEN LLAP CAMPOS LLCIERRE PUNTOYCOMA ;
-CAMPOS   ::= DECLARACION CAMPOS | DECLARACION;
+STRUCTDEC ::= STRUCT IDEN:name LLAP CAMPOS:c LLCIERRE PUNTOYCOMA 
+            {:RESULT = new DStruct(name.lexema, c);:};
+CAMPOS   ::= DECLARACION:d CAMPOS:list
+            {:list.add(d); RESULT = list;:}
+            | DECLARACION:d
+            {:ArrayList<IDeclaration> list = new ArrayList<IDeclaration>(); list.add(d); RESULT = list;:};
 
 //----Alias----
-ALIAS ::= TYPEDEF IDEN IGUAL TYPE PUNTOYCOMA;
+ALIAS ::= TYPEDEF IDEN:name IGUAL TYPE:t PUNTOYCOMA
+         {:RESULT = new DTypedef(name.lexema, t);:};
 
 //----Declaracion de funciones----
-FUNCDEC ::= IDEN PAP PARAMS PCIERRE FLECHA TYPE BINST ;
-PARAMS ::= LISTAPARAMS | ;
-LISTAPARAMS ::= PARAM COMA LISTAPARAMS | PARAM ;
-PARAM ::= IDEN DOSPUNTOS TYPE | IDEN DOSPUNTOS AMPERSAND TYPE ;
+FUNCDEC ::= IDEN:name PAP PARAMS:p PCIERRE FLECHA TYPE:tReturn BINST:i 
+            {:RESULT = new DFunction(name.lexema,i,p,tReturn);:};
 
+PARAMS ::= LISTAPARAMS:list
+           {:RESULT = list;:}
+           | 
+           {:RESULT = new ArrayList<Parameter>();:};
+LISTAPARAMS ::= PARAM:p COMA LISTAPARAMS:l
+                {:l.add(p); RESULT = l;:}
+                | PARAM:p
+                {:ArrayList<Parameter> l = new ArrayList<Parameter>(); l.add(p); RESULT = l;:};
+PARAM ::= IDEN:name DOSPUNTOS TYPE:t 
+          {:RESULT = new Parameter(name.lexema, t, false);:}
+          | IDEN:name DOSPUNTOS AMPERSAND TYPE:t 
+          {:RESULT = new Parameter(name.lexema, t, true);:};
 
 //-------------------------------Instrucciones---------------------------------------------
 
 //----Listas de instrucciones----
-LISTAINST ::= INST LISTAINST | BLOQUE LISTAINST | ;
-INST ::= DECLARACION | ASIG | SHOWFUNC | RETURNFUNC | LLAMADAFUNCAUX ;
+LISTAINST ::= INST:i LISTAINST:list
+              {:list.add(i); RESULT = list;:}
+              | BLOQUE:b LISTAINST:list
+              {:list.add(b); RESULT = list;:} 
+              | 
+              {:RESULT = new ArrayList<I>();:};
+
+INST ::= DECLARACION:d
+         {:RESULT = d;:}
+         | ASIG:a 
+         {:RESULT = a;:} 
+         | SHOWFUNC:s
+         {:RESULT = s;:}
+         | RETURNFUNC:r
+         {:RESULT = r; :}
+         | LLAMADAFUNCINST:l
+         {:RESULT = l;:} ;
 
 //----Show----
-SHOWFUNC ::= SHOW PAP E0 PCIERRE PUNTOYCOMA ;
+SHOWFUNC ::= SHOW PAP E0:e PCIERRE PUNTOYCOMA 
+            {:RESULT = new IShow(e);:};
 
 //----Read----
-READFUNC ::= READ PAP PCIERRE ;
+READFUNC ::= READ PAP PCIERRE;
 
 //----Return----
-RETURNFUNC ::= RETURN E0 PUNTOYCOMA | RETURN PUNTOYCOMA ;         //FUNCIONES VOID?????????
+RETURNFUNC ::= RETURN E0:e PUNTOYCOMA 
+               {:RESULT = new IReturn(e);:}
+               | RETURN PUNTOYCOMA 
+               {:RESULT = new IReturn();:};
+
+LLAMADAFUNCINST ::= LLAMADAFUNC:f PUNTOYCOMA
+                    {:RESULT = new IFunction(f);:};
 
 //----LLamada a funcion----
-LLAMADAFUNCAUX ::= LLAMADAFUNC PUNTOYCOMA ;
-LLAMADAFUNC ::= IDEN PAP ARGS PCIERRE ;  
-ARGS ::= LISTAARGS | ;
-LISTAARGS ::= E0 COMA ARGS | E0 ;
+LLAMADAFUNC ::= IDEN:name PAP ARGS:a PCIERRE
+                {:RESULT = new EFunction(name.lexema, a);:};  
 
-
+ARGS ::= LISTAARGS:l
+         {:RESULT = l;:}
+         | 
+         {:RESULT = new ArrayList<E>();:};
+LISTAARGS ::= E0:e COMA LISTAARGS:l
+              {:l.add(e); RESULT = l;:}
+              | E0:e 
+              {:ArrayList<E> l = new ArrayList<E>(); l.add(e); RESULT = l;:};
 
 //--------------------Bloques, Condicionales, Bucles y Switches--------------------------
 
 //----Bloques----
-BLOQUE ::= BINST | CONDICIONALES | BUCLES | SWITCHES;
-BINST ::= LLAP LISTAINST LLCIERRE;
+BLOQUE ::= BINST:b
+          {:RESULT = new IBlock(b);:}
+          | CONDICIONALES:c
+          {:RESULT = c;:} 
+          | BUCLES:l
+          {:RESULT = l;:} 
+          | SWITCHES:s
+          {:RESULT = s;:};
+
+BINST ::= LLAP LISTAINST:list LLCIERRE
+          {:RESULT = list;:};
 
 //----Condicionales----
-CONDICIONALES ::= IF PAP E0 PCIERRE BINST | IF PAP E0 PCIERRE BINST ELSE BINST ;
+CONDICIONALES ::= IF PAP E0:e PCIERRE BINST:i
+                  {:RESULT = new IIfElse(e, i);:}
+                  | IF PAP E0:exp PCIERRE BINST:i ELSE BINST:e 
+                  {:RESULT = new IIfElse(exp, i, e);:};
 
 //----Bucles----
-BUCLES ::= WHILEEXP | FOREXP | REPEATEXP ;
-WHILEEXP ::= WHILE PAP E0 PCIERRE BINST ;
-FOREXP ::= FOR PAP DECLARACION E0 PUNTOYCOMA ACCESO IGUAL E0 PCIERRE BINST ; 
-REPEATEXP ::= REPEAT PAP E0 PCIERRE BINST ;
+BUCLES ::= WHILEEXP:w 
+          {:RESULT = w;:}
+          | FOREXP:f
+          {:RESULT = f;:} 
+          | REPEATEXP:r 
+          {:RESULT = r;:};
+WHILEEXP ::= WHILE PAP E0:b PCIERRE BINST:b
+             {:RESULT = new IWhile(e, b);:};
+FOREXP ::= FOR PAP DECLARACION:d E0:e PUNTOYCOMA ACCESO:a IGUAL E0:e2 PCIERRE BINST:b 
+           {:RESULT = new IFor(d, e, new IAssignation(a, e2), b);:}; 
+REPEATEXP ::= REPEAT PAP E0:e PCIERRE BINST:b
+              {:RESULT = new IRepeat(e, b);:};
 
 //----Switches----
-SWITCHES ::= SWITCHEXP | VALUEFOREXP ;
+SWITCHES ::= SWITCHEXP 
+             | VALUEFOREXP ;
 
-SWITCHEXP ::= SWITCH PAP IDEN PCIERRE LLAP CASEEXP DEFAULTEXP LLCIERRE ;
-CASEEXP	::= CASE E0 DOSPUNTOS LISTAINST BREAK PUNTOYCOMA CASEEXP |;
-DEFAULTEXP ::= DEFAULT DOSPUNTOS LISTAINST ;
+SWITCHEXP ::= SWITCH PAP IDEN PCIERRE LLAP CASEEXP DEFAULTEXP LLCIERRE | SWITCH PAP IDEN PCIERRE LLAP CASEEXP LLCIERRE; 
+CASEEXP	::= CASE E0:e DOSPUNTOS LISTAINST:i BREAK PUNTOYCOMA CASEEXP:list 
+               {:SwitchInstruction s = new SwitchInstruction(i, e, true); list.add(s); RESULT = list;:}
+               CASE E0:e DOSPUNTOS LISTAINST:i PUNTOYCOMA CASEEXP:list 
+               {:SwitchInstruction s = new SwitchInstruction(i, e, false); list.add(s); RESULT = list;:}
+               |
+               {:RESULT = new ArrayList<SwitchInstruction>();:};
+
+DEFAULTEXP ::= DEFAULT DOSPUNTOS LISTAINST;
 
 VALUEFOREXP ::= VALUEFOR PAP IDEN PCIERRE LLAP CASEEXPVF DEFAULTEXPVF LLCIERRE ;       //NO ESTOY SEGURO DE QUE ESTO ESTÉ BIEN. Tendríamos que poner un acceso a la variable yo creo pero no se como
 CASEEXPVF ::= CASE E0 IGUAL E0 PUNTOYCOMA BREAK PUNTOYCOMA CASEEXPVF | ;
@@ -274,4 +370,3 @@ NACCESO ::= IDEN:id
             {: RESULT = new APointer((A) na);:} 
             | AMPERSAND NACCESO:na 
             {:RESULT = new AAdPointer((A) na);:};
-
