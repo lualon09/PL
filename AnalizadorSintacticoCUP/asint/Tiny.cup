@@ -38,7 +38,7 @@ terminal TIPOINT, TIPOBOOL, VOID,
 terminal TokenValue IDEN, ENT, TRUE, FALSE;
 
 non terminal S,
-         VALUEFOREXP, CASEEXPVF, DEFAULTEXPVF, SWITCHEXP, CASEEXP, DEFAULTEXP, BUCLES, SWITCHES;
+         VALUEFOREXP, CASEEXPVF, DEFAULTEXPVF, SWITCHEXP, CASEEXP, DEFAULTEXP, SWITCHES;
 
 non terminal T TYPE;
 non terminal E E0, E1, E2, E3, E4, E5, E6, E7, E8, ACCESO, NACCESO;
@@ -63,6 +63,7 @@ non terminal IReturn RETURNFUNC;
 non terminal ArrayList<E> ARGS, LISTAARGS;
 non terminal IFunction LLAMADAFUNCINST;
 non terminal IIfElse CONDICIONALES;
+non terminal IBlock BUCLES;
 non terminal IBlock BLOQUE;
 non terminal I INST;
 
@@ -185,7 +186,8 @@ BLOQUE ::= BINST:list
       {:RESULT = new IBlock(list);:}
        | CONDICIONALES:c
        {:RESULT = c;:}
-       | BUCLES
+       | BUCLES:b
+       {:RESULT = b;:}
        | SWITCHES;
 
 BINST ::= LLAP LISTAINST:list LLCIERRE
