@@ -1,24 +1,23 @@
 package ast.Instructions;
 
 import java.util.List;
-
-import ast.Expressions.E;
+import ast.Expressions.Accesses.A;
 
 public class IValuefor extends IBlock {
-    private E cond;
+    private A var;
     private List<ValueforInstruction> cases;
-    private E defaultCase;
+    private ValueforInstruction defaultCase;
 
-    public IValuefor(E exp, List<ValueforInstruction> cases) {
+    public IValuefor(A exp, List<ValueforInstruction> cases) {
         super();
         this.cases = cases;
-        this.cond = exp;
+        this.var = exp;
         this.defaultCase = null;
     }
-    public IValuefor(E exp, List<ValueforInstruction> cases, E defaultCase) {
+    public IValuefor(A exp, List<ValueforInstruction> cases, ValueforInstruction defaultCase) {
         super();
         this.cases = cases;
-        this.cond = exp;
+        this.var = exp;
         this.defaultCase = defaultCase;
     }
 
@@ -28,8 +27,8 @@ public class IValuefor extends IBlock {
 
     public String toString(){
         if(defaultCase == null){
-            return "valuefor(" + cond.toString() + ")" + cases.toString();
+            return "valuefor(" + var.toString() + ")" + cases.toString();
         }
-        return "valuefor(" + cond.toString() + ")" + cases.toString() + "default:" + defaultCase.toString();
+        return "valuefor(" + var.toString() + ")" + cases.toString() + "default:" + defaultCase.toString();
     }
 }

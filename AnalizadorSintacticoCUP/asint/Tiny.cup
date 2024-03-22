@@ -37,8 +37,7 @@ terminal TIPOINT, TIPOBOOL, VOID,
 
 terminal TokenValue IDEN, ENT, TRUE, FALSE;
 
-non terminal S,
-         CASEEXPVF, DEFAULTEXPVF;
+non terminal S;
 
 non terminal T TYPE;
 non terminal E E0, E1, E2, E3, E4, E5, E6, E7, E8, ACCESO, NACCESO;
@@ -68,6 +67,8 @@ non terminal IBlock BLOQUE;
 non terminal I INST;
 non terminal ArrayList<SwitchInstruction> CASEEXP;
 non terminal SwitchInstruction DEFAULTEXP;
+non terminal ArrayList<ValueforInstruction> CASEEXPVF;
+non terminal ValueforInstruction DEFAULTEXPVF;
 
 
 //------------Declaraciones de constantes, funciones, alias, structs y la función main--------------  ?????VARIABLES GLOBALES????'
@@ -215,20 +216,25 @@ SWITCHES ::= SWITCH PAP E0:e PCIERRE LLAP CASEEXP:c DEFAULTEXP:d LLCIERRE
             {:RESULT = new ISwitch(e, c, d);:}
             | SWITCH PAP E0:e PCIERRE LLAP CASEEXP:c LLCIERRE 
             {:RESULT = new ISwitch(e, c);:}
-            | VALUEFOR PAP IDEN PCIERRE LLAP CASEEXPVF DEFAULTEXPVF LLCIERRE ;
+            | VALUEFOR PAP ACCESO:a PCIERRE LLAP CASEEXPVF:c DEFAULTEXPVF:d LLCIERRE 
+            {:RESULT = new IValuefor((A) a, c, d);:};
 
 CASEEXP	::= CASE E0:e DOSPUNTOS LISTAINST:lInst BREAK PUNTOYCOMA CASEEXP:l
             {:l.add(new SwitchInstruction(lInst, e, true)); RESULT = l;:}
             | CASE E0:e DOSPUNTOS LISTAINST:lInst PUNTOYCOMA CASEEXP:l
             {:l.add(new SwitchInstruction(lInst, e, false)); RESULT = l;:} 
             | 
-            {:ArrayList<SwitchInstruction> l = new ArrayList(); RESULT = l;:};
+            {:ArrayList<SwitchInstruction> l = new ArrayList<SwitchInstruction>(); RESULT = l;:};
 
 DEFAULTEXP ::= DEFAULT DOSPUNTOS LISTAINST:l
                {:RESULT = new SwitchInstruction(l);:};
 
-CASEEXPVF ::= CASE E0 IGUAL E0 PUNTOYCOMA BREAK PUNTOYCOMA CASEEXPVF | ;
-DEFAULTEXPVF ::= DEFAULT IGUAL E0 PUNTOYCOMA ;
+CASEEXPVF ::= CASE E0:e IGUAL E0:result PUNTOYCOMA BREAK PUNTOYCOMA CASEEXPVF:l
+              {:l.add(new ValueforInstruction(e, result, true)); RESULT = l;:}
+              | 
+              {:ArrayList<ValueforInstruction> l = new ArrayList<ValueforInstruction>(); RESULT = l;:};
+DEFAULTEXPVF ::= DEFAULT IGUAL E0:e PUNTOYCOMA 
+              {:RESULT = new ValueforInstruction(e);:};
 
 
 
