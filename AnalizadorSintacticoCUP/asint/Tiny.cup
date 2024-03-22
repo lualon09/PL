@@ -28,9 +28,9 @@ init with {:
 :};
 
 
-terminal TIPOINT, TIPOBOOL, VOID,
-         MAS, MENOS, POR, DIV, MOD, SUMLIST, PRODLIST, 
-         MAYOR, MENOR, MAYORIGUAL, MENORIGUAL, DISTINTO, IGUALDAD,
+terminal TYPEINT, TYPEBOOL, VOID,
+         SUM, SUB, MUL, DIV, MOD, SUML, PRODL, 
+         GREATER, LESS, GREQ, LEQ, DISTINCT, EQUAL,
          AND, OR, NOT, PAP, PCIERRE, CAP, CCIERRE, LLAP, LLCIERRE, FLECHA,
          IGUAL, COMA, PUNTOYCOMA, AMPERSAND, PUNTO, DOSPUNTOS, 
          WHILE, FOR, REPEAT, IF, ELSE, STRUCT, SWITCH, VALUEFOR, CASE, BREAK, DEFAULT,
@@ -41,30 +41,30 @@ terminal TokenValue IDEN, ENT, TRUE, FALSE;
 non terminal S;
 
 non terminal T TYPE;
-non terminal E E0, E1, E2, E3, E4, E5, E6, E7, E8, ACCESO, NACCESO;
+non terminal E E0, E1, E2, E3, E4, E5, E6, E7, E8, ACCESS0, ACCESS1;
 non terminal ENew NEWEXP;
 non terminal ERead READFUNC;
-non terminal EFunction LLAMADAFUNC;
+non terminal EFunction CALLFUNC;
 non terminal ArrayList<E> E9;
 non terminal KindE OP0, OP1, OP2, OP3, OP4;
 non terminal DefinitionList DECLARATIONS;
-non terminal IDeclaration DECLARACION;
+non terminal IDeclaration DECLARATION;
 non terminal DConst CONSTVAR;
 non terminal DStruct STRUCTDEC;
 non terminal DFunction  FUNCDEC;
-non terminal DTypedef ALIAS;
+non terminal DTypedef TYPEDEFDEC;
 non terminal IAssignation ASIG;
-non terminal ArrayList<IDeclaration> CAMPOS;
+non terminal ArrayList<IDeclaration> FIELDS;
 non terminal Parameter PARAM;
-non terminal ArrayList<Parameter> LISTAPARAMS, PARAMS;
-non terminal ArrayList<I> BINST, LISTAINST;
+non terminal ArrayList<Parameter> PARAMLIST, PARAMS;
+non terminal ArrayList<I> BINST, INSTLIST;
 non terminal IShow SHOWFUNC;
 non terminal IReturn RETURNFUNC; 
-non terminal ArrayList<E> ARGS, LISTAARGS;
-non terminal IFunction LLAMADAFUNCINST;
-non terminal IIfElse CONDICIONALES;
-non terminal IBlock BUCLES, SWITCHES;
-non terminal IBlock BLOQUE;
+non terminal ArrayList<E> ARGS, ARGLIST;
+non terminal IFunction INSTFUNCALL;
+non terminal IIfElse CONDITIONALS;
+non terminal IBlock LOOPS, SWITCHES;
+non terminal IBlock BLOCK;
 non terminal I INST;
 non terminal ArrayList<SwitchInstruction> CASEEXP;
 non terminal SwitchInstruction DEFAULTEXP;
@@ -72,60 +72,60 @@ non terminal ArrayList<ValueforInstruction> CASEEXPVF;
 non terminal ValueforInstruction DEFAULTEXPVF;
 
 
-//------------Declaraciones de constantes, funciones, alias, structs y la función main--------------  ?????VARIABLES GLOBALES????'
+//------------DECLARATIONes de constantes, funciones, TYPEDEF, structs y la función main--------------  ?????VARIABLES GLOBALES????'
 
 //----Programa Principal----
 S ::=  DECLARATIONS:declarations
       {:RESULT = new Program(declarations);:};
 
-//----Declaracion de variables y asignacion--
+//----DECLARATION de variables y asignacion--
 
-DECLARATIONS ::= DECLARACION:d DECLARATIONS:list
+DECLARATIONS ::= DECLARATION:d DECLARATIONS:list
                  {:list.addVar(d); RESULT = list;:}
                  | CONSTVAR:c DECLARATIONS:list
                  {:list.addConst(c); RESULT = list;:}
                  | STRUCTDEC:s DECLARATIONS:list
                  {:list.addStruct(s); RESULT = list;:}
-                 | ALIAS:t DECLARATIONS:list
+                 | TYPEDEFDEC:t DECLARATIONS:list
                  {:list.addTypedef(t); RESULT = list;:} 
                  | FUNCDEC:f DECLARATIONS:list
                  {:list.addFunc(f); RESULT = list;:} 
                  | 
                  {:RESULT = new DefinitionList();:};
 
-DECLARACION ::= TYPE:t IDEN:name PUNTOYCOMA
+DECLARATION ::= TYPE:t IDEN:name PUNTOYCOMA
                 {:IDeclaration var = new IDeclaration(t, name.lexema); RESULT = var;:}
                | TYPE:t IDEN:name IGUAL E0:e PUNTOYCOMA
                {:IDeclaration var = new IDeclaration(t, name.lexema, e); RESULT = var;:};
 
-ASIG ::= ACCESO:a IGUAL E0:e PUNTOYCOMA 
+ASIG ::= ACCESS0:a IGUAL E0:e PUNTOYCOMA 
          {:RESULT = new IAssignation((A) a, e);:};
 
 //----Constantes----
 CONSTVAR ::= CONST TYPE:t IDEN:name IGUAL E0:e PUNTOYCOMA
             {:RESULT = new DConst(t, name.lexema, e);:};
 
-//----Declaracion de Structs----
-STRUCTDEC ::= STRUCT IDEN:name LLAP CAMPOS:c LLCIERRE PUNTOYCOMA 
+//----DECLARATION de Structs----
+STRUCTDEC ::= STRUCT IDEN:name LLAP FIELDS:c LLCIERRE PUNTOYCOMA 
             {:RESULT = new DStruct(name.lexema, c);:};
-CAMPOS   ::= DECLARACION:d CAMPOS:list
+FIELDS   ::= DECLARATION:d FIELDS:list
             {:list.add(d); RESULT = list;:}
-            | DECLARACION:d
+            | DECLARATION:d
             {:ArrayList<IDeclaration> list = new ArrayList<IDeclaration>(); list.add(d); RESULT = list;:};
 
-//----Alias----
-ALIAS ::= TYPEDEF IDEN:name IGUAL TYPE:t PUNTOYCOMA
+//----TYPEDEF----
+TYPEDEFDEC ::= TYPEDEF IDEN:name IGUAL TYPE:t PUNTOYCOMA
          {:RESULT = new DTypedef(name.lexema, t);:};
 
-//----Declaracion de funciones----
+//----DECLARATION de funciones----
 FUNCDEC ::= IDEN:name PAP PARAMS:p PCIERRE FLECHA TYPE:tReturn BINST:i 
             {:RESULT = new DFunction(name.lexema,i,p,tReturn);:};
 
-PARAMS ::= LISTAPARAMS:list
+PARAMS ::= PARAMLIST:list
            {:RESULT = list;:}
            | 
            {:RESULT = new ArrayList<Parameter>();:};
-LISTAPARAMS ::= PARAM:p COMA LISTAPARAMS:l
+PARAMLIST ::= PARAM:p COMA PARAMLIST:l
                 {:l.add(p); RESULT = l;:}
                 | PARAM:p
                 {:ArrayList<Parameter> l = new ArrayList<Parameter>(); l.add(p); RESULT = l;:};
@@ -137,14 +137,14 @@ PARAM ::= IDEN:name DOSPUNTOS TYPE:t
 //-------------------------------Instrucciones---------------------------------------------
 
 //----Listas de instrucciones----
-LISTAINST ::= INST:i LISTAINST:list
+INSTLIST ::= INST:i INSTLIST:list
               {:list.add(i); RESULT = list;:}
-              | BLOQUE:b LISTAINST:list
+              | BLOCK:b INSTLIST:list
               {:list.add(b); RESULT = list;:} 
               | 
               {:RESULT = new ArrayList<I>();:};
 
-INST ::= DECLARACION:d
+INST ::= DECLARATION:d
          {:RESULT = d;:}
          | ASIG:a 
          {:RESULT = a;:} 
@@ -152,7 +152,7 @@ INST ::= DECLARACION:d
          {:RESULT = s;:}
          | RETURNFUNC:r
          {:RESULT = r; :}
-         | LLAMADAFUNCINST:l
+         | INSTFUNCALL:l
          {:RESULT = l;:} ;
 
 //----Show----
@@ -168,47 +168,47 @@ RETURNFUNC ::= RETURN E0:e PUNTOYCOMA
                | RETURN PUNTOYCOMA 
                {:RESULT = new IReturn();:};
 
-LLAMADAFUNCINST ::= LLAMADAFUNC:f PUNTOYCOMA
+INSTFUNCALL ::= CALLFUNC:f PUNTOYCOMA
                     {:RESULT = new IFunction(f);:};
 
 //----LLamada a funcion----
-LLAMADAFUNC ::= IDEN:name PAP ARGS:a PCIERRE
+CALLFUNC ::= IDEN:name PAP ARGS:a PCIERRE
                 {:RESULT = new EFunction(name.lexema, a);:};  
 
-ARGS ::= LISTAARGS:l
+ARGS ::= ARGLIST:l
          {:RESULT = l;:}
          | 
          {:RESULT = new ArrayList<E>();:};
-LISTAARGS ::= E0:e COMA LISTAARGS:l
+ARGLIST ::= E0:e COMA ARGLIST:l
               {:l.add(e); RESULT = l;:}
               | E0:e 
               {:ArrayList<E> l = new ArrayList<E>(); l.add(e); RESULT = l;:};
 
-//--------------------Bloques, Condicionales, Bucles y Switches--------------------------
+//--------------------BLOCKs, CONDITIONALS, LOOPS y Switches--------------------------
 
-//----Bloques----
-BLOQUE ::= BINST:list
+//----BLOCKs----
+BLOCK ::= BINST:list
       {:RESULT = new IBlock(list);:}
-       | CONDICIONALES:c
+       | CONDITIONALS:c
        {:RESULT = c;:}
-       | BUCLES:b
+       | LOOPS:b
        {:RESULT = b;:}
        | SWITCHES:s
        {:RESULT = s;:};
 
-BINST ::= LLAP LISTAINST:list LLCIERRE
+BINST ::= LLAP INSTLIST:list LLCIERRE
           {:RESULT = list;:};
 
-//----Condicionales----
-CONDICIONALES ::= IF PAP E0:e PCIERRE BINST:list
+//----CONDITIONALS----
+CONDITIONALS ::= IF PAP E0:e PCIERRE BINST:list
                   {:RESULT = new IIfElse(e, list);:}
                   | IF PAP E0:e PCIERRE BINST:listIf ELSE BINST:listElse
                    {:RESULT = new IIfElse(e, listIf, listElse);:};
 
-//----Bucles----
-BUCLES ::= WHILE PAP E0:e PCIERRE BINST:list
+//----LOOPS----
+LOOPS ::= WHILE PAP E0:e PCIERRE BINST:list
            {:RESULT = new IWhile(e, list);:}
-           | FOR PAP DECLARACION:d E0:exp PUNTOYCOMA ACCESO:a IGUAL E0:exp2 PCIERRE BINST:list 
+           | FOR PAP DECLARATION:d E0:exp PUNTOYCOMA ACCESS0:a IGUAL E0:exp2 PCIERRE BINST:list 
            {:RESULT = new IFor(d, exp, new IAssignation((A) a, exp2), list);:}
            | REPEAT PAP E0:e PCIERRE BINST:list
            {:RESULT = new IRepeat(e, list);:};
@@ -218,19 +218,19 @@ SWITCHES ::= SWITCH PAP E0:e PCIERRE LLAP CASEEXP:c DEFAULTEXP:d LLCIERRE
             {:RESULT = new ISwitch(e, c, d);:}
             | SWITCH PAP E0:e PCIERRE LLAP CASEEXP:c LLCIERRE 
             {:RESULT = new ISwitch(e, c);:}
-            | VALUEFOR PAP ACCESO:a PCIERRE LLAP CASEEXPVF:c DEFAULTEXPVF:d LLCIERRE 
+            | VALUEFOR PAP ACCESS0:a PCIERRE LLAP CASEEXPVF:c DEFAULTEXPVF:d LLCIERRE 
             {:RESULT = new IValuefor((A) a, c, d);:}
-            | VALUEFOR PAP ACCESO:a PCIERRE LLAP CASEEXPVF:c LLCIERRE 
+            | VALUEFOR PAP ACCESS0:a PCIERRE LLAP CASEEXPVF:c LLCIERRE 
             {:RESULT = new IValuefor((A) a, c);:};
 
-CASEEXP	::= CASE E0:e DOSPUNTOS LISTAINST:lInst BREAK PUNTOYCOMA CASEEXP:l
+CASEEXP	::= CASE E0:e DOSPUNTOS INSTLIST:lInst BREAK PUNTOYCOMA CASEEXP:l
             {:l.add(new SwitchInstruction(lInst, e, true)); RESULT = l;:}
-            | CASE E0:e DOSPUNTOS LISTAINST:lInst PUNTOYCOMA CASEEXP:l
+            | CASE E0:e DOSPUNTOS INSTLIST:lInst PUNTOYCOMA CASEEXP:l
             {:l.add(new SwitchInstruction(lInst, e, false)); RESULT = l;:} 
             | 
             {:ArrayList<SwitchInstruction> l = new ArrayList<SwitchInstruction>(); RESULT = l;:};
 
-DEFAULTEXP ::= DEFAULT DOSPUNTOS LISTAINST:l
+DEFAULTEXP ::= DEFAULT DOSPUNTOS INSTLIST:l
                {:RESULT = new SwitchInstruction(l);:};
 
 CASEEXPVF ::= CASE E0:e IGUAL E0:result PUNTOYCOMA BREAK PUNTOYCOMA CASEEXPVF:l
@@ -296,9 +296,9 @@ E8 ::= ENT:value
       {:RESULT = new EConst(value.lexema, new TBasics(KindT.BOOL));:} 
       | FALSE:value
       {:RESULT = new EConst(value.lexema, new TBasics(KindT.BOOL));:} 
-      | ACCESO:access 
+      | ACCESS0:access 
       {:RESULT = access;:} 
-      | LLAMADAFUNC:callFunc
+      | CALLFUNC:callFunc
       {:RESULT = callFunc;:} 
       | READFUNC:read
       {:RESULT = read;:} 
@@ -311,35 +311,35 @@ E9 ::= COMA E0:e E9:list
       {:ArrayList<E> l = new ArrayList<E>(); RESULT = l;:};
 
 //----Operadores----
-OP0 ::= DISTINTO:d
+OP0 ::= DISTINCT:d
       {:d = KindE.DISTINCT;:}
-      | IGUALDAD:e
+      | EQUAL:e
       {:e = KindE.EQUAL;:};
 
-OP1 ::= MENOR:m
+OP1 ::= LESS:m
        {:m = KindE.LESS;:}
-       | MAYOR:ma
+       | GREATER:ma
        {:ma = KindE.GREATER;:}
-       | MENORIGUAL:me
+       | LEQ:me
        {:me = KindE.LEQ;:} 
-       | MAYORIGUAL:may
+       | GREQ:may
        {:may = KindE.GREQ;:};
 
-OP2 ::= MAS:m
+OP2 ::= SUM:m
       {:m = KindE.SUM;:}
-      | MENOS:me
+      | SUB:me
       {:me = KindE.SUB;:};
 
-OP3 ::= POR:p
+OP3 ::= MUL:p
        {:p = KindE.MUL;:}
        | DIV:d
        {:d = KindE.DIV;:} 
        | MOD:m
        {:m = KindE.MOD;:};
 
-OP4 ::= SUMLIST:s
+OP4 ::= SUML:s
       {:s = KindE.SUML;:}
-      | PRODLIST:p 
+      | PRODL:p 
       {:p= KindE.PRODL;:} ;
 
 //----New--------
@@ -347,32 +347,32 @@ NEWEXP ::= NEW TYPE:t
          {:RESULT = new ENew(t);:};
 
 //--------------------------------------Tipos--------------------------------------------
-TYPE ::= TIPOINT
+TYPE ::= TYPEINT
          {: RESULT = new TBasics(KindT.INT);:}
-         | TIPOBOOL 
+         | TYPEBOOL 
          {: RESULT = new TBasics(KindT.BOOL);:}
          | VOID 
          {: RESULT = new TBasics(KindT.VOID);:}
          | IDEN:id
          {: RESULT = new TStruct(id.lexema);:}
-         | LIST MENOR TYPE:t MAYOR CAP ENT:size CCIERRE //hemos puesto ENT en vez de E0 para el token value
+         | LIST LESS TYPE:t GREATER CAP ENT:size CCIERRE //hemos puesto ENT en vez de E0 para el token value
          {: EConst sizeConst = new EConst(size.lexema, new TBasics(KindT.INT)); RESULT = new TArray(t, sizeConst);:}
-         | TYPE:t POR 
+         | TYPE:t MUL 
          {: RESULT = new TPointer(t);:};
 
-//-------------------------------------Accesos------------------------------------------
-ACCESO ::= ACCESO:a CAP E0:e CCIERRE 
+//-------------------------------------ACCESS0s------------------------------------------
+ACCESS0 ::= ACCESS0:a CAP E0:e CCIERRE 
           {:RESULT = new AArray((A) a, e);:}
-          | ACCESO:a PUNTO IDEN:id
+          | ACCESS0:a PUNTO IDEN:id
           {:RESULT = new AStruct((A) a, id.lexema);:} 
           | PAP E0:e PCIERRE
           {:RESULT = e;:} 
-          | NACCESO:na
+          | ACCESS1:na
           {:RESULT = na;:};
 
-NACCESO ::= IDEN:id
+ACCESS1 ::= IDEN:id
             {: RESULT = new AVariable(id.lexema);:}
-            | POR NACCESO:na
+            | MUL ACCESS1:na
             {: RESULT = new APointer((A) na);:} 
-            | AMPERSAND NACCESO:na 
+            | AMPERSAND ACCESS1:na 
             {:RESULT = new AAdPointer((A) na);:};

@@ -36,4 +36,11 @@ public class DefinitionList {
     public void addConst(DConst c){
         consts.add(c);
     }
+    public String toString(){
+        return "Variables globales" + variables.toString() + 
+                "Functiones" + functions.toString() + 
+                "Structs" + structs.toString() + 
+                "Typdedefs" + typedefs.toString() + 
+                "Consts" + consts.toString();
+    }
 }

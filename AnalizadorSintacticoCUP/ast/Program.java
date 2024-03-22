@@ -17,7 +17,7 @@ public class Program extends ASTNode {
 
     @Override
     public String toString() {
-       return "program" + list.toString();
+       return "program {" + list.toString() + "}";
     }
     
 }
