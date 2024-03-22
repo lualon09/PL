@@ -217,7 +217,9 @@ SWITCHES ::= SWITCH PAP E0:e PCIERRE LLAP CASEEXP:c DEFAULTEXP:d LLCIERRE
             | SWITCH PAP E0:e PCIERRE LLAP CASEEXP:c LLCIERRE 
             {:RESULT = new ISwitch(e, c);:}
             | VALUEFOR PAP ACCESO:a PCIERRE LLAP CASEEXPVF:c DEFAULTEXPVF:d LLCIERRE 
-            {:RESULT = new IValuefor((A) a, c, d);:};
+            {:RESULT = new IValuefor((A) a, c, d);:}
+            | VALUEFOR PAP ACCESO:a PCIERRE LLAP CASEEXPVF:c LLCIERRE 
+            {:RESULT = new IValuefor((A) a, c);:};
 
 CASEEXP	::= CASE E0:e DOSPUNTOS LISTAINST:lInst BREAK PUNTOYCOMA CASEEXP:l
             {:l.add(new SwitchInstruction(lInst, e, true)); RESULT = l;:}
@@ -231,8 +233,11 @@ DEFAULTEXP ::= DEFAULT DOSPUNTOS LISTAINST:l
 
 CASEEXPVF ::= CASE E0:e IGUAL E0:result PUNTOYCOMA BREAK PUNTOYCOMA CASEEXPVF:l
               {:l.add(new ValueforInstruction(e, result, true)); RESULT = l;:}
+              | CASE E0:e IGUAL E0:result PUNTOYCOMA PUNTOYCOMA CASEEXPVF:l
+              {:l.add(new ValueforInstruction(e, result, false)); RESULT = l;:}
               | 
               {:ArrayList<ValueforInstruction> l = new ArrayList<ValueforInstruction>(); RESULT = l;:};
+
 DEFAULTEXPVF ::= DEFAULT IGUAL E0:e PUNTOYCOMA 
               {:RESULT = new ValueforInstruction(e);:};
 
