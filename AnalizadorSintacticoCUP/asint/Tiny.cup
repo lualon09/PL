@@ -38,7 +38,7 @@ terminal TIPOINT, TIPOBOOL, VOID,
 terminal TokenValue IDEN, ENT, TRUE, FALSE;
 
 non terminal S,
-         VALUEFOREXP, CASEEXPVF, DEFAULTEXPVF, FOREXP, WHILEEXP, REPEATEXP, SWITCHEXP, CASEEXP, DEFAULTEXP, BUCLES, SWITCHES;
+         VALUEFOREXP, CASEEXPVF, DEFAULTEXPVF, SWITCHEXP, CASEEXP, DEFAULTEXP, BUCLES, SWITCHES;
 
 non terminal T TYPE;
 non terminal E E0, E1, E2, E3, E4, E5, E6, E7, E8, ACCESO, NACCESO;
@@ -185,7 +185,8 @@ BLOQUE ::= BINST:list
       {:RESULT = new IBlock(list);:}
        | CONDICIONALES:c
        {:RESULT = c;:}
-       | BUCLES | SWITCHES;
+       | BUCLES
+       | SWITCHES;
 
 BINST ::= LLAP LISTAINST:list LLCIERRE
           {:RESULT = list;:};
@@ -197,13 +198,12 @@ CONDICIONALES ::= IF PAP E0:e PCIERRE BINST:list
                    {:RESULT = new IIfElse(e, listIf, listElse);:};
 
 //----Bucles----
-BUCLES ::= WHILEEXP | FOREXP | REPEATEXP;
-WHILEEXP ::= WHILE PAP E0 PCIERRE BINST;
-             
-FOREXP ::= FOR PAP DECLARACION E0 PUNTOYCOMA ACCESO IGUAL E0 PCIERRE BINST ;
-           
-REPEATEXP ::= REPEAT PAP E0 PCIERRE BINST;
-              
+BUCLES ::= WHILE PAP E0:e PCIERRE BINST:list
+           {:RESULT = new IWhile(e, list);:}
+           | FOR PAP DECLARACION:d E0:exp PUNTOYCOMA ACCESO:a IGUAL E0:exp2 PCIERRE BINST:list 
+           {:RESULT = new IFor(d, exp, new IAssignation((A) a, exp2), list);:}
+           | REPEAT PAP E0:e PCIERRE BINST:list
+           {:RESULT = new IRepeat(e, list);:};
 
 //----Switches----
 SWITCHES ::= SWITCHEXP | VALUEFOREXP ;
