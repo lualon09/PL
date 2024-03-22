@@ -9,6 +9,7 @@ import errors.GestionErroresTiny;
 import java.util.ArrayList;
 import ast.Types.*;
 import ast.Expressions.*;
+import ast.Expressions.Accesses.*;
 
 scan with {: return getScanner().next_token(); :};
 parser code {: 
@@ -35,14 +36,14 @@ terminal TIPOINT, TIPOBOOL, VOID,
 terminal TokenValue IDEN, ENT, TRUE, FALSE;
 
 non terminal S, CONSTVAR,  
-         NACCESO, STRUCTDEC, MAINFUNC,
+         STRUCTDEC, MAINFUNC,
          INST, BLOQUE , WHILEEXP, FOREXP, REPEATEXP, VALUEFOREXP, 
          SWITCHEXP, CASEEXP, CASEEXPVF, ASIG, FUNCDEC, PARAMS, ALIAS, 
          ARGS, CAMPOS, DECLARACION, LISTAINST, RETURNFUNC, SHOWFUNC, LLAMADAFUNCAUX,
          CONDICIONALES, BUCLES, SWITCHES, BINST, DEFAULTEXP, DEFAULTEXPVF, PARAM, LISTAPARAMS, LISTAARGS, LISTADEC;
 
 non terminal T TYPE;
-non terminal E E0, E1, E2, E3, E4, E5, E6, E7, E8, NEWEXP, ACCESO, READFUNC, LLAMADAFUNC;
+non terminal E E0, E1, E2, E3, E4, E5, E6, E7, E8, NEWEXP, READFUNC, LLAMADAFUNC, ACCESO, NACCESO;
 non terminal ArrayList<E> E9;
 non terminal KindE OP0, OP1, OP2, OP3, OP4;
 
@@ -188,9 +189,13 @@ E8 ::= ENT:value
       {:RESULT = callFunc;:} 
       | READFUNC:read
       {:RESULT = read;:} 
-      | LLAP E0 E9 LLCIERRE;
+      | LLAP E0:elem E9:elems LLCIERRE
+      {:elems.add(elem); RESULT = new EArray(elems);:};
 
-E9 ::= COMA E0 E9 | ;
+E9 ::= COMA E0:e E9:list 
+      {:list.add(e); RESULT = list;:}
+      | 
+      {:ArrayList<E> l = new ArrayList<E>(); RESULT = l;:};
 
 //----Operadores----
 OP0 ::= DISTINTO:d
@@ -243,6 +248,19 @@ TYPE ::= TIPOINT
          {: RESULT = new TPointer(t);:};
 
 //-------------------------------------Accesos------------------------------------------
-ACCESO ::= ACCESO CAP E0 CCIERRE | ACCESO PUNTO IDEN | PAP E0 PCIERRE | NACCESO ;        //PODER LLAMAR A FUNCIONES DESDE UNA VARIABLE, ROLLO var1.getInt() o con structs???'
-NACCESO ::= IDEN | POR NACCESO | AMPERSAND NACCESO ;                    //FALTARIA PUNTEROS DE PUNTEROS??????? LO PERMITIMOS????
+ACCESO ::= ACCESO:a CAP E0:e CCIERRE 
+          {:RESULT = new AArray((A) a, e);:}
+          | ACCESO:a PUNTO IDEN:id
+          {:RESULT = new AStruct((A) a, id.lexema);:} 
+          | PAP E0:e PCIERRE
+          {:RESULT = e;:} 
+          | NACCESO:na
+          {:RESULT = na;:};
+
+NACCESO ::= IDEN:id
+            {: RESULT = new AVariable(id.lexema);:}
+            | POR NACCESO:na
+            {: RESULT = new APointer((A) na);:} 
+            | AMPERSAND NACCESO:na 
+            {:RESULT = new AAdPointer((A) na);:};
 
