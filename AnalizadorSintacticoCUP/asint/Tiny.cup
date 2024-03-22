@@ -38,7 +38,7 @@ terminal TIPOINT, TIPOBOOL, VOID,
 terminal TokenValue IDEN, ENT, TRUE, FALSE;
 
 non terminal S,
-         VALUEFOREXP, CASEEXPVF, DEFAULTEXPVF;
+         VALUEFOREXP, CASEEXPVF, DEFAULTEXPVF, FOREXP, WHILEEXP, REPEATEXP, SWITCHEXP, CASEEXP, DEFAULTEXP, BUCLES, SWITCHES;
 
 non terminal T TYPE;
 non terminal E E0, E1, E2, E3, E4, E5, E6, E7, E8, ACCESO, NACCESO;
@@ -63,14 +63,8 @@ non terminal IReturn RETURNFUNC;
 non terminal ArrayList<E> ARGS, LISTAARGS;
 non terminal IFunction LLAMADAFUNCINST;
 non terminal IIfElse CONDICIONALES;
-non terminal IBlock BLOQUE,BUCLES, SWITCHES;
+non terminal IBlock BLOQUE;
 non terminal I INST;
-non terminal IFor FOREXP;
-non terminal IWhile WHILEEXP;
-non terminal IRepeat REPEATEXP;
-non terminal ISwitch SWITCHEXP;
-non terminal ArrayList<SwitchInstruction> CASEEXP;
-non terminal SwitchInstruction DEFAULTEXP;
 
 
 //------------Declaraciones de constantes, funciones, alias, structs y la función main--------------  ?????VARIABLES GLOBALES????'
@@ -189,7 +183,8 @@ LISTAARGS ::= E0:e COMA LISTAARGS:l
 //----Bloques----
 BLOQUE ::= BINST | CONDICIONALES | BUCLES | SWITCHES;
 
-BINST ::= LLAP LISTAINST LLCIERRE;
+BINST ::= LLAP LISTAINST:list LLCIERRE
+          {:RESULT = list;:};
 
 //----Condicionales----
 CONDICIONALES ::= IF PAP E0 PCIERRE BINST | IF PAP E0 PCIERRE BINST ELSE BINST;
