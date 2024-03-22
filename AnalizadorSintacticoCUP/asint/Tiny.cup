@@ -12,6 +12,7 @@ import ast.Expressions.*;
 import ast.Expressions.Accesses.*;
 import ast.Definitions.*;
 import ast.Instructions.*;
+import ast.*;
 
 scan with {: return getScanner().next_token(); :};
 parser code {: 
@@ -74,7 +75,8 @@ non terminal ValueforInstruction DEFAULTEXPVF;
 //------------Declaraciones de constantes, funciones, alias, structs y la función main--------------  ?????VARIABLES GLOBALES????'
 
 //----Programa Principal----
-S ::=  DECLARATIONS;
+S ::=  DECLARATIONS:declarations
+      {:RESULT = new Program(declarations);:};
 
 //----Declaracion de variables y asignacion--
 
