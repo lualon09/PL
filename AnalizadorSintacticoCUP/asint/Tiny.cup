@@ -190,7 +190,8 @@ BLOQUE ::= BINST:list
        {:RESULT = c;:}
        | BUCLES:b
        {:RESULT = b;:}
-       | SWITCHES;
+       | SWITCHES:s
+       {:RESULT = s;:};
 
 BINST ::= LLAP LISTAINST:list LLCIERRE
           {:RESULT = list;:};
