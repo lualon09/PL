@@ -181,13 +181,20 @@ LISTAARGS ::= E0:e COMA LISTAARGS:l
 //--------------------Bloques, Condicionales, Bucles y Switches--------------------------
 
 //----Bloques----
-BLOQUE ::= BINST | CONDICIONALES | BUCLES | SWITCHES;
+BLOQUE ::= BINST:list
+      {:RESULT = new IBlock(list);:}
+       | CONDICIONALES:c
+       {:RESULT = c;:}
+       | BUCLES | SWITCHES;
 
 BINST ::= LLAP LISTAINST:list LLCIERRE
           {:RESULT = list;:};
 
 //----Condicionales----
-CONDICIONALES ::= IF PAP E0 PCIERRE BINST | IF PAP E0 PCIERRE BINST ELSE BINST;
+CONDICIONALES ::= IF PAP E0:e PCIERRE BINST:list
+                  {:RESULT = new IIfElse(e, list);:}
+                  | IF PAP E0:e PCIERRE BINST:listIf ELSE BINST:listElse
+                   {:RESULT = new IIfElse(e, listIf, listElse);:};
 
 //----Bucles----
 BUCLES ::= WHILEEXP | FOREXP | REPEATEXP;
