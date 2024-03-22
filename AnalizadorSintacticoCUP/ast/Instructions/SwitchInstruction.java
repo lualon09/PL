@@ -15,6 +15,12 @@ public class SwitchInstruction extends I{
         this.breakCond = breakCond;
     }
 
+    public SwitchInstruction(List<I> inst){ //CASO DEFAULT
+        this.inst = inst;
+        this.exp = null;
+        this.breakCond = true; //interpretamos que como es default, ya no va a seguir haica abajo
+    }
+
     @Override
     public KindI kind() {
         return KindI.CASE;
@@ -22,6 +28,9 @@ public class SwitchInstruction extends I{
 
     public String toString(){
         if(breakCond){
+            if(exp == null){
+                return "default" + exp.toString() + ":" + inst.toString() + "(break)";
+            }
             return "case" + exp.toString() + ":" + inst.toString() + "(break)";
         }
         return "case" + exp.toString() + ":" + inst.toString();

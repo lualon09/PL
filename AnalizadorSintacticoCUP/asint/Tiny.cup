@@ -38,7 +38,7 @@ terminal TIPOINT, TIPOBOOL, VOID,
 terminal TokenValue IDEN, ENT, TRUE, FALSE;
 
 non terminal S,
-         VALUEFOREXP, CASEEXPVF, DEFAULTEXPVF, SWITCHEXP, CASEEXP, DEFAULTEXP, SWITCHES;
+         CASEEXPVF, DEFAULTEXPVF;
 
 non terminal T TYPE;
 non terminal E E0, E1, E2, E3, E4, E5, E6, E7, E8, ACCESO, NACCESO;
@@ -63,9 +63,11 @@ non terminal IReturn RETURNFUNC;
 non terminal ArrayList<E> ARGS, LISTAARGS;
 non terminal IFunction LLAMADAFUNCINST;
 non terminal IIfElse CONDICIONALES;
-non terminal IBlock BUCLES;
+non terminal IBlock BUCLES, SWITCHES;
 non terminal IBlock BLOQUE;
 non terminal I INST;
+non terminal ArrayList<SwitchInstruction> CASEEXP;
+non terminal SwitchInstruction DEFAULTEXP;
 
 
 //------------Declaraciones de constantes, funciones, alias, structs y la función main--------------  ?????VARIABLES GLOBALES????'
@@ -208,14 +210,22 @@ BUCLES ::= WHILE PAP E0:e PCIERRE BINST:list
            {:RESULT = new IRepeat(e, list);:};
 
 //----Switches----
-SWITCHES ::= SWITCHEXP | VALUEFOREXP ;
+SWITCHES ::= SWITCH PAP E0:e PCIERRE LLAP CASEEXP:c DEFAULTEXP:d LLCIERRE
+            {:RESULT = new ISwitch(e, c, d);:}
+            | SWITCH PAP E0:e PCIERRE LLAP CASEEXP:c LLCIERRE 
+            {:RESULT = new ISwitch(e, c);:}
+            | VALUEFOR PAP IDEN PCIERRE LLAP CASEEXPVF DEFAULTEXPVF LLCIERRE ;
 
-SWITCHEXP ::= SWITCH PAP IDEN PCIERRE LLAP CASEEXP DEFAULTEXP LLCIERRE | SWITCH PAP IDEN PCIERRE LLAP CASEEXP LLCIERRE; 
-CASEEXP	::= CASE E0 DOSPUNTOS LISTAINST BREAK PUNTOYCOMA CASEEXP | CASE E0 DOSPUNTOS LISTAINST PUNTOYCOMA CASEEXP | ;
+CASEEXP	::= CASE E0:e DOSPUNTOS LISTAINST:lInst BREAK PUNTOYCOMA CASEEXP:l
+            {:l.add(new SwitchInstruction(lInst, e, true)); RESULT = l;:}
+            | CASE E0:e DOSPUNTOS LISTAINST:lInst PUNTOYCOMA CASEEXP:l
+            {:l.add(new SwitchInstruction(lInst, e, false)); RESULT = l;:} 
+            | 
+            {:ArrayList<SwitchInstruction> l = new ArrayList(); RESULT = l;:};
 
-DEFAULTEXP ::= DEFAULT DOSPUNTOS LISTAINST;
+DEFAULTEXP ::= DEFAULT DOSPUNTOS LISTAINST:l
+               {:RESULT = new SwitchInstruction(l);:};
 
-VALUEFOREXP ::= VALUEFOR PAP IDEN PCIERRE LLAP CASEEXPVF DEFAULTEXPVF LLCIERRE ;       //NO ESTOY SEGURO DE QUE ESTO ESTÉ BIEN. Tendríamos que poner un acceso a la variable yo creo pero no se como
 CASEEXPVF ::= CASE E0 IGUAL E0 PUNTOYCOMA BREAK PUNTOYCOMA CASEEXPVF | ;
 DEFAULTEXPVF ::= DEFAULT IGUAL E0 PUNTOYCOMA ;
 
