@@ -187,49 +187,27 @@ LISTAARGS ::= E0:e COMA LISTAARGS:l
 //--------------------Bloques, Condicionales, Bucles y Switches--------------------------
 
 //----Bloques----
-BLOQUE ::= BINST:b
-          {:RESULT = new IBlock(b);:}
-          | CONDICIONALES:c
-          {:RESULT = c;:} 
-          | BUCLES:l
-          {:RESULT = l;:} 
-          | SWITCHES:s
-          {:RESULT = s;:};
+BLOQUE ::= BINST | CONDICIONALES | BUCLES | SWITCHES;
 
-BINST ::= LLAP LISTAINST:list LLCIERRE
-          {:RESULT = list;:};
+BINST ::= LLAP LISTAINST LLCIERRE;
 
 //----Condicionales----
-CONDICIONALES ::= IF PAP E0:e PCIERRE BINST:i
-                  {:RESULT = new IIfElse(e, i);:}
-                  | IF PAP E0:exp PCIERRE BINST:i ELSE BINST:e 
-                  {:RESULT = new IIfElse(exp, i, e);:};
+CONDICIONALES ::= IF PAP E0 PCIERRE BINST | IF PAP E0 PCIERRE BINST ELSE BINST;
 
 //----Bucles----
-BUCLES ::= WHILEEXP:w 
-          {:RESULT = w;:}
-          | FOREXP:f
-          {:RESULT = f;:} 
-          | REPEATEXP:r 
-          {:RESULT = r;:};
-WHILEEXP ::= WHILE PAP E0:b PCIERRE BINST:b
-             {:RESULT = new IWhile(e, b);:};
-FOREXP ::= FOR PAP DECLARACION:d E0:e PUNTOYCOMA ACCESO:a IGUAL E0:e2 PCIERRE BINST:b 
-           {:RESULT = new IFor(d, e, new IAssignation(a, e2), b);:}; 
-REPEATEXP ::= REPEAT PAP E0:e PCIERRE BINST:b
-              {:RESULT = new IRepeat(e, b);:};
+BUCLES ::= WHILEEXP | FOREXP | REPEATEXP;
+WHILEEXP ::= WHILE PAP E0 PCIERRE BINST;
+             
+FOREXP ::= FOR PAP DECLARACION E0 PUNTOYCOMA ACCESO IGUAL E0 PCIERRE BINST ;
+           
+REPEATEXP ::= REPEAT PAP E0 PCIERRE BINST;
+              
 
 //----Switches----
-SWITCHES ::= SWITCHEXP 
-             | VALUEFOREXP ;
+SWITCHES ::= SWITCHEXP | VALUEFOREXP ;
 
 SWITCHEXP ::= SWITCH PAP IDEN PCIERRE LLAP CASEEXP DEFAULTEXP LLCIERRE | SWITCH PAP IDEN PCIERRE LLAP CASEEXP LLCIERRE; 
-CASEEXP	::= CASE E0:e DOSPUNTOS LISTAINST:i BREAK PUNTOYCOMA CASEEXP:list 
-               {:SwitchInstruction s = new SwitchInstruction(i, e, true); list.add(s); RESULT = list;:}
-               CASE E0:e DOSPUNTOS LISTAINST:i PUNTOYCOMA CASEEXP:list 
-               {:SwitchInstruction s = new SwitchInstruction(i, e, false); list.add(s); RESULT = list;:}
-               |
-               {:RESULT = new ArrayList<SwitchInstruction>();:};
+CASEEXP	::= CASE E0 DOSPUNTOS LISTAINST BREAK PUNTOYCOMA CASEEXP | CASE E0 DOSPUNTOS LISTAINST PUNTOYCOMA CASEEXP | ;
 
 DEFAULTEXP ::= DEFAULT DOSPUNTOS LISTAINST;
 
