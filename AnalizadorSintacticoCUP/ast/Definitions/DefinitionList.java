@@ -22,36 +22,36 @@ public class DefinitionList {
     }
 
     public void addVar(IDeclaration d){
-            variables.add(d);
+            variables.add(0, d);
     }
     public void addFunc(DFunction f){
-        functions.add(f);
+        functions.add(0, f);
     }
     public void addStruct(DStruct s){
-        structs.add(s);
+        structs.add(0, s);
     }
     public void addTypedef(DTypedef t){
-        typedefs.add(t);
+        typedefs.add(0, t);
     }
     public void addConst(DConst c){
-        consts.add(c);
+        consts.add(0, c);
     }
     public String toString(){
         StringBuilder s = new StringBuilder();
         if(!variables.isEmpty()){
-            s.append("Global variables" + variables.toString());
-        }
-        if (!functions.isEmpty()){
-            s.append("Functions" + functions.toString());
-        }
-        if (!structs.isEmpty()){
-            s.append("Structs" + structs.toString());
-        }
-        if (!typedefs.isEmpty()){
-            s.append("Typedefs" + typedefs.toString());
+            s.append("Global variables" + variables.toString() + " ");
         }
         if (!consts.isEmpty()){
-            s.append("Consts" + consts.toString());
+            s.append("Consts" + consts.toString()+ " ");
+        }
+        if (!typedefs.isEmpty()){
+            s.append("Typedefs" + typedefs.toString()+ " ");
+        }
+        if (!structs.isEmpty()){
+            s.append("Structs" + structs.toString()+ " ");
+        }
+        if (!functions.isEmpty()){
+            s.append("Functions" + functions.toString()+ " ");
         }
         return s.toString();
     }

@@ -16,6 +16,6 @@ public class IFunction extends I{
     }
 
     public String toString(){
-        return "call to " + exp.toString();
+        return exp.toString();
     }
 }

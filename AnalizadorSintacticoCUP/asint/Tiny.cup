@@ -126,9 +126,9 @@ PARAMS ::= PARAMLIST:list
            | 
            {:RESULT = new ArrayList<Parameter>();:};
 PARAMLIST ::= PARAM:p COMA PARAMLIST:l
-                {:l.add(p); RESULT = l;:}
+                {:l.add(0, p); RESULT = l;:}
                 | PARAM:p
-                {:ArrayList<Parameter> l = new ArrayList<Parameter>(); l.add(p); RESULT = l;:};
+                {:ArrayList<Parameter> l = new ArrayList<Parameter>(); l.add(0, p); RESULT = l;:};
 PARAM ::= IDEN:name DOSPUNTOS TYPE:t 
           {:RESULT = new Parameter(name.lexema, t, false);:}
           | IDEN:name DOSPUNTOS AMPERSAND TYPE:t 
@@ -160,7 +160,8 @@ SHOWFUNC ::= SHOW PAP E0:e PCIERRE PUNTOYCOMA
             {:RESULT = new IShow(e);:};
 
 //----Read----
-READFUNC ::= READ PAP PCIERRE;
+READFUNC ::= READ PAP PCIERRE
+            {:RESULT = new ERead();:};
 
 //----Return----
 RETURNFUNC ::= RETURN E0:e PUNTOYCOMA 
@@ -180,9 +181,9 @@ ARGS ::= ARGLIST:l
          | 
          {:RESULT = new ArrayList<E>();:};
 ARGLIST ::= E0:e COMA ARGLIST:l
-              {:l.add(e); RESULT = l;:}
+              {:l.add(0, e); RESULT = l;:}
               | E0:e 
-              {:ArrayList<E> l = new ArrayList<E>(); l.add(e); RESULT = l;:};
+              {:ArrayList<E> l = new ArrayList<E>(); l.add(0, e); RESULT = l;:};
 
 //--------------------BLOCKs, CONDITIONALS, LOOPS y Switches--------------------------
 

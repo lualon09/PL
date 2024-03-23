@@ -20,7 +20,7 @@ public class IReturn extends I{
     
     public String toString(){
         if(expReturn == null){
-            return "return void";
+            return "return VOID";
         }
         return "return " + expReturn.toString();
     }

@@ -18,6 +18,6 @@ public class EFunction extends E{
     }
 
     public String toString(){
-        return "call to " + functionName + "(" + p.toString() + ")";
+        return "call:" + functionName + "(" + p.toString() + ")";
     }
 }

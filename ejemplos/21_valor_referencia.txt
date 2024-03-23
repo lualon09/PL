@@ -1,11 +1,13 @@
 // Paso por valor
 incrementarPorValor(num:Int) -> Void {
     num = num + 1;
+    return;
 }
 
 // Paso por referencia
 incrementarPorReferencia(num:&Int) -> Void{
     num = num + 1;
+    return;
 }
 
 main() -> Int{
