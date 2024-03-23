@@ -30,7 +30,7 @@ public class ISwitch extends IBlock {
         if(defaultCase == null){
             return "switch(" + cond.toString() + ")" + cases.toString();
         }
-        return "switch(" + cond.toString() + ")" + cases.toString() + "default:" + defaultCase.toString();
+        return "switch(" + cond.toString() + ")" + cases.toString() + ", " + defaultCase.toString();
     }
     
 }

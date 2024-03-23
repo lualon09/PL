@@ -29,11 +29,11 @@ public class ValueforInstruction extends I{
     public String toString(){
         if(breakCond){
             if(exp == null){
-                return "default case " + exp.toString() + "=" + value.toString() + "(break)";
+                return "default" + "=" + value.toString() + "(break)";
             }
-            return "case" + exp.toString() + "=" + value.toString() + "(break)";
+            return "case " + exp.toString() + "=" + value.toString() + "(break)";
         }
-        return "case" + exp.toString() + "=" + value.toString();
+        return "case " + exp.toString() + "=" + value.toString();
     }
     
 }

@@ -29,6 +29,6 @@ public class IValuefor extends IBlock {
         if(defaultCase == null){
             return "valuefor(" + var.toString() + ")" + cases.toString();
         }
-        return "valuefor(" + var.toString() + ")" + cases.toString() + "default:" + defaultCase.toString();
+        return "valuefor(" + var.toString() + ")" + cases.toString() + ", " + defaultCase.toString();
     }
 }

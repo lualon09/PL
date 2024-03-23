@@ -17,6 +17,6 @@ public class DStruct extends D{
         return KindD.STRUCT;
     }
     public String toString(){
-        return "struct" + name.toString() + "{" + fields.toString() + "}";
+        return "struct " + name.toString() + "{" + fields.toString() + "}";
     }
 }

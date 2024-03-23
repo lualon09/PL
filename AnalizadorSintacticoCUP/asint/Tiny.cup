@@ -224,9 +224,9 @@ SWITCHES ::= SWITCH PAP E0:e PCIERRE LLAP CASEEXP:c DEFAULTEXP:d LLCIERRE
             {:RESULT = new IValuefor((A) a, c);:};
 
 CASEEXP	::= CASE E0:e DOSPUNTOS INSTLIST:lInst BREAK PUNTOYCOMA CASEEXP:l
-            {:l.add(new SwitchInstruction(lInst, e, true)); RESULT = l;:}
+            {:l.add(0, new SwitchInstruction(lInst, e, true)); RESULT = l;:}
             | CASE E0:e DOSPUNTOS INSTLIST:lInst PUNTOYCOMA CASEEXP:l
-            {:l.add(new SwitchInstruction(lInst, e, false)); RESULT = l;:} 
+            {:l.add(0, new SwitchInstruction(lInst, e, false)); RESULT = l;:} 
             | 
             {:ArrayList<SwitchInstruction> l = new ArrayList<SwitchInstruction>(); RESULT = l;:};
 
@@ -234,9 +234,9 @@ DEFAULTEXP ::= DEFAULT DOSPUNTOS INSTLIST:l
                {:RESULT = new SwitchInstruction(l);:};
 
 CASEEXPVF ::= CASE E0:e IGUAL E0:result PUNTOYCOMA BREAK PUNTOYCOMA CASEEXPVF:l
-              {:l.add(new ValueforInstruction(e, result, true)); RESULT = l;:}
+              {:l.add(0, new ValueforInstruction(e, result, true)); RESULT = l;:}
               | CASE E0:e IGUAL E0:result PUNTOYCOMA PUNTOYCOMA CASEEXPVF:l
-              {:l.add(new ValueforInstruction(e, result, false)); RESULT = l;:}
+              {:l.add(0, new ValueforInstruction(e, result, false)); RESULT = l;:}
               | 
               {:ArrayList<ValueforInstruction> l = new ArrayList<ValueforInstruction>(); RESULT = l;:};
 
@@ -361,18 +361,20 @@ TYPE ::= TYPEINT
          {: RESULT = new TPointer(t);:};
 
 //-------------------------------------ACCESS0s------------------------------------------
-ACCESS0 ::= ACCESS0:a CAP E0:e CCIERRE 
-          {:RESULT = new AArray((A) a, e);:}
-          | ACCESS0:a PUNTO IDEN:id
-          {:RESULT = new AStruct((A) a, id.lexema);:} 
-          | PAP E0:e PCIERRE
-          {:RESULT = e;:} 
-          | ACCESS1:na
-          {:RESULT = na;:};
+
+ACCESS0 ::= MUL ACCESS0:na
+            {: RESULT = new APointer((A) na);:} 
+            | AMPERSAND ACCESS0:na 
+            {:RESULT = new AAdPointer((A) na);:}
+            | ACCESS1:na
+            {:RESULT = na;:};
 
 ACCESS1 ::= IDEN:id
-            {: RESULT = new AVariable(id.lexema);:}
-            | MUL ACCESS1:na
-            {: RESULT = new APointer((A) na);:} 
-            | AMPERSAND ACCESS1:na 
-            {:RESULT = new AAdPointer((A) na);:};
+           {: RESULT = new AVariable(id.lexema);:}
+           | ACCESS1:a CAP E0:e CCIERRE 
+          {:RESULT = new AArray((A) a, e);:}
+          | ACCESS1:a PUNTO IDEN:id
+          {:RESULT = new AStruct((A) a, id.lexema);:} 
+          | PAP E0:e PCIERRE
+          {:RESULT = e;:};
+       

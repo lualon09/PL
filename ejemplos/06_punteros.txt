@@ -31,8 +31,4 @@ main() -> Int{
     *nombre.campo = 1; //accedemos a un campo puntero de un struct
 
     return 0;
-}      
-assign:AStruct (APointer (*AVar(nombrePuntero)).campo)((INT:0))
-assign:AStruct (APointer (*AVar(nombre)).campo)((INT:1))
-
-assign:APointer (* AStruct(AVar(nombre)).campo)((INT:1))
+} 

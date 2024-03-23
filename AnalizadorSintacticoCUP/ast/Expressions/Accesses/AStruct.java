@@ -11,6 +11,6 @@ public class AStruct extends A {
 
     @Override
     public String toString(){
-        return "AStruct (" + access.toString() + "." + field + ")";
+        return "AStruct(" + access.toString() + "." + field + ")";
     }
 }

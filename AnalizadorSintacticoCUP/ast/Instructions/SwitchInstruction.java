@@ -29,7 +29,7 @@ public class SwitchInstruction extends I{
     public String toString(){
         if(breakCond){
             if(exp == null){
-                return "default" + exp.toString() + ":" + inst.toString() + "(break)";
+                return "default:" + inst.toString();
             }
             return "case" + exp.toString() + ":" + inst.toString() + "(break)";
         }
