@@ -37,10 +37,22 @@ public class DefinitionList {
         consts.add(c);
     }
     public String toString(){
-        return "Variables globales" + variables.toString() + 
-                "Functiones" + functions.toString() + 
-                "Structs" + structs.toString() + 
-                "Typdedefs" + typedefs.toString() + 
-                "Consts" + consts.toString();
+        StringBuilder s = new StringBuilder();
+        if(!variables.isEmpty()){
+            s.append("Global variables" + variables.toString());
+        }
+        if (!functions.isEmpty()){
+            s.append("Functions" + functions.toString());
+        }
+        if (!structs.isEmpty()){
+            s.append("Structs" + structs.toString());
+        }
+        if (!typedefs.isEmpty()){
+            s.append("Typedefs" + typedefs.toString());
+        }
+        if (!consts.isEmpty()){
+            s.append("Consts" + consts.toString());
+        }
+        return s.toString();
     }
 }
