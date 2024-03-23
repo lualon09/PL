@@ -138,9 +138,9 @@ PARAM ::= IDEN:name DOSPUNTOS TYPE:t
 
 //----Listas de instrucciones----
 INSTLIST ::= INST:i INSTLIST:list
-              {:list.add(i); RESULT = list;:}
+              {:list.add(0,i); RESULT = list;:}
               | BLOCK:b INSTLIST:list
-              {:list.add(b); RESULT = list;:} 
+              {:list.add(0, b); RESULT = list;:} 
               | 
               {:RESULT = new ArrayList<I>();:};
 
@@ -303,44 +303,44 @@ E8 ::= ENT:value
       | READFUNC:read
       {:RESULT = read;:} 
       | LLAP E0:elem E9:elems LLCIERRE
-      {:elems.add(elem); RESULT = new EArray(elems);:};
+      {:elems.add(0, elem); RESULT = new EArray(elems);:};
 
 E9 ::= COMA E0:e E9:list 
-      {:list.add(e); RESULT = list;:}
+      {:list.add(0, e); RESULT = list;:}
       | 
       {:ArrayList<E> l = new ArrayList<E>(); RESULT = l;:};
 
 //----Operadores----
-OP0 ::= DISTINCT:d
-      {:d = KindE.DISTINCT;:}
-      | EQUAL:e
-      {:e = KindE.EQUAL;:};
+OP0 ::= DISTINCT
+      {:RESULT = KindE.DISTINCT;:}
+      | EQUAL
+      {:RESULT = KindE.EQUAL;:};
 
-OP1 ::= LESS:m
-       {:m = KindE.LESS;:}
-       | GREATER:ma
-       {:ma = KindE.GREATER;:}
-       | LEQ:me
-       {:me = KindE.LEQ;:} 
-       | GREQ:may
-       {:may = KindE.GREQ;:};
+OP1 ::= LESS
+       {:RESULT = KindE.LESS;:}
+       | GREATER
+       {:RESULT = KindE.GREATER;:}
+       | LEQ
+       {:RESULT = KindE.LEQ;:} 
+       | GREQ
+       {:RESULT = KindE.GREQ;:};
 
-OP2 ::= SUM:m
-      {:m = KindE.SUM;:}
-      | SUB:me
-      {:me = KindE.SUB;:};
+OP2 ::= SUM
+      {:RESULT = KindE.SUM;:}
+      | SUB
+      {:RESULT = KindE.SUB;:};
 
-OP3 ::= MUL:p
-       {:p = KindE.MUL;:}
-       | DIV:d
-       {:d = KindE.DIV;:} 
-       | MOD:m
-       {:m = KindE.MOD;:};
+OP3 ::= MUL
+       {:RESULT = KindE.MUL;:}
+       | DIV
+       {:RESULT = KindE.DIV;:} 
+       | MOD
+       {:RESULT = KindE.MOD;:};
 
-OP4 ::= SUML:s
-      {:s = KindE.SUML;:}
-      | PRODL:p 
-      {:p= KindE.PRODL;:} ;
+OP4 ::= SUML
+      {:RESULT = KindE.SUML;:}
+      | PRODL
+      {: RESULT = KindE.PRODL;:} ;
 
 //----New--------
 NEWEXP ::= NEW TYPE:t 

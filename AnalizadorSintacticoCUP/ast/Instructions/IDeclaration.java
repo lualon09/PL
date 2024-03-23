@@ -27,8 +27,8 @@ public class IDeclaration extends I{
     @Override
     public String toString() {
         if (exp == null){
-            return "declaration:" + name.toString() + "(type: " + type.toString() + ")";
+            return "dec:" + name.toString() + "(type:" + type.toString() + ")";
         }
-        return "declaration:" + name.toString() + "(type: " + type.toString() + ")" + "(" + exp.toString() + ")";
+        return "dec:" + name.toString() + "(type:" + type.toString() + ")=" + exp.toString();
     }
 }

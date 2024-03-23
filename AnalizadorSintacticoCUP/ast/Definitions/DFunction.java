@@ -1,6 +1,6 @@
 package ast.Definitions;
 
-import java.util.Collections;
+// import java.util.Collections;
 import java.util.List;
 import ast.Instructions.I;
 import ast.Types.T;
@@ -14,7 +14,7 @@ public class DFunction extends D {
 
     public DFunction(String name, List<I> body, List<Parameter> params, T returnType){
         this.name = name;
-        Collections.reverse(this.body);
+        // Collections.reverse(this.body);
         this.body = body;
         this.params = params;
         this.returnType = returnType;

@@ -21,7 +21,7 @@ public class TArray extends T{
     }
 
     public String toString(){
-        return "List " + "<" + type.toString() + ">[" + size.toString() + "]";
+        return "List" + "<" + type.toString() + ">[" + size.toString() + "]";
     }
     
 }

@@ -17,6 +17,6 @@ public class EConst extends E{ //Expresion Constante
     }
 
     public String toString(){
-        return "(" + type.toString() + ")" + "=" + value; //las constantes no tienen tipo porque solo pueden ser enteras
+        return "(" + type.toString() + ":" + value + ")"; //las constantes no tienen tipo porque solo pueden ser enteras
     }
 }

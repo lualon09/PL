@@ -14,5 +14,9 @@ public class EArray extends E{
     public KindE kindExp() {
         return KindE.ARRAY;
     }
+
+    public String toString(){
+        return arr.toString();
+    }
     
 }

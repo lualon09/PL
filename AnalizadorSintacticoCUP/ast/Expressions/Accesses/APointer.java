@@ -10,6 +10,6 @@ public class APointer extends A {
 
     @Override
     public String toString(){
-        return "APointer (*" +  access.toString() + ")";
+        return "APointer(*" +  access.toString() + ")";
     }
 }
