@@ -96,18 +96,28 @@ DECLARATIONS ::= DECLARATION:d DECLARATIONS:list
 DECLARATION ::= TYPE:t IDEN:name PUNTOYCOMA
                 {:IDeclaration var = new IDeclaration(t, name.lexema); RESULT = var;:}
                | TYPE:t IDEN:name IGUAL E0:e PUNTOYCOMA
-               {:IDeclaration var = new IDeclaration(t, name.lexema, e); RESULT = var;:};
+               {:IDeclaration var = new IDeclaration(t, name.lexema, e); RESULT = var;:}
+               | TYPE IDEN error
+               {:System.out.println("Error. Missing ;"); RESULT = null;:};
+
 
 ASIG ::= ACCESS0:a IGUAL E0:e PUNTOYCOMA 
-         {:RESULT = new IAssignation((A) a, e);:};
+         {:RESULT = new IAssignation((A) a, e);:}
+         | ACCESS0 IGUAL E0 error
+         {:System.out.println("Error. Missing ;"); RESULT = null;:};
 
 //----Constantes----
 CONSTVAR ::= CONST TYPE:t IDEN:name IGUAL E0:e PUNTOYCOMA
-            {:RESULT = new DConst(t, name.lexema, e);:};
+            {:RESULT = new DConst(t, name.lexema, e);:}
+            | CONST TYPE IDEN IGUAL E0 error 
+            {:System.out.println("Error. Missing ;"); RESULT = null;:};
 
 //----DECLARATION de Structs----
 STRUCTDEC ::= STRUCT IDEN:name LLAP FIELDS:c LLCIERRE PUNTOYCOMA 
-            {:RESULT = new DStruct(name.lexema, c);:};
+            {:RESULT = new DStruct(name.lexema, c);:}
+            |STRUCT IDEN:name LLAP FIELDS:c LLCIERRE error 
+            {:System.out.println("Error. Missing ;"); RESULT = null;:};
+
 FIELDS   ::= DECLARATION:d FIELDS:list
             {:list.add(d); RESULT = list;:}
             | DECLARATION:d
@@ -115,7 +125,9 @@ FIELDS   ::= DECLARATION:d FIELDS:list
 
 //----TYPEDEF----
 TYPEDEFDEC ::= TYPEDEF IDEN:name IGUAL TYPE:t PUNTOYCOMA
-         {:RESULT = new DTypedef(name.lexema, t);:};
+              {:RESULT = new DTypedef(name.lexema, t);:}
+              | TYPEDEF IDEN IGUAL TYPE error
+              {:System.out.println("Error. Missing ;"); RESULT = null;:};
 
 //----DECLARATION de funciones----
 FUNCDEC ::= IDEN:name PAP PARAMS:p PCIERRE FLECHA TYPE:tReturn BINST:i 
@@ -157,7 +169,9 @@ INST ::= DECLARATION:d
 
 //----Show----
 SHOWFUNC ::= SHOW PAP E0:e PCIERRE PUNTOYCOMA 
-            {:RESULT = new IShow(e);:};
+            {:RESULT = new IShow(e);:}
+            |SHOW PAP E0 PCIERRE error 
+            {:System.out.println("Error. Missing ;"); RESULT = null;:};
 
 //----Read----
 READFUNC ::= READ PAP PCIERRE
@@ -167,14 +181,18 @@ READFUNC ::= READ PAP PCIERRE
 RETURNFUNC ::= RETURN E0:e PUNTOYCOMA 
                {:RESULT = new IReturn(e);:}
                | RETURN PUNTOYCOMA 
-               {:RESULT = new IReturn();:};
+               {:RESULT = new IReturn();:}
+               | RETURN error 
+               {:System.out.println("Error in return."); RESULT = null;:};
 
 INSTFUNCALL ::= CALLFUNC:f PUNTOYCOMA
-                    {:RESULT = new IFunction(f);:};
+                {:RESULT = new IFunction(f);:}
+                | CALLFUNC error
+                {:System.out.println("HOLA"); RESULT = null;:};
 
 //----LLamada a funcion----
 CALLFUNC ::= IDEN:name PAP ARGS:a PCIERRE
-                {:RESULT = new EFunction(name.lexema, a);:};  
+             {:RESULT = new EFunction(name.lexema, a);:};  
 
 ARGS ::= ARGLIST:l
          {:RESULT = l;:}
@@ -236,13 +254,15 @@ DEFAULTEXP ::= DEFAULT DOSPUNTOS INSTLIST:l
 
 CASEEXPVF ::= CASE E0:e IGUAL E0:result PUNTOYCOMA BREAK PUNTOYCOMA CASEEXPVF:l
               {:l.add(0, new ValueforInstruction(e, result, true)); RESULT = l;:}
-              | CASE E0:e IGUAL E0:result PUNTOYCOMA PUNTOYCOMA CASEEXPVF:l
+              | CASE E0:e IGUAL E0:result PUNTOYCOMA CASEEXPVF:l
               {:l.add(0, new ValueforInstruction(e, result, false)); RESULT = l;:}
               | 
               {:ArrayList<ValueforInstruction> l = new ArrayList<ValueforInstruction>(); RESULT = l;:};
 
 DEFAULTEXPVF ::= DEFAULT IGUAL E0:e PUNTOYCOMA 
-              {:RESULT = new ValueforInstruction(e);:};
+              {:RESULT = new ValueforInstruction(e);:}
+              | DEFAULT IGUAL E0 error 
+              {:System.out.println("Error. Missing ;"); RESULT = null;:};
 
 
 

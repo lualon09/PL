@@ -1,2 +1,3 @@
 * No estamos obligando a que haya return en las funciones
 * Tenemos puesto que ACCESO sea de tipo E en vez de de tipo A.
+* No nos funciona que las instrucciones que acaben en punto y coma de llamadas a funcioens, no lo tengan.

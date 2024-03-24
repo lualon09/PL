@@ -1,0 +1,25 @@
+//Factorial
+//Calcula el factorial de un número
+
+factorial (n:Int) -> Void {
+    Int fact1 +
+    Int fact = 1
+    for (Int i=1 ; i<=a ; i = i + 1)
+    {
+        fact=i*fact
+    }
+
+    show(fact)
+    // Probamos el caso de función que devuelve Void sin return 
+}
+
+
+main() -> Int{
+
+    Int n = 5;
+    factorial()
+
+    Int n = 6;
+
+    return 0
+}   

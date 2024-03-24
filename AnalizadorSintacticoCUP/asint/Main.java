@@ -10,7 +10,11 @@ public class Main {
      Reader input = new InputStreamReader(new FileInputStream(args[0]));
 	 AnalizadorLexicoTiny alex = new AnalizadorLexicoTiny(input);
 	 AnalizadorSintacticoTiny asint = new AnalizadorSintacticoTiny(alex);
-	 System.out.println(asint.parse().value);
-   }
+	 try {
+	     System.out.println(asint.parse().value);
+	 } catch (Exception e) {
+	     System.out.println("Something went wrong with the parsing...");
+	 }
+ }
 }   
    
