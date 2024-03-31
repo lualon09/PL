@@ -1,8 +1,6 @@
 main() -> Int{
-   Int j = 3;
-   Int i = 4
-   Int w = 5;
-   Int v = 5
-   Int ale = 10;
-   return 0
+   switch(i + 1) {
+      case 2: i = 14; break;
+      default: i = 3;
+   }
 }   
