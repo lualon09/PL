@@ -165,7 +165,9 @@ INST ::= DECLARATION:d
          | RETURNFUNC:r
          {:RESULT = r; :}
          | INSTFUNCALL:l
-         {:RESULT = l;:} ;
+         {:RESULT = l;:} 
+         | error PUNTOYCOMA
+         {:System.out.println("Error. Instruction not recognized"); RESULT = null;:};
 
 //----Show----
 SHOWFUNC ::= SHOW PAP E0:e PCIERRE PUNTOYCOMA 
@@ -187,8 +189,8 @@ RETURNFUNC ::= RETURN E0:e PUNTOYCOMA
 
 INSTFUNCALL ::= CALLFUNC:f PUNTOYCOMA
                 {:RESULT = new IFunction(f);:}
-                | CALLFUNC error
-                {:System.out.println("HOLA"); RESULT = null;:};
+                | CALLFUNC:f error
+                {:System.out.println("ESTO FALLA IMPORTANTE!!!!!!!!!!!!!!!"); RESULT = null;:};
 
 //----LLamada a funcion----
 CALLFUNC ::= IDEN:name PAP ARGS:a PCIERRE
