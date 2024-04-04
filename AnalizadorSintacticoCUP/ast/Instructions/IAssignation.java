@@ -18,6 +18,6 @@ public class IAssignation extends I{
 
     @Override
     public String toString() {
-        return "assign:" + access.toString() + "(" + exp.toString() + ")";
+        return "assign:" + access.toString() + "=" + exp.toString();
     }
 }

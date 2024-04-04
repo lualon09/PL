@@ -105,6 +105,8 @@ DECLARATION ::= TYPE:t IDEN:name PUNTOYCOMA
 
 ASIG ::= ACCESS0:a IGUAL E0:e PUNTOYCOMA 
          {:RESULT = new IAssignation((A) a, e);:}
+         | ACCESS0:ac OP2:o IGUAL E0:ex PUNTOYCOMA 
+         {:RESULT = new IAssignation((A) ac, new EBin((A) ac, ex, o, new TBasics(KindT.BOOL)));:}
          | ACCESS0 IGUAL E0 error
          {:System.out.println("Error. Missing ;"); RESULT = null;:};
 
