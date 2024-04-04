@@ -7,6 +7,10 @@ Struct tInfo{                   //declaramos el Struct
     Bool varB2;
 };
 
+Struct tInfo2{
+    tInfo hola;
+};
+
 
 main() -> Int{
 
@@ -23,6 +27,9 @@ main() -> Int{
     show(str2.var1);
     show(str.varB1);
     show(str2.varB1);
+
+    tInfo2 str3; //Structs de structs
+    str3.hola.var1 = 0;
 
     return 0;
 }    
