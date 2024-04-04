@@ -72,7 +72,7 @@ non terminal ArrayList<ValueforInstruction> CASEEXPVF;
 non terminal ValueforInstruction DEFAULTEXPVF;
 
 
-//------------DECLARATIONes de constantes, funciones, TYPEDEF, structs y la función main--------------  ?????VARIABLES GLOBALES????'
+//------------DECLARATIONes de constantes, funciones, TYPEDEF, structs y la función main-------------- 
 
 //----Programa Principal----
 S ::=  DECLARATIONS:declarations
@@ -412,8 +412,8 @@ TYPE ::= TYPEINT
          {: RESULT = new TBasics(KindT.VOID);:}
          | IDEN:id
          {: RESULT = new TStruct(id.lexema);:}
-         | LIST LESS TYPE:t GREATER CAP ENT:size CCIERRE //hemos puesto ENT en vez de E0 para el token value
-         {: EConst sizeConst = new EConst(size.lexema, new TBasics(KindT.INT)); RESULT = new TArray(t, sizeConst);:}
+         | LIST LESS TYPE:t GREATER CAP E0:e CCIERRE //hemos puesto ENT en vez de E0 para el token value
+         {: EConst sizeConst = new EConst(e, new TBasics(KindT.INT)); RESULT = new TArray(t, sizeConst);:}
          | TYPE:t MUL 
          {: RESULT = new TPointer(t);:};
 
