@@ -18,5 +18,11 @@ public class EArray extends E{
     public String toString(){
         return arr.toString();
     }
+    @Override
+    public void bind(){
+        for(int i = 0; i < arr.size(); i++){
+            arr.bind(); //vinculamos todos los elementos del array
+        }
+    }
     
 }

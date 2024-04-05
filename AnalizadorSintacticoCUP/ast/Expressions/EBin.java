@@ -24,4 +24,9 @@ public class EBin extends E {
   public String toString(){
     return tExp.toString() + "("+opnd1().toString()+","+opnd2().toString()+")";  
   }
+  @Override
+  public void bind(){
+    opnd1.bind();
+    opnd2.bind();
+  }
 }

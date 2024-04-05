@@ -55,4 +55,22 @@ public class DefinitionList {
         }
         return s.toString();
     }
+
+    public void bind(){
+        for(IDeclaration var: variables){ //vinculamos las variables globales
+            var.bind();
+        }
+        for(DFunction f: functions){ //vinculamos las funciones
+            f.bind();
+        }
+        for(DStruct s: structs){ //vinculamos los structs
+            s.bind();
+        }
+        for(DTypedef t: typedefs){ //vinculamos los typedefs
+            t.bind();
+        }
+        for(DConst c: consts){ //vinculamos las constantes
+            c.bind();
+        }
+    }
 }

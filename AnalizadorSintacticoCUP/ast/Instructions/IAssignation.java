@@ -20,4 +20,9 @@ public class IAssignation extends I{
     public String toString() {
         return "assign:" + access.toString() + "=" + exp.toString();
     }
+    @Override
+    public void bind(){
+        a.bind();
+        e.bind();
+    }
 }

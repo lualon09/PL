@@ -12,4 +12,14 @@ public class AVariable extends A {
     public String toString(){
         return "AVar(" + var + ")";
     }
+    @Override
+    public void bind(){
+        ASTNode node = Program.getTableStack().findId(var);
+        if(node == null){
+            System.out.println("Error. Variable " + var + " not in stack.");
+        }
+        else{
+            this.bindNode = node;
+        }
+    }
 }

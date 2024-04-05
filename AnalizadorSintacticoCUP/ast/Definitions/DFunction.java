@@ -2,7 +2,11 @@ package ast.Definitions;
 
 // import java.util.Collections;
 import java.util.List;
+
+import ast.ASTNode;
+import ast.Program;
 import ast.Instructions.I;
+import ast.Instructions.IDeclaration;
 import ast.Types.T;
 
 public class DFunction extends D {
@@ -34,6 +38,24 @@ public class DFunction extends D {
     @Override
     public KindD kindD() {
         return KindD.FUNCTION;
+    }
+
+    public void bind(){
+        ASTNode node = Program.getTableStack().findId(name);
+        if(node != null){
+            System.out.println("Error. Function " + var + " already declared.");
+        }
+        else{
+            Program.getTableStack().insertId(name, this);
+            Program.getTableStack().openBlock();
+            for(Parameter p: params){
+                p.bind();
+            }
+            for(I i: body){
+                i.bind();
+            }
+            Program.getTableStack().closeBlock();
+        }
     }
     
 }

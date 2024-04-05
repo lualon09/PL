@@ -15,4 +15,12 @@ public class AArray extends A{
     public String toString(){
         return "AArray (" + access + "[" + exp.toString() + "])";
     }
+
+    @Override
+    public void bind(){
+        access.bind();
+        this.bindNode = access.bindNode;
+        exp.bind();
+
+    }
 }

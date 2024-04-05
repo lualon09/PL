@@ -11,4 +11,6 @@ public abstract class D extends ASTNode {
     public NodeKind nodeKind() {
         return NodeKind.DEFINITION;
     }
+    @Override
+    public void bind(){}
 }

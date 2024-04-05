@@ -19,4 +19,6 @@ public class ENew extends E{
     public String toString(){
         return "new " + type.toString();
     }
+
+    public void bind(){}
 }

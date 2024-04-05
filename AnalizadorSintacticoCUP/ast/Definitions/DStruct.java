@@ -2,6 +2,8 @@ package ast.Definitions;
 
 import java.util.List;
 
+import ast.ASTNode;
+import ast.Program;
 import ast.Instructions.IDeclaration;
 
 public class DStruct extends D{
@@ -18,5 +20,20 @@ public class DStruct extends D{
     }
     public String toString(){
         return "struct " + name.toString() + "{" + fields.toString() + "}";
+    }
+
+    public void bind(){
+        ASTNode node = Program.getTableStack().findId(name);
+        if(node != null){
+            System.out.println("Error. Struct " + var + " already declared.");
+        }
+        else{
+            Program.getTableStack().insertId(name, this);
+            Program.getTableStack().openBlock();
+            for(IDeclaration f: fields){
+                f.bind();
+            }
+            Program.getTableStack().closeBlock();
+        }
     }
 }

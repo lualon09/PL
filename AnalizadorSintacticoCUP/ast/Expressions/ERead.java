@@ -14,4 +14,6 @@ public class ERead extends E{
     public String toString(){
         return "read()"; 
     }
+    
+    public void bind(){}
 }

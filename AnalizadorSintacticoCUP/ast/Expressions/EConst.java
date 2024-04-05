@@ -30,4 +30,8 @@ public class EConst extends E{ //Expresion Constante
         }
         return "(" + type.toString() + ":" + value.toString() + ")";
     }
+    @Override
+    public void bind(){
+        if(exp != null) exp.bind();
+    }
 }

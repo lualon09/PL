@@ -20,4 +20,8 @@ public class EUnary extends E {
   public String toString(){
     return tExp.toString() + "("+opnd.toString()+")";  
   }
+  @Override
+  public void bind(){
+      opnd.bind();
+  }
 }

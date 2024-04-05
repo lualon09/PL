@@ -21,5 +21,9 @@ public class DTypedef extends D {
     public KindD kindD() {
         return KindD.ALIAS;
     }
+
+    public void bind(){
+        
+    }
     
 }

@@ -13,4 +13,9 @@ public class AStruct extends A {
     public String toString(){
         return "AStruct(" + access.toString() + "." + field + ")";
     }
+    @Override
+    public void bind(){
+        access.bind();
+        this.bindNode = access.bindNode;
+    }
 }

@@ -12,4 +12,8 @@ public class AAdPointer extends A{
     public String toString(){
         return "AAdPointer(&" +  access.toString() + ")";
     }
+    @Override
+    public void bind(){
+        access.bind();
+    }
 }

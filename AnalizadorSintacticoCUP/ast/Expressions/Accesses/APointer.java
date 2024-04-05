@@ -12,4 +12,7 @@ public class APointer extends A {
     public String toString(){
         return "APointer(*" +  access.toString() + ")";
     }
+    @Override
+    public void bind(){
+    }
 }
