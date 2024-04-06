@@ -62,17 +62,17 @@ public class DefinitionList {
         for(IDeclaration var: variables){ //vinculamos las variables globales
             var.bind();
         }
-        for(DFunction f: functions){ //vinculamos las funciones
-            f.bind();
-        }
-        for(DStruct s: structs){ //vinculamos los structs
-            s.bind();
+        for(DConst c: consts){ //vinculamos las constantes
+            c.bind();
         }
         for(DTypedef t: typedefs){ //vinculamos los typedefs
             t.bind();
         }
-        for(DConst c: consts){ //vinculamos las constantes
-            c.bind();
+        for(DStruct s: structs){ //vinculamos los structs
+            s.bind();
+        }
+        for(DFunction f: functions){ //vinculamos las funciones
+            f.bind();
         }
     }
 }
