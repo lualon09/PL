@@ -14,6 +14,7 @@ public class APointer extends A {
         return "APointer(*" +  access.toString() + ")";
     }
     @Override
-    public void bind() throws BindingException {//Aqui que hay que hacer
+    public void bind() throws BindingException {
+        access.bind(); //Aqui que hay que hacer
     }
 }

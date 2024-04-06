@@ -1,6 +1,8 @@
 package ast.Instructions;
 
 import java.util.List;
+
+import ast.Program;
 import ast.Expressions.*;
 import exc.BindingException;
 
@@ -38,9 +40,11 @@ public class SwitchInstruction extends I{
     }
 
     public void bind() throws BindingException{
+        // Program.getTableStack().openBlock();
         for(I i: inst){
             i.bind();
         }
+        // Program.getTableStack().closeBlock();
         if(exp != null){
             exp.bind();
         }

@@ -123,9 +123,9 @@ STRUCTDEC ::= STRUCT IDEN:name LLAP FIELDS:c LLCIERRE PUNTOYCOMA
             {:System.out.println("Error. Missing ;"); RESULT = null;:};
 
 FIELDS   ::= DECLARATION:d FIELDS:list
-            {:list.add(d); RESULT = list;:}
+            {:list.add(0, d); RESULT = list;:}
             | DECLARATION:d
-            {:ArrayList<IDeclaration> list = new ArrayList<IDeclaration>(); list.add(d); RESULT = list;:};
+            {:ArrayList<IDeclaration> list = new ArrayList<IDeclaration>(); list.add(0, d); RESULT = list;:};
 
 //----TYPEDEF----
 TYPEDEFDEC ::= TYPEDEF IDEN:name IGUAL TYPE:t PUNTOYCOMA

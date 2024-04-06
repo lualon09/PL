@@ -1,3 +1,5 @@
 * No estamos obligando a que haya return en las funciones
 * Tenemos puesto que ACCESO sea de tipo E en vez de de tipo A.
 * Ahora viene vinculación y tipado.
+* ¿hay que hacer en el binding que detecte los campos del struct? 
+* ¿hay que crear bloque de declaraciones en el struct?

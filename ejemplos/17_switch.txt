@@ -1,9 +1,10 @@
 main() -> Int {
    
    Int x = 2;
+   Int i = 2;
    Int resultado;
    switch(x) {
-    case 0: resultado = 0;
+    case 0: Int i = 3; resultado = 0;
         break;
     case 1: resultado = 1;
         break;

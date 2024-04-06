@@ -26,10 +26,10 @@ public class SymbolsTableStack {
 
     public void insertId(String id, ASTNode node) throws BindingException{
         HashMap<String,ASTNode> lastBlock = blocks.get(blocks.size()-1); //take the last block
-        System.out.println("Estoy insertando " + id + " en la posición de blocks " + (blocks.size() - 1));
 		if(lastBlock.containsKey(id)) {
 			throw new BindingException("Error. Variable " + id + " has already been declared.");
 		}else {
+            System.out.println("Estoy insertando " + id + " en la posición de blocks " + (blocks.size() - 1) + " y soy " + node);
 			lastBlock.put(id,node);
 		}
     }
@@ -37,6 +37,7 @@ public class SymbolsTableStack {
     public ASTNode findId(String id){
         for(int i = blocks.size()-1;i>=0;i--) { //iterate over the list
 			if(blocks.get(i).containsKey(id)) {
+                System.out.println("Soy " + id + " y me asocio con " + blocks.get(i).get(id));
 				return blocks.get(i).get(id);
 			}
 		}
