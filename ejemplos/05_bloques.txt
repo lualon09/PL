@@ -1,24 +1,23 @@
  //Bloques
  
-
 main() -> Int{
 
     Int x = 5;                  //Variable en el ámbito global
     show(x);                    //Se imprimirá un 5
+    
+    Int i = 3;                    
 
-    while (x > 0) {         //Comienza un bloque con el while
+    while (i > 0) {         //Comienza un bloque con el while
         Int y = 10;         //Variable en el ámbito del while
 
         Int x = 6;          
         show(x);            //Se imprimirá un 6
         
         if (y > 5) {        //Comienza un bloque con el if
-        
             Int z = 20;     //Variable en el ámbito del if
             show(z);
-
         }                   //Fin del bloque del if
-        
+        i = i - 3;
     }                       //Fin del bloque del while
 
     return 0;

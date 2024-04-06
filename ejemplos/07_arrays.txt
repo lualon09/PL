@@ -12,7 +12,7 @@ main() -> Int{
         array3[i] = i;
         show(array3[i]);
     }
-    Int var1 = array1[2] + array2[4];           //var1 = 3 + 8 = 11
+    Int var1 = array1[2] + array3[4];           //var1 = 6 + 4 = 10
     List<Bool>[2] arrayB1 = {True,False};
     Bool varB1 = arrayB1[1];                    //varB1 = False
     show(varB1);

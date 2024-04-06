@@ -42,21 +42,16 @@ public class DFunction extends D {
     }
 
     public void bind() throws BindingException{
-        ASTNode node = Program.getTableStack().findId(name);
-        if(node != null){
-            throw new BindingException("Function " + name + " already declared.");
+
+        Program.getTableStack().insertId(name, this);
+        Program.getTableStack().openBlock();
+        for(Parameter p: params){
+            p.bind();
         }
-        else{
-            Program.getTableStack().insertId(name, this);
-            Program.getTableStack().openBlock();
-            for(Parameter p: params){
-                p.bind();
-            }
-            for(I i: body){
-                i.bind();
-            }
-            Program.getTableStack().closeBlock();
+        for(I i: body){
+            i.bind();
         }
+        Program.getTableStack().closeBlock();
     }
     
 }

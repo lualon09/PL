@@ -1,10 +1,12 @@
 package ast;
 
+import java.net.BindException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import errors.GestionErroresTiny;
+import exc.BindingException;
 
 public class SymbolsTableStack {
 
@@ -22,10 +24,11 @@ public class SymbolsTableStack {
         blocks.remove(blocks.size()-1);
     }
 
-    public void insertId(String id, ASTNode node){
+    public void insertId(String id, ASTNode node) throws BindingException{
         HashMap<String,ASTNode> lastBlock = blocks.get(blocks.size()-1); //take the last block
+        System.out.println("Estoy insertando " + id + " en la posición de blocks " + (blocks.size() - 1));
 		if(lastBlock.containsKey(id)) {
-			System.out.println("Error. Variable " + id + " has already been declared.");
+			throw new BindingException("Error. Variable " + id + " has already been declared.");
 		}else {
 			lastBlock.put(id,node);
 		}

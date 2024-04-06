@@ -37,14 +37,8 @@ public class IDeclaration extends I{
 
     @Override
     public void bind() throws BindingException {
-        ASTNode node = Program.getTableStack().findId(name);
-        if(node != null){
-            throw new BindingException("Variable " + name + " already in stack");
-        }
-        else{
-            Program.getTableStack().insertId(name, this);
-            if(exp != null){ exp.bind(); }
-            // this.bindNode = node;
-        }
+        Program.getTableStack().insertId(name, this);
+        if(exp != null){ exp.bind(); }
+        // this.bindNode = node;
     }
 }

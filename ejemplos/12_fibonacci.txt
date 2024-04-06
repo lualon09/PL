@@ -6,7 +6,7 @@ calculaFibonacci(n: Int) -> Int{
 	if (n <= 1) {
 		res = 1;
 	} else {
-		res = fibonacci(n - 1) + fibonacci(n - 2);
+		res = calculaFibonacci(n - 1) + calculaFibonacci(n - 2);
 	}
 	return res;
 }
@@ -16,7 +16,7 @@ main() -> Int{
 
     Int n = 5;
 
-    Int sol = calculaFibonacci(array,length);
+    Int sol = calculaFibonacci(n);
 
 	show(sol);
     

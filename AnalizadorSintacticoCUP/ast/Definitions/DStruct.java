@@ -26,17 +26,13 @@ public class DStruct extends D{
     }
 
     public void bind() throws BindingException {
-        ASTNode node = Program.getTableStack().findId(name);
-        if(node != null){
-            throw new BindingException("Struct " + name + " already declared");
+       
+        Program.getTableStack().insertId(name, this);
+        Program.getTableStack().openBlock();
+        for(IDeclaration f: fields){
+            f.bind();
         }
-        else{
-            Program.getTableStack().insertId(name, this);
-            Program.getTableStack().openBlock();
-            for(IDeclaration f: fields){
-                f.bind();
-            }
-            Program.getTableStack().closeBlock();
-        }
+        Program.getTableStack().closeBlock();
+        
     }
 }
