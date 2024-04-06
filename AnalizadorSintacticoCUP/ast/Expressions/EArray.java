@@ -1,6 +1,7 @@
 package ast.Expressions;
 
 import java.util.ArrayList;
+import exc.BindingException;
 
 public class EArray extends E{
     
@@ -19,9 +20,9 @@ public class EArray extends E{
         return arr.toString();
     }
     @Override
-    public void bind(){
+    public void bind() throws BindingException {
         for(int i = 0; i < arr.size(); i++){
-            arr.bind(); //vinculamos todos los elementos del array
+            arr.get(i).bind(); //vinculamos todos los elementos del array
         }
     }
     

@@ -1,9 +1,11 @@
 package ast.Instructions;
 
 import java.util.List;
+import ast.ASTNode;
+import exc.BindingException;
 
 public class IBlock extends I{
-    public List<I> inst;
+    protected List<I> inst;
 
     public IBlock() {}
 
@@ -18,5 +20,12 @@ public class IBlock extends I{
     @Override
     public String toString() {
         return "block {" + inst.toString() + "}";
+    }
+
+    @Override
+    public void bind() throws BindingException {
+        for (I i : inst) {
+            i.bind();
+        }
     }
 }

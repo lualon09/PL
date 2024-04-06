@@ -1,11 +1,12 @@
 package ast;
 
 import ast.Definitions.DefinitionList;
+import exc.BindingException;
 
 public class Program extends ASTNode {
 
     private DefinitionList list;
-    private SymbolsTableStack stack;
+    public static SymbolsTableStack stack;
 
     public Program(DefinitionList list){
         this.list = list;
@@ -22,11 +23,11 @@ public class Program extends ASTNode {
        return "program {" + list.toString() + "}";
     }
 
-    public SymbolsTableStack getTableStack(){
+    public static SymbolsTableStack getTableStack(){
         return stack;
     }
 
-    public void bind(){
+    public void bind() throws BindingException{
         stack.openBlock();
         list.bind();
         stack.closeBlock();

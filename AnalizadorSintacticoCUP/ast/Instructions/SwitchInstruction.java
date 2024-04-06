@@ -2,6 +2,7 @@ package ast.Instructions;
 
 import java.util.List;
 import ast.Expressions.*;
+import exc.BindingException;
 
 public class SwitchInstruction extends I{
 
@@ -34,6 +35,15 @@ public class SwitchInstruction extends I{
             return "case" + exp.toString() + ":" + inst.toString() + "(break)";
         }
         return "case" + exp.toString() + ":" + inst.toString();
+    }
+
+    public void bind() throws BindingException{
+        for(I i: inst){
+            i.bind();
+        }
+        if(exp != null){
+            exp.bind();
+        }
     }
     
 }

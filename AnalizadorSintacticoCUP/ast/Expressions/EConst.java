@@ -1,6 +1,7 @@
 package ast.Expressions;
 
 import ast.Types.T;
+import exc.BindingException;
 
 public class EConst extends E{ //Expresion Constante
     private T type;
@@ -31,7 +32,7 @@ public class EConst extends E{ //Expresion Constante
         return "(" + type.toString() + ":" + value.toString() + ")";
     }
     @Override
-    public void bind(){
+    public void bind() throws BindingException{
         if(exp != null) exp.bind();
     }
 }

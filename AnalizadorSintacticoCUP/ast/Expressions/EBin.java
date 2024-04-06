@@ -1,6 +1,7 @@
 package ast.Expressions;
 
 import ast.Types.T;
+import exc.BindingException;
 
 public class EBin extends E {
    private E opnd1;
@@ -25,7 +26,7 @@ public class EBin extends E {
     return tExp.toString() + "("+opnd1().toString()+","+opnd2().toString()+")";  
   }
   @Override
-  public void bind(){
+  public void bind() throws BindingException{
     opnd1.bind();
     opnd2.bind();
   }

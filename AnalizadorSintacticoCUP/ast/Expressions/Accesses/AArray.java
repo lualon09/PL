@@ -1,6 +1,7 @@
 package ast.Expressions.Accesses;
 
 import ast.Expressions.E;
+import exc.BindingException;
 
 public class AArray extends A{
     private A access;
@@ -17,7 +18,7 @@ public class AArray extends A{
     }
 
     @Override
-    public void bind(){
+    public void bind() throws BindingException {
         access.bind();
         this.bindNode = access.bindNode;
         exp.bind();

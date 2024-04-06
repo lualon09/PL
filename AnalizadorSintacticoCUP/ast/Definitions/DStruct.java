@@ -2,9 +2,12 @@ package ast.Definitions;
 
 import java.util.List;
 
+import javax.naming.Binding;
+
 import ast.ASTNode;
 import ast.Program;
 import ast.Instructions.IDeclaration;
+import exc.BindingException;
 
 public class DStruct extends D{
     private String name;
@@ -22,10 +25,10 @@ public class DStruct extends D{
         return "struct " + name.toString() + "{" + fields.toString() + "}";
     }
 
-    public void bind(){
+    public void bind() throws BindingException {
         ASTNode node = Program.getTableStack().findId(name);
         if(node != null){
-            System.out.println("Error. Struct " + var + " already declared.");
+            throw new BindingException("Struct " + name + " already declared");
         }
         else{
             Program.getTableStack().insertId(name, this);

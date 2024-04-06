@@ -1,6 +1,7 @@
 package ast.Instructions;
 
 import ast.Expressions.*;
+import exc.BindingException;
 
 public class ValueforInstruction extends I{
 
@@ -34,6 +35,13 @@ public class ValueforInstruction extends I{
             return "case " + exp.toString() + "=" + value.toString() + "(break)";
         }
         return "case " + exp.toString() + "=" + value.toString();
+    }
+
+    public void bind() throws BindingException{
+        value.bind();
+        if(exp != null){
+            exp.bind();
+        }
     }
     
 }

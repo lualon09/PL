@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import ast.ASTNode;
 import ast.Program;
+import exc.BindingException;
 
 public class EFunction extends E{
 
@@ -24,10 +25,10 @@ public class EFunction extends E{
         return "call:" + functionName + "(" + p.toString() + ")";
     }
     @Override
-    public void bind(){
+    public void bind() throws BindingException {
         ASTNode node = Program.getTableStack().findId(functionName); //search the function
         if(node == null){
-            System.out.println("Error. Function " + functionName + " not in stack.");
+            throw new BindingException("Function " + functionName + " not in stack.");
         }
         else{
             this.bindNode = node;

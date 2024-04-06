@@ -8,6 +8,7 @@ import ast.Program;
 import ast.Instructions.I;
 import ast.Instructions.IDeclaration;
 import ast.Types.T;
+import exc.BindingException;
 
 public class DFunction extends D {
 
@@ -40,10 +41,10 @@ public class DFunction extends D {
         return KindD.FUNCTION;
     }
 
-    public void bind(){
+    public void bind() throws BindingException{
         ASTNode node = Program.getTableStack().findId(name);
         if(node != null){
-            System.out.println("Error. Function " + var + " already declared.");
+            throw new BindingException("Function " + name + " already declared.");
         }
         else{
             Program.getTableStack().insertId(name, this);

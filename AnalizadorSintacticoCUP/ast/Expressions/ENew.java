@@ -1,6 +1,7 @@
 package ast.Expressions;
 
 import ast.Types.*;
+import exc.BindingException;
 
 public class ENew extends E{
 
@@ -8,7 +9,6 @@ public class ENew extends E{
 
     public ENew(T t){
         this.type = t; //El puntero es de tipo t
-        // this.type = new Pointer(typeP); //creamos el puntero de tipo typeP
     }
 
     @Override
@@ -20,5 +20,7 @@ public class ENew extends E{
         return "new " + type.toString();
     }
 
-    public void bind(){}
+    public void bind() throws BindingException{
+        // hay que hacer algo en el binding??
+    }
 }

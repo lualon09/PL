@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import alex.AnalizadorLexicoTiny;
+import ast.Program;
+import exc.BindingException;
 
 public class Main {
    public static void main(String[] args) throws Exception {
@@ -11,10 +13,21 @@ public class Main {
 	 AnalizadorLexicoTiny alex = new AnalizadorLexicoTiny(input);
 	 AnalizadorSintacticoTiny asint = new AnalizadorSintacticoTiny(alex);
 	 try {
-	     System.out.println(asint.parse().value);
-	 } catch (Exception e) {
-	     System.out.println("Something went wrong with the parsing...");
-	 }
+	    Program p = (Program) asint.parse().value;
+		System.out.println("TREE AST");
+		System.out.println(p);
+		try{
+			System.out.println("BINDING	");
+			p.bind(); // vinculacion
+			System.out.println("Correct binding!");
+		} catch(BindingException be){
+			be.printStackTrace();
+		}
+	}
+	catch(Exception e){
+		System.out.println("Something went wrong with the parsing...");
+	}
+		
  }
 }   
    

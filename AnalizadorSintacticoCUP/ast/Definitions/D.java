@@ -2,6 +2,7 @@ package ast.Definitions;
 
 import ast.ASTNode;
 import ast.NodeKind;
+import exc.BindingException;
 
 public abstract class D extends ASTNode {
 
@@ -12,5 +13,5 @@ public abstract class D extends ASTNode {
         return NodeKind.DEFINITION;
     }
     @Override
-    public void bind(){}
+    public void bind() throws BindingException {}
 }

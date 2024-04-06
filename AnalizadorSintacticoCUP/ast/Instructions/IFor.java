@@ -1,8 +1,10 @@
 package ast.Instructions;
 
 import java.util.List;
-
 import ast.Expressions.E;
+import ast.ASTNode;
+import ast.Program;
+import exc.BindingException;
 
 public class IFor extends IBlock {
     private E cond;
@@ -21,6 +23,19 @@ public class IFor extends IBlock {
 
     public String toString(){
         return "for(" + dec.toString() + ";" + cond.toString() + ";" + assign.toString() + "){" + this.inst.toString() + "}";
+    }
+
+    @Override
+    public void bind() throws BindingException {
+        Program.getTableStack().openBlock();
+        
+        dec.bind();
+        cond.bind();
+        assign.bind(); //esto va aqui??
+
+        super.bind();
+
+        Program.getTableStack().closeBlock();
     }
 }
 

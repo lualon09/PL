@@ -3,6 +3,7 @@ package ast.Instructions;
 import java.util.List;
 
 import ast.Expressions.E;
+import exc.BindingException;
 
 public class ISwitch extends IBlock {
     private E cond;
@@ -31,6 +32,16 @@ public class ISwitch extends IBlock {
             return "switch(" + cond.toString() + ")" + cases.toString();
         }
         return "switch(" + cond.toString() + ")" + cases.toString() + ", " + defaultCase.toString();
+    }
+
+    public void bind() throws BindingException{
+        cond.bind();
+        for(SwitchInstruction s: cases){
+            s.bind();
+        }
+        if(defaultCase != null){
+            defaultCase.bind();
+        }
     }
     
 }

@@ -1,6 +1,7 @@
 package ast.Instructions;
 
 import ast.Expressions.E;
+import exc.BindingException;
 
 public class IReturn extends I{
 
@@ -23,5 +24,11 @@ public class IReturn extends I{
             return "return VOID";
         }
         return "return " + expReturn.toString();
+    }
+
+    public void bind() throws BindingException {
+        if(expReturn != null){ //Si tiene tipo de retorno
+            expReturn.bind();
+        }
     }
 }

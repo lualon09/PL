@@ -2,6 +2,7 @@ package ast.Instructions;
 
 import ast.Expressions.*;
 import ast.Expressions.Accesses.*;
+import exc.BindingException;
 
 public class IAssignation extends I{
 
@@ -21,8 +22,8 @@ public class IAssignation extends I{
         return "assign:" + access.toString() + "=" + exp.toString();
     }
     @Override
-    public void bind(){
-        a.bind();
-        e.bind();
+    public void bind() throws BindingException {
+        access.bind();
+        exp.bind();
     }
 }

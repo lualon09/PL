@@ -2,6 +2,7 @@ package ast.Instructions;
 
 import java.util.List;
 import ast.Expressions.Accesses.A;
+import exc.BindingException;
 
 public class IValuefor extends IBlock {
     private A var;
@@ -30,5 +31,15 @@ public class IValuefor extends IBlock {
             return "valuefor(" + var.toString() + ")" + cases.toString();
         }
         return "valuefor(" + var.toString() + ")" + cases.toString() + ", " + defaultCase.toString();
+    }
+
+    public void bind() throws BindingException{
+        var.bind();
+        for(ValueforInstruction s: cases){
+            s.bind();
+        }
+        if(defaultCase != null){
+            defaultCase.bind();
+        }
     }
 }

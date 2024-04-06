@@ -1,4 +1,5 @@
 package ast.Expressions.Accesses;
+import exc.BindingException;
 
 public class APointer extends A {
 
@@ -13,6 +14,6 @@ public class APointer extends A {
         return "APointer(*" +  access.toString() + ")";
     }
     @Override
-    public void bind(){
+    public void bind() throws BindingException {//Aqui que hay que hacer
     }
 }

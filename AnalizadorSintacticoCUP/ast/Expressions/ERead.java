@@ -1,5 +1,7 @@
 package ast.Expressions;
 
+import exc.BindingException;
+
 public class ERead extends E{
 
     public ERead(){
@@ -15,5 +17,5 @@ public class ERead extends E{
         return "read()"; 
     }
     
-    public void bind(){}
+    public void bind() throws BindingException{}
 }

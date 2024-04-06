@@ -1,6 +1,7 @@
 package ast.Expressions;
 
 import ast.Types.*;
+import exc.BindingException;
 
 public class EUnary extends E {
    private E opnd;
@@ -21,7 +22,7 @@ public class EUnary extends E {
     return tExp.toString() + "("+opnd.toString()+")";  
   }
   @Override
-  public void bind(){
+  public void bind() throws BindingException{
       opnd.bind();
   }
 }

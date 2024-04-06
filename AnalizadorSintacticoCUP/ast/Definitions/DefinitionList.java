@@ -1,7 +1,9 @@
 package ast.Definitions;
 
 import ast.Instructions.*;
+import exc.BindingException;
 
+import java.net.BindException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +58,7 @@ public class DefinitionList {
         return s.toString();
     }
 
-    public void bind(){
+    public void bind() throws BindingException {
         for(IDeclaration var: variables){ //vinculamos las variables globales
             var.bind();
         }

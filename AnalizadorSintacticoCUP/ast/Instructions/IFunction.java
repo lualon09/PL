@@ -1,6 +1,8 @@
 package ast.Instructions;
 
 import ast.Expressions.EFunction;
+import ast.ASTNode;
+import exc.BindingException;
 
 public class IFunction extends I{
 
@@ -17,5 +19,10 @@ public class IFunction extends I{
 
     public String toString(){
         return "Instruction " + exp.toString();
+    }
+
+    @Override
+    public void bind() throws BindingException {
+        exp.bind();
     }
 }

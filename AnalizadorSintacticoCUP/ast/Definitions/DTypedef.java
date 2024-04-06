@@ -1,6 +1,7 @@
 package ast.Definitions;
 
 import ast.Types.T;
+import exc.BindingException;
 
 public class DTypedef extends D {
     
@@ -23,7 +24,7 @@ public class DTypedef extends D {
     }
 
     public void bind(){
-        
+        // aqui que hay que hacer
     }
     
 }

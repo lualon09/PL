@@ -1,5 +1,8 @@
 package ast.Expressions.Accesses;
 
+import ast.*;
+import exc.BindingException;
+
 public class AVariable extends A {
 
     private String var;
@@ -13,10 +16,10 @@ public class AVariable extends A {
         return "AVar(" + var + ")";
     }
     @Override
-    public void bind(){
+    public void bind() throws BindingException {
         ASTNode node = Program.getTableStack().findId(var);
         if(node == null){
-            System.out.println("Error. Variable " + var + " not in stack.");
+            throw new BindingException("Variable " + var + " not in stack.");
         }
         else{
             this.bindNode = node;

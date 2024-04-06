@@ -1,8 +1,10 @@
 package ast.Instructions;
 
+import ast.Program;
 import ast.Expressions.*;
 
 import java.util.List;
+import exc.BindingException;
 
 public class IIfElse extends IBlock{
 
@@ -31,6 +33,19 @@ public class IIfElse extends IBlock{
             return "if(" + cond.toString() + "){" + this.inst.toString() + "}";
         }
         return "if(" + cond.toString() + "){" + this.inst.toString() + "} else {" + inst_else.toString() + "}";
+    }
+
+    @Override
+    public void bind() throws BindingException {
+        Program.getTableStack().openBlock();
+        cond.bind();
+        super.bind();
+        if(inst_else != null){
+            for (I i : inst_else) {
+                i.bind();
+            }
+        }
+        Program.getTableStack().closeBlock();
     }
     
 }

@@ -1,4 +1,5 @@
 package ast.Expressions.Accesses;
+import exc.BindingException;
 
 public class AStruct extends A {
     private A access;
@@ -14,7 +15,7 @@ public class AStruct extends A {
         return "AStruct(" + access.toString() + "." + field + ")";
     }
     @Override
-    public void bind(){
+    public void bind() throws BindingException {
         access.bind();
         this.bindNode = access.bindNode;
     }
