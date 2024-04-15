@@ -40,14 +40,14 @@ public class SwitchInstruction extends I{
     }
 
     public void bind() throws BindingException{
-        // Program.getTableStack().openBlock();
-        for(I i: inst){
-            i.bind();
-        }
-        // Program.getTableStack().closeBlock();
         if(exp != null){
             exp.bind();
         }
+        Program.getTableStack().openBlock();
+        for(I i: inst){
+            i.bind();
+        }
+        Program.getTableStack().closeBlock();
     }
     
 }

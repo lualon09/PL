@@ -12,7 +12,7 @@ public class ValueforInstruction extends I{
     public ValueforInstruction(E exp, E value, boolean breakCond){
         this.value = value;
         this.exp = exp;
-        this.breakCond = breakCond;
+        this.breakCond = true;
     }
 
     public ValueforInstruction(E value){
