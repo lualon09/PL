@@ -6,7 +6,7 @@ main() -> Int {
     case (x < 2) = 0; break;
     case (x > 2) = 1; break;
     case (x == 2) = 2; break;
-    default = 3;
+    default = 3; break;
    }
 
    show(resultado); //resultado debe valer 2.

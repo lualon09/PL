@@ -281,7 +281,7 @@ CASEEXP	::= CASE E0:e DOSPUNTOS INSTLIST:lInst BREAK PUNTOYCOMA CASEEXP:l
             | 
             {:ArrayList<SwitchInstruction> l = new ArrayList<SwitchInstruction>(); RESULT = l;:};
 
-DEFAULTEXP ::= DEFAULT DOSPUNTOS INSTLIST:l
+DEFAULTEXP ::= DEFAULT DOSPUNTOS INSTLIST:l BREAK PUNTOYCOMA
                {:RESULT = new SwitchInstruction(l);:};
 
 // aqui no hemos recuperado errores de puntos y comas.
@@ -291,7 +291,7 @@ CASEEXPVF ::= CASE E0:e IGUAL E0:result PUNTOYCOMA BREAK PUNTOYCOMA CASEEXPVF:l
               | 
               {:ArrayList<ValueforInstruction> l = new ArrayList<ValueforInstruction>(); RESULT = l;:};
 
-DEFAULTEXPVF ::= DEFAULT IGUAL E0:e PUNTOYCOMA 
+DEFAULTEXPVF ::= DEFAULT IGUAL E0:e PUNTOYCOMA BREAK PUNTOYCOMA
               {:RESULT = new ValueforInstruction(e);:}
               | DEFAULT IGUAL E0 error 
               {:System.out.println("Error. Missing ;"); RESULT = null;:};

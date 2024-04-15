@@ -11,6 +11,7 @@ main() -> Int {
     case 2: resultado = 2;
         break;
     default: resultado = 10;
+        break;
    }
 
    show(resultado); //resultado debe valer 2.
