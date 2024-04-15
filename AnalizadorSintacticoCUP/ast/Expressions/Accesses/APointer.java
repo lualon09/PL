@@ -6,7 +6,7 @@ public class APointer extends A {
     private A access;
 
     public APointer(A ac){
-          this.access = ac;
+        this.access = ac;
     }
 
     @Override
@@ -15,6 +15,7 @@ public class APointer extends A {
     }
     @Override
     public void bind() throws BindingException {
-        access.bind(); //Aqui que hay que hacer
+        access.bind(); 
+        this.bindNode = access.bindNode;
     }
 }

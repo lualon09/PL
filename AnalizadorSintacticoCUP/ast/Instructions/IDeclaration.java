@@ -39,6 +39,6 @@ public class IDeclaration extends I{
     public void bind() throws BindingException {
         Program.getTableStack().insertId(name, this);
         if(exp != null){ exp.bind(); }
-        // this.bindNode = node;
+        //this.bindNode = node;
     }
 }

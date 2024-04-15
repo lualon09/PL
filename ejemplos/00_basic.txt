@@ -1,6 +1,8 @@
 Int x = 0;
 main() -> Int {
     Int x = 1;
+    Int y = x;
+    y = 0;
     show(x);
     return 0;
 }

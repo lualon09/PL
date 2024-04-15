@@ -25,14 +25,7 @@ public class DStruct extends D{
         return "struct " + name.toString() + "{" + fields.toString() + "}";
     }
 
-    public void bind() throws BindingException {
-       
-        Program.getTableStack().insertId(name, this);
-        Program.getTableStack().openBlock();
-        for(IDeclaration f: fields){
-            f.bind();
-        }
-        Program.getTableStack().closeBlock();
-        
+    public void bind() throws BindingException {  
+        Program.getTableStack().insertId(name, this);       
     }
 }

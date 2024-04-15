@@ -16,6 +16,7 @@ public class AAdPointer extends A{
     }
     @Override
     public void bind() throws BindingException{
-        access.bind();
+        access.bind(); 
+        this.bindNode = access.bindNode;
     }
 }
