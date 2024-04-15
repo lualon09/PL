@@ -3,6 +3,7 @@ package ast.Definitions;
 import ast.ASTNode;
 import ast.NodeKind;
 import exc.BindingException;
+import exc.TypingException;
 
 public abstract class D extends ASTNode {
 
@@ -14,4 +15,7 @@ public abstract class D extends ASTNode {
     }
     @Override
     public void bind() throws BindingException {}
+
+    @Override
+    public void type() throws TypingException {}
 }

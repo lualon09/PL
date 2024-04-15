@@ -9,6 +9,7 @@ import ast.Instructions.I;
 import ast.Instructions.IDeclaration;
 import ast.Types.T;
 import exc.BindingException;
+import exc.TypingException;
 
 public class DFunction extends D {
 
@@ -19,7 +20,6 @@ public class DFunction extends D {
 
     public DFunction(String name, List<I> body, List<Parameter> params, T returnType){
         this.name = name;
-        // Collections.reverse(this.body);
         this.body = body;
         this.params = params;
         this.returnType = returnType;
@@ -53,5 +53,18 @@ public class DFunction extends D {
         }
         Program.getTableStack().closeBlock();
     }
+
+    @Override
+    public void type() throws TypingException {
+        for(I i: body){
+            i.type();
+        }
+        for(Parameter p: params){
+            p.type();
+        }
+        // returnType.type();
+    }
+
+
     
 }

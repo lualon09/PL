@@ -2,6 +2,7 @@ package ast.Definitions;
 
 import ast.Instructions.*;
 import exc.BindingException;
+import exc.TypingException;
 
 import java.net.BindException;
 import java.util.ArrayList;
@@ -74,5 +75,27 @@ public class DefinitionList {
         for(DFunction f: functions){ //vinculamos las funciones
             f.bind();
         }
+    }
+
+    public void type() throws TypingException {
+        for(IDeclaration var: variables){ //chequeamos tipos las variables globales
+            var.type();
+        }
+        for(DConst c: consts){ //chequeamos las constantes
+            c.type();
+        }
+        for(DTypedef t: typedefs){ //chequeamos los typedefs
+            t.type();
+        }
+        for(DStruct s: structs){ //chequeamos los structs
+            s.type();
+        }
+        for(DFunction f: functions){ //chequeamos las funciones
+            f.type();
+        }
+    }
+
+    public List<DStruct> getStructs(){
+        return structs;
     }
 }

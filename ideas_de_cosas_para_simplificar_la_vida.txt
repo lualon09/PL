@@ -1,3 +1,10 @@
 * No estamos obligando a que haya return en las funciones
 * switch???
 * los punteros?? con el binding???
+* ejemplos para constantes
+* tener en cuenta que las constantes no se pueden modificar!!!!!
+* como se hace la comprobacion de tipos
+* si hacemos array1 = array2, ¿debería de fallar?
+* binding del alias. TODO DEL TYPEDEF
+* tener en cuenta donde se añaden los tipos basicos a la lista
+* si tenemos parametros que se llaman igual falla en binding??

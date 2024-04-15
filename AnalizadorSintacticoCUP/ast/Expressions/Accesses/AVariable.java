@@ -2,6 +2,7 @@ package ast.Expressions.Accesses;
 
 import ast.*;
 import exc.BindingException;
+import exc.TypingException;
 
 public class AVariable extends A {
 
@@ -24,5 +25,10 @@ public class AVariable extends A {
         else{
             this.bindNode = node;
         }
+    }
+
+    public void type() throws TypingException {
+        setType(bindNode.getType());
+        // aqui algo mas?
     }
 }

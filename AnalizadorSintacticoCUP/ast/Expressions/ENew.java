@@ -22,5 +22,6 @@ public class ENew extends E{
 
     public void bind() throws BindingException{
         // hay que hacer algo en el binding??
+        type.bind();
     }
 }

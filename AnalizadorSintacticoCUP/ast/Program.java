@@ -2,15 +2,19 @@ package ast;
 
 import ast.Definitions.DefinitionList;
 import exc.BindingException;
+import exc.TypingException;
+import java.util.ArrayList;
 
 public class Program extends ASTNode {
 
-    private DefinitionList list;
-    public static SymbolsTableStack stack;
+    private static DefinitionList definitionList;
+    private static SymbolsTableStack stack;
+    private static ArrayList<String> typeList;
 
     public Program(DefinitionList list){
-        this.list = list;
+        this.definitionList = list;
         this.stack = new SymbolsTableStack();
+        this.typeList = new ArrayList<String>();
     }
 
     @Override
@@ -20,7 +24,7 @@ public class Program extends ASTNode {
 
     @Override
     public String toString() {
-       return "program {" + list.toString() + "}";
+       return "program {" + definitionList.toString() + "}";
     }
 
     public static SymbolsTableStack getTableStack(){
@@ -29,8 +33,21 @@ public class Program extends ASTNode {
 
     public void bind() throws BindingException{
         stack.openBlock();
-        list.bind();
+        definitionList.bind();
         stack.closeBlock();
     }
+
+    public void type() throws TypingException {
+        definitionList.type();
+    }
+
+    public static void addType(String t) {
+        typeList.add(t);
+    }
+
+    public static DefinitionList getDefinitionList() {
+        return definitionList;
+    }
+
     
 }

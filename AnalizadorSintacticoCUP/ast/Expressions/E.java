@@ -2,6 +2,8 @@ package ast.Expressions;
 import ast.ASTNode;
 import ast.NodeKind;
 
+import exc.*;
+
 public abstract class E extends ASTNode {
     public abstract KindE kindExp();
     public E opnd1() {throw new UnsupportedOperationException("opnd1");} 
@@ -9,5 +11,8 @@ public abstract class E extends ASTNode {
     public String num() {throw new UnsupportedOperationException("num");}
     public NodeKind nodeKind() {return NodeKind.EXPRESSION;}
     public String toString() {return "";}
+
+    public void bind() throws BindingException {}
+    public void type() throws TypingException {}
 
 }

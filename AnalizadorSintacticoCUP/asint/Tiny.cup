@@ -111,8 +111,8 @@ ASIG ::= ACCESS0:a IGUAL E0:e PUNTOYCOMA
          {:System.out.println("Error. Missing ;"); RESULT = null;:};
 
 //----Constantes----
-CONSTVAR ::= CONST TYPE:t IDEN:name IGUAL E0:e PUNTOYCOMA
-            {:RESULT = new DConst(t, name.lexema, e);:}
+CONSTVAR ::= CONST ENT IDEN:name IGUAL E0:e PUNTOYCOMA
+            {:RESULT = new DConst(new TBasics(KindT.INT), name.lexema, e);:}
             | CONST TYPE IDEN IGUAL E0 error 
             {:System.out.println("Error. Missing ;"); RESULT = null;:};
 

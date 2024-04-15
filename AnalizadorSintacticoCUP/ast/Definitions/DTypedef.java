@@ -1,7 +1,9 @@
 package ast.Definitions;
 
+import ast.Program;
 import ast.Types.T;
 import exc.BindingException;
+import exc.TypingException;
 
 public class DTypedef extends D {
     
@@ -11,6 +13,7 @@ public class DTypedef extends D {
     public DTypedef(String name, T t){
         this.name = name;
         this.t = t;
+        Program.addType(name);
     }
 
     @Override
@@ -23,8 +26,10 @@ public class DTypedef extends D {
         return KindD.ALIAS;
     }
 
-    public void bind(){
-        // aqui que hay que hacer
+    public void bind() throws BindingException {
+        Program.getTableStack().insertId(name, this);     
     }
+
+    public void type() throws TypingException {}
     
 }

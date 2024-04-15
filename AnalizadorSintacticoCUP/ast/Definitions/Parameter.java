@@ -2,6 +2,7 @@ package ast.Definitions;
 
 import ast.Instructions.IDeclaration;
 import ast.Types.T;
+import exc.BindingException;
 
 
 public class Parameter extends IDeclaration {

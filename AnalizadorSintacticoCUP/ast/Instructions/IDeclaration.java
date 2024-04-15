@@ -39,6 +39,7 @@ public class IDeclaration extends I{
     public void bind() throws BindingException {
         Program.getTableStack().insertId(name, this);
         if(exp != null){ exp.bind(); }
+        type.bind(); //por si acaso es un struct
         //this.bindNode = node;
     }
 }

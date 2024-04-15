@@ -8,6 +8,7 @@ import ast.ASTNode;
 import ast.Program;
 import ast.Instructions.IDeclaration;
 import exc.BindingException;
+import exc.TypingException;
 
 public class DStruct extends D{
     private String name;
@@ -16,6 +17,7 @@ public class DStruct extends D{
     public DStruct(String name, List<IDeclaration> fields){
         this.name = name;
         this.fields = fields;
+        Program.addType(name);
     }
     @Override
     public KindD kindD() {
@@ -25,7 +27,17 @@ public class DStruct extends D{
         return "struct " + name.toString() + "{" + fields.toString() + "}";
     }
 
+    public String getName(){
+        return this.name;
+    }
+
     public void bind() throws BindingException {  
         Program.getTableStack().insertId(name, this);       
+    }
+
+    public void type() throws TypingException {
+        for(IDeclaration d: fields){
+            d.type();
+        }
     }
 }

@@ -2,6 +2,9 @@ package ast.Definitions;
 
 import ast.Expressions.E;
 import ast.Types.T;
+import exc.BindingException;
+import exc.TypingException;
+import ast.Program;
 
 public class DConst extends D{
 
@@ -22,6 +25,20 @@ public class DConst extends D{
     @Override
     public KindD kindD() {
         return KindD.CONST;
+    }
+
+    @Override
+    public void bind() throws BindingException{
+        Program.getTableStack().insertId(name, this);
+        exp.bind();
+    }
+
+    @Override
+    public void type() throws TypingException {
+        exp.type();
+        if(!type.toString().equals(exp.getType().toString())){
+            throw new TypingException("Type not compatible in " + exp.toString() + " and " + type.toString());
+        }
     }
 
     

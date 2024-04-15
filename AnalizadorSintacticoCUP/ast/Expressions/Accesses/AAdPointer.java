@@ -1,6 +1,7 @@
 package ast.Expressions.Accesses;
 
 import exc.BindingException;
+import exc.TypingException;
 
 public class AAdPointer extends A{
     
@@ -18,5 +19,10 @@ public class AAdPointer extends A{
     public void bind() throws BindingException{
         access.bind(); 
         this.bindNode = access.bindNode;
+    }
+
+    public void type() throws TypingException {
+        access.type();
+        // aqui algo mas?
     }
 }
