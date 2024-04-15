@@ -2,6 +2,7 @@ package ast.Expressions;
 
 import ast.Types.*;
 import exc.BindingException;
+import exc.TypingException;
 
 public class ENew extends E{
 
@@ -23,5 +24,9 @@ public class ENew extends E{
     public void bind() throws BindingException{
         // hay que hacer algo en el binding??
         type.bind();
+    }
+
+    public void type() throws TypingException {
+        setType(type);
     }
 }

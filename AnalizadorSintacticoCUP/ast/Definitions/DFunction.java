@@ -65,6 +65,14 @@ public class DFunction extends D {
         // returnType.type();
     }
 
+    public List<Parameter> getParameters(){
+        return params;
+    }
+
+    public T getReturnType(){
+        return returnType;
+    }
+
 
     
 }

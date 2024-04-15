@@ -1,5 +1,6 @@
 package ast.Expressions.Accesses;
 import exc.BindingException;
+import exc.TypingException;
 
 public class APointer extends A {
 
@@ -17,5 +18,9 @@ public class APointer extends A {
     public void bind() throws BindingException {
         access.bind(); 
         this.bindNode = access.bindNode;
+    }
+
+    public void type() throws TypingException {
+        throw new TypingException("El type de punteros no está hecho!!!!");
     }
 }

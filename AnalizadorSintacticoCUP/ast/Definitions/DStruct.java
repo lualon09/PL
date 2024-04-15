@@ -31,6 +31,10 @@ public class DStruct extends D{
         return this.name;
     }
 
+    public List<IDeclaration> getFields() {
+        return fields;
+    }
+
     public void bind() throws BindingException {  
         Program.getTableStack().insertId(name, this);       
     }

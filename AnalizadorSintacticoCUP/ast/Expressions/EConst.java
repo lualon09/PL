@@ -2,6 +2,7 @@ package ast.Expressions;
 
 import ast.Types.T;
 import exc.BindingException;
+import exc.TypingException;
 
 public class EConst extends E{ //Expresion Constante
     private T type;
@@ -34,5 +35,15 @@ public class EConst extends E{ //Expresion Constante
     @Override
     public void bind() throws BindingException{
         if(exp != null) exp.bind();
+    }
+
+    public void type() throws TypingException {
+        if(exp != null) {
+            exp.type();
+            if(!exp.getType().equals(type)){
+                throw new TypingException("Error. Type in size of the list. It has to be an integer.");
+            }
+        }
+        setType(type);
     }
 }

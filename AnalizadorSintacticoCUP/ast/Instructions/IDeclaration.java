@@ -42,4 +42,12 @@ public class IDeclaration extends I{
         type.bind(); //por si acaso es un struct
         //this.bindNode = node;
     }
+
+    public T getType(){
+        return type;
+    }
+
+    public String getName(){
+        return name;
+    }
 }

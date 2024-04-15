@@ -8,3 +8,4 @@
 * binding del alias. TODO DEL TYPEDEF
 * tener en cuenta donde se añaden los tipos basicos a la lista
 * si tenemos parametros que se llaman igual falla en binding??
+* super importante tener en cuenta cuando hagamos las declaraciones que el tipo de la clase ASTNode en las declaraciones debe ser el tipo de lo que se está declarando.
