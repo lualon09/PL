@@ -24,18 +24,6 @@ public class TStruct extends T {
         return name;
     }
 
-    public ArrayList<IDeclaration> getFields(){
-        // if(fields == null){
-        //     for(DStruct s: Program.getDefinitionList().getStructs()){
-        //         if(name.equals(s.getName())) {
-        //             fields = s;
-        //         }
-        //     }
-        // }
-        // else return fields;
-        return null;
-    }
-
     public void bind() throws BindingException{
         boolean found = false;
         for(DStruct s: Program.getDefinitionList().getStructs()){
@@ -45,5 +33,10 @@ public class TStruct extends T {
             }
         }
         if(!found) throw new BindingException("Error. Struct name " + name + " not found.");
+    }
+
+    @Override
+    public boolean equals(Object type2){
+        return super.equals(type2) && this.toString().equals(type2.toString()); //comprobamos que ambos sean structs y que se llamen igual
     }
 }

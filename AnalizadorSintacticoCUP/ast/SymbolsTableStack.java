@@ -5,8 +5,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import ast.Definitions.KindD;
 import errors.GestionErroresTiny;
 import exc.BindingException;
+
+import ast.Types.T;
+
+import ast.Definitions.*;
 
 public class SymbolsTableStack {
 
@@ -39,6 +44,18 @@ public class SymbolsTableStack {
 			if(blocks.get(i).containsKey(id)) {
                 System.out.println("Soy " + id + " y me asocio con " + blocks.get(i).get(id));
 				return blocks.get(i).get(id);
+			}
+		}
+		return null;
+    }
+
+    public T lastFunctionReturnType(){
+        for(int i = blocks.size()-1;i>=0;i--) { //iterate over the list
+			HashMap<String,ASTNode> aux_map = blocks.get(i);
+            for(ASTNode a: aux_map.values()){
+                if(a.getType().nodeKind() == NodeKind.DEFINITION && ((D) a).kindD().equals(KindD.FUNCTION)) {
+                    return ((DFunction) a).getReturnType();
+                }
 			}
 		}
 		return null;

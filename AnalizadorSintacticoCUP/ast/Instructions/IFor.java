@@ -42,12 +42,19 @@ public class IFor extends IBlock {
 
     public void type() throws TypingException {
         dec.type();
+        // comprobamos que la declaracion es de booleano
+        if(!dec.getType().kind().equals(KindT.INT)){
+            throw new TypingException("The declaration of the for is not an Int.");
+        }
         cond.type();
         //hay que comprobar que la condición es un booleano
         if(!cond.getType().kind().equals(KindT.BOOL)){
             throw new TypingException("The condition of the for is not a boolean.");
         }
         assign.type();
+        if(!assign.getType().kind().equals(KindT.INT)){
+            throw new TypingException("The assignation of the for is not an Int.");
+        }
         super.type();
         // el setType de algo??
     }

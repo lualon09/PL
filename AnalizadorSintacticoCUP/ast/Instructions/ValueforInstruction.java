@@ -2,6 +2,8 @@ package ast.Instructions;
 
 import ast.Expressions.*;
 import exc.BindingException;
+import exc.TypingException;
+import ast.Types.*;
 
 public class ValueforInstruction extends I{
 
@@ -42,6 +44,14 @@ public class ValueforInstruction extends I{
         if(exp != null){
             exp.bind();
         }
+    }
+
+    public void type() throws TypingException {
+        value.type();
+        if(exp != null){
+            exp.type();
+        }
+        setType(value.getType());
     }
     
 }

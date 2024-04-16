@@ -1,5 +1,4 @@
 * No estamos obligando a que haya return en las funciones
-* switch???
 * los punteros?? con el binding???
 * ejemplos para constantes
 * tener en cuenta que las constantes no se pueden modificar!!!!!
@@ -9,3 +8,5 @@
 * tener en cuenta donde se añaden los tipos basicos a la lista
 * si tenemos parametros que se llaman igual falla en binding??
 * super importante tener en cuenta cuando hagamos las declaraciones que el tipo de la clase ASTNode en las declaraciones debe ser el tipo de lo que se está declarando.
+* el switch en si no es un bloque no? por que extiende de bloque?
+* borrar que se le pueda pasar expresiones a las listas

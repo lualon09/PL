@@ -5,21 +5,21 @@ import java.util.List;
 import ast.Program;
 import ast.Expressions.*;
 import exc.BindingException;
+import exc.TypingException;
 
-public class SwitchInstruction extends I{
+public class SwitchInstruction extends IBlock{
 
-    private List<I> inst;
     private E exp;
     private boolean breakCond;
     
     public SwitchInstruction(List<I> inst, E exp, boolean breakCond){
-        this.inst = inst;
+       super(inst);
         this.exp = exp;
         this.breakCond = breakCond;
     }
 
     public SwitchInstruction(List<I> inst){ //CASO DEFAULT
-        this.inst = inst;
+        super(inst);
         this.exp = null;
         this.breakCond = true; //interpretamos que como es default, ya no va a seguir haica abajo
     }
@@ -44,10 +44,16 @@ public class SwitchInstruction extends I{
             exp.bind();
         }
         Program.getTableStack().openBlock();
-        for(I i: inst){
-            i.bind();
-        }
+        super.bind();
         Program.getTableStack().closeBlock();
     }
+
+    public void type() throws TypingException{
+        if(exp != null){
+            exp.type();
+            setType(exp.getType());
+        }
+    }
+
     
 }

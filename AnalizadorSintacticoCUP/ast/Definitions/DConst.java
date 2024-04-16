@@ -36,7 +36,7 @@ public class DConst extends D{
     @Override
     public void type() throws TypingException {
         exp.type();
-        if(!type.toString().equals(exp.getType().toString())){
+        if(!type.equals(exp.getType())){
             throw new TypingException("Type not compatible in " + exp.toString() + " and " + type.toString());
         }
     }

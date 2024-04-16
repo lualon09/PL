@@ -21,6 +21,9 @@ public class APointer extends A {
     }
 
     public void type() throws TypingException {
-        throw new TypingException("El type de punteros no está hecho!!!!");
+        if(!bindNode.getType().kind().equals(KindT.POINTER)){
+            throw new TypingException(access.toString() + " is not a pointer.");
+        }
+        setType(bindNode.getType().getT()); //el tipo de *tipo es tipo.
     }
 }

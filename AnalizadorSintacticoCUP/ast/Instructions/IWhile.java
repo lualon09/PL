@@ -2,10 +2,11 @@ package ast.Instructions;
 
 import java.util.List;
 import exc.BindingException;
-
+import exc.TypingException;
 import ast.Expressions.E;
 import ast.ASTNode;
 import ast.Program;
+import ast.Types.*;
 
 public class IWhile extends IBlock {
     private E cond;
@@ -28,5 +29,13 @@ public class IWhile extends IBlock {
         cond.bind();
         super.bind();
         Program.getTableStack().closeBlock();
+    }
+
+    public void type() throws TypingException {
+        cond.type();
+        if(!cond.getType().kind().equals(KindT.BOOL)){
+            throw new TypingException("The condition of the while is not a boolean.");
+        }
+        super.type();
     }
 }

@@ -2,7 +2,8 @@ package ast.Instructions;
 
 import java.util.List;
 import ast.Expressions.Accesses.A;
-import exc.BindingException;
+import exc.*;
+import ast.Types.*;
 
 public class IValuefor extends IBlock {
     private A var;
@@ -40,6 +41,26 @@ public class IValuefor extends IBlock {
         }
         if(defaultCase != null){
             defaultCase.bind();
+        }
+    }
+
+    public void type() throws TypingException {
+        var.type();
+        if(!var.getType().kind().equals(KindT.BOOL) && !var.getType().kind().equals(KindT.INT)){
+            throw new TypingException("Valuefor only gets type Int or type Bool. It is getting " + var.getType().toString());
+        }
+
+        for(ValueforInstruction s: cases){
+            s.type();
+            if(!s.getType().kind().equals(var.getType().kind())){
+                throw new TypingException("A case of value for gets " + s.getType().toString() + " and expected " + var.getType().toString());
+            }
+        }
+        if(defaultCase != null){
+            defaultCase.type();
+            if(!defaultCase.getType().kind().equals(var.getType().kind())){
+                throw new TypingException("A case of value for gets " + defaultCase.getType().toString() + " and expected " + var.getType().toString());
+            }
         }
     }
 }

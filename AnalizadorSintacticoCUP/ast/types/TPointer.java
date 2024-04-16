@@ -5,7 +5,7 @@ public class TPointer extends T {
 
     
     public TPointer(T t){
-        this.type = t;
+        setT(t);
     }
 
     @Override
@@ -14,6 +14,10 @@ public class TPointer extends T {
     }
 
     public String toString(){
-        return type.toString() + "*";
+        return getT().toString() + "*";
+    }
+
+    public boolean equals(Object type2){
+        return super.equals(type2) && this.getT().equals(type2);
     }
 }

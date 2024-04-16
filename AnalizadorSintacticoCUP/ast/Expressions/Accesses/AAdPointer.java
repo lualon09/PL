@@ -23,6 +23,6 @@ public class AAdPointer extends A{
 
     public void type() throws TypingException {
         access.type();
-        // aqui algo mas?
+        setType(new TPointer(bindNode.getType()));
     }
 }

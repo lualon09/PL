@@ -31,9 +31,9 @@ public class IAssignation extends I{
     public void type() throws TypingException {
         access.type();
         exp.type();
-        if(!access.getType().equals(exp.getType())){
+        if(!access.getType().kind().equals(exp.getType().kind())){
             throw new TypingException("Error. " + access.toString() + "and " + exp.toString() + " have different types.");
         }
-        // setType()?? de que
+        setType(exp.getType()); //para comprobar el bucle for
     }
 }

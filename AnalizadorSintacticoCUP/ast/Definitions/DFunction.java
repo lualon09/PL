@@ -48,6 +48,7 @@ public class DFunction extends D {
         for(Parameter p: params){
             p.bind();
         }
+        returnType.bind(); //deberiamos de ponerlo por si acaso devuelve algo de tipo struct?
         for(I i: body){
             i.bind();
         }
@@ -62,7 +63,7 @@ public class DFunction extends D {
         for(Parameter p: params){
             p.type();
         }
-        // returnType.type();
+        // returnType.type(); deberiamos de ponerlo por si acaso devuelve algo de tipo struct?
     }
 
     public List<Parameter> getParameters(){

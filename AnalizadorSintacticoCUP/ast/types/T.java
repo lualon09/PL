@@ -7,7 +7,7 @@ import ast.ASTNode;
 
 public abstract class T extends ASTNode {
 
-    public T type;
+    private T type;
 
     public abstract KindT kind();
     public NodeKind nodeKind() {
@@ -27,4 +27,15 @@ public abstract class T extends ASTNode {
 
     public void bind() throws BindingException{}
     public void type() throws TypingException{}
+
+    @Override
+    public boolean equals(Object type2){
+        boolean equals = false;
+        try{
+            equals = ((T) this).kind() == ((T) type2).kind();
+        }catch(Exception e){
+            return false;
+        }
+        return equals;
+    }
 }

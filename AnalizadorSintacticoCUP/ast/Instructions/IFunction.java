@@ -2,7 +2,8 @@ package ast.Instructions;
 
 import ast.Expressions.EFunction;
 import ast.ASTNode;
-import exc.BindingException;
+import exc.*;
+
 
 public class IFunction extends I{
 
@@ -28,7 +29,6 @@ public class IFunction extends I{
 
     public void type() throws TypingException {
         exp.type(); 
-        //algo mas que comprobar??
-        // aqui no hace falta tipo no??
+        setType(exp.getType()); //le asignamos el tipo que devuelve
     }
 }

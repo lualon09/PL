@@ -1,6 +1,10 @@
 package ast.Instructions;
 
+import ast.Program;
 import ast.Expressions.E;
+import ast.Types.KindT;
+import ast.Types.T;
+import ast.Types.TBasics;
 import exc.BindingException;
 import exc.TypingException;
 
@@ -31,9 +35,23 @@ public class IReturn extends I{
         if(expReturn != null){ //Si tiene tipo de retorno
             expReturn.bind();
         }
+        // buscamos a que función se vincula el return
     }
 
     public void type() throws TypingException {
-        // hay que saber de donde es return
+        expReturn.type();
+        setType(expReturn.getType());
+        T typeReturn = Program.getTableStack().lastFunctionReturnType();
+        if(typeReturn == null) {
+            throw new TypingException("Error. Function not found. Return shouldn't be there");
+        }
+        else{
+            if(expReturn == null && !typeReturn.equals(new TBasics(KindT.VOID))){
+                throw new TypingException("Error. Function doesn't return void.");
+            }
+            else if(expReturn != null && !typeReturn.equals(expReturn.getType())){
+                throw new TypingException("Error. Function returns " + typeReturn.toString() + " and got " + expReturn.getType().toString());
+            }
+        }
     }
 }

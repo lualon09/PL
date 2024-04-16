@@ -3,7 +3,8 @@ package ast.Instructions;
 import java.util.List;
 
 import ast.Expressions.E;
-import exc.BindingException;
+import exc.*;
+import ast.Types.*;
 
 public class IRepeat extends IBlock {
     private E cond;
@@ -27,8 +28,8 @@ public class IRepeat extends IBlock {
     }
     public void type() throws TypingException {
         cond.type();
-        if(!cond.getType().kind().equals(KindT.BOOL)){
-            throw new TypingException("The condition of the repeat is not a boolean");
+        if(!cond.getType().kind().equals(KindT.INT)){
+            throw new TypingException("The condition of the repeat is not an Int");
         }
         super.type();
         //setType???

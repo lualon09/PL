@@ -1,7 +1,9 @@
 package ast.Instructions;
 
 import ast.Expressions.E;
+import ast.Types.KindT;
 import exc.BindingException;
+import exc.TypingException;
 
 public class IShow extends I{
 
@@ -24,5 +26,11 @@ public class IShow extends I{
     public void bind() throws BindingException{
         exp.bind();
     }
-    
+
+    public void type() throws TypingException {
+        exp.type();
+        if(!exp.getType().kind().equals(KindT.BOOL) && !exp.getType().kind().equals(KindT.INT)){
+            throw new TypingException("Show function only gets type Int or type Bool. It is getting " + exp.getType().toString());
+        }
+    }
 }
