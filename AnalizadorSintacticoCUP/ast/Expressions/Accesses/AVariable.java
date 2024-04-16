@@ -28,6 +28,7 @@ public class AVariable extends A {
     }
 
     public void type() throws TypingException {
+        System.out.println("Soy " + toString());
         setType(bindNode.getType());
         // aqui algo mas?
     }

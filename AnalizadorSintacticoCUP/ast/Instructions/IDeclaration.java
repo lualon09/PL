@@ -53,13 +53,14 @@ public class IDeclaration extends I{
     }
 
     public void type() throws TypingException {
+        System.out.println("Soy " + name);
+        setType(type); //las declaraciones tienen por defecto el tipo de lo que se está asignando.
         if(exp != null) {
             exp.type();//tipamos la expresion en caso de que exista
             // en el caso de que sea con expresión va a fallar porque 2+3 != 5 (sin evaluar)
             if(!exp.getType().toString().equals(type.toString())){ //lo comprobamos con el toString por si acaso es de tipo array
                 throw new TypingException(exp.toString() + " and " + name + " do not have the same type.");
             }
-        } 
-        setType(type); //las declaraciones tienen por defecto el tipo de lo que se está asignando.
+        }
     }
 }

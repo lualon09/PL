@@ -9,3 +9,4 @@
 * super importante tener en cuenta cuando hagamos las declaraciones que el tipo de la clase ASTNode en las declaraciones debe ser el tipo de lo que se está declarando.
 * el switch en si no es un bloque no? por que extiende de bloque?
 * borrar que se le pueda pasar expresiones a las listas
+* comprobar que solo hay un return?????

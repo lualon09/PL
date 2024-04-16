@@ -1,6 +1,7 @@
 package ast.Instructions;
 
 import ast.Program;
+import ast.Definitions.DFunction;
 import ast.Expressions.E;
 import ast.Types.KindT;
 import ast.Types.T;
@@ -11,6 +12,7 @@ import exc.TypingException;
 public class IReturn extends I{
 
     private E expReturn;
+    private DFunction function;
 
     public IReturn (E exp){
         this.expReturn = exp;
@@ -35,22 +37,24 @@ public class IReturn extends I{
         if(expReturn != null){ //Si tiene tipo de retorno
             expReturn.bind();
         }
+        function = (DFunction) Program.getTableStack().lastFunctionReturnType();
         // buscamos a que función se vincula el return
     }
 
     public void type() throws TypingException {
         expReturn.type();
+        System.out.println("Soy el return.");
         setType(expReturn.getType());
-        T typeReturn = Program.getTableStack().lastFunctionReturnType();
-        if(typeReturn == null) {
+        T functionReturnType = function.getReturnType();
+        if(functionReturnType == null) {
             throw new TypingException("Error. Function not found. Return shouldn't be there");
         }
         else{
-            if(expReturn == null && !typeReturn.equals(new TBasics(KindT.VOID))){
+            if(expReturn == null && !functionReturnType.equals(new TBasics(KindT.VOID))){
                 throw new TypingException("Error. Function doesn't return void.");
             }
-            else if(expReturn != null && !typeReturn.equals(expReturn.getType())){
-                throw new TypingException("Error. Function returns " + typeReturn.toString() + " and got " + expReturn.getType().toString());
+            else if(expReturn != null && !functionReturnType.equals(expReturn.getType())){
+                throw new TypingException("Error. Function returns " + functionReturnType.toString() + " and got " + expReturn.getType().toString());
             }
         }
     }

@@ -10,6 +10,7 @@ import errors.GestionErroresTiny;
 import exc.BindingException;
 
 import ast.Types.T;
+import ast.ASTNode;
 
 import ast.Definitions.*;
 
@@ -49,12 +50,12 @@ public class SymbolsTableStack {
 		return null;
     }
 
-    public T lastFunctionReturnType(){
+    public ASTNode lastFunctionReturnType(){
         for(int i = blocks.size()-1;i>=0;i--) { //iterate over the list
 			HashMap<String,ASTNode> aux_map = blocks.get(i);
             for(ASTNode a: aux_map.values()){
-                if(a.getType().nodeKind() == NodeKind.DEFINITION && ((D) a).kindD().equals(KindD.FUNCTION)) {
-                    return ((DFunction) a).getReturnType();
+                if(a.nodeKind() == NodeKind.DEFINITION && ((D) a).kindD().equals(KindD.FUNCTION)) {
+                    return a;
                 }
 			}
 		}

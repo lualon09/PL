@@ -1,7 +1,7 @@
 package ast.Expressions.Accesses;
 import exc.BindingException;
 import exc.TypingException;
-import ast.Types.*;c
+import ast.Types.*;
 
 public class APointer extends A {
 

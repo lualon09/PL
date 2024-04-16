@@ -15,5 +15,8 @@ public abstract class ASTNode {
     public abstract String toString();
 
     public T getType() { return type;}
-    public void setType(T t) {type = t;}
+    public void setType(T t) {
+        type = t;
+        System.out.println("tengo el tipo " + type.toString());
+    }
 }

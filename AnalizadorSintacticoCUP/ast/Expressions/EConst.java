@@ -26,6 +26,7 @@ public class EConst extends E{ //Expresion Constante
     }
 
     public void type() throws TypingException {
+        System.out.println("Soy " + value);
         setType(type);
     }
 }

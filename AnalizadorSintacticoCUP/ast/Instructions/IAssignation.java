@@ -34,6 +34,7 @@ public class IAssignation extends I{
         if(!access.getType().kind().equals(exp.getType().kind())){
             throw new TypingException("Error. " + access.toString() + "and " + exp.toString() + " have different types.");
         }
+        System.out.println("Soy la expresión completa" + access.toString() + "=" + exp.toString());
         setType(exp.getType()); //para comprobar el bucle for
     }
 }

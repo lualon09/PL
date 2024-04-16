@@ -6,6 +6,7 @@ import java.io.Reader;
 import alex.AnalizadorLexicoTiny;
 import ast.Program;
 import exc.BindingException;
+import exc.TypingException;
 
 public class Main {
    public static void main(String[] args) throws Exception {
@@ -22,7 +23,7 @@ public class Main {
 			try{
 				System.out.println("************************TYPING********************");
 				p.type(); //tipado
-			}catch(TypingExcetion te){
+			}catch(TypingException te){
 				te.printStackTrace();
 			}
 		} catch(BindingException be){
@@ -31,6 +32,7 @@ public class Main {
 	}
 	catch(Exception e){
 		System.out.println("Something went wrong with the parsing...");
+		e.printStackTrace();c
 	}
 		
  }
