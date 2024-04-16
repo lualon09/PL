@@ -32,7 +32,7 @@ public class Main {
 	}
 	catch(Exception e){
 		System.out.println("Something went wrong with the parsing...");
-		e.printStackTrace();c
+		e.printStackTrace();
 	}
 		
  }

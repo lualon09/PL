@@ -53,6 +53,7 @@ public class EBin extends E {
         throw new TypingException("Operator " + tExp.toString() + " is not compatible with " +  opnd1.getType().toString());
       }
     }
+    System.out.println("Soy el ebin de " + opnd1.toString() + " " + opnd2.toString());
     setType(type); //hacemos setType para saber que la expresión es de tipo type.
   }
 }

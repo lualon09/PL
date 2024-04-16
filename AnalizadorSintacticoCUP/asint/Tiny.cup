@@ -106,7 +106,7 @@ DECLARATION ::= TYPE:t IDEN:name PUNTOYCOMA
 ASIG ::= ACCESS0:a IGUAL E0:e PUNTOYCOMA 
          {:RESULT = new IAssignation((A) a, e);:}
          | ACCESS0:ac OP2:o IGUAL E0:ex PUNTOYCOMA 
-         {:RESULT = new IAssignation((A) ac, new EBin((A) ac, ex, o, new TBasics(KindT.BOOL)));:}
+         {:RESULT = new IAssignation((A) ac, new EBin((A) ac, ex, o, new TBasics(KindT.INT)));:}
          | ACCESS0 IGUAL E0 error
          {:System.out.println("Error. Missing ;"); RESULT = null;:};
 
@@ -339,7 +339,7 @@ E6 ::= NOT E6:op1
       {:RESULT = e;:};
 
 E7 ::= OP4:operator E7:op1
-      {:RESULT = new EUnary(op1, operator, new TArray(new TBasics(KindT.INT)));:} //estos operadores solo se pueden con arrays de enteros
+      {:RESULT = new EUnary(op1, operator, new TBasics(KindT.INT));:} //estos operadores solo se pueden con arrays de enteros
       | E8:e 
       {:RESULT = e;:};
 
