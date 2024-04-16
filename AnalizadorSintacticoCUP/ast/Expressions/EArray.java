@@ -37,7 +37,7 @@ public class EArray extends E{
         setType(new TArray(arr.get(0).getType(), new EConst(Integer.toString(arr.size()), new TBasics(KindT.INT)))); //decimos que lo de la derecha va a ser algo de tipo array de tamaño los argumentos.
 
         for(int i = 1; i < arr.size(); i++){
-            arr.get(i).type();l
+            arr.get(i).type();
             if(!arr.get(0).getType().equals(arr.get(i).getType())) {
                 throw new TypingException("Not all values in array declaration have the same type.");
             }
