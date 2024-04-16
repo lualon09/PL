@@ -1,5 +1,4 @@
 * No estamos obligando a que haya return en las funciones
-* los punteros?? con el binding???
 * ejemplos para constantes
 * tener en cuenta que las constantes no se pueden modificar!!!!!
 * como se hace la comprobacion de tipos

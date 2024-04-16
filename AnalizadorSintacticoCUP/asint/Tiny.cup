@@ -408,8 +408,8 @@ TYPE ::= TYPEINT
          {: RESULT = new TBasics(KindT.VOID);:}
          | IDEN:id
          {: RESULT = new TStruct(id.lexema);:}
-         | LIST LESS TYPE:t GREATER CAP E0:e CCIERRE //hemos puesto ENT en vez de E0 para el token value
-         {: EConst sizeConst = new EConst(e, new TBasics(KindT.INT)); RESULT = new TArray(t, sizeConst);:}
+         | LIST LESS TYPE:t GREATER CAP ENT:e CCIERRE
+         {: EConst sizeConst = new EConst(e.lexema, new TBasics(KindT.INT)); RESULT = new TArray(t, sizeConst);:}
          | TYPE:t MUL 
          {: RESULT = new TPointer(t);:};
 
