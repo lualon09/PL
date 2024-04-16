@@ -6,6 +6,7 @@ Struct tInfo {
 };
 
 main() -> Int{
+    
     Int var1 = 2;
     Int * var2 = new Int; 
     var2 = &var1; //asignamos a la direccion de memoria del puntero var2 la de la variable var1
@@ -28,7 +29,8 @@ main() -> Int{
     (*nombrePuntero).campo = 0;
 
     tInfo nombre;
-    *nombre.campo = 1; //accedemos a un campo puntero de un struct
+    *nombre.campoPuntero = 1; //accedemos a un campo puntero de un struct
+    nombre.campo = 2;
 
     return 0;
 } 

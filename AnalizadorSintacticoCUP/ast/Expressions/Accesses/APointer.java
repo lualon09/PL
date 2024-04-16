@@ -22,9 +22,14 @@ public class APointer extends A {
     }
 
     public void type() throws TypingException {
-        if(!bindNode.getType().kind().equals(KindT.POINTER)){
+        access.type();
+        // if(!bindNode.getType().kind().equals(KindT.POINTER)){
+        //     throw new TypingException(access.toString() + " is not a pointer.");
+        // }
+        if(!access.getType().kind().equals(KindT.POINTER)){
             throw new TypingException(access.toString() + " is not a pointer.");
         }
-        setType(bindNode.getType().getT()); //el tipo de *tipo es tipo.
+        // setType(bindNode.getType().getT()); //el tipo de *tipo es tipo. ESTO FALLA
+        setType(access.getType().getT());
     }
 }

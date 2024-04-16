@@ -25,6 +25,7 @@ public class TStruct extends T {
     }
 
     public void bind() throws BindingException{
+        System.out.println("Estoy haciendo binding del tipo del struct");
         boolean found = false;
         for(DStruct s: Program.getDefinitionList().getStructs()){
             if(name.equals(s.getName())) {
