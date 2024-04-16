@@ -2,6 +2,7 @@ package ast.Expressions.Accesses;
 
 import exc.BindingException;
 import exc.TypingException;
+import ast.Types.*;
 
 public class AAdPointer extends A{
     

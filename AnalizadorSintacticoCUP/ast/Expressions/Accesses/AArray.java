@@ -4,6 +4,7 @@ import ast.Expressions.E;
 import ast.Types.KindT;
 import exc.BindingException;
 import exc.TypingException;
+import ast.Types.*;
 
 public class AArray extends A{
     private A access;

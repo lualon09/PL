@@ -17,9 +17,14 @@ public class Main {
 		System.out.println("TREE AST");
 		System.out.println(p);
 		try{
-			System.out.println("BINDING	");
+			System.out.println("*********************BINDING********************");
 			p.bind(); // vinculacion
-			System.out.println("Correct binding!");
+			try{
+				System.out.println("************************TYPING********************");
+				p.type(); //tipado
+			}catch(TypingExcetion te){
+				te.printStackTrace();
+			}
 		} catch(BindingException be){
 			be.printStackTrace();
 		}
