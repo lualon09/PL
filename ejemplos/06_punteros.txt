@@ -21,7 +21,7 @@ main() -> Int{
     Bool * varB3 = new Bool;
     varB3 = varB2; //asignamos a la direccion de memoria del puntero varB3 la de la variable varB2
     show(*varB3);
-    Bool varB4 = new Bool;
+    Bool * varB4 = new Bool;
     *varB4 = not(*varB2) && not(*varB3);  //varB4 = True
     
     tInfo * nombrePuntero; //puntero de un array

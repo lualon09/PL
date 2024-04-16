@@ -41,6 +41,8 @@ public class IDeclaration extends I{
         Program.getTableStack().insertId(name, this);
         if(exp != null){ exp.bind(); }
         type.bind(); //por si acaso es un struct
+        // nos falta asignar a este nodo, como binding node el de la declaracion del struct
+        this.bindNode = type.bindNode;
         //this.bindNode = node;
     }
 

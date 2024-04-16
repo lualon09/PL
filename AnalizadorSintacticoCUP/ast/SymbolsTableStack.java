@@ -50,16 +50,20 @@ public class SymbolsTableStack {
 		return null;
     }
 
-    public ASTNode lastFunctionReturnType(){
-        for(int i = blocks.size()-1;i>=0;i--) { //iterate over the list
-			HashMap<String,ASTNode> aux_map = blocks.get(i);
-            for(ASTNode a: aux_map.values()){
-                if(a.nodeKind() == NodeKind.DEFINITION && ((D) a).kindD().equals(KindD.FUNCTION)) {
-                    return a;
-                }
-			}
-		}
-		return null;
+    // public ASTNode lastFunctionReturnType(){
+    //     for(int i = blocks.size()-1;i>=0;i--) { //iterate over the list
+	// 		HashMap<String,ASTNode> aux_map = blocks.get(i);
+    //         for(ASTNode a: aux_map.values()){
+    //             if(a.nodeKind() == NodeKind.DEFINITION && ((D) a).kindD().equals(KindD.FUNCTION)) {
+    //                 return a;
+    //             }
+	// 		}
+	// 	}
+	// 	return null;
+    // }
+
+    public int getNumberOfAmbits(){
+        return blocks.size();
     }
     
 }

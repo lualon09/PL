@@ -10,3 +10,5 @@
 * el switch en si no es un bloque no? por que extiende de bloque?
 * borrar que se le pueda pasar expresiones a las listas
 * comprobar que solo hay un return?????
+* probar funciones que devuelvan cosas que no son ints.
+* hay que comprobar si hay mas de un main

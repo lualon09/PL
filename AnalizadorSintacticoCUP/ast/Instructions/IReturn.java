@@ -33,11 +33,19 @@ public class IReturn extends I{
         return "return " + expReturn.toString();
     }
 
+    public void setFunction(DFunction f){
+        function = f;
+    }
+
     public void bind() throws BindingException {
         if(expReturn != null){ //Si tiene tipo de retorno
             expReturn.bind();
         }
-        function = (DFunction) Program.getTableStack().lastFunctionReturnType();
+        // function = (DFunction) Program.getTableStack().lastFunctionReturnType();
+        int ambit = Program.getTableStack().getNumberOfAmbits();
+        if(ambit > 2){
+            throw new BindingException("There is a return instruction not in ambit 1.");
+        }
         // buscamos a que función se vincula el return
     }
 

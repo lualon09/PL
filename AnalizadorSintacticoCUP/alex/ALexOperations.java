@@ -36,7 +36,7 @@ public class ALexOperations {
       return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.SUM); 
    } 
    public UnidadLexica unidadResta() {
-      return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.LESS); 
+      return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.SUB); 
    } 
    public UnidadLexica unidadMul() {
       return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.MUL); 

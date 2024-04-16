@@ -10,6 +10,8 @@ import ast.Instructions.IDeclaration;
 import ast.Types.T;
 import exc.BindingException;
 import exc.TypingException;
+import ast.Instructions.IReturn;
+import ast.Instructions.KindI;
 
 public class DFunction extends D {
 
@@ -17,12 +19,14 @@ public class DFunction extends D {
     private List<I> body;
     private List<Parameter> params;
     private T returnType;
+    private int numberOfReturns;
 
     public DFunction(String name, List<I> body, List<Parameter> params, T returnType){
         this.name = name;
         this.body = body;
         this.params = params;
         this.returnType = returnType;
+        this.numberOfReturns = 0;
     }
 
     @Override
@@ -50,9 +54,16 @@ public class DFunction extends D {
         }
         returnType.bind(); //deberiamos de ponerlo por si acaso devuelve algo de tipo struct?
         for(I i: body){
+            if(i.kind().equals(KindI.RETURN)){
+                ((IReturn) i).setFunction(this);
+                numberOfReturns++;
+            }
             i.bind();
         }
         Program.getTableStack().closeBlock();
+        if(numberOfReturns != 1){
+            throw new BindingException("There is no return or more than one return in " + name + " function.");
+        }
     }
 
     @Override

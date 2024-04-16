@@ -9,12 +9,11 @@ public class Program extends ASTNode {
 
     private static DefinitionList definitionList;
     private static SymbolsTableStack stack;
-    private static ArrayList<String> typeList;
+    private static ArrayList<String> typeList = new ArrayList<String>(); //yo creo que esto puede sobrar
 
     public Program(DefinitionList list){
         this.definitionList = list;
         this.stack = new SymbolsTableStack();
-        this.typeList = new ArrayList<String>();
     }
 
     @Override

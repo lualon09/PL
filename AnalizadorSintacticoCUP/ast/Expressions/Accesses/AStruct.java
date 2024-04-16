@@ -30,6 +30,8 @@ public class AStruct extends A {
         access.type();
         // comprobamos si access es de tipo struct 
         if(access.getType().kind().equals(KindT.STRUCT)) {
+            System.out.println("Soy el tipo del bind node del struct " + (bindNode.getType()).toString());
+            System.out.println("Soy el tipo del bind node del struct " + (bindNode.getType()).bindNode.toString());
             List<IDeclaration> fields = ((DStruct) bindNode.getType().bindNode).getFields();
             for(IDeclaration f: fields){
                 if(f.getName().equals(field)) { //Comprobamos si es igual a algun campo

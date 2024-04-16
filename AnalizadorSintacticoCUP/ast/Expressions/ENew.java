@@ -27,6 +27,7 @@ public class ENew extends E{
     }
 
     public void type() throws TypingException {
-        setType(type);
+        //setType(type);
+        setType(new TPointer(type));
     }
 }
