@@ -25,4 +25,10 @@ public class IFunction extends I{
     public void bind() throws BindingException {
         exp.bind();
     }
+
+    public void type() throws TypingException {
+        exp.type(); 
+        //algo mas que comprobar??
+        // aqui no hace falta tipo no??
+    }
 }

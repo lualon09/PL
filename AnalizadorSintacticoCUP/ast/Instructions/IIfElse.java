@@ -2,9 +2,11 @@ package ast.Instructions;
 
 import ast.Program;
 import ast.Expressions.*;
+import ast.Types.KindT;
 
 import java.util.List;
 import exc.BindingException;
+import exc.TypingException;
 
 public class IIfElse extends IBlock{
 
@@ -46,6 +48,20 @@ public class IIfElse extends IBlock{
             }
         }
         Program.getTableStack().closeBlock();
+    }
+
+    public void type() throws TypingException {
+        cond.type();
+        if(!cond.getType().kind().equals(KindT.BOOL)){
+            throw new TypingException("The condition of the if is not a boolean");
+        }
+        super.type();
+        if(inst_else != null){
+            for (I i : inst_else) {
+                i.type();
+            }
+        }
+        //setType???
     }
     
 }

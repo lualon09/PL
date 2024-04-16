@@ -25,6 +25,15 @@ public class IRepeat extends IBlock {
         cond.bind();
         super.bind();
     }
+    public void type() throws TypingException {
+        cond.type();
+        if(!cond.getType().kind().equals(KindT.BOOL)){
+            throw new TypingException("The condition of the repeat is not a boolean");
+        }
+        super.type();
+        //setType???
+    }
+    
 
 
 }

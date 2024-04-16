@@ -3,6 +3,7 @@ package ast.Instructions;
 import java.util.List;
 import ast.ASTNode;
 import exc.BindingException;
+import exc.TypingException;
 
 public class IBlock extends I{
     protected List<I> inst;
@@ -26,6 +27,12 @@ public class IBlock extends I{
     public void bind() throws BindingException {
         for (I i : inst) {
             i.bind();
+        }
+    }
+
+    public void type() throws TypingException {
+        for (I i : inst) {
+            i.type(); //tipamos todas las instrucciones
         }
     }
 }

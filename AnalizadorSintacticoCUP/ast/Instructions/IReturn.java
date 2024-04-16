@@ -2,6 +2,7 @@ package ast.Instructions;
 
 import ast.Expressions.E;
 import exc.BindingException;
+import exc.TypingException;
 
 public class IReturn extends I{
 
@@ -30,5 +31,9 @@ public class IReturn extends I{
         if(expReturn != null){ //Si tiene tipo de retorno
             expReturn.bind();
         }
+    }
+
+    public void type() throws TypingException {
+        // hay que saber de donde es return
     }
 }

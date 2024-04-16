@@ -3,6 +3,7 @@ package ast.Instructions;
 import ast.Expressions.*;
 import ast.Expressions.Accesses.*;
 import exc.BindingException;
+import exc.TypingException;
 
 public class IAssignation extends I{
 
@@ -25,5 +26,14 @@ public class IAssignation extends I{
     public void bind() throws BindingException {
         access.bind();
         exp.bind();
+    }
+
+    public void type() throws TypingException {
+        access.type();
+        exp.type();
+        if(!access.getType().equals(exp.getType())){
+            throw new TypingException("Error. " + access.toString() + "and " + exp.toString() + " have different types.");
+        }
+        // setType()?? de que
     }
 }

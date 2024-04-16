@@ -2,9 +2,11 @@ package ast.Instructions;
 
 import java.util.List;
 import ast.Expressions.E;
+import ast.Types.KindT;
 import ast.ASTNode;
 import ast.Program;
 import exc.BindingException;
+import exc.TypingException;
 
 public class IFor extends IBlock {
     private E cond;
@@ -36,6 +38,18 @@ public class IFor extends IBlock {
         super.bind();
 
         Program.getTableStack().closeBlock();
+    }
+
+    public void type() throws TypingException {
+        dec.type();
+        cond.type();
+        //hay que comprobar que la condición es un booleano
+        if(!cond.getType().kind().equals(KindT.BOOL)){
+            throw new TypingException("The condition of the for is not a boolean.");
+        }
+        assign.type();
+        super.type();
+        // el setType de algo??
     }
 }
 

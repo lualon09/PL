@@ -5,6 +5,7 @@ import ast.Program;
 import ast.Expressions.E;
 import ast.Types.T;
 import exc.BindingException;
+import exc.TypingException;
 
 public class IDeclaration extends I{
     public T type;
@@ -49,5 +50,15 @@ public class IDeclaration extends I{
 
     public String getName(){
         return name;
+    }
+
+    public void type() throws TypingException {
+        if(exp != null) {
+            exp.type();//tipamos la expresion en caso de que exista
+            if(!exp.getType().equals(type)){
+                throw new TypingException(exp.toString() + " and " + name + " do not have the same type.");
+            }
+        } 
+        setType(type); //las declaraciones tienen por defecto el tipo de lo que se está asignando.
     }
 }
