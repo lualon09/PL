@@ -43,7 +43,7 @@ public class IDeclaration extends I{
     public void bind() throws BindingException {
         Program.getTableStack().insertId(name, this);
         if(exp != null){ exp.bind(); }
-        System.out.println("Voy a hacer binding del tipo de la variable " + name);
+        System.out.println("Voy a hacer binding del tipo de la variable " + name + " y tengo el tipo " + type.toString());
         type.bind(); //por si acaso es un struct
         // nos falta asignar a este nodo, como binding node el de la declaracion del struct
         this.bindNode = type.bindNode;

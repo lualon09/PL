@@ -1,11 +1,14 @@
 package ast.Instructions;
 
+import ast.NodeKind;
+import ast.Definitions.KindD;
 import ast.Expressions.*;
 import ast.Expressions.Accesses.*;
 import ast.Types.KindT;
 import exc.BindingException;
 import exc.TypingException;
 import ast.Types.TBasics;
+import ast.Definitions.D;
 
 public class IAssignation extends I{
 
@@ -35,6 +38,9 @@ public class IAssignation extends I{
         exp.type();
         System.out.println("soy el acceso " + access.toString());
         System.out.println("tipo : " + access.getType().toString());
+        if(access.bindNode.nodeKind().equals(NodeKind.DEFINITION) && ((D) access.bindNode).kindD().equals(KindD.CONST)){
+            throw new TypingException("Error. Constant can't be modified.");
+        }
         if(exp.kindExp().equals(KindE.READ) && !access.getType().equals(new TBasics(KindT.BOOL)) && !access.getType().equals(new TBasics(KindT.INT))){
             throw new TypingException("Error. Cannot read something different than Int or Bool. Got " + access.toString() + ".");
         }

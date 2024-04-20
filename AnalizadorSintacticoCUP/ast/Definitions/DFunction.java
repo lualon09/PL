@@ -64,6 +64,9 @@ public class DFunction extends D {
         if(numberOfReturns != 1){
             throw new BindingException("There is no return or more than one return in " + name + " function.");
         }
+        if(!body.get(body.size() - 1).kind().equals(KindI.RETURN)){
+            throw new BindingException("The return instruction must be the last one in the function.");
+        }
     }
 
     @Override

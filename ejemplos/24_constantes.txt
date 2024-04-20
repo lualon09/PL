@@ -1,5 +1,6 @@
 const Int var = 0;
 
 main() -> Int {
+    Int x = var;
     return 0;
 }

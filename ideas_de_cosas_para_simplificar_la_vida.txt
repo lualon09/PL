@@ -1,17 +1,5 @@
 * No estamos obligando a que haya return en las funciones
 * ejemplos para constantes
-* tener en cuenta que las constantes no se pueden modificar!!!!!
-* como se hace la comprobacion de tipos
 * si hacemos array1 = array2, ¿debería de fallar?
 * binding del alias. TODO DEL TYPEDEF
-* tener en cuenta donde se añaden los tipos basicos a la lista
-* si tenemos parametros que se llaman igual falla en binding??
-* super importante tener en cuenta cuando hagamos las declaraciones que el tipo de la clase ASTNode en las declaraciones debe ser el tipo de lo que se está declarando.
 * el switch en si no es un bloque no? por que extiende de bloque?
-* borrar que se le pueda pasar expresiones a las listas
-* comprobar que solo hay un return?????
-* probar funciones que devuelvan cosas que no son ints.
-* hay que comprobar si hay mas de un main
-* el tema de mas de un return lo tenemos mirado?
-* nos falta probar devolver listas y cosas asi
-* nos falta probar listas de structs

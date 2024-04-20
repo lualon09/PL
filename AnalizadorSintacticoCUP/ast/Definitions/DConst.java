@@ -1,6 +1,7 @@
 package ast.Definitions;
 
 import ast.Expressions.E;
+import ast.Types.KindT;
 import ast.Types.T;
 import exc.BindingException;
 import exc.TypingException;
@@ -35,6 +36,8 @@ public class DConst extends D{
 
     @Override
     public void type() throws TypingException {
+
+        setType(type); //por gramatica va a ser siempre entera
         exp.type();
         if(!type.equals(exp.getType())){
             throw new TypingException("Type not compatible in " + exp.toString() + " and " + type.toString());
