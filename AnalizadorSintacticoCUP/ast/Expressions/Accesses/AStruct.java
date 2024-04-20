@@ -31,6 +31,7 @@ public class AStruct extends A {
         access.type();
         // comprobamos si access es de tipo struct 
         if(access.getType().kind().equals(KindT.STRUCT)) {
+            boolean encontrado = false;
             System.out.println("Soy el tipo del bind node del struct " + (bindNode.getType()).toString());
             System.out.println("Soy el tipo del bind node del struct " + (bindNode.getType()).bindNode.toString());
             List<IDeclaration> fields = ((DStruct) bindNode.getType().bindNode).getFields();
@@ -39,7 +40,11 @@ public class AStruct extends A {
                 if(f.getName().equals(field)) { //Comprobamos si es igual a algun campo
                     System.out.println("Soy el campo " + f.getName() + "y le estoy asignando tipo " + f.getType());
                     setType(f.getType());
+                    encontrado = true;
                 }
+            }
+            if(!encontrado){
+                throw new TypingException("Struct field " + field + " doesn't exist in struct " + ((DStruct) bindNode.getType().bindNode).getName() + ".");
             }
         }
         else {

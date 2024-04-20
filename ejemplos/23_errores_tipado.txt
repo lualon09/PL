@@ -1,6 +1,5 @@
 //Errores Tipado
 
-
 funcProbando(v1:Int, v2:Bool) -> Int{
         //codigo de la funcion
         return 0;
@@ -9,21 +8,19 @@ funcProbando(v1:Int, v2:Bool) -> Int{
 Struct tInfo{
     Int v1;
     Bool v2;
-}
-
-
+};
 
 main() -> Int{
 
     Int var1 = 3;
     Bool varB1 = False;
 
-    Int var2 = var1 + varB1;    //Error de tipos: varB1 no es de tipo Int
-    Bool varB2 = var1 && varB1;  //Error de tipos: var1 no es de tipo Bool
-
+   Int var2 = var1 + varB1;    //Error de tipos: varB1 no es de tipo Int
+   Int var2 = 0;
+   Bool varB2 = var1 && varB1;  //Error de tipos: var1 no es de tipo Bool
+    Bool varB2 = True;
     
-    Int var1 = funcProbando(var1, var2)     //Error de tipos: var2 no es una variable de tipo Bool
-
+   Int var4 = funcProbando(var1, var2);     //Error de tipos: var2 no es una variable de tipo Bool
 
     tInfo variable;
     variable.v1 = varB1;            //Error de tipos: varB1 no es de tipo Int
@@ -31,7 +28,7 @@ main() -> Int{
 
     if(var1){
             //Error de tipos: en la condición del if no hay una expresión booleana
-    }
+    } 
 
     List<Int>[5] array = {1,2,3,4,5};
     array[3] = varB1;       //Error de tipos: varB1 no es de tipo Int
@@ -40,8 +37,8 @@ main() -> Int{
 
     Int x;
     valuefor(x){
-        case True = True; //Error de tipos: la x es de tipo Int.
-        case default = 0;
+        case True = True; break; //Error de tipos: la x es de tipo Int.
+        default = 0; break;
     }
 
     return 0;

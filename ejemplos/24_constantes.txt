@@ -1,0 +1,5 @@
+const Int var = 0;
+
+main() -> Int {
+    return 0;
+}

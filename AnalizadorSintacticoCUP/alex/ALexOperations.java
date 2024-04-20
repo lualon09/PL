@@ -170,6 +170,9 @@ public class ALexOperations {
    public UnidadLexica unidadNew(){
       return new UnidadLexica(alex.fila(), alex.columna(), ClaseLexica.NEW);
    }
+   public UnidadLexica unidadConstante(){
+      return new UnidadLexica(alex.fila(), alex.columna(), ClaseLexica.CONST);
+   }
    public void error() {
       System.err.println("***"+alex.fila()+", "+alex.columna()+" Caracter inesperado: "+alex.lexema());
    }

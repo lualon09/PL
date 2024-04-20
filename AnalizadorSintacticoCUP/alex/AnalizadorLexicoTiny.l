@@ -60,6 +60,8 @@ valuefor = valuefor
 show = show
 read = read
 
+const = const
+
 return = return
 
 letra  = ([A-Z]|[a-z])
@@ -170,6 +172,7 @@ flecha = \->
 {read}                    {return ops.unidadRead();}
 {typedef}                 {return ops.unidadTypedef();}
 {new}                     {return ops.unidadNew();}
+{const}                   {return ops.unidadConstante();}
 
 {identificador}           {return ops.unidadId();}
 [^]                       {errores.errorLexico(fila(),columna(),lexema());}  
