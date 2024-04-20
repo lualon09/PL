@@ -5,4 +5,4 @@ java -cp ../../cup.jar java_cup.Main -parser AnalizadorSintacticoTiny -symbols C
 cd ..   
 javac -cp "../cup.jar:." */*.java
 
-java -cp "../cup.jar:." asint.Main  ../ejemplos/06_punteros.txt
+java -cp "../cup.jar:." asint.Main  ../ejemplos/21_valor_referencia.txt

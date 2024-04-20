@@ -50,9 +50,12 @@ public class IReturn extends I{
     }
 
     public void type() throws TypingException {
-        expReturn.type();
+
         System.out.println("Soy el return.");
-        setType(expReturn.getType());
+        if(expReturn != null){
+            expReturn.type();
+            setType(expReturn.getType());
+        }
         T functionReturnType = function.getReturnType();
         if(functionReturnType == null) {
             throw new TypingException("Error. Function not found. Return shouldn't be there");

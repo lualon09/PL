@@ -6,6 +6,7 @@ import java.util.List;
 import ast.Instructions.IDeclaration;
 import ast.Types.TStruct;
 import ast.Definitions.DStruct;
+import ast.ASTNode;
 
 public class AStruct extends A {
     private A access;
@@ -33,8 +34,10 @@ public class AStruct extends A {
             System.out.println("Soy el tipo del bind node del struct " + (bindNode.getType()).toString());
             System.out.println("Soy el tipo del bind node del struct " + (bindNode.getType()).bindNode.toString());
             List<IDeclaration> fields = ((DStruct) bindNode.getType().bindNode).getFields();
+            System.out.println("Los campos son: " + fields.toString() + " y voy a buscar " + field);
             for(IDeclaration f: fields){
                 if(f.getName().equals(field)) { //Comprobamos si es igual a algun campo
+                    System.out.println("Soy el campo " + f.getName() + "y le estoy asignando tipo " + f.getType());
                     setType(f.getType());
                 }
             }

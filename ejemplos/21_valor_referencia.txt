@@ -22,4 +22,6 @@ main() -> Int{
     // Paso por referencia
     incrementarPorReferencia(numero);
     show(numero);//el número debe cambiar (haberse incrementado)
+
+    return 0;
 }

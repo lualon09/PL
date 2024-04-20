@@ -39,7 +39,7 @@ public class EArray extends E{
         for(int i = 1; i < arr.size(); i++){
             arr.get(i).type();
             if(!arr.get(0).getType().equals(arr.get(i).getType())) {
-                throw new TypingException("Not all values in array declaration have the same type.");
+                throw new TypingException("Not all values in array declaration have the same type. " + arr.get(0).getType().toString() + " and " + arr.get(i).getType());
             }
         }
     }

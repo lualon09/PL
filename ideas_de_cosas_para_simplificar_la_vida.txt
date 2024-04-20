@@ -12,3 +12,6 @@
 * comprobar que solo hay un return?????
 * probar funciones que devuelvan cosas que no son ints.
 * hay que comprobar si hay mas de un main
+* el tema de mas de un return lo tenemos mirado?
+* nos falta probar devolver listas y cosas asi
+* nos falta probar listas de structs

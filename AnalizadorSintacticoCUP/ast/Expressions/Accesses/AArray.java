@@ -31,7 +31,7 @@ public class AArray extends A{
         exp.type();
         access.type();
         // comprobamos si exp es de tipo entero y si access es de tipo array 
-        if(exp.getType().equals(new TBasics(KindT.INT)) && access.getType().equals(new TBasics(KindT.ARRAY))) {
+        if(exp.getType().equals(new TBasics(KindT.INT)) && access.getType().kind().equals(KindT.ARRAY)) {
             setType(access.getType().getT()); //cogemos el tipo del array y decimos que aarray es de este tipo
         }
         else {

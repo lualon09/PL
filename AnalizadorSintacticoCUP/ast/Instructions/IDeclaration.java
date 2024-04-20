@@ -6,6 +6,9 @@ import ast.Expressions.E;
 import ast.Types.T;
 import exc.BindingException;
 import exc.TypingException;
+import ast.Types.TBasics;
+import ast.Types.KindT;
+import ast.Expressions.KindE;
 
 public class IDeclaration extends I{
     public T type;
@@ -44,6 +47,7 @@ public class IDeclaration extends I{
         type.bind(); //por si acaso es un struct
         // nos falta asignar a este nodo, como binding node el de la declaracion del struct
         this.bindNode = type.bindNode;
+        System.out.println("Digo que mi binding node es del tipo " + type.bindNode);
         //this.bindNode = node;
     }
 
@@ -61,8 +65,13 @@ public class IDeclaration extends I{
         if(exp != null) {
             exp.type();//tipamos la expresion en caso de que exista
             // en el caso de que sea con expresión va a fallar porque 2+3 != 5 (sin evaluar)
-            if(!exp.getType().toString().equals(type.toString())){ //lo comprobamos con el toString por si acaso es de tipo array
-                throw new TypingException(exp.toString() + " and " + name + " do not have the same type.");
+            if(exp.kindExp().equals(KindE.READ) && !type.equals(new TBasics(KindT.INT)) && !type.equals(new TBasics(KindT.BOOL))){
+                throw new TypingException("Error. Cannot read something different than Int or Bool. Got " + type.toString() + ".");
+            }
+            if(!exp.kindExp().equals(KindE.READ)){
+                if(!exp.getType().toString().equals(type.toString())){ //lo comprobamos con el toString por si acaso es de tipo array
+                    throw new TypingException(exp.toString() + " and " + name + " do not have the same type.");
+                }
             }
         }
     }

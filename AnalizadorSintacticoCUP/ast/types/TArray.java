@@ -30,7 +30,7 @@ public class TArray extends T{
 
     @Override
     public boolean equals(Object t){
-        return super.equals(t) && ((TArray) t).getSizeArray() == this.size && ((T) t).getT().equals(this.getT());
+        return kind().equals(((T) t).kind()) && ((TArray) t).getSizeArray().equals(this.size) && ((T) t).getT().equals(this.getT());
     }
     
 }

@@ -11,6 +11,7 @@ public class EConst extends E{ //Expresion Constante
     public EConst(String value, T t){ //cuando es el tamaño de un array
         this.type = t;
         this.value = value;
+        setType(t);
     }
 
     @Override
@@ -21,6 +22,11 @@ public class EConst extends E{ //Expresion Constante
     public String toString(){
         return "(" + type.toString() + ":" + value.toString() + ")";
     }
+
+    public String getValue(){
+        return value;
+    }
+
     @Override
     public void bind() throws BindingException{
     }
@@ -28,5 +34,9 @@ public class EConst extends E{ //Expresion Constante
     public void type() throws TypingException {
         System.out.println("Soy " + value);
         setType(type);
+    }
+    @Override
+    public boolean equals(Object e){
+        return ((E) e).kindExp().equals(KindE.CONST) && type.equals(((EConst) e).getType()) && value.equals(((EConst) e).getValue());
     }
 }

@@ -10,7 +10,7 @@ factorial (n:Int) -> Void {
     }
 
     show(fact);
-    // Probamos el caso de función que devuelve Void sin return 
+    return ;
 }
 
 
