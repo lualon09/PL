@@ -46,6 +46,9 @@ public class IAssignation extends I{
             if(!access.getType().kind().equals(exp.getType().kind())){ //en el caso de que sea el read 
                 throw new TypingException("Error. " + access.toString() + " and " + exp.toString() + " have different types.");
             }
+            if(exp.getType().kind().equals(KindT.STRUCT)){
+                throw new TypingException("Error. An struct cannot be equal to another one. Must go field by field.");
+            }
             setType(exp.getType()); //para comprobar el bucle for
         }
     }

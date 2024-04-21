@@ -75,6 +75,9 @@ public class IDeclaration extends I{
                     throw new TypingException(exp.toString() + " and " + name + " do not have the same type.");
                 }
             }
+            if(type.kind().equals(KindT.STRUCT)){
+                throw new TypingException("Error. Struct cannot be initialized. Must be field by field.");
+            }
         }
     }
 
