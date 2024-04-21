@@ -13,6 +13,7 @@ Struct tInfo2{
 
 main() -> Int{
 
+    /*
     Int var3 = 3;
     Bool varB4 = True;
 
@@ -25,7 +26,7 @@ main() -> Int{
     show(str.var1);
     show(str2.var1);
     show(str.varB1);
-    show(str2.varB1);
+    show(str2.varB1);*/
 
     tInfo2 str3; //Structs de structs
     str3.hola.var1 = 0; //ESTO NO NO SFUNCIONA!!!
