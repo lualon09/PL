@@ -30,21 +30,26 @@ public class AStruct extends A {
 
     public void type() throws TypingException {
         access.type();
+        boolean foundField = false;
         // comprobamos si access es de tipo struct 
         if(access.getType().kind().equals(KindT.STRUCT)) {
             List<DStruct> ds = Program.getDefinitionList().getStructs();
-            DStruct encontrado;
+            DStruct found;
             for(DStruct s: ds){
                 if(s.getName().equals(access.getType().toString())){
-                    encontrado = s;
-                    List<IDeclaration> fields = ((DStruct) encontrado).getFields();
+                    found = s;
+                    List<IDeclaration> fields = ((DStruct) found).getFields();
                     for(IDeclaration i: fields){
                         if(i.getName().equals(field)){
                             setType(i.getType());
+                            foundField = true;
                         }
                     }
                     break;
                 }
+            }
+            if(!foundField){
+                throw new TypingException("Error. Field " + field + " not found in struct.");
             }
         }
         else {

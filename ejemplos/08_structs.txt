@@ -20,8 +20,10 @@ main() -> Int{
     str.var1 = var3;                //asignamos la var3 al campo var1 de la variable de tipo Struct
     str.varB1 = not varB4;          //asignamos not varB4 al campo varB1 de la variable de tipo Struct
 
-    tInfo str2 = str;               //asignamos la varible de tipo Struct str a str2
-
+    tInfo str2;
+    str2 = str;               //asignamos la varible de tipo Struct str a str2
+    str2.noExiste = 0;
+    
     show(str.var1);
     show(str2.var1);
     show(str.varB1);

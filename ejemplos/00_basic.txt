@@ -13,5 +13,12 @@ main() -> Int {
     List<Int>[1] array1;
     array1 = {1};
     array = array1;
+   
+    List<List<Int>[1]*>[2] array2;
+
+    List<Int>[1] * puntero = new  List<Int>[1];
+    *puntero = {1};
+    array2[0] = puntero;
+
     return 0; 
 }
