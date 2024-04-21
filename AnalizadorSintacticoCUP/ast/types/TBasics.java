@@ -16,5 +16,12 @@ public class TBasics extends T{
     public String toString(){
         return tipo.toString();
     }
+
+    public int getSize(){
+        if(tipo.equals(KindT.VOID)){
+            return 0; //si es void no ocupa
+        }
+        else return 4; //si es bool o int son 4
+    }
     
 }

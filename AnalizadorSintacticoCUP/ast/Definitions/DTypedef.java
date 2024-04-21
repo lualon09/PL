@@ -27,7 +27,9 @@ public class DTypedef extends D {
     }
 
     public void bind() throws BindingException {
-        Program.getTableStack().insertId(name, this);     
+        Program.getTableStack().insertId(name, this);  
+        t.bind();  //hacemos esto para comprobar que el tipo 
+        this.bindNode = t.bindNode;
     }
 
     public void type() throws TypingException {}

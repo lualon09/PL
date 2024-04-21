@@ -33,7 +33,6 @@ public class EArray extends E{
 
     public void type() throws TypingException {
         arr.get(0).type();
-        System.out.println("Soy la lista de la derecha ");
         setType(new TArray(arr.get(0).getType(), new EConst(Integer.toString(arr.size()), new TBasics(KindT.INT)))); //decimos que lo de la derecha va a ser algo de tipo array de tamaño los argumentos.
 
         for(int i = 1; i < arr.size(); i++){

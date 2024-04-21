@@ -36,7 +36,6 @@ public class EUnary extends E {
     else if(tExp.equals(KindE.NOT) && !opnd.getType().equals(new TBasics(KindT.BOOL))){
       throw new TypingException("Operator " + tExp.toString() + " is not compatible with " +  opnd.getType().toString());
     }
-    System.out.println("Soy el eunary de " + opnd.toString());
     setType(type); //hacemos setType para saber que la expresión es de tipo type.
   }
 }

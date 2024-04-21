@@ -45,10 +45,8 @@ public class DStruct extends D{
     }
 
     public void type() throws TypingException {
-        System.out.println("Estoy tipando los campos del struct");
         for(IDeclaration d: fields){
             d.type();
-            System.out.println("campo de tipo " + d.getType());
         }
     }
 }

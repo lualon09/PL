@@ -20,9 +20,11 @@ public class Main {
 		try{
 			System.out.println("*********************BINDING********************");
 			p.bind(); // vinculacion
+			System.out.println("Correct binding!");
 			try{
-				System.out.println("************************TYPING********************");
+				System.out.println("*********************TYPING********************");
 				p.type(); //tipado
+				System.out.println("Correct typing!");
 			}catch(TypingException te){
 				te.printStackTrace();
 			}

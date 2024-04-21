@@ -28,8 +28,9 @@ public class AVariable extends A {
     }
 
     public void type() throws TypingException {
-        System.out.println("Soy " + toString());
+
         setType(bindNode.getType());
+        System.out.println("digo que la variable " + var + " es de tipo " + bindNode.getType().toString());
         // aqui algo mas?
     }
 }

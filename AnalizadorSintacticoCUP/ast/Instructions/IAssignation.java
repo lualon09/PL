@@ -36,8 +36,6 @@ public class IAssignation extends I{
     public void type() throws TypingException {
         access.type();
         exp.type();
-        System.out.println("soy el acceso " + access.toString());
-        System.out.println("tipo : " + access.getType().toString());
         if(access.bindNode.nodeKind().equals(NodeKind.DEFINITION) && ((D) access.bindNode).kindD().equals(KindD.CONST)){
             throw new TypingException("Error. Constant can't be modified.");
         }
@@ -48,7 +46,6 @@ public class IAssignation extends I{
             if(!access.getType().kind().equals(exp.getType().kind())){ //en el caso de que sea el read 
                 throw new TypingException("Error. " + access.toString() + " and " + exp.toString() + " have different types.");
             }
-            System.out.println("Soy la expresión completa" + access.toString() + "=" + exp.toString());
             setType(exp.getType()); //para comprobar el bucle for
         }
     }

@@ -51,7 +51,6 @@ public class IReturn extends I{
 
     public void type() throws TypingException {
 
-        System.out.println("Soy el return.");
         if(expReturn != null){
             expReturn.type();
             setType(expReturn.getType());

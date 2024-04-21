@@ -17,17 +17,23 @@ import ast.Definitions.*;
 public class SymbolsTableStack {
 
     private List<HashMap<String,ASTNode>> blocks; 
+    private int totalDelta;
+    private List<Integer> deltaBlocks;
 
     public SymbolsTableStack(){
-        blocks = new ArrayList<HashMap<String,ASTNode>>();
+        this.blocks = new ArrayList<HashMap<String,ASTNode>>();
+        this.totalDelta = 0;
+        this.deltaBlocks = new ArrayList<Integer>();
     }
 
     public void openBlock(){
         blocks.add(new HashMap<>());
+        deltaBlocks.add(totalDelta);
     }
 
     public void closeBlock(){
         blocks.remove(blocks.size()-1);
+        deltaBlocks.remove(deltaBlocks.size()-1);
     }
 
     public void insertId(String id, ASTNode node) throws BindingException{
@@ -35,7 +41,6 @@ public class SymbolsTableStack {
 		if(lastBlock.containsKey(id)) {
 			throw new BindingException("Error. Variable " + id + " has already been declared.");
 		}else {
-            System.out.println("Estoy insertando " + id + " en la posición de blocks " + (blocks.size() - 1) + " y soy " + node);
 			lastBlock.put(id,node);
 		}
     }
@@ -43,27 +48,22 @@ public class SymbolsTableStack {
     public ASTNode findId(String id){
         for(int i = blocks.size()-1;i>=0;i--) { //iterate over the list
 			if(blocks.get(i).containsKey(id)) {
-                System.out.println("Soy " + id + " y me asocio con " + blocks.get(i).get(id));
 				return blocks.get(i).get(id);
 			}
 		}
 		return null;
     }
-
-    // public ASTNode lastFunctionReturnType(){
-    //     for(int i = blocks.size()-1;i>=0;i--) { //iterate over the list
-	// 		HashMap<String,ASTNode> aux_map = blocks.get(i);
-    //         for(ASTNode a: aux_map.values()){
-    //             if(a.nodeKind() == NodeKind.DEFINITION && ((D) a).kindD().equals(KindD.FUNCTION)) {
-    //                 return a;
-    //             }
-	// 		}
-	// 	}
-	// 	return null;
-    // }
-
     public int getNumberOfAmbits(){
         return blocks.size();
     }
+
+    public int getTotalDelta(){
+        return totalDelta;
+    }
+
+    public void updateTotalDelta(int size){
+        totalDelta += size;
+    }
+
     
 }

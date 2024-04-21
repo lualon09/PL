@@ -19,12 +19,14 @@ public class IDeclaration extends I{
         this.name = name;
         this.type = t;
         this.exp = null;
+        setType(t);
     }
 
     public IDeclaration(T t, String name, E exp){ 
         this.type = t;
         this.name = name;
         this.exp = exp;
+        setType(t);
     }
 
     public KindI kind() {
@@ -41,13 +43,14 @@ public class IDeclaration extends I{
 
     @Override
     public void bind() throws BindingException {
-        Program.getTableStack().insertId(name, this);
-        if(exp != null){ exp.bind(); }
-        System.out.println("Voy a hacer binding del tipo de la variable " + name + " y tengo el tipo " + type.toString());
+
         type.bind(); //por si acaso es un struct
+        Program.getTableStack().insertId(name, this);
+        setDelta();
+        if(exp != null){ exp.bind(); }
+
         // nos falta asignar a este nodo, como binding node el de la declaracion del struct
         this.bindNode = type.bindNode;
-        System.out.println("Digo que mi binding node es del tipo " + type.bindNode);
         //this.bindNode = node;
     }
 
@@ -60,7 +63,6 @@ public class IDeclaration extends I{
     }
 
     public void type() throws TypingException {
-        System.out.println("Soy " + name);
         setType(type); //las declaraciones tienen por defecto el tipo de lo que se está asignando.
         if(exp != null) {
             exp.type();//tipamos la expresion en caso de que exista
@@ -74,5 +76,9 @@ public class IDeclaration extends I{
                 }
             }
         }
+    }
+
+    public int getSize(){
+        return type.getSize();
     }
 }

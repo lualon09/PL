@@ -47,6 +47,4 @@ public class Program extends ASTNode {
     public static DefinitionList getDefinitionList() {
         return definitionList;
     }
-
-    
 }

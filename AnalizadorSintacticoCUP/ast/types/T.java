@@ -38,4 +38,6 @@ public abstract class T extends ASTNode {
         }
         return equals;
     }
+
+    public abstract int getSize();
 }

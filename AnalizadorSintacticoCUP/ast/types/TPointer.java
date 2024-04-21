@@ -26,11 +26,13 @@ public class TPointer extends T {
 
     // eso no tengo claro si va a aqui, pero habría que hacer binding del tipo de arriba
     public void bind() throws BindingException{
-        System.out.println("Estoy haciendo binding del tipo del puntero");
         if(getT().kind().equals(KindT.STRUCT)){ //en el caso de que sea struct hacemos binding con el struct
-            System.out.println("He detectado que el puntero es un struct");
             getT().bind();
             bindNode = getT().bindNode;
         }
+    }
+
+    public int getSize(){
+        return 4;
     }
 }

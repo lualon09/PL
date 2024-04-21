@@ -40,4 +40,14 @@ public class TStruct extends T {
     public boolean equals(Object type2){
         return super.equals(type2) && this.toString().equals(type2.toString()); //comprobamos que ambos sean structs y que se llamen igual
     }
+
+    public int getSize(){
+        // ya tenemos los campos porque se habrá hecho el binding antes
+        int size = 0;
+        for(IDeclaration d: ((DStruct) bindNode).getFields()){
+            size += d.getSize();
+        }
+
+        return size;
+    }
 }
