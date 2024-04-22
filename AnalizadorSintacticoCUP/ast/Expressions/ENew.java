@@ -22,12 +22,16 @@ public class ENew extends E{
     }
 
     public void bind() throws BindingException{
-        // hay que hacer algo en el binding??
         type.bind();
     }
 
     public void type() throws TypingException {
-        //setType(type);
         setType(new TPointer(type));
+    }
+
+    public void generateCode() throws GCodingException {
+        Program.getCode().println("i32.const " + type.getSize());
+        Program.getCode().println("call $reserveHeap ");
+        Program.getCode().println("get_global $NP"); //investigar
     }
 }

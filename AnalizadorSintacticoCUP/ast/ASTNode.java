@@ -1,6 +1,5 @@
 package ast;
-import exc.BindingException;
-import exc.TypingException;
+import exc.*;
 import ast.Types.T;
 
 public abstract class ASTNode {
@@ -11,7 +10,7 @@ public abstract class ASTNode {
 
     public abstract void type() throws TypingException;
     public abstract void bind() throws BindingException;
-    // public abstract void generateCode() throws GCodingException;
+    public abstract void generateCode() throws GCodingException;
     public abstract NodeKind nodeKind();
     public abstract String toString();
 

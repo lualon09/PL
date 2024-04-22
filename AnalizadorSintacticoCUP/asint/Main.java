@@ -6,6 +6,7 @@ import java.io.Reader;
 import alex.AnalizadorLexicoTiny;
 import ast.Program;
 import exc.BindingException;
+import exc.GCodingException;
 import exc.TypingException;
 
 public class Main {
@@ -25,6 +26,11 @@ public class Main {
 				System.out.println("*********************TYPING********************");
 				p.type(); //tipado
 				System.out.println("Correct typing!");
+				try{
+					p.generateCode();
+				}catch(GCodingException ce){
+					ce.printStackTrace();
+				}
 			}catch(TypingException te){
 				te.printStackTrace();
 			}

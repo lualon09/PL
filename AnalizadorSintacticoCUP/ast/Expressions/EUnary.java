@@ -3,7 +3,7 @@ package ast.Expressions;
 import ast.Types.*;
 import exc.BindingException;
 import exc.TypingException;
-import ast.Types.*;
+import exc.GCodingException;
 
 public class EUnary extends E {
    private E opnd;
@@ -37,5 +37,24 @@ public class EUnary extends E {
       throw new TypingException("Operator " + tExp.toString() + " is not compatible with " +  opnd.getType().toString());
     }
     setType(type); //hacemos setType para saber que la expresión es de tipo type.
+  }
+
+  public void generateCode() throws GCodingException {
+    
+    opnd.generateCode();
+
+    switch(tExp){
+      case SUML:
+        // lo dejamos hasta saber como son las listas
+        break;
+      case PRODL:
+        // lo dejamos hasta saber como son las listas
+        break;
+      case NOT:
+        Program.getCode().println("i32.eqz");
+        break;  
+      default:
+    }
+
   }
 }

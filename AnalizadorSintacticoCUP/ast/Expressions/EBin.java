@@ -2,24 +2,26 @@ package ast.Expressions;
 
 import ast.Types.T;
 import exc.BindingException;
+import exc.GCodingException;
 import exc.TypingException;
+import ast.Program;
 import ast.Types.KindT;
 import ast.Types.TBasics;
 
 public class EBin extends E {
-   private E opnd1;
-   private E opnd2;
-   private KindE tExp;
-   private T type;
+  private E opnd1;
+  private E opnd2;
+  private KindE tExp;
+  private T type;
 
-   public EBin(E opnd1, E opnd2,  KindE tExp, T t) { //opnd1 es el operando 1, opnd2 es el operando 2, tExp es el tipo de operador, t es el tipo que devuelve.
-     this.opnd1 = opnd1;
-     this.opnd2 = opnd2;
-     this.type = t;
-     this.tExp = tExp;
-   }
-   public E opnd1() {return opnd1;}
-   public E opnd2() {return opnd2;}
+  public EBin(E opnd1, E opnd2,  KindE tExp, T t) { //opnd1 es el operando 1, opnd2 es el operando 2, tExp es el tipo de operador, t es el tipo que devuelve.
+    this.opnd1 = opnd1;
+    this.opnd2 = opnd2;
+    this.type = t;
+    this.tExp = tExp;
+  }
+  public E opnd1() {return opnd1;}
+  public E opnd2() {return opnd2;}
 
   @Override
   public KindE kindExp() {
@@ -54,5 +56,55 @@ public class EBin extends E {
       }
     }
     setType(type); //hacemos setType para saber que la expresión es de tipo type.
+  }
+
+  public void generateCode() throws GCodingException {
+    
+    opnd1.generateCode();
+    opnd2.generateCode();
+
+    switch(tExp){
+      case SUM:
+        Program.getCode().println("i32.add");
+        break;
+      case MUL:
+        Program.getCode().println("i32.mul");
+        break;
+      case SUB:
+        Program.getCode().println("i32.sub");
+        break;  
+      case DIV:
+        Program.getCode().println("i32.div_s");
+        break;
+      case MOD:
+        Program.getCode().println("i32.rem_s");
+        break;
+      case GREATER:
+        Program.getCode().println("i32.gt_s");
+        break;
+      case LESS:
+        Program.getCode().println("i32.lt_s");
+        break;
+      case GREQ:
+        Program.getCode().println("i32.ge_s");
+        break;
+      case LEQ:
+        Program.getCode().println("i32.le_s");
+        break;
+      case EQUAL:
+        Program.getCode().println("i32.eq");
+        break;
+      case DISTINCT:
+        Program.getCode().println("i32.sum");
+        break;
+      case AND:
+        Program.getCode().println("i32.and");
+        break;
+      case OR:
+        Program.getCode().println("i32.or");
+        break;
+      default:
+    }
+
   }
 }

@@ -1,7 +1,9 @@
 package ast.Expressions;
 
+import ast.Program;
 import ast.Types.T;
 import exc.BindingException;
+import exc.GCodingException;
 import exc.TypingException;
 
 public class EConst extends E{ //Expresion Constante
@@ -37,5 +39,20 @@ public class EConst extends E{ //Expresion Constante
     @Override
     public boolean equals(Object e){
         return ((E) e).kindExp().equals(KindE.CONST) && type.equals(((EConst) e).getType()) && value.equals(((EConst) e).getValue());
+    }
+
+    public String transformValue(){
+        if(value.equals("True")){
+            return "1";
+        }
+        else if (value.equals("False")){
+            return "0";
+        }
+        return value;
+    }
+
+    @Override
+    public void generateCode() throws GCodingException {
+        Program.getCode().println("i32.const " + transformValue());
     }
 }

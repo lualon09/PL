@@ -2,6 +2,7 @@ package ast.Expressions;
 
 import java.util.ArrayList;
 import exc.BindingException;
+import exc.GCodingException;
 import exc.TypingException;
 import ast.Types.KindT;
 import ast.Types.TArray;
@@ -43,4 +44,7 @@ public class EArray extends E{
         }
     }
     
+    public void generateCode() throws GCodingException {
+        // aqui que hay que hacer
+    }
 }

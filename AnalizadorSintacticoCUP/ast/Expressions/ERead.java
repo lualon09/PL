@@ -1,6 +1,8 @@
 package ast.Expressions;
 
+import ast.Program;
 import exc.BindingException;
+import exc.GCodingException;
 
 public class ERead extends E{
 
@@ -18,4 +20,8 @@ public class ERead extends E{
     }
     
     public void bind() throws BindingException{}
+
+    public void generateCode() throws GCodingException {
+        Program.getCode().println("call $read");
+    }
 }
