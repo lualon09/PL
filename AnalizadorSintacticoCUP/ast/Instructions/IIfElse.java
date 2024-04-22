@@ -39,9 +39,12 @@ public class IIfElse extends IBlock{
 
     @Override
     public void bind() throws BindingException {
-        Program.getTableStack().openBlock();
         cond.bind();
+        Program.getTableStack().openBlock();
         super.bind();
+        Program.getTableStack().closeBlock();
+
+        Program.getTableStack().openBlock();
         if(inst_else != null){
             for (I i : inst_else) {
                 i.bind();

@@ -18,6 +18,7 @@ main() -> Int{
             show(z);
         }                   //Fin del bloque del if
         i = i - 3;
+        Int a = 4;
     }                       //Fin del bloque del while
 
     return 0;

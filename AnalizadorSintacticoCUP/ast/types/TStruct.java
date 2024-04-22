@@ -43,7 +43,7 @@ public class TStruct extends T {
     public int getSize(){
         // ya tenemos los campos porque se habrá hecho el binding antes
         int size = 0;
-        for(IDeclaration d: ((DStruct) bindNode).getFields()){
+        for(IDeclaration d: ((DStruct) bindNode).getFields()){ 
             size += d.getSize();
         }
 

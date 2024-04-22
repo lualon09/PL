@@ -25,12 +25,12 @@ main() -> Int{
     Bool * varB4 = new Bool;
     *varB4 = not(*varB2) && not(*varB3);  //varB4 = True
     
-    tInfo * nombrePuntero; //puntero de un array
-    (*nombrePuntero).campo = 0;
-
     tInfo nombre;
     *nombre.campoPuntero = 1; //accedemos a un campo puntero de un struct
     nombre.campo = 2;
+
+    tInfo * nombrePuntero; //puntero de un array
+    (*nombrePuntero).campo = 0;
 
     return 0;
 } 

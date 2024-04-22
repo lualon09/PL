@@ -2,6 +2,7 @@ package ast.Instructions;
 
 import java.util.List;
 
+import ast.Program;
 import ast.Expressions.E;
 import exc.*;
 import ast.Types.*;
@@ -24,7 +25,9 @@ public class IRepeat extends IBlock {
     @Override
     public void bind() throws BindingException {
         cond.bind();
+        Program.getTableStack().openBlock();
         super.bind();
+        Program.getTableStack().closeBlock();
     }
     public void type() throws TypingException {
         cond.type();

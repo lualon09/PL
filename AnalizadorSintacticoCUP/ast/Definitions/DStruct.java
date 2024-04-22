@@ -38,8 +38,12 @@ public class DStruct extends D{
     public void bind() throws BindingException {  
         Program.getTableStack().insertId(name, this); 
         Program.getTableStack().openBlock(); //comprobamos que no haya dos campos que se llamen igual en la declaracion del struct
+        int deltaStruct = 0;
         for(IDeclaration i: fields){
             i.bind();
+            i.setDeltaStruct(deltaStruct);
+            System.out.println("Somos los deltas del struct y valgo " + deltaStruct);
+            deltaStruct += i.getType().getSize();
         }
         Program.getTableStack().closeBlock();
     }

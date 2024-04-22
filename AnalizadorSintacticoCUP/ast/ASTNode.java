@@ -28,4 +28,8 @@ public abstract class ASTNode {
         this.delta = Program.getTableStack().getTotalDelta();
         Program.getTableStack().updateTotalDelta(type.getSize());
     }
+
+    public void setDeltaStruct(int d){
+        this.delta += d;
+    }
 }

@@ -34,7 +34,6 @@ public class SymbolsTableStack {
     public void closeBlock(){
         blocks.remove(blocks.size()-1);
         totalDelta = deltaBlocks.get(deltaBlocks.size()-1);
-        System.out.println("Se cierra el bloque. Retomamos el delta a " + totalDelta);
         deltaBlocks.remove(deltaBlocks.size()-1);
     }
 
@@ -64,7 +63,6 @@ public class SymbolsTableStack {
     }
 
     public void updateTotalDelta(int size){
-        System.out.println("El delta va por " + totalDelta);
         totalDelta += size;
     }
 
