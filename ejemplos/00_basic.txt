@@ -1,4 +1,8 @@
 Int x = 0;
+Int y = 4;
+
+const Int z = 0;
+
 main() -> Int {
    Int x = 1;
    x = x + 1;
@@ -19,6 +23,7 @@ main() -> Int {
     List<Int>[1] * puntero = new  List<Int>[1];
     *puntero = {1};
     array2[0] = puntero;
-
+    List<Int>[1] aux =  *array2[0];
+    Int a = (*array2[0])[0];
     return 0; 
 }
