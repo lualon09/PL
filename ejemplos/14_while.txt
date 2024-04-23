@@ -8,8 +8,10 @@ main() -> Int {
 
    while(x < 10 && siempre){ //el bucle deberá dar 10 vueltas
       x = x + 1;
+      Int y = 4;
    }
 
+   Int z = 0;
    show(x); //debe imprimir como valor de x 10
 
    return 0;

@@ -6,13 +6,15 @@ main() -> Int {
    switch(x) {
     case 0: Int i = 3; resultado = 0;
         break;
-    case 1: resultado = 1;
+    case 1: resultado = 1; Int y = 4;
         break;
     case 2: resultado = 2;
         break;
     default: resultado = 10;
         break;
    }
+
+   Int z = 0;
 
    show(resultado); //resultado debe valer 2.
 

@@ -35,9 +35,11 @@ public class IRepeat extends IBlock {
             throw new TypingException("The condition of the repeat is not an Int");
         }
         super.type();
-        //setType???
     }
     
+    public int setDelta(int delta) {
+        return super.setDelta(delta);
+    }
 
 
 }

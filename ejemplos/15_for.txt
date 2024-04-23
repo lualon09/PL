@@ -6,6 +6,7 @@ main() -> Int {
    for(Int i = 0; i < N; i = i + 1 ){
      x = x + 1;
    }
+   Int z = 4;
    show(x); //debe mostrar como valor de x el 5.
 
    return 0;

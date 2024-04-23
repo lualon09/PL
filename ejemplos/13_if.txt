@@ -12,9 +12,11 @@ main() -> Int {
     Bool ok = False;
     if(ok){ 
         x = 7;
+        Int y = 4;
     }
     else{ //debe entrar aquí y modificar el valor de x a 1
         x = 1;
+        Int y = 5;
     }
     show(x);
 

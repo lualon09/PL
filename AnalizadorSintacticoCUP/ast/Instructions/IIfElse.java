@@ -64,7 +64,16 @@ public class IIfElse extends IBlock{
                 i.type();
             }
         }
-        //setType???
+    }
+
+    public int setDelta(int delta){
+        int aux = super.setDelta(delta);
+        if(inst_else != null){
+            for (I i : inst_else) {
+                aux = i.setDelta(aux); //EL ELSE TIENE QUE EMPEZAR EN DELTA O EN LO DE DESPUES DEL IF?
+            }
+        }
+        return delta;
     }
     
 }

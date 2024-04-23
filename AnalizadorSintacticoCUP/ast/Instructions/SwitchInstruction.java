@@ -13,7 +13,7 @@ public class SwitchInstruction extends IBlock{
     private boolean breakCond;
     
     public SwitchInstruction(List<I> inst, E exp, boolean breakCond){
-       super(inst);
+        super(inst);
         this.exp = exp;
         this.breakCond = breakCond;
     }
@@ -53,6 +53,10 @@ public class SwitchInstruction extends IBlock{
             exp.type();
             setType(exp.getType());
         }
+    }
+
+    public int setDelta(int delta) {
+        return super.setDelta(delta);
     }
 
     

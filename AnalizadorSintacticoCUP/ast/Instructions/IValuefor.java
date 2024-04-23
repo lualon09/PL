@@ -63,4 +63,8 @@ public class IValuefor extends IBlock {
             }
         }
     }
+
+    public int setDelta(int delta){
+        return delta;
+    }
 }

@@ -87,6 +87,7 @@ public class IDeclaration extends I{
 
     public int setDelta(int delta){
         this.delta = delta;
+        System.out.println("Soy " + name + " y mi delta es " + this.delta);
         return delta + getType().getSize();
     }
 }

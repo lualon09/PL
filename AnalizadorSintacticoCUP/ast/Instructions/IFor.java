@@ -58,5 +58,11 @@ public class IFor extends IBlock {
         super.type();
         // el setType de algo??
     }
+
+    public int setDelta(int delta) {
+        int aux = dec.setDelta(delta);
+        super.setDelta(aux);
+        return delta;
+    }
 }
 

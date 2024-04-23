@@ -38,4 +38,8 @@ public class IWhile extends IBlock {
         }
         super.type();
     }
+
+    public int setDelta(int delta) {
+        return super.setDelta(delta);
+    }
 }

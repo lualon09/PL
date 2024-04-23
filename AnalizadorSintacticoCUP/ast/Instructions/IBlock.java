@@ -35,4 +35,12 @@ public class IBlock extends I{
             i.type(); //tipamos todas las instrucciones
         }
     }
+
+    public int setDelta(int delta) {
+        int aux = delta;
+        for (I i : inst) {
+            aux = i.setDelta(aux); //tipamos todas las instrucciones
+        }
+        return delta;
+    }
 }

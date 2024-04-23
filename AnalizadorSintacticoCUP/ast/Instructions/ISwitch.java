@@ -61,5 +61,16 @@ public class ISwitch extends IBlock {
             defaultCase.type();
         }
     }
+
+    public int setDelta(int delta) {
+        int auxDelta = delta;
+        for(SwitchInstruction s: cases){
+            auxDelta = s.setDelta(auxDelta);
+        }
+        if(defaultCase != null){
+            auxDelta = defaultCase.setDelta(auxDelta);
+        }
+        return delta;
+    }
     
 }
