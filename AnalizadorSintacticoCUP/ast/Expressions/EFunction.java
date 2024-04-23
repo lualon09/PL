@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import ast.ASTNode;
 import ast.Program;
 import exc.BindingException;
+import exc.GCodingException;
 import exc.TypingException;
 import ast.Definitions.*;
 import java.util.List;
@@ -12,7 +13,8 @@ import java.util.List;
 public class EFunction extends E{
 
     private String functionName;
-    public ArrayList<E> p; //lista de parámetros de la funcion
+    private ArrayList<E> p; //lista de parámetros de la funcion
+    private ArrayList<Parameter> params;
 
     public EFunction(String f, ArrayList<E> p){
         this.functionName = f; 
@@ -42,7 +44,7 @@ public class EFunction extends E{
     }
 
     public void type() throws TypingException {
-        List<Parameter> params = ((DFunction) bindNode).getParameters();
+        params = ((DFunction) bindNode).getParameters();
         if(params.size() != p.size()){
             throw new TypingException("Different number of arguments than expected in " + functionName + " function.");
         }
@@ -55,5 +57,20 @@ public class EFunction extends E{
         setType(((DFunction) bindNode).getReturnType());
     }
 
+    public void generateCode() throws GCodingException {
+        Program.getCode().println("global.get $SP"); //cogemos la posicion del puntero a la pila
+        Program.getCode().println("i32.const " + 8); //???
+        Program.getCode().println("i32.add");
+        Program.getCode().println("local.set $temp");//guarda el comienzo de memoria de la funcion
+        
+        int delta = 0;
+        for(int i = 0; i < p.size(); i++){
+            Parameter auxP = params.get(i); //esto es el parametro
+            E auxA = p.get(i); //esto es el argumento
+            Program.getCode().println(";; Treating the argument " + auxA.toString());   
+            //no me cuadra
+        }
+
+    }
 
 }

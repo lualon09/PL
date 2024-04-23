@@ -1,8 +1,10 @@
 package ast.Expressions.Accesses;
 
+import ast.Program;
 import ast.Expressions.E;
 import ast.Types.KindT;
 import exc.BindingException;
+import exc.GCodingException;
 import exc.TypingException;
 import ast.Types.*;
 
@@ -37,5 +39,14 @@ public class AArray extends A{
         else {
             throw new TypingException("Error typing in array "+ access.toString());
         }       
+    }
+
+    public void () {
+        exp.generateCode();
+        Program.getCode().println("i32.const " + getType().getSize());
+        Program.getCode().println("i32.mul"); //multiplicamos el tamaño por el tipo para saber a cual accedemos
+
+        access.calculateAddress(); //calculamos la direccion del accesso
+        Program.getCode().println("i32.addcalculateAddress"); //lo sumamos
     }
 }

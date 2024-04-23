@@ -32,4 +32,8 @@ public class APointer extends A {
         // setType(bindNode.getType().getT()); //el tipo de *tipo es tipo. ESTO FALLA
         setType(access.getType().getT());
     }
+
+    public void calculateAddress(){
+        this.bindNode.generateCode(); //te va a dejar en la pila el valor de la direccion a la que apunta el puntero
+    }
 }

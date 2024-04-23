@@ -30,4 +30,8 @@ public class AVariable extends A {
     public void type() throws TypingException {
         setType(bindNode.getType());
     }
+
+    public void calculateAddress() {
+        this.bindNode.calculateAddress();
+    }
 }

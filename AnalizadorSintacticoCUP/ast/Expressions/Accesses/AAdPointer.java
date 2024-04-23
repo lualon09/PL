@@ -1,6 +1,7 @@
 package ast.Expressions.Accesses;
 
 import exc.BindingException;
+import exc.GCodingException;
 import exc.TypingException;
 import ast.Types.*;
 
@@ -25,5 +26,13 @@ public class AAdPointer extends A{
     public void type() throws TypingException {
         access.type();
         setType(new TPointer(bindNode.getType()));
+    }
+
+    public void calculateAddress(){
+        ((A) this.bindNode).calculateAddress();
+    }
+
+    public void generateCode() throws GCodingException {
+        calculateAddress(); //dejamos en la cima de la pila la direccion de la variable
     }
 }

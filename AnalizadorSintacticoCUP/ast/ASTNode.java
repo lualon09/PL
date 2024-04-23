@@ -31,4 +31,8 @@ public abstract class ASTNode {
     public void setDeltaStruct(int d){
         this.delta += d;
     }
+
+    public void calculateAddress(){
+        
+    }
 }

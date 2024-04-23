@@ -1,5 +1,6 @@
 package ast.Expressions.Accesses;
 import exc.BindingException;
+import exc.GCodingException;
 import exc.TypingException;
 import ast.Types.KindT;
 import java.util.List;
@@ -12,6 +13,7 @@ import ast.Program;
 public class AStruct extends A {
     private A access;
     private String field;
+    private IDeclaration fieldNode;
 
     public AStruct(A ac, String f){
         this.access = ac;  
@@ -43,6 +45,7 @@ public class AStruct extends A {
                         if(i.getName().equals(field)){
                             setType(i.getType());
                             foundField = true;
+                            fieldNode = i;
                         }
                     }
                     break;
@@ -55,5 +58,12 @@ public class AStruct extends A {
         else {
             throw new TypingException("Error typing in array "+ access.toString() + ".");
         }     
+    }
+
+    public void calculateAddress() {
+        access.calculateAddress();
+        Program.getCode().println("i32.const " + fieldNode.getDelta()); //cogemos el delta del struct
+        Program.getCode().println("i32.add"); //lo sumamos
+
     }
 }
