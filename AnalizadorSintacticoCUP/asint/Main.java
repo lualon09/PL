@@ -26,11 +26,11 @@ public class Main {
 				System.out.println("*********************TYPING********************");
 				p.type(); //tipado
 				System.out.println("Correct typing!");
-				try{
-					p.generateCode();
-				}catch(GCodingException ce){
-					ce.printStackTrace();
-				}
+				// try{
+				// 	p.generateCode();
+				// }catch(GCodingException ce){
+				// 	ce.printStackTrace();
+				// }
 			}catch(TypingException te){
 				te.printStackTrace();
 			}
