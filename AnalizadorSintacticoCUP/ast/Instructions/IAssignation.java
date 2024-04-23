@@ -6,6 +6,7 @@ import ast.Expressions.*;
 import ast.Expressions.Accesses.*;
 import ast.Types.KindT;
 import exc.BindingException;
+import exc.GCodingException;
 import exc.TypingException;
 import ast.Types.TBasics;
 import ast.Definitions.D;
@@ -51,5 +52,9 @@ public class IAssignation extends I{
             }
             setType(exp.getType()); //para comprobar el bucle for
         }
+    }
+
+    public void generateCode() throws GCodingException {
+        //????
     }
 }

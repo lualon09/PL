@@ -6,6 +6,7 @@ import ast.Types.KindT;
 
 import java.util.List;
 import exc.BindingException;
+import exc.GCodingException;
 import exc.TypingException;
 
 public class IIfElse extends IBlock{
@@ -74,6 +75,19 @@ public class IIfElse extends IBlock{
             }
         }
         return delta;
+    }
+
+    public void generateCode() throws GCodingException {
+        cond.generateCode();
+        Program.getCode().println("if");
+        super.generateCode();
+        if(inst_else != null){
+            Program.getCode().println("else");
+            for (I i : inst_else) {
+                i.generateCode();
+            }
+        }
+        Program.getCode().println("end");
     }
     
 }

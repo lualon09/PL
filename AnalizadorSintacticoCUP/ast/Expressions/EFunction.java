@@ -59,7 +59,7 @@ public class EFunction extends E{
 
     public void generateCode() throws GCodingException {
         Program.getCode().println("global.get $SP"); //cogemos la posicion del puntero a la pila
-        Program.getCode().println("i32.const " + 8); //???
+        Program.getCode().println("i32.const " + 4); //segun lo que ha dicho albert en clase
         Program.getCode().println("i32.add");
         Program.getCode().println("local.set $temp");//guarda el comienzo de memoria de la funcion
         

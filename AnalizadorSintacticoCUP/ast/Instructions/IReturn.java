@@ -8,6 +8,7 @@ import ast.Types.T;
 import ast.Types.TArray;
 import ast.Types.TBasics;
 import exc.BindingException;
+import exc.GCodingException;
 import exc.TypingException;
 
 public class IReturn extends I{
@@ -60,8 +61,7 @@ public class IReturn extends I{
         if(functionReturnType == null) {
             throw new TypingException("Error. Function not found. Return shouldn't be there");
         }
-        else{
-            
+        else{  
             if(expReturn == null && !functionReturnType.equals(new TBasics(KindT.VOID))){
                 throw new TypingException("Error. Function doesn't return void.");
             }
@@ -69,5 +69,13 @@ public class IReturn extends I{
                 throw new TypingException("Error. Function returns " + functionReturnType.toString() + " and got " + expReturn.getType().toString());
             }
         }
+    }
+
+    public void generateCode() throws GCodingException {
+        if(expReturn != null){
+            expReturn.generateCode();
+        }
+        Program.getCode().println("call $freeStack");
+        Program.getCode().println("return");
     }
 }

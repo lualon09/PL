@@ -64,5 +64,19 @@ public class IFor extends IBlock {
         super.setDelta(aux);
         return delta;
     }
+
+    public void generateCode() throws GCodingException {
+        dec.generateCode();
+        Program.getCode().println("block");
+        Program.getCode().println("loop");
+        cond.generateCode();
+        Program.getCode().println("i32.eqz");
+        Program.getCode().println("br_if 1");
+        super.generateCode();
+        assign.generateCode(); //se suma al final del todo
+        Program.getCode().println("br 0");
+        Program.getCode().println("end"); //loop
+        Program.getCode().println("end"); //block
+    }
 }
 

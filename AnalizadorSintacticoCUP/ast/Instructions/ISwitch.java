@@ -72,5 +72,19 @@ public class ISwitch extends IBlock {
         }
         return delta;
     }
+
+    public void generateCode() throws GCodingException {
+        cond.generateCode();
+        Program.getCode().println("local.set $temp"); //guardamos la condicion en variable temporal
+        Program.getCode().println("block $break"); //etiqueta para el break
+        for(SwitchInstruction s: cases){
+            s.generateCode();
+            Program.getCode().println("local.set $temp"); //mantenemos el valor en la pila
+        }
+        if(defaultCase != null){
+            defaultCase.generateCode();
+            Program.getCode().println("local.set $temp"); //???? haria falta si no lo vamos a volver a coger 
+        }
+    }
     
 }

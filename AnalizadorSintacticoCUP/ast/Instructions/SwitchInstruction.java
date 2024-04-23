@@ -5,6 +5,7 @@ import java.util.List;
 import ast.Program;
 import ast.Expressions.*;
 import exc.BindingException;
+import exc.GCodingException;
 import exc.TypingException;
 
 public class SwitchInstruction extends IBlock{
@@ -57,6 +58,18 @@ public class SwitchInstruction extends IBlock{
 
     public int setDelta(int delta) {
         return super.setDelta(delta);
+    }
+
+    public void generateCode() throws GCodingException {
+        if(exp != null){
+            exp.generateCode();
+            Program.getCode().println("local.get $temp");
+            Program.getCode().println("i32.eq"); //comparamos los valores
+            Program.getCode().println("i32.eqz");
+            Program.getCode().println("br_if 0");
+        }
+        super.generateCode();
+        Program.getCode().println("br $break"); //siempre tenemos break
     }
 
     

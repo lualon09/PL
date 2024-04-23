@@ -3,6 +3,7 @@ package ast.Instructions;
 import java.util.List;
 import ast.ASTNode;
 import exc.BindingException;
+import exc.GCodingException;
 import exc.TypingException;
 
 public class IBlock extends I{
@@ -39,8 +40,14 @@ public class IBlock extends I{
     public int setDelta(int delta) {
         int aux = delta;
         for (I i : inst) {
-            aux = i.setDelta(aux); //tipamos todas las instrucciones
+            aux = i.setDelta(aux); //calculamos deltas de todas las instrucciones
         }
         return delta;
+    }
+
+    public void generateCode() throws GCodingException {
+        for (I i : inst) {
+            i.generateCode(); //generamos codigo de todas las instrucciones
+        }
     }
 }
