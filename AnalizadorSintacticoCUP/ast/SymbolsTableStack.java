@@ -18,23 +18,18 @@ public class SymbolsTableStack {
 
     private List<HashMap<String,ASTNode>> blocks; 
     private int totalDelta;
-    private List<Integer> deltaBlocks;
 
     public SymbolsTableStack(){
         this.blocks = new ArrayList<HashMap<String,ASTNode>>();
         this.totalDelta = 0;
-        this.deltaBlocks = new ArrayList<Integer>();
     }
 
     public void openBlock(){
         blocks.add(new HashMap<>());
-        deltaBlocks.add(totalDelta);
     }
 
     public void closeBlock(){
         blocks.remove(blocks.size()-1);
-        totalDelta = deltaBlocks.get(deltaBlocks.size()-1);
-        deltaBlocks.remove(deltaBlocks.size()-1);
     }
 
     public void insertId(String id, ASTNode node) throws BindingException{
@@ -57,14 +52,4 @@ public class SymbolsTableStack {
     public int getNumberOfAmbits(){
         return blocks.size();
     }
-
-    public int getTotalDelta(){
-        return totalDelta;
-    }
-
-    public void updateTotalDelta(int size){
-        totalDelta += size;
-    }
-
-    
 }

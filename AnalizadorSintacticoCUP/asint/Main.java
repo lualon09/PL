@@ -26,6 +26,11 @@ public class Main {
 				System.out.println("*********************TYPING********************");
 				p.type(); //tipado
 				System.out.println("Correct typing!");
+
+				System.out.println("*********************DELTAS********************");
+				p.setDelta(0); //tipado
+				System.out.println("Correct deltas!");
+
 				// try{
 				// 	p.generateCode();
 				// }catch(GCodingException ce){

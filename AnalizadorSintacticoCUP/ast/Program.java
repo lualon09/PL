@@ -49,6 +49,11 @@ public class Program extends ASTNode {
         definitionList.type();
     }
 
+    @Override
+    public int setDelta(int delta){
+        return definitionList.setDelta(delta);
+    }
+
     public void generateCode() throws GCodingException {
         try{
             code = new PrintWriter(new FileWriter("code/examples/1.wat")); //ya le cambiaremos el nombre

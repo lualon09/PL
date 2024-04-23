@@ -14,6 +14,7 @@ public class IDeclaration extends I{
     public T type;
     public String name;
     private E exp;
+    private int delta;
 
     public IDeclaration(T t, String name){ 
         this.name = name;
@@ -46,7 +47,6 @@ public class IDeclaration extends I{
 
         type.bind(); //por si acaso es un struct
         Program.getTableStack().insertId(name, this);
-        setDelta();
         if(exp != null){ exp.bind(); }
 
         // nos falta asignar a este nodo, como binding node el de la declaracion del struct
@@ -83,5 +83,10 @@ public class IDeclaration extends I{
 
     public int getSize(){
         return type.getSize();
+    }
+
+    public int setDelta(int delta){
+        this.delta = delta;
+        return delta + getType().getSize();
     }
 }

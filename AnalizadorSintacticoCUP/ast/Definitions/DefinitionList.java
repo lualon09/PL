@@ -119,4 +119,12 @@ public class DefinitionList {
     public List<DStruct> getStructs(){
         return structs;
     }
+
+    public int setDelta(int delta){
+        int aux = delta;
+        for(ASTNode a: tree){
+            aux = a.setDelta(aux);
+        }
+        return aux;
+    }
 }

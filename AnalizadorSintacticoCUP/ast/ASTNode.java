@@ -6,10 +6,10 @@ public abstract class ASTNode {
 
     public ASTNode bindNode;
     private T type;
-    private int delta;
 
     public abstract void type() throws TypingException;
     public abstract void bind() throws BindingException;
+    public abstract int setDelta(int delta);
     public abstract void generateCode() throws GCodingException;
     public abstract NodeKind nodeKind();
     public abstract String toString();
@@ -18,20 +18,6 @@ public abstract class ASTNode {
     public void setType(T t) {
         type = t;
     }
-
-    public int getDelta(){
-        return delta;
-    }
-
-    public void setDelta(){
-        this.delta = Program.getTableStack().getTotalDelta();
-        Program.getTableStack().updateTotalDelta(type.getSize());
-    }
-
-    public void setDeltaStruct(int d){
-        this.delta = d;
-    }
-
     public void calculateAddress(){
         
     }

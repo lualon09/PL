@@ -1,3 +1,5 @@
+Int x = 4;
+
 main() -> Int {
     
     Int x = 3; //inicializamos x a 3

@@ -12,6 +12,8 @@ public class DConst extends D{
     public T type;
     public String name;
     private E exp;
+    private int delta;
+
     public DConst(T t, String name, E exp){ 
         this.type = t;
         this.name = name;
@@ -33,7 +35,6 @@ public class DConst extends D{
     public void bind() throws BindingException{
         Program.getTableStack().insertId(name, this);
         exp.bind();
-        setDelta();
     }
 
     @Override
@@ -42,6 +43,11 @@ public class DConst extends D{
         if(!type.equals(exp.getType())){
             throw new TypingException("Type not compatible in " + exp.toString() + " and " + type.toString());
         }
+    }
+
+    public int setDelta(int delta) {
+        this.delta = delta;
+        return delta + getType().getSize();
     }
 
     

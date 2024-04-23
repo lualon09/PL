@@ -7,3 +7,4 @@
 * no podemos permitir que si el parametro es por referencia sea una expresion, y si es por valor hay que evaluar el parametro
 * hay que cambiar que las funciones empiecen los deltas en 0. 
 * comprobar los deltas en acceso struct acceso struct.
+* quitar todos los setTypes de los constructores y ponerlos en el tipado.

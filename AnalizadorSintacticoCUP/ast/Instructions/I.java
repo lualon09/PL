@@ -15,5 +15,9 @@ public abstract class I extends ASTNode {
     public void bind() throws BindingException {}
     public void type() throws TypingException {}
     public void generateCode() throws GCodingException{}
+
+    public int setDelta(int delta){
+        return delta;
+    }
     
 }

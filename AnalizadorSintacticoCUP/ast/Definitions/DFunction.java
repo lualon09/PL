@@ -75,11 +75,11 @@ public class DFunction extends D {
 
     @Override
     public void type() throws TypingException {
-        for(I i: body){
-            i.type();
-        }
         for(Parameter p: params){
             p.type();
+        }
+        for(I i: body){
+            i.type();
         }
         // returnType.type(); deberiamos de ponerlo por si acaso devuelve algo de tipo struct?
     }
@@ -90,6 +90,20 @@ public class DFunction extends D {
 
     public T getReturnType(){
         return returnType;
+    }
+
+    public int setDelta(int delta){
+
+        int deltaFunction = 0;
+        for(Parameter p: params){
+            deltaFunction = p.setDelta(deltaFunction);
+            System.out.println("Somos los deltas de la funcion y valgo " + deltaFunction);
+        }
+        for(I i: body){
+            deltaFunction = i.setDelta(deltaFunction);
+            System.out.println("Somos los deltas de la funcion y valgo " + deltaFunction);
+        }
+        return delta;
     }
 
 

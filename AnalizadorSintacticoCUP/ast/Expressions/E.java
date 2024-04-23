@@ -16,4 +16,8 @@ public abstract class E extends ASTNode {
     public void type() throws TypingException {}
     public void generateCode() throws GCodingException{}
 
+    public int setDelta(int delta){
+        return delta;
+    }
+
 }
