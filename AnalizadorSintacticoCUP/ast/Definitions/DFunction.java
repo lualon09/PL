@@ -12,6 +12,7 @@ import exc.BindingException;
 import exc.TypingException;
 import ast.Instructions.IReturn;
 import ast.Instructions.KindI;
+import ast.Types.KindT;
 
 public class DFunction extends D {
 
@@ -53,7 +54,7 @@ public class DFunction extends D {
             p.bind();
         }
         returnType.bind(); //deberiamos de ponerlo por si acaso devuelve algo de tipo struct?
-        if(functionReturnType.kind().equals(KindT.ARRAY) || functionReturnType.kind().equals(KindT.STRUCT)){
+        if(returnType.kind().equals(KindT.ARRAY) || returnType.kind().equals(KindT.STRUCT)){
             throw new BindingException("Function " + name + " does not return INT, BOOL or VOID.");
         }
         for(I i: body){

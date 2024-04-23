@@ -2,6 +2,8 @@ package ast.Expressions.Accesses;
 
 import ast.Expressions.E;
 import ast.Expressions.KindE;
+import exc.*;
+import ast.Program;
 
 public abstract class A extends E{
     

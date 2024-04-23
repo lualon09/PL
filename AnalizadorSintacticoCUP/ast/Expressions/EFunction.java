@@ -14,7 +14,7 @@ public class EFunction extends E{
 
     private String functionName;
     private ArrayList<E> p; //lista de parámetros de la funcion
-    private ArrayList<Parameter> params;
+    private List<Parameter> params;
 
     public EFunction(String f, ArrayList<E> p){
         this.functionName = f; 

@@ -3,6 +3,8 @@ package ast.Expressions;
 import ast.Types.*;
 import exc.BindingException;
 import exc.TypingException;
+import exc.GCodingException;
+import ast.Program;
 
 public class ENew extends E{
 

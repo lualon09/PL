@@ -4,6 +4,7 @@ import ast.ASTNode;
 import ast.NodeKind;
 import exc.BindingException;
 import exc.TypingException;
+import exc.GCodingException;
 
 public abstract class D extends ASTNode {
 
@@ -18,4 +19,6 @@ public abstract class D extends ASTNode {
 
     @Override
     public void type() throws TypingException {}
+
+    public void generateCode() throws GCodingException{}
 }

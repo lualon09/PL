@@ -4,6 +4,7 @@ import ast.Types.*;
 import exc.BindingException;
 import exc.TypingException;
 import exc.GCodingException;
+import ast.Program;
 
 public class EUnary extends E {
    private E opnd;

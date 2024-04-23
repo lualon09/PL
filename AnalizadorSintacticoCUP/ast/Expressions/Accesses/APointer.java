@@ -2,6 +2,7 @@ package ast.Expressions.Accesses;
 import exc.BindingException;
 import exc.TypingException;
 import ast.Types.*;
+import exc.GCodingException;
 
 public class APointer extends A {
 
@@ -34,6 +35,11 @@ public class APointer extends A {
     }
 
     public void calculateAddress(){
-        this.bindNode.generateCode(); //te va a dejar en la pila el valor de la direccion a la que apunta el puntero
+        try{
+            this.bindNode.generateCode(); //te va a dejar en la pila el valor de la direccion a la que apunta el puntero
+        }catch(GCodingException e){
+            e.printStackTrace();
+        }
+        
     }
 }

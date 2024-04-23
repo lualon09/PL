@@ -41,12 +41,18 @@ public class AArray extends A{
         }       
     }
 
-    public void () {
-        exp.generateCode();
-        Program.getCode().println("i32.const " + getType().getSize());
-        Program.getCode().println("i32.mul"); //multiplicamos el tamaño por el tipo para saber a cual accedemos
+    public void calculateAddress() {
+        try{
+            exp.generateCode();
+            Program.getCode().println("i32.const " + getType().getSize());
+            Program.getCode().println("i32.mul"); //multiplicamos el tamaño por el tipo para saber a cual accedemos
 
-        access.calculateAddress(); //calculamos la direccion del accesso
-        Program.getCode().println("i32.addcalculateAddress"); //lo sumamos
+            access.calculateAddress(); //calculamos la direccion del accesso
+            Program.getCode().println("i32.addcalculateAddress"); //lo sumamos
+        }
+        catch(GCodingException e){
+            e.printStackTrace();
+        }
+        
     }
 }

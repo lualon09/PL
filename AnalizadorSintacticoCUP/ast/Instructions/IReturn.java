@@ -5,6 +5,7 @@ import ast.Definitions.DFunction;
 import ast.Expressions.E;
 import ast.Types.KindT;
 import ast.Types.T;
+import ast.Types.TArray;
 import ast.Types.TBasics;
 import exc.BindingException;
 import exc.TypingException;
@@ -60,6 +61,7 @@ public class IReturn extends I{
             throw new TypingException("Error. Function not found. Return shouldn't be there");
         }
         else{
+            
             if(expReturn == null && !functionReturnType.equals(new TBasics(KindT.VOID))){
                 throw new TypingException("Error. Function doesn't return void.");
             }

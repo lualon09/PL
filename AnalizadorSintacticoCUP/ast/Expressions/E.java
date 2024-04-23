@@ -14,5 +14,6 @@ public abstract class E extends ASTNode {
 
     public void bind() throws BindingException {}
     public void type() throws TypingException {}
+    public void generateCode() throws GCodingException{}
 
 }
