@@ -53,6 +53,9 @@ public class DFunction extends D {
             p.bind();
         }
         returnType.bind(); //deberiamos de ponerlo por si acaso devuelve algo de tipo struct?
+        if(functionReturnType.kind().equals(KindT.ARRAY) || functionReturnType.kind().equals(KindT.STRUCT)){
+            throw new BindingException("Function " + name + " does not return INT, BOOL or VOID.");
+        }
         for(I i: body){
             if(i.kind().equals(KindI.RETURN)){
                 ((IReturn) i).setFunction(this);

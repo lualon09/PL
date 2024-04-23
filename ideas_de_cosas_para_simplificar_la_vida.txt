@@ -5,6 +5,5 @@
 * el switch en si no es un bloque no? por que extiende de bloque?
 * permitimos que se igualen dos structs tanto en declaracion como en asignacion
 * no podemos permitir que si el parametro es por referencia sea una expresion, y si es por valor hay que evaluar el parametro
-* no se puede devolver listas!
 * hay que cambiar que las funciones empiecen los deltas en 0. 
 * comprobar los deltas en acceso struct acceso struct.
