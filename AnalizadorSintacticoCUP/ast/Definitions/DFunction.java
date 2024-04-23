@@ -97,11 +97,9 @@ public class DFunction extends D {
         int deltaFunction = 0;
         for(Parameter p: params){
             deltaFunction = p.setDelta(deltaFunction);
-            System.out.println("Somos los deltas de la funcion y valgo " + deltaFunction);
         }
         for(I i: body){
             deltaFunction = i.setDelta(deltaFunction);
-            System.out.println("Somos los deltas de la funcion y valgo " + deltaFunction);
         }
         return delta;
     }

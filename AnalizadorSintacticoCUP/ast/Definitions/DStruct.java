@@ -54,7 +54,6 @@ public class DStruct extends D{
         int deltaStruct = 0;
         for(IDeclaration i: fields){
             deltaStruct = i.setDelta(deltaStruct);
-            System.out.println("Somos los deltas del struct y valgo " + deltaStruct);
         }
         return delta;
     }
