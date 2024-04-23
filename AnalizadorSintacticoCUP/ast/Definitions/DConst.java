@@ -47,7 +47,6 @@ public class DConst extends D{
 
     public int setDelta(int delta) {
         this.delta = delta;
-        System.out.println("Soy " + name + " y mi delta es " + delta);
         return delta + getType().getSize();
     }
 
