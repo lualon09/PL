@@ -66,4 +66,8 @@ public class AStruct extends A {
         Program.getCode().println("i32.add"); //lo sumamos
 
     }
+
+    public KindA kindA(){
+        return KindA.STRUCT;
+    }
 }

@@ -34,4 +34,8 @@ public class AVariable extends A {
     public void calculateAddress() {
         this.bindNode.calculateAddress();
     }
+
+    public KindA kindA(){
+        return KindA.VAR;
+    }
 }

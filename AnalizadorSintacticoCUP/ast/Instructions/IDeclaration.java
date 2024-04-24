@@ -5,10 +5,15 @@ import ast.Program;
 import ast.Expressions.E;
 import ast.Types.T;
 import exc.BindingException;
+import exc.GCodingException;
 import exc.TypingException;
 import ast.Types.TBasics;
 import ast.Types.KindT;
 import ast.Expressions.KindE;
+import java.util.ArrayList;
+import ast.Expressions.EArray;
+import ast.Expressions.Accesses.KindA;
+import ast.Expressions.Accesses.A;
 
 public class IDeclaration extends I{
     public T type;
@@ -88,5 +93,41 @@ public class IDeclaration extends I{
     public int setDelta(int delta){
         this.delta = delta;
         return delta + getType().getSize();
+    }
+
+    public int getDelta(){
+        return delta;
+    }
+
+    public void calculateAddress() {
+        Program.getCode().println("i32.const " + delta);
+        Program.getCode().println("local.get $localsStart"); //esto es el MP + cosas
+        Program.getCode().println("i32.add"); // lo sumamos para sacar la direccion de la variable
+    }
+
+    public void generateCode() throws GCodingException {
+        if(exp != null){
+            if(exp.kindExp().equals(KindE.ARRAY)){
+                ArrayList<E> expArray = ((EArray) exp).getExpArray();
+                for(int i = 0; i< expArray.size(); i++){
+                    calculateAddress(); //calculamos direccion de comienzo del array
+                    Program.getCode().println("i32.const " + i*expArray.get(i).getType().getSize());
+                    Program.getCode().println("i32.add");
+                    expArray.get(i).generateCode();
+                    Program.getCode().println("i32.store");
+                }
+            }
+            else if(exp.kindExp().equals(KindE.ACCESS) && !((A) exp).kindA().equals(KindA.ADDRESS)){
+                exp.calculateAddress(); //es un acceso
+                this.calculateAddress();
+                Program.getCode().println("i32.const " + exp.getType().getSize()/4);
+                Program.getCode().println("call $copyn$"); //copiamos de una direccion a otra de tamaño exp.getType().getSize()/4
+            }
+            else{
+                this.calculateAddress();
+                exp.generateCode();
+                Program.getCode().println("i32.store");
+            }
+        }
     }
 }

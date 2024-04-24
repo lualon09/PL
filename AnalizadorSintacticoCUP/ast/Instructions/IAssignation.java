@@ -1,6 +1,7 @@
 package ast.Instructions;
 
 import ast.NodeKind;
+import ast.Program;
 import ast.Definitions.KindD;
 import ast.Expressions.*;
 import ast.Expressions.Accesses.*;
@@ -55,6 +56,16 @@ public class IAssignation extends I{
     }
 
     public void generateCode() throws GCodingException {
-        //????
+        if(exp.kindExp().equals(KindE.ACCESS) && !((A) exp).kindA().equals(KindA.ADDRESS)){
+            exp.calculateAddress(); //es un acceso
+            access.calculateAddress();
+            Program.getCode().println("i32.const " + exp.getType().getSize()/4);
+            Program.getCode().println("call $copyn$"); //copiamos de una direccion a otra de tamaño exp.getType().getSize()/4
+        }
+        else{
+            access.calculateAddress();
+            exp.generateCode();
+            Program.getCode().println("i32.store");
+        }
     }
 }

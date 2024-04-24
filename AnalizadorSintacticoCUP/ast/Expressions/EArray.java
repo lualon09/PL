@@ -17,6 +17,10 @@ public class EArray extends E{
         this.arr = arr;
     }
 
+    public ArrayList<E> getExpArray(){
+        return arr;
+    }
+
     @Override
     public KindE kindExp() {
         return KindE.ARRAY;

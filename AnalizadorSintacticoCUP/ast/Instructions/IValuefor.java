@@ -1,6 +1,8 @@
 package ast.Instructions;
 
 import java.util.List;
+
+import ast.Program;
 import ast.Expressions.Accesses.A;
 import exc.*;
 import ast.Types.*;
@@ -69,5 +71,29 @@ public class IValuefor extends IBlock {
     }
 
     public void generateCode() throws GCodingException {
+
+        for(int i = 0; i < cases.size(); i++){
+            Program.getCode().println("block $label" + i);
+            if(i < cases.size() - 1){
+                int next = i +1;
+                cases.get(i).setNextLabel("$label" + next);
+            }
+            else{
+                cases.get(i).setNextLabel("$default");
+            }
+            cases.get(i).generateCode();
+            Program.getCode().println("local.set $" + var);
+            Program.getCode().println("i32.store"); //ALGO ASI AUNQUE AHROA ESTE MAL
+
+            Program.getCode().println("end");
+        }
+        if(defaultCase != null){
+            Program.getCode().println("block $default");
+            defaultCase.generateCode();
+            Program.getCode().println("end");
+        }
+
+        Program.getCode().println("block $break"); //etiqueta para el break
+        Program.getCode().println("end");
     }
 }

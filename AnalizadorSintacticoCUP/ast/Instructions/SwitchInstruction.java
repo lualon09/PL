@@ -12,6 +12,7 @@ public class SwitchInstruction extends IBlock{
 
     private E exp;
     private boolean breakCond;
+    private String nextLabel;
     
     public SwitchInstruction(List<I> inst, E exp, boolean breakCond){
         super(inst);
@@ -61,15 +62,20 @@ public class SwitchInstruction extends IBlock{
     }
 
     public void generateCode() throws GCodingException {
+        Program.getCode().println("local.get $temp");
         if(exp != null){
             exp.generateCode();
             Program.getCode().println("local.get $temp");
             Program.getCode().println("i32.eq"); //comparamos los valores
             Program.getCode().println("i32.eqz");
-            Program.getCode().println("br_if 0");
+            Program.getCode().println("br_if 0" + nextLabel);
         }
         super.generateCode();
         Program.getCode().println("br $break"); //siempre tenemos break
+    }
+
+    public void setNextLabel(String label){
+        nextLabel = label;
     }
 
     

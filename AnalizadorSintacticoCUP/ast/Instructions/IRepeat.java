@@ -5,8 +5,13 @@ import java.util.List;
 import ast.Program;
 import ast.Expressions.E;
 import ast.Expressions.KindE;
+import ast.Expressions.Accesses.AVariable;
 import exc.*;
 import ast.Types.*;
+import ast.Expressions.EBin;
+import ast.Instructions.IAssignation;
+import ast.Expressions.Accesses.A;
+import ast.Expressions.EConst;
 
 public class IRepeat extends IBlock {
     private E cond;
@@ -20,10 +25,11 @@ public class IRepeat extends IBlock {
     }
 
     public void convertFor(){
-        IDeclaration dec = new IDeclaration(new TBasics(KindT.INT), "var_aux", exp);
-        E cond = new EBin("var_aux", exp, KindE.LESS, new TBasics(KindT.BOOL));
-        IAssignation assign = new IAssignation("var_aux", "var_aux + 1");
-        forAux = new IFor(dec, cond, assign);
+        IDeclaration dec = new IDeclaration(new TBasics(KindT.INT), "var_aux", cond);
+        A access = new AVariable("var_aux");
+        E exp = new EBin(access, cond, KindE.LESS, new TBasics(KindT.BOOL));
+        IAssignation assign = new IAssignation(access, new EBin(access, new EConst("1", new TBasics(KindT.INT)), KindE.SUM, new TBasics(KindT.INT)));
+        forAux = new IFor(dec, exp, assign,super.inst);
     }
     public KindI kind() {
         return KindI.REPEAT;

@@ -55,4 +55,8 @@ public class AArray extends A{
         }
         
     }
+
+    public KindA kindA(){
+        return KindA.ARRAY;
+    }
 }

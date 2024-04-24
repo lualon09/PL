@@ -1,6 +1,6 @@
 * No estamos obligando a que haya return en las funciones
 * ejemplos para constantes
-* si hacemos array1 = array2, ¿debería de fallar?
+* si hacemos array1 = array2, ¿debería de fallar? y array1 = {1,2,3}???
 * binding del alias. TODO DEL TYPEDEF
 * el switch en si no es un bloque no? por que extiende de bloque?
 * permitimos que se igualen dos structs tanto en declaracion como en asignacion
@@ -8,3 +8,6 @@
 * hay que cambiar que las funciones empiecen los deltas en 0. 
 * comprobar los deltas en acceso struct acceso struct.
 * quitar todos los setTypes de los constructores y ponerlos en el tipado.
+* los switch ????? en generateCode
+* EN EL VALUEFOR NOS FALTA HACER LA ASIGNACION
+* permitimos que haya punteros con new Int y sin new Int

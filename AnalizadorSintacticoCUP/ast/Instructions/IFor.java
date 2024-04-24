@@ -7,6 +7,7 @@ import ast.ASTNode;
 import ast.Program;
 import exc.BindingException;
 import exc.TypingException;
+import exc.GCodingException;
 
 public class IFor extends IBlock {
     private E cond;

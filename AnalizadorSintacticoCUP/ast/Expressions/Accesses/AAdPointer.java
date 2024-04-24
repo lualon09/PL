@@ -35,4 +35,8 @@ public class AAdPointer extends A{
     public void generateCode() throws GCodingException {
         calculateAddress(); //dejamos en la cima de la pila la direccion de la variable
     }
+
+    public KindA kindA(){
+        return KindA.ADDRESS;
+    }
 }

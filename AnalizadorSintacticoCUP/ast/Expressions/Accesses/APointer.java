@@ -42,4 +42,8 @@ public class APointer extends A {
         }
         
     }
+
+    public KindA kindA(){
+        return KindA.POINTER;
+    }
 }

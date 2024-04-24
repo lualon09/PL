@@ -5,6 +5,7 @@ import ast.Types.KindT;
 import exc.BindingException;
 import exc.GCodingException;
 import exc.TypingException;
+import ast.Program;
 
 public class IShow extends I{
 
