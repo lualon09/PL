@@ -30,12 +30,11 @@ public class Main {
 				System.out.println("*********************DELTAS********************");
 				p.setDelta(0); //tipado
 				System.out.println("Correct deltas!");
-
-				// try{
-				// 	p.generateCode();
-				// }catch(GCodingException ce){
-				// 	ce.printStackTrace();
-				// }
+				try{
+					p.generateCode();
+				}catch(GCodingException ce){
+					ce.printStackTrace();
+				}
 			}catch(TypingException te){
 				te.printStackTrace();
 			}

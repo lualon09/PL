@@ -11,3 +11,4 @@
 * los switch ????? en generateCode
 * EN EL VALUEFOR NOS FALTA HACER LA ASIGNACION
 * permitimos que haya punteros con new Int y sin new Int
+* hay que hacer algo con las declaraciones que no se les iguala a nada??
