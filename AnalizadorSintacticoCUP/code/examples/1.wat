@@ -13,8 +13,6 @@
 (global $NP (mut i32) (i32.const 131071996)) ;; heap 2000*64*1024-4
 (start $main)
 i32.const 0
-local.get $localsStart
-i32.add
 i32.const 4
 i32.store
 (func $main

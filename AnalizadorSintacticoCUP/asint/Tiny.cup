@@ -81,7 +81,7 @@ S ::=  DECLARATIONS:declarations
 //----DECLARATION de variables y asignacion--
 
 DECLARATIONS ::= DECLARATION:d DECLARATIONS:list
-                 {:list.addVar(d); RESULT = list;:}
+                 {:list.addVar(d); RESULT = list; d.setGlobal();:}
                  | CONSTVAR:c DECLARATIONS:list
                  {:list.addConst(c); RESULT = list;:}
                  | STRUCTDEC:s DECLARATIONS:list
