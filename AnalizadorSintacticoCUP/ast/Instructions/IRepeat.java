@@ -62,5 +62,9 @@ public class IRepeat extends IBlock {
         forAux.generateCode();
     }
 
+    public int maxMemory(){
+        return forAux.maxMemory();
+    }
+
 
 }

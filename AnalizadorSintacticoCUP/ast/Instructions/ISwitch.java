@@ -99,4 +99,15 @@ public class ISwitch extends IBlock {
         Program.getCode().println("block $break"); //etiqueta para el break
         Program.getCode().println("end");
     }
+
+    public int maxMemory(){
+        int max = 0;
+        for(SwitchInstruction s: cases){
+            int aux = s.maxMemory();
+            if(aux > max){
+                max = aux;
+            }
+        }
+        return max;
+    }
 }

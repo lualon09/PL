@@ -9,10 +9,12 @@ import ast.Instructions.I;
 import ast.Instructions.IDeclaration;
 import ast.Types.T;
 import exc.BindingException;
+import exc.GCodingException;
 import exc.TypingException;
 import ast.Instructions.IReturn;
 import ast.Instructions.KindI;
 import ast.Types.KindT;
+import ast.Instructions.IBlock;
 
 public class DFunction extends D {
 
@@ -101,7 +103,37 @@ public class DFunction extends D {
         for(I i: body){
             deltaFunction = i.setDelta(deltaFunction);
         }
+
+        System.out.println("soy la funcion " + name + " y tengo memoria maxima " + maxMemory());
         return delta;
+    }
+
+    public int maxMemory(){
+        int c = 0;
+        int max = 0;
+
+        for(int i = 0; i < params.size(); i++){
+            c += params.get(i).getSize();
+        }
+        for(int i = 0; i < body.size(); i++){
+            if(body.get(i).kind().equals(KindI.DECLARATION)){
+                c += ((IDeclaration) body.get(i)).getSize();
+            }
+            else if(body.get(i) instanceof IBlock){
+                int blockSize = ((IBlock) body.get(i)).maxMemory();
+                if(c + blockSize > max){
+                    max = c + blockSize;
+                }
+            }
+        }
+        if(c > max){ //por si acaso lo del final han sido variables
+            max = c;
+        }
+        return max;
+    }
+
+    public void generateCode() throws GCodingException {
+
     }
 
 

@@ -96,4 +96,8 @@ public class IValuefor extends IBlock {
         Program.getCode().println("block $break"); //etiqueta para el break
         Program.getCode().println("end");
     }
+
+    public int maxMemory(){
+        return 0; //no se permiten declaraciones
+    }
 }

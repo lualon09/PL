@@ -61,6 +61,8 @@ public class Program extends ASTNode {
             prelude.transferTo(code);
             prelude.close();
 
+            definitionList.generateCode();
+
             // aqui no sabemos muy bien que hay que poner
 
             FileReader epilogue = new FileReader("code/epilogue.wat");

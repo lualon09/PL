@@ -31,7 +31,9 @@ public class Main {
 				p.setDelta(0); //tipado
 				System.out.println("Correct deltas!");
 				try{
+					System.out.println("*********************GENERATING CODE********************");
 					p.generateCode();
+					System.out.println("Correct generated code!");
 				}catch(GCodingException ce){
 					ce.printStackTrace();
 				}

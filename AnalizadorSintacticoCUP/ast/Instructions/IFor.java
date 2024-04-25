@@ -79,5 +79,10 @@ public class IFor extends IBlock {
         Program.getCode().println("end"); //loop
         Program.getCode().println("end"); //block
     }
+
+    public int maxMemory(){
+        int c = dec.getSize();
+        return c + super.maxMemory();
+    }
 }
 

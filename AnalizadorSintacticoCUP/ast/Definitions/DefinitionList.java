@@ -2,6 +2,7 @@ package ast.Definitions;
 
 import ast.Instructions.*;
 import exc.BindingException;
+import exc.GCodingException;
 import exc.TypingException;
 
 import java.net.BindException;
@@ -114,6 +115,12 @@ public class DefinitionList {
         // for(DFunction f: functions){ //chequeamos las funciones
         //     f.type();
         // }
+    }
+
+    public void generateCode() throws GCodingException {
+        for(ASTNode a: tree){
+            a.generateCode();
+        }
     }
 
     public List<DStruct> getStructs(){

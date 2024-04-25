@@ -17,6 +17,7 @@ main() -> Int {
     else{ //debe entrar aquí y modificar el valor de x a 1
         x = 1;
         Int y = 5;
+        Int z = 4;
     }
     show(x);
 

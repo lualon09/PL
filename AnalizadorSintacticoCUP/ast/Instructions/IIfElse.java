@@ -13,6 +13,7 @@ public class IIfElse extends IBlock{
 
     private E cond;
     private List<I> inst_else;
+    private IBlock else_block;
 
     public IIfElse(E exp, List<I> inst_if) {
         super(inst_if);
@@ -24,6 +25,7 @@ public class IIfElse extends IBlock{
         super(inst_if);
         this.cond = exp;
         this.inst_else = inst_else;
+        this.else_block = new IBlock(inst_else);
     }
     
 
@@ -45,13 +47,11 @@ public class IIfElse extends IBlock{
         super.bind();
         Program.getTableStack().closeBlock();
 
-        Program.getTableStack().openBlock();
         if(inst_else != null){
-            for (I i : inst_else) {
-                i.bind();
-            }
+            Program.getTableStack().openBlock();
+            else_block.bind();
+            Program.getTableStack().closeBlock();
         }
-        Program.getTableStack().closeBlock();
     }
 
     public void type() throws TypingException {
@@ -61,18 +61,15 @@ public class IIfElse extends IBlock{
         }
         super.type();
         if(inst_else != null){
-            for (I i : inst_else) {
-                i.type();
-            }
+            else_block.type();
         }
     }
 
     public int setDelta(int delta){
         int aux = super.setDelta(delta);
+       
         if(inst_else != null){
-            for (I i : inst_else) {
-                aux = i.setDelta(aux); //EL ELSE TIENE QUE EMPEZAR EN DELTA O EN LO DE DESPUES DEL IF?
-            }
+            else_block.setDelta(aux);
         }
         return delta;
     }
@@ -83,11 +80,20 @@ public class IIfElse extends IBlock{
         super.generateCode();
         if(inst_else != null){
             Program.getCode().println("else");
-            for (I i : inst_else) {
-                i.generateCode();
-            }
+            else_block.generateCode();
         }
         Program.getCode().println("end");
+    }
+
+    public int maxMemory(){
+        int maxIf = super.maxMemory();
+        if(inst_else != null){
+            int maxElse = else_block.maxMemory();
+            if(maxElse > maxIf){
+                maxIf = maxElse;
+            }
+        }
+        return maxIf;
     }
     
 }

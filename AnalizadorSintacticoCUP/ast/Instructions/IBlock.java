@@ -50,4 +50,27 @@ public class IBlock extends I{
             i.generateCode(); //generamos codigo de todas las instrucciones
         }
     }
+
+    public int maxMemory(){
+        int c = 0;
+        int max = 0;
+
+        for(int i = 0; i < inst.size(); i++){
+            if(inst.get(i).kind().equals(KindI.DECLARATION)){
+                c += ((IDeclaration) inst.get(i)).getSize();
+            }
+            else if(inst.get(i) instanceof IBlock){
+                int blockSize = ((IBlock) inst.get(i)).maxMemory();
+                if(c + blockSize > max){
+                    max = c + blockSize;
+                }
+            }
+        }
+        if(c > max){ //por si acaso lo del final han sido variables
+            max = c;
+        }
+        return max;
+    }
+
+
 }
