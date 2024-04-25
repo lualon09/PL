@@ -15,6 +15,7 @@ import ast.Instructions.IReturn;
 import ast.Instructions.KindI;
 import ast.Types.KindT;
 import ast.Instructions.IBlock;
+import ast.Types.TBasics;
 
 public class DFunction extends D {
 
@@ -103,8 +104,6 @@ public class DFunction extends D {
         for(I i: body){
             deltaFunction = i.setDelta(deltaFunction);
         }
-
-        System.out.println("soy la funcion " + name + " y tengo memoria maxima " + maxMemory());
         return delta;
     }
 
@@ -133,9 +132,35 @@ public class DFunction extends D {
     }
 
     public void generateCode() throws GCodingException {
+        int size = maxMemory() + 4; // aqui es + 4 o + 8?
+        Program.getCode().println("(func $" + name);
+        if(!returnType.equals(new TBasics(KindT.VOID))){
+            Program.getCode().print(" (result i32)");
+        }
+        Program.getCode().println("");
+        Program.getCode().println(" (local $localsStart i32)");
 
-    }
+        //reservamos a la funcion tamaño
+        Program.getCode().println(" i32.const " + size);
+        Program.getCode().println(" call $reserveStack");
 
+        // calculamos el inicio de localsStart
+        Program.getCode().println(" global.get $MP");
+        Program.getCode().println(" i32.const 4"); //4 segun lo de clase???
+        Program.getCode().println(" i32.add");
+        Program.getCode().println(" local.set $localsStart"); //guarda a partir de donde empieza la funcion realmente
 
-    
+        //algo con los parametros??
+
+        // generamos codigo de las instrucciones
+        for(I i: body){
+            i.generateCode();
+        }
+
+        Program.getCode().println(" call $freeStack");
+
+        // el return ??
+         
+        Program.getCode().println(")");
+    }   
 }

@@ -13,3 +13,4 @@
 * permitimos que haya punteros con new Int y sin new Int
 * hay que hacer algo con las declaraciones que no se les iguala a nada??
 * foto pablo
+* en Dfunction, que tamaño se reserva para la funcion, +4 + 8 o cuanto

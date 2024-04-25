@@ -12,11 +12,107 @@
 (global $MP (mut i32) (i32.const 0)) ;; mark pointer
 (global $NP (mut i32) (i32.const 131071996)) ;; heap 2000*64*1024-4
 (start $main)
+i32.const 0
+local.get $localsStart
+i32.add
+i32.const 4
+i32.store
+(func $main
+ (result i32)
+ (local $localsStart i32)
+ i32.const 20
+ call $reserveStack
+ global.get $MP
+ i32.const 4
+ i32.add
+ local.set $localsStart
+i32.const 0
+local.get $localsStart
+i32.add
+i32.const 3
+i32.store
+i32.const 0
+local.get $localsStart
+i32.add
+i32.load
+i32.const 3
+i32.eq
+if
+i32.const 0
+local.get $localsStart
+i32.add
+i32.const 5
+i32.store
+end
+i32.const 0
+local.get $localsStart
+i32.add
+i32.load
+call $print
 i32.const 4
 local.get $localsStart
 i32.add
+i32.const 0
+i32.store
+i32.const 4
+local.get $localsStart
+i32.add
+i32.load
+if
+i32.const 0
+local.get $localsStart
+i32.add
+i32.const 7
+i32.store
+i32.const 8
+local.get $localsStart
+i32.add
+i32.const 4
+i32.store
+else
+i32.const 0
+local.get $localsStart
+i32.add
 i32.const 1
-call $copyn$
+i32.store
+i32.const 8
+local.get $localsStart
+i32.add
+i32.const 5
+i32.store
+i32.const 12
+local.get $localsStart
+i32.add
+i32.const 4
+i32.store
+end
+i32.const 0
+local.get $localsStart
+i32.add
+i32.load
+call $print
+i32.const 4
+local.get $localsStart
+i32.add
+i32.load
+i32.eqz
+if
+i32.const 0
+local.get $localsStart
+i32.add
+i32.const 2
+i32.store
+end
+i32.const 0
+local.get $localsStart
+i32.add
+i32.load
+call $print
+i32.const 0
+call $freeStack
+return
+ call $freeStack
+)
 (func $reserveStack (param $size i32)
    (result i32)
    get_global $MP
