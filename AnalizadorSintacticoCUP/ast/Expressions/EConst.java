@@ -13,7 +13,7 @@ public class EConst extends E{ //Expresion Constante
     public EConst(String value, T t){ //cuando es el tamaño de un array
         this.type = t;
         this.value = value;
-        setType(t);
+        // setType(t);
     }
 
     @Override

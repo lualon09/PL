@@ -26,14 +26,12 @@ public class IDeclaration extends I{
         this.name = name;
         this.type = t;
         this.exp = null;
-        setType(t);
     }
 
     public IDeclaration(T t, String name, E exp){ 
         this.type = t;
         this.name = name;
         this.exp = exp;
-        setType(t);
     }
 
     public KindI kind() {
@@ -69,6 +67,7 @@ public class IDeclaration extends I{
     }
 
     public void type() throws TypingException {
+        type.type();
         setType(type); //las declaraciones tienen por defecto el tipo de lo que se está asignando.
         if(exp != null) {
             exp.type();//tipamos la expresion en caso de que exista

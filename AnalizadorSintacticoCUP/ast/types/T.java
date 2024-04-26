@@ -2,6 +2,7 @@ package ast.Types;
 
 import ast.NodeKind;
 import exc.BindingException;
+import exc.GCodingException;
 import exc.TypingException;
 import ast.ASTNode;
 
@@ -27,6 +28,8 @@ public abstract class T extends ASTNode {
 
     public void bind() throws BindingException{}
     public void type() throws TypingException{}
+    public void generateCode() throws GCodingException {}
+    public int setDelta(int delta) { return delta; }
 
     @Override
     public boolean equals(Object type2){

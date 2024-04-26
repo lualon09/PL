@@ -2,6 +2,7 @@ package ast.Types;
 
 import ast.Expressions.EConst;
 import exc.BindingException;
+import exc.TypingException;
 
 public class TArray extends T{
 
@@ -45,5 +46,8 @@ public class TArray extends T{
     public int getSize(){
         return Integer.parseInt(size.getValue()) * getT().getSize();
     }
-    
+
+    public void type() throws TypingException {
+        size.type();
+    }
 }

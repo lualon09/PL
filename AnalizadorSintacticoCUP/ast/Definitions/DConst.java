@@ -18,7 +18,6 @@ public class DConst extends D{
         this.type = t;
         this.name = name;
         this.exp = exp;
-        setType(type); //por gramatica va a ser siempre entera
     }
 
     @Override
@@ -40,6 +39,7 @@ public class DConst extends D{
     @Override
     public void type() throws TypingException {
         exp.type();
+        setType(type); //por gramatica va a ser siempre entera
         if(!type.equals(exp.getType())){
             throw new TypingException("Type not compatible in " + exp.toString() + " and " + type.toString());
         }

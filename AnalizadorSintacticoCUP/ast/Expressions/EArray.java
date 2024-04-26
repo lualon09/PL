@@ -38,7 +38,9 @@ public class EArray extends E{
 
     public void type() throws TypingException {
         arr.get(0).type();
-        setType(new TArray(arr.get(0).getType(), new EConst(Integer.toString(arr.size()), new TBasics(KindT.INT)))); //decimos que lo de la derecha va a ser algo de tipo array de tamaño los argumentos.
+        EConst size = new EConst(Integer.toString(arr.size()), new TBasics(KindT.INT));
+        size.type();
+        setType(new TArray(arr.get(0).getType(), size)); //decimos que lo de la derecha va a ser algo de tipo array de tamaño los argumentos.
 
         for(int i = 1; i < arr.size(); i++){
             arr.get(i).type();
