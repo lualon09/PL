@@ -3,7 +3,6 @@
 * binding del alias. TODO DEL TYPEDEF
 * el switch en si no es un bloque no? por que extiende de bloque?
 * permitimos que se igualen dos structs tanto en declaracion como en asignacion
-* quitar todos los setTypes de los constructores y ponerlos en el tipado.
 * los switch ????? en generateCode
 * EN EL VALUEFOR NOS FALTA HACER LA ASIGNACION
 * permitimos que haya punteros con new Int y sin new Int
