@@ -58,7 +58,9 @@ public class ValueforInstruction extends I{
     }
 
     public void generateCode() throws GCodingException {
-       exp.generateCode(); //esto te pone un booleano
+       if(exp != null){
+         exp.generateCode(); //esto te pone un booleano
+       }
        // Program.getCode().println("i32.eqz"); //veemos si la expresion es cierta o falsa
        Program.getCode().println("br_if 0 " + nextLabel); //si es falso, salta a lo siguiente
        value.generateCode();

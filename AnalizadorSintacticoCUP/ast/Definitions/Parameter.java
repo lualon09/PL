@@ -20,4 +20,17 @@ public class Parameter extends IDeclaration {
         }
         return name.toString() + ":&" + type.toString();
     }
+
+    public boolean isRef(){
+        return ref;
+    }
+
+    // @Override
+    // public int setDelta(int delta){ //los parametros siempre ocupan 4, como si fueran un puntero
+    //     if(isRef()){
+    //         this.delta = delta;
+    //         return delta + 4;
+    //     }
+    //     return super.setDelta(delta);
+    // }
 }

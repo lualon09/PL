@@ -53,6 +53,9 @@ public class EFunction extends E{
             if(!p.get(i).getType().equals(params.get(i).getType())){
                 throw new TypingException("Type does not match. Expected " + params.get(i).getType().toString() + " and got " + p.get(i).getType().toString() + " in " + functionName + ".");
             }
+            // if(params.get(i).isRef() && !p.get(i).kindExp().equals(KindE.ACCESS)){// si es por referencia y no es un acceso
+            //     throw new TypingException("Parameter by reference cannot be an expression.");
+            // }
         }
         setType(((DFunction) bindNode).getReturnType());
     }

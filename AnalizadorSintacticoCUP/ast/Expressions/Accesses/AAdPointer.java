@@ -21,6 +21,7 @@ public class AAdPointer extends A{
     public void bind() throws BindingException{
         access.bind(); 
         this.bindNode = access.bindNode;
+        System.out.println("Mi binding node es" + this.bindNode.toString());
     }
 
     public void type() throws TypingException {
@@ -29,7 +30,7 @@ public class AAdPointer extends A{
     }
 
     public void calculateAddress(){
-        ((A) this.bindNode).calculateAddress();
+        access.calculateAddress();
     }
 
     public void generateCode() throws GCodingException {

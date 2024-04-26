@@ -41,17 +41,14 @@ public class IRepeat extends IBlock {
 
     @Override
     public void bind() throws BindingException {
-        cond.bind();
-        Program.getTableStack().openBlock();
-        super.bind();
-        Program.getTableStack().closeBlock();
+        forAux.bind();
     }
     public void type() throws TypingException {
         cond.type();
         if(!cond.getType().kind().equals(KindT.INT)){
             throw new TypingException("The condition of the repeat is not an Int");
         }
-        super.type();
+        forAux.type();
     }
     
     public int setDelta(int delta) {

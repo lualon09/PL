@@ -19,7 +19,7 @@ public class IDeclaration extends I{
     public T type;
     public String name;
     private E exp;
-    private int delta;
+    protected int delta;
     private boolean isGlobal;
 
     public IDeclaration(T t, String name){ 
