@@ -13,5 +13,8 @@ for archivo in ../ejemplos/*; do
         echo "Estoy probando ahora con el archivo $archivo"
         # Ejecutar el analizador sintáctico para el archivo actual
         java -cp "../cup.jar:." asint.Main "$archivo"
+        cd code
+        wat2wasm 1.wat
+        cd ..
     fi
 done

@@ -5,8 +5,9 @@ java -cp ../../cup.jar java_cup.Main -parser AnalizadorSintacticoTiny -symbols C
 cd ..   
 javac -cp "../cup.jar:." */*.java
 
-java -cp "../cup.jar:." asint.Main  ../ejemplos/00_basic.txt
+java -cp "../cup.jar:." asint.Main  ../ejemplos/03_op_bool.txt
 
 cd code
 wat2wasm 1.wat
+# node main.js
 cd .. 
