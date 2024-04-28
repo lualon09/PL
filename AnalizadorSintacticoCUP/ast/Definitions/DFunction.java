@@ -132,7 +132,8 @@ public class DFunction extends D {
     }
 
     public void generateCode() throws GCodingException {
-        int size = maxMemory() + 4; // aqui es + 4 o + 8?
+        Program.getCode().println(";; generating code of function " + name);
+        int size = maxMemory() + 8; // (params + locals + 2)*4
         Program.getCode().println("(func $" + name);
         if(!returnType.equals(new TBasics(KindT.VOID))){
             Program.getCode().print(" (result i32)");
@@ -146,11 +147,8 @@ public class DFunction extends D {
         for(I i: body){
             i.generateCode();
         }
-
         Program.endFunction();
-
-        // el return ??
-         
+        // como obligamos a que siempre haya return y sea la ultima instruccion, no hace falta hacer nada
         Program.getCode().println(")");
     }   
 }

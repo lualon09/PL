@@ -61,10 +61,11 @@ public class AStruct extends A {
     }
 
     public void calculateAddress() {
+        Program.getCode().println(" ;;generating code for struct access" + access.toString());
         access.calculateAddress();
         Program.getCode().println("i32.const " + fieldNode.getDelta()); //cogemos el delta del struct
         Program.getCode().println("i32.add"); //lo sumamos
-
+        Program.getCode().println(" ;;end of generating code for struct access" + access.toString());
     }
 
     public KindA kindA(){

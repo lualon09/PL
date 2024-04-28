@@ -40,16 +40,29 @@ public class EUnary extends E {
     setType(type); //hacemos setType para saber que la expresión es de tipo type.
   }
 
+  public void generateCodeSumL() throws GCodingException {
+      TArray typeList = opnd.getType();
+      EConst sizeList = typeList.getSizeArray();
+      T typeElems = typeList.getT();
+
+      Program.getCode().println(" i32.const 0");
+
+      for(int i = 0; i < Integer.parseInt(sizeList.getValue()); i++){
+        Program.getCode().println(" i32.const 0");
+      }
+
+  }
+
   public void generateCode() throws GCodingException {
     
     opnd.generateCode();
 
     switch(tExp){
       case SUML:
-        // lo dejamos hasta saber como son las listas
+        generateCodeSumL();
         break;
       case PRODL:
-        // lo dejamos hasta saber como son las listas
+       // generateCodeProdL();
         break;
       case NOT:
         Program.getCode().println("i32.eqz");

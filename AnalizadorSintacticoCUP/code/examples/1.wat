@@ -11,11 +11,11 @@
 (global $SP (mut i32) (i32.const 0)) ;; start of stack
 (global $MP (mut i32) (i32.const 0)) ;; mark pointer
 (global $NP (mut i32) (i32.const 131071996)) ;; heap 2000*64*1024-4
-(start $firstmain)
+(start $preMain)
 (func $preMain 
  (local $temp i32)
  (local $localsStart i32)
- i32.const 8
+ i32.const 12
  call $reserveStack
  local.set $temp
  global.get $MP
@@ -25,17 +25,32 @@
  i32.const 4
  i32.add
  local.set $localsStart
-i32.const 4
+i32.const 8
+i32.const 1
+call $copyn$
+;; generating code of const var
+ ;;generating code for EConst
+ i32.const 0
+i32.store
+;; generating code of const var2
 i32.const 1
 call $copyn$
  call $main
  call $freeStack
 )
+;; generating code of const var
+ ;;generating code for EConst
+ i32.const 0
+i32.store
+;; generating code of const var2
+i32.const 1
+call $copyn$
+;; generating code of function prueba
 (func $prueba
  (result i32)
  (local $temp i32)
  (local $localsStart i32)
- i32.const 8
+ i32.const 12
  call $reserveStack
  local.set $temp
  global.get $MP
@@ -45,21 +60,27 @@ call $copyn$
  i32.const 4
  i32.add
  local.set $localsStart
+ ;;generating code for exp ebinSUM(AVar(constantesNo),(INT:1))
+ ;;generating code for access
+;; loading paramconstantesNo
 i32.const 0
 local.get $localsStart
 i32.add
 i32.load
-i32.const 1
-i32.add
+i32.load
+ ;;generating code for EConst
+ i32.const 1
+ i32.add
 call $freeStack
 return
  call $freeStack
 )
+;; generating code of function main
 (func $main
  (result i32)
  (local $temp i32)
  (local $localsStart i32)
- i32.const 8
+ i32.const 12
  call $reserveStack
  local.set $temp
  global.get $MP
@@ -74,7 +95,8 @@ local.get $localsStart
 i32.add
 i32.const 1
 call $copyn$
-i32.const 0
+ ;;generating code for EConst
+ i32.const 0
 call $freeStack
 return
  call $freeStack

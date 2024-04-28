@@ -9,6 +9,8 @@ import exc.BindingException;
 import exc.GCodingException;
 import exc.TypingException;
 import ast.Definitions.*;
+import ast.Types.KindT;
+
 import java.util.List;
 
 public class EFunction extends E{
@@ -65,20 +67,43 @@ public class EFunction extends E{
         setType(((DFunction) bindNode).getReturnType());
     }
 
+    public void calculateAddressParam(int delta) {
+        Program.getCode().println(" i32.const " + delta); //el delta del parametro
+        Program.getCode().println(" local.get $temp"); // cogemos el inicio de los parametros en la funcion a la que vamos a llamar
+        Program.getCode().println(" i32.add");
+    }
+
     public void generateCode() throws GCodingException {
-        Program.getCode().println("global.get $SP"); //cogemos la posicion del puntero a la pila
-        Program.getCode().println("i32.const " + 4); //segun lo que ha dicho albert en clase
-        Program.getCode().println("i32.add");
-        Program.getCode().println("local.set $temp");//guarda el comienzo de memoria de la funcion
+        Program.getCode().println(" global.get $SP"); //cogemos la posicion del puntero a la pila
+        Program.getCode().println(" i32.const " + 8); //+4 seria el MP de la funcion, +8 ya apunta al primer parametro
+        Program.getCode().println(" i32.add");
+        Program.getCode().println(" local.set $temp");//guarda el comienzo de memoria de la funcion. MP de la funcion
         
-        int delta = 0;
         for(int i = 0; i < p.size(); i++){
             Parameter auxP = params.get(i); //esto es el parametro
             E auxA = p.get(i); //esto es el argumento
             Program.getCode().println(";; Treating the argument " + auxA.toString());   
-            //no me cuadra
+            
+            if(auxP.getType().kind().equals(KindT.ARRAY) || auxP.getType().kind().equals(KindT.STRUCT)){
+                auxA.calculateAddress(); //cogemos donde empieza el array o el struct
+                calculateAddressParam(auxP.getDelta());
+                Program.getCode().println(" i32.const " + auxP.getSize()/4); //cuantos vamos a copiar
+                Program.getCode().println(" call $copyn"); //copiamos de uno a otro
+            }
+            if(auxP.isRef() || auxP.getType().kind().equals(KindT.POINTER)){ // si es por referencia o es un puntero, se deja la direccion de memoria
+                calculateAddressParam(auxP.getDelta());
+                auxA.calculateAddress();
+                Program.getCode().println(" i32.store");
+            }
+            else{
+                calculateAddressParam(auxP.getDelta());
+                auxA.generateCode();
+                Program.getCode().println(" i32.store");
+            }
         }
 
+        Program.getCode().println(" ;; end copying arguments");
+        Program.getCode().println(" call $" + functionName);  
     }
 
 }

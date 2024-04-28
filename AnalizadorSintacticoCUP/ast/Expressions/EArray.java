@@ -6,6 +6,7 @@ import exc.GCodingException;
 import exc.TypingException;
 import ast.Types.KindT;
 import ast.Types.TArray;
+import ast.Program;
 import ast.Expressions.EConst;
 import ast.Types.TBasics;
 
@@ -48,9 +49,5 @@ public class EArray extends E{
                 throw new TypingException("Not all values in array declaration have the same type. " + arr.get(0).getType().toString() + " and " + arr.get(i).getType());
             }
         }
-    }
-    
-    public void generateCode() throws GCodingException {
-        // aqui que hay que hacer
     }
 }

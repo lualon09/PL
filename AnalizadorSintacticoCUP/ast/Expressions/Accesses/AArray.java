@@ -43,12 +43,16 @@ public class AArray extends A{
 
     public void calculateAddress() {
         try{
+            Program.getCode().println(" ;;generating code for index of array" + exp.toString());
             exp.generateCode();
-            Program.getCode().println("i32.const " + getType().getSize());
-            Program.getCode().println("i32.mul"); //multiplicamos el tamaño por el tipo para saber a cual accedemos
+            Program.getCode().println(" i32.const " + getType().getSize());
+            Program.getCode().println(" i32.mul"); //multiplicamos el tamaño por el tipo para saber a cual accedemos
 
+            Program.getCode().println(" ;;generating code for access array" + access.toString());
             access.calculateAddress(); //calculamos la direccion del accesso
-            Program.getCode().println("i32.addcalculateAddress"); //lo sumamos
+            Program.getCode().println(" i32.add"); //lo sumamos
+
+            Program.getCode().println(" ;;end of generating code for access to array");
         }
         catch(GCodingException e){
             e.printStackTrace();

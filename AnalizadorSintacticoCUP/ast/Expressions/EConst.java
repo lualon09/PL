@@ -53,6 +53,7 @@ public class EConst extends E{ //Expresion Constante
 
     @Override
     public void generateCode() throws GCodingException {
-        Program.getCode().println("i32.const " + transformValue());
+        Program.getCode().println(" ;;generating code for EConst");
+        Program.getCode().println(" i32.const " + transformValue());
     }
 }

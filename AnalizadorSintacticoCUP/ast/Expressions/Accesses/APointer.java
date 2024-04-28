@@ -1,6 +1,7 @@
 package ast.Expressions.Accesses;
 import exc.BindingException;
 import exc.TypingException;
+import ast.Program;
 import ast.Types.*;
 import exc.GCodingException;
 
@@ -36,6 +37,7 @@ public class APointer extends A {
 
     public void calculateAddress(){
         try{
+            Program.getCode().println(" ;;generating code for APointer " + access.toString());
             this.bindNode.generateCode(); //te va a dejar en la pila el valor de la direccion a la que apunta el puntero
         }catch(GCodingException e){
             e.printStackTrace();

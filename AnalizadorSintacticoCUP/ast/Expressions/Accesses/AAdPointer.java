@@ -3,6 +3,7 @@ package ast.Expressions.Accesses;
 import exc.BindingException;
 import exc.GCodingException;
 import exc.TypingException;
+import ast.Program;
 import ast.Types.*;
 
 public class AAdPointer extends A{
@@ -34,6 +35,7 @@ public class AAdPointer extends A{
     }
 
     public void generateCode() throws GCodingException {
+        Program.getCode().println(" ;; generating code for address of " + access.toString());
         calculateAddress(); //dejamos en la cima de la pila la direccion de la variable
     }
 

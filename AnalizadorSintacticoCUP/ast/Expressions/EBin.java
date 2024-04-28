@@ -59,49 +59,51 @@ public class EBin extends E {
   }
 
   public void generateCode() throws GCodingException {
+
+    Program.getCode().println(" ;;generating code for exp ebin" + this.toString());
     
     opnd1.generateCode();
     opnd2.generateCode();
 
     switch(tExp){
       case SUM:
-        Program.getCode().println("i32.add");
+        Program.getCode().println(" i32.add");
         break;
       case MUL:
-        Program.getCode().println("i32.mul");
+        Program.getCode().println(" i32.mul");
         break;
       case SUB:
-        Program.getCode().println("i32.sub");
+        Program.getCode().println(" i32.sub");
         break;  
       case DIV:
-        Program.getCode().println("i32.div_s");
+        Program.getCode().println(" i32.div_s");
         break;
       case MOD:
-        Program.getCode().println("i32.rem_s");
+        Program.getCode().println(" i32.rem_s");
         break;
       case GREATER:
-        Program.getCode().println("i32.gt_s");
+        Program.getCode().println(" i32.gt_s");
         break;
       case LESS:
-        Program.getCode().println("i32.lt_s");
+        Program.getCode().println(" i32.lt_s");
         break;
       case GREQ:
-        Program.getCode().println("i32.ge_s");
+        Program.getCode().println(" i32.ge_s");
         break;
       case LEQ:
-        Program.getCode().println("i32.le_s");
+        Program.getCode().println(" i32.le_s");
         break;
       case EQUAL:
-        Program.getCode().println("i32.eq");
+        Program.getCode().println(" i32.eq");
         break;
       case DISTINCT:
-        Program.getCode().println("i32.sum");
+        Program.getCode().println(" i32.sum");
         break;
       case AND:
-        Program.getCode().println("i32.and");
+        Program.getCode().println(" i32.and");
         break;
       case OR:
-        Program.getCode().println("i32.or");
+        Program.getCode().println(" i32.or");
         break;
       default:
     }
