@@ -81,6 +81,7 @@ public class Program extends ASTNode {
         preFunction(size + 4);
         definitionList.generateCodeGlobal();
         code.println(" call $main");
+        code.println(" drop");
         endFunction();
         code.println(")");
     }

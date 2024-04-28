@@ -43,6 +43,7 @@
  i32.const 0
  i32.store
  call $main
+ drop
  call $freeStack
 )
  ;; generating code of function main
