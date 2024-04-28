@@ -134,6 +134,10 @@
  i32.const 8
  local.get $localsStart
  i32.add
+ i32.const 0
+ i32.add
+ ;;generating code for EConst
+ i32.const 1
  i32.store
  ;;generating code for assignation assign:AArray (AVar(array)[(INT:0)])=(INT:2)
  ;;generating code for index of array(INT:0)
@@ -156,6 +160,10 @@
  i32.const 12
  local.get $localsStart
  i32.add
+ i32.const 0
+ i32.add
+ ;;generating code for EConst
+ i32.const 1
  i32.store
  ;;generating code for assignation assign:AVar(array)=AVar(array1)
  i32.const 12
@@ -188,6 +196,10 @@
  global.get $NP
  i32.store
  ;;end generating code for declaration
+ i32.const 0
+ i32.add
+ ;;generating code for EConst
+ i32.const 1
  i32.store
  ;;generating code for assignation assign:AArray (AVar(array2)[(INT:0)])=AVar(puntero)
  i32.const 24

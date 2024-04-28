@@ -1,5 +1,7 @@
 package ast.Instructions;
 
+import java.util.ArrayList;
+
 import ast.NodeKind;
 import ast.Program;
 import ast.Definitions.KindD;
@@ -57,7 +59,17 @@ public class IAssignation extends I{
 
     public void generateCode() throws GCodingException {
         Program.getCode().println(" ;;generating code for assignation " + toString());
-        if(exp.kindExp().equals(KindE.ACCESS) && !((A) exp).kindA().equals(KindA.ADDRESS)){
+        if(exp.kindExp().equals(KindE.ARRAY)){
+            ArrayList<E> expArray = ((EArray) exp).getExpArray();
+            for(int i = 0; i< expArray.size(); i++){
+                access.calculateAddress(); //calculamos direccion de comienzo del array
+                Program.getCode().println(" i32.const " + i*expArray.get(i).getType().getSize());
+                Program.getCode().println(" i32.add");
+                expArray.get(i).generateCode();
+                Program.getCode().println(" i32.store");
+            }
+        }
+        else if(exp.kindExp().equals(KindE.ACCESS) && !((A) exp).kindA().equals(KindA.ADDRESS)){
             exp.calculateAddress(); //es un acceso
             access.calculateAddress();
             Program.getCode().println(" i32.const " + exp.getType().getSize()/4);
