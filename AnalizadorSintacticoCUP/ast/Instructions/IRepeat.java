@@ -25,12 +25,11 @@ public class IRepeat extends IBlock {
     }
 
     public void convertFor(){
-        IDeclaration dec = new IDeclaration(new TBasics(KindT.INT), "var_aux", cond);
+        IDeclaration dec = new IDeclaration(new TBasics(KindT.INT), "var_aux", new EConst("0", new TBasics(KindT.INT)));
         A access = new AVariable("var_aux");
         E exp = new EBin(access, cond, KindE.LESS, new TBasics(KindT.BOOL));
         IAssignation assign = new IAssignation(access, new EBin(access, new EConst("1", new TBasics(KindT.INT)), KindE.SUM, new TBasics(KindT.INT)));
         forAux = new IFor(dec, exp, assign,super.inst);
-        System.out.println(forAux.toString());
     }
     public KindI kind() {
         return KindI.REPEAT;
