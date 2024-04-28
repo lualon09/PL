@@ -83,7 +83,7 @@ public class IValuefor extends IBlock {
             var.calculateAddress();
             cases.get(i).generateCode();
             Program.getCode().println(" i32.store");
-            Program.getCode().println("br $break");
+            Program.getCode().println(" br $break");
             Program.getCode().println(" end");
         }
 
@@ -91,7 +91,7 @@ public class IValuefor extends IBlock {
             var.calculateAddress();
             defaultCase.generateCode();
             Program.getCode().println(" i32.store");
-            Program.getCode().println("br $break");
+            Program.getCode().println(" br $break");
             Program.getCode().println(" end");
         }
         Program.getCode().println(" end");

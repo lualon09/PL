@@ -77,7 +77,7 @@
  ;;generating code for EConst
  i32.const 0
  i32.store
-br $break
+ br $break
  end
  i32.const 4
  local.get $localsStart
@@ -97,7 +97,7 @@ br $break
  ;;generating code for EConst
  i32.const 1
  i32.store
-br $break
+ br $break
  end
  i32.const 4
  local.get $localsStart
@@ -117,17 +117,15 @@ br $break
  ;;generating code for EConst
  i32.const 2
  i32.store
-br $break
+ br $break
  end
  i32.const 4
  local.get $localsStart
  i32.add
- i32.eqz
- br_if 0 
  ;;generating code for EConst
  i32.const 3
  i32.store
-br $break
+ br $break
  end
  end
  ;; generating code for IShow
