@@ -38,6 +38,7 @@
  i32.store
  ;;end generating code for declaration
  ;; generating code of const z
+ i32.const 8
  ;;generating code for EConst
  i32.const 0
  i32.store

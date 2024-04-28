@@ -54,6 +54,10 @@ public class DConst extends D{
         return delta + getType().getSize();
     }
 
+    public void calculateAddress() {
+        Program.getCode().println(" i32.const " + delta); //su direccion es el delta directamente
+    }
+
     public void generateCode() throws GCodingException {
         Program.getCode().println(" ;; generating code of const " + name);
         if(exp.kindExp().equals(KindE.ACCESS) && !((A) exp).kindA().equals(KindA.ADDRESS)){
