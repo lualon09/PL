@@ -62,7 +62,6 @@
  i32.const 4
  local.get $localsStart
  i32.add
- end
  ;;generating code for exp ebinLESS(AVar(x),(INT:2))
  ;;generating code for access
  i32.const 0
@@ -79,10 +78,10 @@
  i32.const 0
  i32.store
 br $break
+ end
  i32.const 4
  local.get $localsStart
  i32.add
- end
  ;;generating code for exp ebinGREATER(AVar(x),(INT:2))
  ;;generating code for access
  i32.const 0
@@ -99,10 +98,10 @@ br $break
  i32.const 1
  i32.store
 br $break
+ end
  i32.const 4
  local.get $localsStart
  i32.add
- end
  ;;generating code for exp ebinEQUAL(AVar(x),(INT:2))
  ;;generating code for access
  i32.const 0
@@ -119,16 +118,17 @@ br $break
  i32.const 2
  i32.store
 br $break
+ end
  i32.const 4
  local.get $localsStart
  i32.add
- end
  i32.eqz
  br_if 0 
  ;;generating code for EConst
  i32.const 3
  i32.store
 br $break
+ end
  end
  ;; generating code for IShow
  ;;generating code for access

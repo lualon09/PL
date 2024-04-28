@@ -84,6 +84,7 @@ public class IValuefor extends IBlock {
             cases.get(i).generateCode();
             Program.getCode().println(" i32.store");
             Program.getCode().println("br $break");
+            Program.getCode().println(" end");
         }
 
         if(defaultCase != null){
@@ -91,6 +92,7 @@ public class IValuefor extends IBlock {
             defaultCase.generateCode();
             Program.getCode().println(" i32.store");
             Program.getCode().println("br $break");
+            Program.getCode().println(" end");
         }
         Program.getCode().println(" end");
 
