@@ -1,7 +1,13 @@
 const Int var = 0;
 Int x = var;
 
+prueba(constantesNo:&Int) -> Int {
+    return constantesNo + 1;
+}
+
 main() -> Int {
     Int x = var;
+    prueba(x);
+    // prueba(var);
     return 0;
 }

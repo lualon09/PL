@@ -3,6 +3,7 @@ package ast.Expressions;
 import java.util.ArrayList;
 
 import ast.ASTNode;
+import ast.NodeKind;
 import ast.Program;
 import exc.BindingException;
 import exc.GCodingException;
@@ -53,9 +54,13 @@ public class EFunction extends E{
             if(!p.get(i).getType().equals(params.get(i).getType())){
                 throw new TypingException("Type does not match. Expected " + params.get(i).getType().toString() + " and got " + p.get(i).getType().toString() + " in " + functionName + ".");
             }
-            // if(params.get(i).isRef() && !p.get(i).kindExp().equals(KindE.ACCESS)){// si es por referencia y no es un acceso
-            //     throw new TypingException("Parameter by reference cannot be an expression.");
-            // }
+            if(params.get(i).isRef() && !p.get(i).kindExp().equals(KindE.ACCESS)){// si es por referencia y no es un acceso
+                throw new TypingException("Parameter by reference cannot be an expression.");
+            }
+
+            if(params.get(i).isRef() && p.get(i).bindNode.nodeKind().equals(NodeKind.DEFINITION) && ((D) p.get(i).bindNode).kindD().equals(KindD.CONST)){
+                throw new TypingException("Error. Parameter by reference cannot be a const");
+            }
         }
         setType(((DFunction) bindNode).getReturnType());
     }

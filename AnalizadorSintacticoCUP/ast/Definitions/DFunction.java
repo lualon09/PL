@@ -138,18 +138,8 @@ public class DFunction extends D {
             Program.getCode().print(" (result i32)");
         }
         Program.getCode().println("");
-        Program.getCode().println(" (local $localsStart i32)");
-
-        //reservamos a la funcion tamaño
-        Program.getCode().println(" i32.const " + size);
-        Program.getCode().println(" call $reserveStack");
-
-        // calculamos el inicio de localsStart
-        Program.getCode().println(" global.get $MP");
-        Program.getCode().println(" i32.const 4"); //4 segun lo de clase???
-        Program.getCode().println(" i32.add");
-        Program.getCode().println(" local.set $localsStart"); //guarda a partir de donde empieza la funcion realmente
-
+        
+        Program.preFunction(size);
         //algo con los parametros??
 
         // generamos codigo de las instrucciones
@@ -157,7 +147,7 @@ public class DFunction extends D {
             i.generateCode();
         }
 
-        Program.getCode().println(" call $freeStack");
+        Program.endFunction();
 
         // el return ??
          

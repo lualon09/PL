@@ -11,15 +11,60 @@
 (global $SP (mut i32) (i32.const 0)) ;; start of stack
 (global $MP (mut i32) (i32.const 0)) ;; mark pointer
 (global $NP (mut i32) (i32.const 131071996)) ;; heap 2000*64*1024-4
-(start $main)
-i32.const 4
-i32.const 1
-call $copyn$
-(func $main
- (result i32)
+(start $firstmain)
+(func $preMain 
+ (local $temp i32)
  (local $localsStart i32)
  i32.const 8
  call $reserveStack
+ local.set $temp
+ global.get $MP
+ local.get $temp
+ i32.store
+ global.get $MP
+ i32.const 4
+ i32.add
+ local.set $localsStart
+i32.const 4
+i32.const 1
+call $copyn$
+ call $main
+ call $freeStack
+)
+(func $prueba
+ (result i32)
+ (local $temp i32)
+ (local $localsStart i32)
+ i32.const 8
+ call $reserveStack
+ local.set $temp
+ global.get $MP
+ local.get $temp
+ i32.store
+ global.get $MP
+ i32.const 4
+ i32.add
+ local.set $localsStart
+i32.const 0
+local.get $localsStart
+i32.add
+i32.load
+i32.const 1
+i32.add
+call $freeStack
+return
+ call $freeStack
+)
+(func $main
+ (result i32)
+ (local $temp i32)
+ (local $localsStart i32)
+ i32.const 8
+ call $reserveStack
+ local.set $temp
+ global.get $MP
+ local.get $temp
+ i32.store
  global.get $MP
  i32.const 4
  i32.add

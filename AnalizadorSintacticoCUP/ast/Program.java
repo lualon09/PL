@@ -1,5 +1,6 @@
 package ast;
 
+import ast.Definitions.DFunction;
 import ast.Definitions.DefinitionList;
 import exc.BindingException;
 import exc.TypingException;
@@ -54,6 +55,36 @@ public class Program extends ASTNode {
         return definitionList.setDelta(delta);
     }
 
+    public static void preFunction(int size){
+        code.println(" (local $temp i32)");
+        code.println(" (local $localsStart i32)");
+        code.println(" i32.const " + size);
+        code.println(" call $reserveStack");
+        code.println(" local.set $temp");
+        code.println(" global.get $MP");
+        code.println(" local.get $temp");
+        code.println(" i32.store");
+        code.println(" global.get $MP");
+        code.println(" i32.const 4");
+        code.println(" i32.add");
+        code.println(" local.set $localsStart");
+    }
+
+    public static void endFunction(){
+        code.println(" call $freeStack");
+    }
+
+
+    public void preMaingenerateCode() throws GCodingException {
+        code.println("(func $preMain ");
+        int size = definitionList.getMaxMemoryGlobal(); //cogemos el tamaño de las variables globales y constantes
+        preFunction(size);
+        definitionList.generateCodeGlobal();
+        code.println(" call $main");
+        endFunction();
+        code.println(")");
+    }
+
     public void generateCode() throws GCodingException {
         try{
             code = new PrintWriter(new FileWriter("code/examples/1.wat")); //ya le cambiaremos el nombre
@@ -61,6 +92,10 @@ public class Program extends ASTNode {
             prelude.transferTo(code);
             prelude.close();
 
+            // hacemos el premain
+            preMaingenerateCode();
+
+            //generamos el resto de funciones
             definitionList.generateCode();
 
             // aqui no sabemos muy bien que hay que poner

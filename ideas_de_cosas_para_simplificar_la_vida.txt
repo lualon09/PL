@@ -1,11 +1,9 @@
 * No estamos obligando a que haya return en las funciones
 * si hacemos array1 = array2, ¿debería de fallar? y array1 = {1,2,3}???
 * binding del alias. TODO DEL TYPEDEF
-* el switch en si no es un bloque no? por que extiende de bloque?
 * permitimos que se igualen dos structs tanto en declaracion como en asignacion
 * los switch ????? en generateCode
 * EN EL VALUEFOR NOS FALTA HACER LA ASIGNACION
 * permitimos que haya punteros con new Int y sin new Int
 * hay que hacer algo con las declaraciones que no se les iguala a nada??
 * foto pablo
-* en Dfunction, que tamaño se reserva para la funcion, +4 + 8 o cuanto

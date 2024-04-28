@@ -103,6 +103,10 @@ public class IDeclaration extends I{
         isGlobal = true;
     }
 
+    public boolean getGlobal(){
+        return isGlobal;
+    }
+
     public void calculateAddress() {
         Program.getCode().println("i32.const " + delta); //si es global su direccion es el delta
         if(!isGlobal){ //si no es global, su direccion es localsStart + delta

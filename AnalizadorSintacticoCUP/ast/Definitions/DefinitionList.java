@@ -9,6 +9,7 @@ import java.net.BindException;
 import java.util.ArrayList;
 import java.util.List;
 import ast.ASTNode;
+import ast.NodeKind;
 
 public class DefinitionList {
 
@@ -33,7 +34,7 @@ public class DefinitionList {
     }
 
     public void addVar(IDeclaration d){
-        // variables.add(0, d);
+        variables.add(0, d);
         addNode(d);
     }
     public void addFunc(DFunction f){
@@ -49,7 +50,7 @@ public class DefinitionList {
         addNode(t);
     }
     public void addConst(DConst c){
-        //consts.add(0, c);
+        consts.add(0, c);
         addNode(c);
     }
     public String toString(){
@@ -117,14 +118,39 @@ public class DefinitionList {
         // }
     }
 
+    public void generateCodeGlobal() throws GCodingException {
+        for(IDeclaration i: variables){
+            i.generateCode();
+        }
+        for(DConst c: consts){
+            c.generateCode();
+        }
+    }
+
     public void generateCode() throws GCodingException {
         for(ASTNode a: tree){
-            a.generateCode();
+            if(a.nodeKind().equals(NodeKind.INSTRUCTION) && ((I) a).kind().equals(KindI.DECLARATION) && ((IDeclaration) a).getGlobal()){
+
+            }
+            else{
+                a.generateCode();
+            }
         }
     }
 
     public List<DStruct> getStructs(){
         return structs;
+    }
+
+    public int getMaxMemoryGlobal(){
+        int c= 0;
+        for(IDeclaration i: variables){
+            c += i.getSize();
+        }
+        for(DConst ct: consts){
+            c += ct.getType().getSize();
+        }
+        return c;
     }
 
     public int setDelta(int delta){
