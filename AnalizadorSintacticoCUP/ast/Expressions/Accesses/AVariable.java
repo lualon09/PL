@@ -32,7 +32,6 @@ public class AVariable extends A {
     }
 
     public void calculateAddress() {
-        System.out.println("Soy una variable y mi bind node es " + bindNode);
         this.bindNode.calculateAddress();
     }
 

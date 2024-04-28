@@ -52,8 +52,6 @@ public class AArray extends A{
             Program.getCode().println(" i32.add"); //lo sumamos
 
             Program.getCode().println(" ;;end of generating code for access to array");
-
-            System.out.println("Estoy calculando la direccion de inicio del array");
         }
         catch(GCodingException e){
             e.printStackTrace();

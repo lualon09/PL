@@ -48,8 +48,9 @@ public class EUnary extends E {
       Program.getCode().println(" i32.const 0");
 
       for(int i = 0; i < Integer.parseInt(sizeList.getValue()); i++){
-          System.out.println("Estoy haciendo el suml ");
+          Program.getCode().println(" ;;Calculo direccion de comienzo de array");
           opnd.calculateAddress(); //calculamos la direccion de comienzo del array
+          Program.getCode().println(" ;;Calculo desplazamiento de array");
           Program.getCode().println(" i32.const " + i*typeElems.getSize());
           Program.getCode().println(" i32.add");
           Program.getCode().println(" i32.load");
@@ -76,8 +77,6 @@ public class EUnary extends E {
   public void generateCode() throws GCodingException {
 
     Program.getCode().println(" ;; generating code for Unary expression");
-    
-    opnd.generateCode();
 
     switch(tExp){
       case SUML:
@@ -87,6 +86,7 @@ public class EUnary extends E {
         generateCodeProdL();
         break;
       case NOT:
+        opnd.generateCode();
         Program.getCode().println(" i32.eqz");
         break;  
       default:

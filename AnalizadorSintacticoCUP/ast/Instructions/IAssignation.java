@@ -58,7 +58,6 @@ public class IAssignation extends I{
     }
 
     public void generateCode() throws GCodingException {
-        System.out.println("Generando codigo para la asignacion " + toString());
         Program.getCode().println(" ;;generating code for assignation " + toString());
         if(exp.kindExp().equals(KindE.ARRAY)){
             ArrayList<E> expArray = ((EArray) exp).getExpArray();
