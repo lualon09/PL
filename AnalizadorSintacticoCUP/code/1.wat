@@ -44,12 +44,12 @@
  i32.const 4
  i32.add
  local.set $localsStart
- ;;generating code for declaration dec:x(type:INT)=(INT:2)
+ ;;generating code for declaration dec:x(type:INT)=(INT:3)
  i32.const 0
  local.get $localsStart
  i32.add
  ;;generating code for EConst
- i32.const 2
+ i32.const 3
  i32.store
  ;;end generating code for declaration
  ;;generating code for declaration dec:resultado(type:INT)
@@ -82,7 +82,7 @@
  i32.const 4
  local.get $localsStart
  i32.add
- ;;generating code for exp ebinGREATER(AVar(x),(INT:2))
+ ;;generating code for exp ebinEQUAL(AVar(x),(INT:1))
  ;;generating code for access
  i32.const 0
  local.get $localsStart
@@ -90,8 +90,8 @@
  i32.load
  ;;end generating code for access
  ;;generating code for EConst
- i32.const 2
- i32.gt_s
+ i32.const 1
+ i32.eq
  i32.eqz
  br_if 0 
  ;;generating code for EConst

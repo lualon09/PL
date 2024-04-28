@@ -1,10 +1,10 @@
 main() -> Int {
    
-   Int x = 2;
+   Int x = 3;
    Int resultado;
    valuefor(resultado){
     case (x < 2) = 0; break;
-    case (x > 2) = 1; break;
+    case (x == 1) = 1; break;
     case (x == 2) = 2; break;
     default = 3; break;
    }
