@@ -34,7 +34,7 @@
  (result i32)
  (local $temp i32)
  (local $localsStart i32)
- i32.const 28
+ i32.const 16
  call $reserveStack
  local.set $temp
  global.get $MP
@@ -52,130 +52,87 @@
  i32.const 2
  i32.store
  ;;end generating code for declaration
- ;;generating code for declaration dec:i(type:INT)=(INT:2)
+ ;;generating code for declaration dec:resultado(type:INT)
+ ;;end generating code for declaration
+ block $break
+ block
+ block
+ block
+ block
  i32.const 4
  local.get $localsStart
  i32.add
- ;;generating code for EConst
- i32.const 2
- i32.store
- ;;end generating code for declaration
- ;;generating code for declaration dec:resultado(type:INT)
- ;;end generating code for declaration
+ end
+ ;;generating code for exp ebinLESS(AVar(x),(INT:2))
  ;;generating code for access
  i32.const 0
  local.get $localsStart
  i32.add
  i32.load
  ;;end generating code for access
- local.set $temp
- block $break
- block
- block
- block
- block
- end
- local.get $temp
+ ;;generating code for EConst
+ i32.const 2
+ i32.lt_s
+ i32.eqz
+ br_if 0 
  ;;generating code for EConst
  i32.const 0
- local.get $temp
- i32.eq
- i32.eqz
- br_if 0
- ;;generating code for declaration dec:i(type:INT)=(INT:3)
- i32.const 12
+ i32.store
+br $break
+ i32.const 4
  local.get $localsStart
  i32.add
+ end
+ ;;generating code for exp ebinGREATER(AVar(x),(INT:2))
+ ;;generating code for access
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ ;;generating code for EConst
+ i32.const 2
+ i32.gt_s
+ i32.eqz
+ br_if 0 
+ ;;generating code for EConst
+ i32.const 1
+ i32.store
+br $break
+ i32.const 4
+ local.get $localsStart
+ i32.add
+ end
+ ;;generating code for exp ebinEQUAL(AVar(x),(INT:2))
+ ;;generating code for access
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ ;;generating code for EConst
+ i32.const 2
+ i32.eq
+ i32.eqz
+ br_if 0 
+ ;;generating code for EConst
+ i32.const 2
+ i32.store
+br $break
+ i32.const 4
+ local.get $localsStart
+ i32.add
+ end
+ i32.eqz
+ br_if 0 
  ;;generating code for EConst
  i32.const 3
  i32.store
- ;;end generating code for declaration
- ;;generating code for assignation assign:AVar(resultado)=(INT:0)
- i32.const 8
- local.get $localsStart
- i32.add
- ;;generating code for EConst
- i32.const 0
- i32.store
- ;;end generating code for assignation assign:AVar(resultado)=(INT:0)
 br $break
- local.set $temp
  end
- local.get $temp
- ;;generating code for EConst
- i32.const 1
- local.get $temp
- i32.eq
- i32.eqz
- br_if 0
- ;;generating code for assignation assign:AVar(resultado)=(INT:1)
- i32.const 8
- local.get $localsStart
- i32.add
- ;;generating code for EConst
- i32.const 1
- i32.store
- ;;end generating code for assignation assign:AVar(resultado)=(INT:1)
- ;;generating code for declaration dec:y(type:INT)=(INT:4)
- i32.const 12
- local.get $localsStart
- i32.add
- ;;generating code for EConst
- i32.const 4
- i32.store
- ;;end generating code for declaration
- ;;generating code for declaration dec:x(type:INT)=(INT:4)
- i32.const 16
- local.get $localsStart
- i32.add
- ;;generating code for EConst
- i32.const 4
- i32.store
- ;;end generating code for declaration
-br $break
- local.set $temp
- end
- local.get $temp
- ;;generating code for EConst
- i32.const 2
- local.get $temp
- i32.eq
- i32.eqz
- br_if 0
- ;;generating code for assignation assign:AVar(resultado)=(INT:2)
- i32.const 8
- local.get $localsStart
- i32.add
- ;;generating code for EConst
- i32.const 2
- i32.store
- ;;end generating code for assignation assign:AVar(resultado)=(INT:2)
-br $break
- local.set $temp
- end
- local.get $temp
- ;;generating code for assignation assign:AVar(resultado)=(INT:10)
- i32.const 8
- local.get $localsStart
- i32.add
- ;;generating code for EConst
- i32.const 10
- i32.store
- ;;end generating code for assignation assign:AVar(resultado)=(INT:10)
-br $break
- local.set $temp
- end
- ;;generating code for declaration dec:z(type:INT)=(INT:0)
- i32.const 12
- local.get $localsStart
- i32.add
- ;;generating code for EConst
- i32.const 0
- i32.store
- ;;end generating code for declaration
  ;; generating code for IShow
  ;;generating code for access
- i32.const 8
+ i32.const 4
  local.get $localsStart
  i32.add
  i32.load
