@@ -11,7 +11,7 @@ main() -> Int{
     Bool varB2 = (False && False) || True;               //varB2 = True
     Bool varB3 = var1 > var2 || var1 == var2;             //varB3 = True
     Bool varB4 = var1 <= var2 && True;                   //varB4 = False
-    Bool varB5 = var1 != var2 || var1 > var2 && False;     //varB5 = False
+    Bool varB5 = var1 != var2 || var1 > var2 && False;     //varB5 = True
     Bool varB6 = var1 != var2 || (var1 > var2 && False);   //varB6 = True
     Bool varB7 = not True == False && var2 < var1;        //varB7 = True
     Bool varB8 = not (True != False) && var2 < var1;      //varB8 = False

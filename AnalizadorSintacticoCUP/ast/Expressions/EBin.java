@@ -97,7 +97,7 @@ public class EBin extends E {
         Program.getCode().println(" i32.eq");
         break;
       case DISTINCT:
-        Program.getCode().println(" i32.sum");
+        Program.getCode().println(" i32.ne"); //i32.sum
         break;
       case AND:
         Program.getCode().println(" i32.and");
