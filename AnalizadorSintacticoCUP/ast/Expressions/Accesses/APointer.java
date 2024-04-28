@@ -36,15 +36,10 @@ public class APointer extends A {
     }
 
     public void calculateAddress(){
-        try{
-            Program.getCode().println(" ;;generating code for APointer " + access.toString());
-            access.calculateAddress(); 
-            Program.getCode().println("i32.load"); //cargamos la direccion de donde está el puntero.
-            
-        }catch(GCodingException e){
-            e.printStackTrace();
-        }
-        
+        Program.getCode().println(" ;;generating code for APointer " + access.toString());
+        access.calculateAddress(); 
+        Program.getCode().println("i32.load"); //cargamos la direccion de donde está el puntero.
+    
     }
 
     public KindA kindA(){
