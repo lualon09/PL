@@ -37,6 +37,7 @@ public class AAdPointer extends A{
     public void generateCode() throws GCodingException {
         Program.getCode().println(" ;; generating code for address of " + access.toString());
         calculateAddress(); //dejamos en la cima de la pila la direccion de la variable
+        Program.getCode().println(" ;; end generating code for access address");
     }
 
     public KindA kindA(){

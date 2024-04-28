@@ -79,6 +79,7 @@
  local.get $localsStart
  i32.add
  i32.load
+ ;;end generating code for access
  ;;generating code for EConst
  i32.const 1
  i32.add
@@ -93,6 +94,7 @@
  local.get $localsStart
  i32.add
  i32.load
+ ;;end generating code for access
  ;;generating code for EConst
  i32.const 1
  i32.sub
@@ -127,6 +129,7 @@
  local.get $localsStart
  i32.add
  i32.load
+ ;;end generating code for access
  call $show
  ;;generating code for declaration dec:array(type:List<INT>[(INT:1)])
  ;;end generating code for declaration
