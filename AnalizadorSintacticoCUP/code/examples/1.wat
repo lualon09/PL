@@ -15,7 +15,7 @@
 (func $preMain 
  (local $temp i32)
  (local $localsStart i32)
- i32.const 12
+ i32.const 16
  call $reserveStack
  local.set $temp
  global.get $MP
@@ -40,13 +40,7 @@ i32.const 8
  call $main
  call $freeStack
 )
- ;; generating code of const var
- ;;generating code for EConst
- i32.const 0
- i32.store
- ;; generating code of const var2
- i32.const 1
- call $copyn$
+;; Detecto que entro aqui
  ;; generating code of function prueba
 (func $prueba
  (result i32)
@@ -78,6 +72,7 @@ i32.add
  return
  call $freeStack
 )
+;; Detecto que entro aqui
  ;; generating code of function main
 (func $main
  (result i32)

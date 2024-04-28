@@ -78,7 +78,7 @@ public class Program extends ASTNode {
     public void preMaingenerateCode() throws GCodingException {
         code.println("(func $preMain ");
         int size = definitionList.getMaxMemoryGlobal(); //cogemos el tamaño de las variables globales y constantes
-        preFunction(size);
+        preFunction(size + 4);
         definitionList.generateCodeGlobal();
         code.println(" call $main");
         endFunction();

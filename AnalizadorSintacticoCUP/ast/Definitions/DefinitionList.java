@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import ast.ASTNode;
 import ast.NodeKind;
+import ast.Program;
 
 public class DefinitionList {
 
@@ -127,12 +128,17 @@ public class DefinitionList {
         }
     }
 
+    public boolean isConst(ASTNode a){
+        return a.nodeKind().equals(NodeKind.DEFINITION) && ((D) a).kindD().equals(KindD.CONST);
+    }
+
+    public boolean isGlobalVar(ASTNode a){
+        return a.nodeKind().equals(NodeKind.INSTRUCTION) && ((I) a).kind().equals(KindI.DECLARATION) && ((IDeclaration) a).getGlobal();
+    }
+
     public void generateCode() throws GCodingException {
         for(ASTNode a: tree){
-            if(a.nodeKind().equals(NodeKind.INSTRUCTION) && ((I) a).kind().equals(KindI.DECLARATION) && ((IDeclaration) a).getGlobal()){
-
-            }
-            else{
+            if(!isConst(a) && !isGlobalVar(a)){
                 a.generateCode();
             }
         }
