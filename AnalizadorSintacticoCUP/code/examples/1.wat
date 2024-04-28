@@ -26,7 +26,7 @@
  i32.add
  local.set $localsStart
  ;;generating code for declaration
-i32.const 8
+ i32.const 8
  i32.const 1
  call $copyn$
  ;;end generating code for declaration
@@ -40,7 +40,6 @@ i32.const 8
  call $main
  call $freeStack
 )
-;; Detecto que entro aqui
  ;; generating code of function prueba
 (func $prueba
  (result i32)
@@ -60,9 +59,9 @@ i32.const 8
  ;;generating code for exp ebinSUM(AVar(constantesNo),(INT:1))
  ;;generating code for access
  ;; loading paramconstantesNo
-i32.const 0
-local.get $localsStart
-i32.add
+ i32.const 0
+ local.get $localsStart
+ i32.add
  i32.load
  i32.load
  ;;generating code for EConst
@@ -72,7 +71,6 @@ i32.add
  return
  call $freeStack
 )
-;; Detecto que entro aqui
  ;; generating code of function main
 (func $main
  (result i32)
@@ -89,9 +87,9 @@ i32.add
  i32.add
  local.set $localsStart
  ;;generating code for declaration
-i32.const 0
-local.get $localsStart
-i32.add
+ i32.const 0
+ local.get $localsStart
+ i32.add
  i32.const 1
  call $copyn$
  ;;end generating code for declaration
@@ -103,9 +101,9 @@ i32.add
  i32.const 0
  local.get $temp
  i32.add
-i32.const 0
-local.get $localsStart
-i32.add
+ i32.const 0
+ local.get $localsStart
+ i32.add
  i32.store
  ;; end copying arguments
  call $prueba

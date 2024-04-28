@@ -108,10 +108,10 @@ public class IDeclaration extends I{
     }
 
     public void calculateAddress() {
-        Program.getCode().println("i32.const " + delta); //si es global su direccion es el delta
+        Program.getCode().println(" i32.const " + delta); //si es global su direccion es el delta
         if(!isGlobal){ //si no es global, su direccion es localsStart + delta
-            Program.getCode().println("local.get $localsStart"); //esto es el MP + cosas
-            Program.getCode().println("i32.add"); // lo sumamos para sacar la direccion de la variable
+            Program.getCode().println(" local.get $localsStart"); //esto es el MP + cosas
+            Program.getCode().println(" i32.add"); // lo sumamos para sacar la direccion de la variable
         }
     }
 
