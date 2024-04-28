@@ -30,6 +30,7 @@ public class IRepeat extends IBlock {
         E exp = new EBin(access, cond, KindE.LESS, new TBasics(KindT.BOOL));
         IAssignation assign = new IAssignation(access, new EBin(access, new EConst("1", new TBasics(KindT.INT)), KindE.SUM, new TBasics(KindT.INT)));
         forAux = new IFor(dec, exp, assign,super.inst);
+        System.out.println(forAux.toString());
     }
     public KindI kind() {
         return KindI.REPEAT;

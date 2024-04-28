@@ -15,6 +15,7 @@ for archivo in ../ejemplos/*; do
         java -cp "../cup.jar:." asint.Main "$archivo"
         cd code
         wat2wasm 1.wat
+        node main.js
         cd ..
     fi
 done

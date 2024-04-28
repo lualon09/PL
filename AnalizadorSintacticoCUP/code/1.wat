@@ -15,25 +15,6 @@
 (func $preMain 
  (local $temp i32)
  (local $localsStart i32)
- i32.const 4
- call $reserveStack
- local.set $temp
- global.get $MP
- local.get $temp
- i32.store
- global.get $MP
- i32.const 4
- i32.add
- local.set $localsStart
- call $main
- drop
- call $freeStack
-)
- ;; generating code of function main
-(func $main
- (result i32)
- (local $temp i32)
- (local $localsStart i32)
  i32.const 16
  call $reserveStack
  local.set $temp
@@ -44,98 +25,96 @@
  i32.const 4
  i32.add
  local.set $localsStart
- ;;generating code for declaration dec:x(type:INT)=(INT:3)
+ ;;generating code for declaration dec:x(type:INT)=AVar(var)
  i32.const 0
- local.get $localsStart
- i32.add
+ i32.const 8
+ i32.const 1
+ call $copyn
+ ;;end generating code for declaration
+ ;; generating code of const var
+ i32.const 0
  ;;generating code for EConst
- i32.const 3
+ i32.const 0
  i32.store
- ;;end generating code for declaration
- ;;generating code for declaration dec:resultado(type:INT)
- ;;end generating code for declaration
- block $break
- block
- block
- block
- block
+ ;; generating code of const var2
+ i32.const 0
  i32.const 4
- local.get $localsStart
+ i32.const 1
+ call $copyn
+ call $main
+ drop
+ call $freeStack
+)
+ ;; generating code of function prueba
+(func $prueba
+ (result i32)
+ (local $temp i32)
+ (local $localsStart i32)
+ i32.const 12
+ call $reserveStack
+ local.set $temp
+ global.get $MP
+ local.get $temp
+ i32.store
+ global.get $MP
+ i32.const 4
  i32.add
- ;;generating code for exp ebinLESS(AVar(x),(INT:2))
+ local.set $localsStart
+ ;; generating code for IReturn
+ ;;generating code for exp ebinSUM(AVar(constantesNo),(INT:1))
  ;;generating code for access
+ ;; loading paramconstantesNo
  i32.const 0
  local.get $localsStart
  i32.add
  i32.load
- ;;end generating code for access
- ;;generating code for EConst
- i32.const 2
- i32.lt_s
- i32.eqz
- br_if 0 
- ;;generating code for EConst
- i32.const 0
- i32.store
- br $break
- end
- i32.const 4
- local.get $localsStart
- i32.add
- ;;generating code for exp ebinEQUAL(AVar(x),(INT:1))
- ;;generating code for access
- i32.const 0
- local.get $localsStart
- i32.add
  i32.load
  ;;end generating code for access
  ;;generating code for EConst
  i32.const 1
- i32.eq
- i32.eqz
- br_if 0 
- ;;generating code for EConst
- i32.const 1
- i32.store
- br $break
- end
- i32.const 4
- local.get $localsStart
  i32.add
- ;;generating code for exp ebinEQUAL(AVar(x),(INT:2))
- ;;generating code for access
+ call $freeStack
+ return
+ call $freeStack
+)
+ ;; generating code of function main
+(func $main
+ (result i32)
+ (local $temp i32)
+ (local $localsStart i32)
+ i32.const 12
+ call $reserveStack
+ local.set $temp
+ global.get $MP
+ local.get $temp
+ i32.store
+ global.get $MP
+ i32.const 4
+ i32.add
+ local.set $localsStart
+ ;;generating code for declaration dec:x(type:INT)=AVar(var)
+ i32.const 0
  i32.const 0
  local.get $localsStart
  i32.add
- i32.load
- ;;end generating code for access
- ;;generating code for EConst
- i32.const 2
- i32.eq
- i32.eqz
- br_if 0 
- ;;generating code for EConst
- i32.const 2
- i32.store
- br $break
- end
+ i32.const 1
+ call $copyn
+ ;;end generating code for declaration
+ global.get $SP
  i32.const 4
+ i32.add
+ local.set $temp
+;; Treating the argument AVar(x)
+ i32.const 0
+ local.get $temp
+ i32.add
+ i32.const 0
  local.get $localsStart
  i32.add
- ;;generating code for EConst
- i32.const 3
  i32.store
- br $break
- end
- end
- ;; generating code for IShow
- ;;generating code for access
- i32.const 4
- local.get $localsStart
- i32.add
- i32.load
- ;;end generating code for access
- call $show
+ ;; end copying arguments
+ call $prueba
+ drop
  ;; generating code for IReturn
  ;;generating code for EConst
  i32.const 0

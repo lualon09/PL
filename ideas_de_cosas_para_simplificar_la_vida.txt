@@ -7,3 +7,6 @@
 * hay que hacer algo con las declaraciones que no se les iguala a nada??
 * foto pablo
 * antes de hacer un call a una funcion hay que hacer algo con los SP, MP, etc??
+* nos falla el repeat
+* el valor por referencia
+* fibonnacii??
