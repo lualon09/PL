@@ -77,13 +77,13 @@ public class IIfElse extends IBlock{
     public void generateCode() throws GCodingException {
         Program.getCode().println(" ;;generating code for ifElse");
         cond.generateCode();
-        Program.getCode().println("if");
+        Program.getCode().println(" if");
         super.generateCode();
         if(inst_else != null){
-            Program.getCode().println("else");
+            Program.getCode().println(" else");
             else_block.generateCode();
         }
-        Program.getCode().println("end");
+        Program.getCode().println(" end");
     }
 
     public int maxMemory(){

@@ -122,22 +122,22 @@ public class IDeclaration extends I{
                 ArrayList<E> expArray = ((EArray) exp).getExpArray();
                 for(int i = 0; i< expArray.size(); i++){
                     calculateAddress(); //calculamos direccion de comienzo del array
-                    Program.getCode().println("i32.const " + i*expArray.get(i).getType().getSize());
-                    Program.getCode().println("i32.add");
+                    Program.getCode().println(" i32.const " + i*expArray.get(i).getType().getSize());
+                    Program.getCode().println(" i32.add");
                     expArray.get(i).generateCode();
-                    Program.getCode().println("i32.store");
+                    Program.getCode().println(" i32.store");
                 }
             }
             else if(exp.kindExp().equals(KindE.ACCESS) && !((A) exp).kindA().equals(KindA.ADDRESS)){
                 exp.calculateAddress(); //es un acceso
                 this.calculateAddress();
-                Program.getCode().println("i32.const " + exp.getType().getSize()/4);
-                Program.getCode().println("call $copyn$"); //copiamos de una direccion a otra de tamaño exp.getType().getSize()/4
+                Program.getCode().println(" i32.const " + exp.getType().getSize()/4);
+                Program.getCode().println(" call $copyn$"); //copiamos de una direccion a otra de tamaño exp.getType().getSize()/4
             }
             else{
                 this.calculateAddress();
                 exp.generateCode();
-                Program.getCode().println("i32.store");
+                Program.getCode().println(" i32.store");
             }
         }
         Program.getCode().println(" ;;end generating code for declaration");

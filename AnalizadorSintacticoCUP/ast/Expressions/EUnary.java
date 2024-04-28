@@ -84,7 +84,7 @@ public class EUnary extends E {
         generateCodeProdL();
         break;
       case NOT:
-        Program.getCode().println("i32.eqz");
+        Program.getCode().println(" i32.eqz");
         break;  
       default:
     }

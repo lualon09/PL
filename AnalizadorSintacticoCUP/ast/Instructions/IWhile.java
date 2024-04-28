@@ -45,14 +45,14 @@ public class IWhile extends IBlock {
     }
 
     public void generateCode() throws GCodingException {
-        Program.getCode().println("block");
-        Program.getCode().println("loop");
+        Program.getCode().println(" block");
+        Program.getCode().println(" loop");
         cond.generateCode();
-        Program.getCode().println("i32.eqz");
-        Program.getCode().println("br_if 1");
+        Program.getCode().println(" i32.eqz");
+        Program.getCode().println(" br_if 1");
         super.generateCode();
-        Program.getCode().println("br 0");
-        Program.getCode().println("end"); //loop
-        Program.getCode().println("end"); //block
+        Program.getCode().println(" br 0");
+        Program.getCode().println(" end"); //loop
+        Program.getCode().println(" end"); //block
     }
 }

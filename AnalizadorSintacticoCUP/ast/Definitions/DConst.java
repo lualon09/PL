@@ -55,17 +55,17 @@ public class DConst extends D{
     }
 
     public void generateCode() throws GCodingException {
-        Program.getCode().println(";; generating code of const " + name);
+        Program.getCode().println(" ;; generating code of const " + name);
         if(exp.kindExp().equals(KindE.ACCESS) && !((A) exp).kindA().equals(KindA.ADDRESS)){
             exp.calculateAddress(); //es un acceso
             this.calculateAddress();
-            Program.getCode().println("i32.const " + exp.getType().getSize()/4);
-            Program.getCode().println("call $copyn$"); //copiamos de una direccion a otra de tamaño exp.getType().getSize()/4
+            Program.getCode().println(" i32.const " + exp.getType().getSize()/4);
+            Program.getCode().println(" call $copyn$"); //copiamos de una direccion a otra de tamaño exp.getType().getSize()/4
         }
         else{
             this.calculateAddress();
             exp.generateCode();
-            Program.getCode().println("i32.store");
+            Program.getCode().println(" i32.store");
         }
     }
 

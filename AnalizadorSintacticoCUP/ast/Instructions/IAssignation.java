@@ -66,7 +66,7 @@ public class IAssignation extends I{
         else{
             access.calculateAddress(); //donde 
             exp.generateCode(); //que 
-            Program.getCode().println("i32.store"); //guardamos
+            Program.getCode().println(" i32.store"); //guardamos
         }
     }
 }

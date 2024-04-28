@@ -32,9 +32,9 @@ public class ENew extends E{
     }
 
     public void generateCode() throws GCodingException {
-        Program.getCode().println("i32.const " + type.getSize());
-        Program.getCode().println("call $reserveHeap "); //reservamos el tamaño de heap que le hayamos indicado
-        Program.getCode().println("global.get $NP"); 
+        Program.getCode().println(" i32.const " + type.getSize());
+        Program.getCode().println(" call $reserveHeap "); //reservamos el tamaño de heap que le hayamos indicado
+        Program.getCode().println(" global.get $NP"); 
         // aqui habri que hacer algo mas??
     }
 }

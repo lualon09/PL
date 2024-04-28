@@ -62,16 +62,16 @@ public class SwitchInstruction extends IBlock{
     }
 
     public void generateCode() throws GCodingException {
-        Program.getCode().println("local.get $temp"); //dejamos $temp en la cima de la pila para no perderlo
+        Program.getCode().println(" local.get $temp"); //dejamos $temp en la cima de la pila para no perderlo
         if(exp != null){
             exp.generateCode();
-            Program.getCode().println("local.get $temp");
-            Program.getCode().println("i32.eq"); //comparamos los valores
-            Program.getCode().println("i32.eqz");
-            Program.getCode().println("br_if 0" + nextLabel);
+            Program.getCode().println(" local.get $temp");
+            Program.getCode().println(" i32.eq"); //comparamos los valores
+            Program.getCode().println(" i32.eqz");
+            Program.getCode().println(" br_if 0" + nextLabel);
         }
         super.generateCode();
-        Program.getCode().println("br $break"); //siempre tenemos break
+        Program.getCode().println(" br $break"); //siempre tenemos break
     }
 
     public void setNextLabel(String label){

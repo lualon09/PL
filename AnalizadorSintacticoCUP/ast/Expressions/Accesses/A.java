@@ -16,7 +16,7 @@ public abstract class A extends E{
     public void generateCode() throws GCodingException {
         Program.getCode().println(" ;;generating code for access");
         calculateAddress(); //calculamos la direccion del acceso
-        Program.getCode().println("i32.load"); //se va a la memoria con la posicion calculada y lo trae
+        Program.getCode().println(" i32.load"); //se va a la memoria con la posicion calculada y lo trae
     }
 
     public abstract KindA kindA();
