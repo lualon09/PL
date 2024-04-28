@@ -68,7 +68,7 @@ public class SwitchInstruction extends IBlock{
             Program.getCode().println(" local.get $temp");
             Program.getCode().println(" i32.eq"); //comparamos los valores
             Program.getCode().println(" i32.eqz");
-            Program.getCode().println(" br_if 0" + nextLabel);
+            Program.getCode().println(" br_if " + nextLabel);
         }
         super.generateCode();
         Program.getCode().println(" br $break"); //siempre tenemos break

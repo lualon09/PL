@@ -37,9 +37,8 @@ public class IFunction extends I{
 
     public void generateCode() throws GCodingException{
         exp.generateCode();
-        Program.getCode().println(" drop"); //quitamos el valor de la pila
-        // if(getType().equals(new TBasics(KindT.VOID))){
-        //     Program.getCode().println(" drop"); //quitamos el valor en la cima de la pila
-        // }
+        if(!getType().equals(new TBasics(KindT.VOID))){
+            Program.getCode().println(" drop"); //quitamos el valor en la cima de la pila
+        }
     }
 }
