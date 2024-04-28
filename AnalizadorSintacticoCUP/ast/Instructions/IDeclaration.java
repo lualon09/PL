@@ -92,6 +92,7 @@ public class IDeclaration extends I{
 
     public int setDelta(int delta){
         this.delta = delta;
+        System.out.println("Soy el delta " + delta);
         return delta + getType().getSize();
     }
 
@@ -108,6 +109,7 @@ public class IDeclaration extends I{
     }
 
     public void calculateAddress() {
+        System.out.println("Estoy cogiendo la direccion de la ideclaration y es con delta " + delta);
         Program.getCode().println(" i32.const " + delta); //si es global su direccion es el delta
         if(!isGlobal){ //si no es global, su direccion es localsStart + delta
             Program.getCode().println(" local.get $localsStart"); //esto es el MP + cosas

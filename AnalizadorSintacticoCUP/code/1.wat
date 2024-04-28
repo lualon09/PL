@@ -135,31 +135,36 @@
  i32.const 0
  local.get $localsStart
  i32.add
- i32.const0
+ i32.const 0
+ i32.add
  i32.load
  i32.add
  i32.const 0
  local.get $localsStart
  i32.add
- i32.const4
+ i32.const 4
+ i32.add
  i32.load
  i32.add
  i32.const 0
  local.get $localsStart
  i32.add
- i32.const8
+ i32.const 8
+ i32.add
  i32.load
  i32.add
  i32.const 0
  local.get $localsStart
  i32.add
- i32.const12
+ i32.const 12
+ i32.add
  i32.load
  i32.add
  i32.const 0
  local.get $localsStart
  i32.add
- i32.const16
+ i32.const 16
+ i32.add
  i32.load
  i32.add
  i32.store
@@ -179,31 +184,31 @@
  i32.const 0
  local.get $localsStart
  i32.add
- i32.const0
+ i32.const 0
  i32.load
  i32.mul
  i32.const 0
  local.get $localsStart
  i32.add
- i32.const4
+ i32.const 4
  i32.load
  i32.mul
  i32.const 0
  local.get $localsStart
  i32.add
- i32.const8
+ i32.const 8
  i32.load
  i32.mul
  i32.const 0
  local.get $localsStart
  i32.add
- i32.const12
+ i32.const 12
  i32.load
  i32.mul
  i32.const 0
  local.get $localsStart
  i32.add
- i32.const16
+ i32.const 16
  i32.load
  i32.mul
  i32.store
@@ -224,31 +229,36 @@
  i32.const 0
  local.get $localsStart
  i32.add
- i32.const0
+ i32.const 0
+ i32.add
  i32.load
  i32.add
  i32.const 0
  local.get $localsStart
  i32.add
- i32.const4
+ i32.const 4
+ i32.add
  i32.load
  i32.add
  i32.const 0
  local.get $localsStart
  i32.add
- i32.const8
+ i32.const 8
+ i32.add
  i32.load
  i32.add
  i32.const 0
  local.get $localsStart
  i32.add
- i32.const12
+ i32.const 12
+ i32.add
  i32.load
  i32.add
  i32.const 0
  local.get $localsStart
  i32.add
- i32.const16
+ i32.const 16
+ i32.add
  i32.load
  i32.add
  ;; generating code for Unary expression
@@ -262,25 +272,25 @@
  i32.const 20
  local.get $localsStart
  i32.add
- i32.const0
+ i32.const 0
  i32.load
  i32.mul
  i32.const 20
  local.get $localsStart
  i32.add
- i32.const4
+ i32.const 4
  i32.load
  i32.mul
  i32.const 20
  local.get $localsStart
  i32.add
- i32.const8
+ i32.const 8
  i32.load
  i32.mul
  i32.const 20
  local.get $localsStart
  i32.add
- i32.const12
+ i32.const 12
  i32.load
  i32.mul
  i32.add
