@@ -75,29 +75,55 @@ public class ISwitch extends IBlock {
     }
 
     public void generateCode() throws GCodingException {
+        // cond.generateCode();
+        // Program.getCode().println(" local.set $temp"); //guardamos la condicion en variable temporal
+        // for(int i = 0; i < cases.size(); i++){
+        //     Program.getCode().println(" block $label" + i);
+        //     if(i < cases.size() - 1){
+        //         int next = i +1;
+        //         cases.get(i).setNextLabel("$label" + next);
+        //     }
+        //     else{
+        //         cases.get(i).setNextLabel("$default");
+        //     }
+        //     cases.get(i).generateCode();
+        //     Program.getCode().println(" end");
+        //     Program.getCode().println(" local.set $temp"); //mantenemos el valor en la pila
+        // }
+        // if(defaultCase != null){
+        //     Program.getCode().println(" block $default"); 
+        //     defaultCase.generateCode();
+        //     Program.getCode().println(" end");
+        //     Program.getCode().println(" local.set $temp"); //??
+        // }
+        // Program.getCode().println(" block $break"); //etiqueta para el break
+        // Program.getCode().println(" end");
+
         cond.generateCode();
-        Program.getCode().println(" local.set $temp"); //guardamos la condicion en variable temporal
+        Program.getCode().println(" block");
         for(int i = 0; i < cases.size(); i++){
-            Program.getCode().println(" block $label" + i);
-            if(i < cases.size() - 1){
-                int next = i +1;
-                cases.get(i).setNextLabel("$label" + next);
+            Program.getCode().println(" block");
+            if(i > 0){
+                int next = cases.size() - i;
+                cases.get(i).setNextLabel(next);
             }
             else{
-                cases.get(i).setNextLabel("$default");
+                cases.get(i).setNextLabel(0);
             }
+        }
+        Program.getCode().println(" block");
+        Program.getCode().print(" br_table ");
+        for(int i = 0; i < cases.size(); i++){
+            Program.getCode().print(i + " ");
+        }
+        Program.getCode().println("");
+
+        for(int i = 0; i < cases.size(); i++){
             cases.get(i).generateCode();
-            Program.getCode().println(" end");
-            Program.getCode().println(" local.set $temp"); //mantenemos el valor en la pila
         }
-        if(defaultCase != null){
-            Program.getCode().println(" block $default"); 
-            defaultCase.generateCode();
-            Program.getCode().println(" end");
-            Program.getCode().println(" local.set $temp"); //??
-        }
-        Program.getCode().println(" block $break"); //etiqueta para el break
-        Program.getCode().println(" end");
+
+        Program.getCode().println("end");
+
     }
 
     public int maxMemory(){
