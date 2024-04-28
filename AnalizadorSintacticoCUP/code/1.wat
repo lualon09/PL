@@ -15,7 +15,7 @@
 (func $preMain 
  (local $temp i32)
  (local $localsStart i32)
- i32.const 16
+ i32.const 4
  call $reserveStack
  local.set $temp
  global.get $MP
@@ -25,56 +25,8 @@
  i32.const 4
  i32.add
  local.set $localsStart
- ;;generating code for declaration dec:x(type:INT)=AVar(var)
- i32.const 0
- i32.const 8
- i32.const 1
- call $copyn
- ;;end generating code for declaration
- ;; generating code of const var
- i32.const 0
- ;;generating code for EConst
- i32.const 0
- i32.store
- ;; generating code of const var2
- i32.const 0
- i32.const 4
- i32.const 1
- call $copyn
  call $main
  drop
- call $freeStack
-)
- ;; generating code of function prueba
-(func $prueba
- (result i32)
- (local $temp i32)
- (local $localsStart i32)
- i32.const 12
- call $reserveStack
- local.set $temp
- global.get $MP
- local.get $temp
- i32.store
- global.get $MP
- i32.const 4
- i32.add
- local.set $localsStart
- ;; generating code for IReturn
- ;;generating code for exp ebinSUM(AVar(constantesNo),(INT:1))
- ;;generating code for access
- ;; loading paramconstantesNo
- i32.const 0
- local.get $localsStart
- i32.add
- i32.load
- i32.load
- ;;end generating code for access
- ;;generating code for EConst
- i32.const 1
- i32.add
- call $freeStack
- return
  call $freeStack
 )
  ;; generating code of function main
@@ -82,7 +34,7 @@
  (result i32)
  (local $temp i32)
  (local $localsStart i32)
- i32.const 12
+ i32.const 56
  call $reserveStack
  local.set $temp
  global.get $MP
@@ -92,29 +44,272 @@
  i32.const 4
  i32.add
  local.set $localsStart
- ;;generating code for declaration dec:x(type:INT)=AVar(var)
- i32.const 0
+ ;;generating code for declaration dec:array1(type:List<INT>[(INT:5)])=[(INT:1), (INT:2), (INT:3), (INT:4), (INT:5)]
  i32.const 0
  local.get $localsStart
  i32.add
+ i32.const 0
+ i32.add
+ ;;generating code for EConst
  i32.const 1
- call $copyn
- ;;end generating code for declaration
- global.get $SP
+ i32.store
+ i32.const 0
+ local.get $localsStart
+ i32.add
  i32.const 4
  i32.add
- local.set $temp
-;; Treating the argument AVar(x)
+ ;;generating code for EConst
+ i32.const 2
+ i32.store
  i32.const 0
- local.get $temp
+ local.get $localsStart
+ i32.add
+ i32.const 8
+ i32.add
+ ;;generating code for EConst
+ i32.const 3
+ i32.store
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.const 12
+ i32.add
+ ;;generating code for EConst
+ i32.const 4
+ i32.store
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.const 16
+ i32.add
+ ;;generating code for EConst
+ i32.const 5
+ i32.store
+ ;;end generating code for declaration
+ ;;generating code for declaration dec:array2(type:List<INT>[(INT:4)])=[(INT:2), (INT:1), (INT:3), (INT:2)]
+ i32.const 20
+ local.get $localsStart
+ i32.add
+ i32.const 0
+ i32.add
+ ;;generating code for EConst
+ i32.const 2
+ i32.store
+ i32.const 20
+ local.get $localsStart
+ i32.add
+ i32.const 4
+ i32.add
+ ;;generating code for EConst
+ i32.const 1
+ i32.store
+ i32.const 20
+ local.get $localsStart
+ i32.add
+ i32.const 8
+ i32.add
+ ;;generating code for EConst
+ i32.const 3
+ i32.store
+ i32.const 20
+ local.get $localsStart
+ i32.add
+ i32.const 12
+ i32.add
+ ;;generating code for EConst
+ i32.const 2
+ i32.store
+ ;;end generating code for declaration
+ ;;generating code for declaration dec:var1(type:INT)=SUML(AVar(array1))
+ i32.const 36
+ local.get $localsStart
+ i32.add
+ ;; generating code for Unary expression
+ ;;generating code for access
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ i32.const 0
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.const0
+ i32.load
  i32.add
  i32.const 0
  local.get $localsStart
  i32.add
+ i32.const4
+ i32.load
+ i32.add
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.const8
+ i32.load
+ i32.add
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.const12
+ i32.load
+ i32.add
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.const16
+ i32.load
+ i32.add
  i32.store
- ;; end copying arguments
- call $prueba
- drop
+ ;;end generating code for declaration
+ ;;generating code for declaration dec:var2(type:INT)=PRODL(AVar(array1))
+ i32.const 40
+ local.get $localsStart
+ i32.add
+ ;; generating code for Unary expression
+ ;;generating code for access
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ i32.const 1
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.const0
+ i32.load
+ i32.mul
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.const4
+ i32.load
+ i32.mul
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.const8
+ i32.load
+ i32.mul
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.const12
+ i32.load
+ i32.mul
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.const16
+ i32.load
+ i32.mul
+ i32.store
+ ;;end generating code for declaration
+ ;;generating code for declaration dec:var3(type:INT)=SUM(SUML(AVar(array1)),PRODL(AVar(array2)))
+ i32.const 44
+ local.get $localsStart
+ i32.add
+ ;;generating code for exp ebinSUM(SUML(AVar(array1)),PRODL(AVar(array2)))
+ ;; generating code for Unary expression
+ ;;generating code for access
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ i32.const 0
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.const0
+ i32.load
+ i32.add
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.const4
+ i32.load
+ i32.add
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.const8
+ i32.load
+ i32.add
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.const12
+ i32.load
+ i32.add
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.const16
+ i32.load
+ i32.add
+ ;; generating code for Unary expression
+ ;;generating code for access
+ i32.const 20
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ i32.const 1
+ i32.const 20
+ local.get $localsStart
+ i32.add
+ i32.const0
+ i32.load
+ i32.mul
+ i32.const 20
+ local.get $localsStart
+ i32.add
+ i32.const4
+ i32.load
+ i32.mul
+ i32.const 20
+ local.get $localsStart
+ i32.add
+ i32.const8
+ i32.load
+ i32.mul
+ i32.const 20
+ local.get $localsStart
+ i32.add
+ i32.const12
+ i32.load
+ i32.mul
+ i32.add
+ i32.store
+ ;;end generating code for declaration
+ ;; generating code for IShow
+ ;;generating code for access
+ i32.const 36
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ call $show
+ ;; generating code for IShow
+ ;;generating code for access
+ i32.const 40
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ call $show
+ ;; generating code for IShow
+ ;;generating code for access
+ i32.const 44
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ call $show
  ;; generating code for IReturn
  ;;generating code for EConst
  i32.const 0
