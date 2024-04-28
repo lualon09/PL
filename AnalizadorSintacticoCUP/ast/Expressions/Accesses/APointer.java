@@ -38,7 +38,9 @@ public class APointer extends A {
     public void calculateAddress(){
         try{
             Program.getCode().println(" ;;generating code for APointer " + access.toString());
-            this.bindNode.generateCode(); //te va a dejar en la pila el valor de la direccion a la que apunta el puntero
+            access.calculateAddress(); 
+            Program.getCode().println("i32.load"); //cargamos la direccion de donde está el puntero.
+            
         }catch(GCodingException e){
             e.printStackTrace();
         }

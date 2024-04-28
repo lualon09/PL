@@ -116,6 +116,7 @@ public class IDeclaration extends I{
     }
 
     public void generateCode() throws GCodingException {
+        System.out.println("Generando codigo para la declaracionc " + toString());
         Program.getCode().println(" ;;generating code for declaration " + toString());
         if(exp != null){
             if(exp.kindExp().equals(KindE.ARRAY)){
