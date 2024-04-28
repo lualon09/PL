@@ -73,16 +73,20 @@ public class SwitchInstruction extends IBlock{
         // super.generateCode();
         // Program.getCode().println(" br $break"); //siempre tenemos break
 
-        Program.getCode().println("end");
+        Program.getCode().println(" end");
+        Program.getCode().println(" local.get $temp");
         if(exp != null){
             exp.generateCode();
             Program.getCode().println(" local.get $temp");
             Program.getCode().println(" i32.eq"); //comparamos los valores
             Program.getCode().println(" i32.eqz");
-            Program.getCode().println(" br " + nextLabel);
+            Program.getCode().println(" br_if 0");
         }
         super.generateCode();
 
+        if(breakCond){
+            Program.getCode().println("br $break");
+        }
     }
 
     public void setNextLabel(int label){

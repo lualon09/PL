@@ -68,19 +68,20 @@
  i32.add
  i32.load
  ;;end generating code for access
+ local.set $temp
+ block $break
  block
  block
  block
  block
- block
- br_table 0 1 2 
-end
+ end
+ local.get $temp
  ;;generating code for EConst
  i32.const 0
  local.get $temp
  i32.eq
  i32.eqz
- br 0
+ br_if 0
  ;;generating code for declaration dec:i(type:INT)=(INT:3)
  i32.const 12
  local.get $localsStart
@@ -97,13 +98,16 @@ end
  i32.const 0
  i32.store
  ;;end generating code for assignation assign:AVar(resultado)=(INT:0)
-end
+br $break
+ local.set $temp
+ end
+ local.get $temp
  ;;generating code for EConst
  i32.const 1
  local.get $temp
  i32.eq
  i32.eqz
- br 2
+ br_if 0
  ;;generating code for assignation assign:AVar(resultado)=(INT:1)
  i32.const 8
  local.get $localsStart
@@ -128,13 +132,16 @@ end
  i32.const 4
  i32.store
  ;;end generating code for declaration
-end
+br $break
+ local.set $temp
+ end
+ local.get $temp
  ;;generating code for EConst
  i32.const 2
  local.get $temp
  i32.eq
  i32.eqz
- br 1
+ br_if 0
  ;;generating code for assignation assign:AVar(resultado)=(INT:2)
  i32.const 8
  local.get $localsStart
@@ -143,7 +150,21 @@ end
  i32.const 2
  i32.store
  ;;end generating code for assignation assign:AVar(resultado)=(INT:2)
-end
+br $break
+ local.set $temp
+ end
+ local.get $temp
+ ;;generating code for assignation assign:AVar(resultado)=(INT:10)
+ i32.const 8
+ local.get $localsStart
+ i32.add
+ ;;generating code for EConst
+ i32.const 10
+ i32.store
+ ;;end generating code for assignation assign:AVar(resultado)=(INT:10)
+br $break
+ local.set $temp
+ end
  ;;generating code for declaration dec:z(type:INT)=(INT:0)
  i32.const 12
  local.get $localsStart
