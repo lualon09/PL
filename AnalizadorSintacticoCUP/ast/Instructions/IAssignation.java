@@ -48,24 +48,25 @@ public class IAssignation extends I{
             if(!access.getType().kind().equals(exp.getType().kind())){ //en el caso de que sea el read 
                 throw new TypingException("Error. " + access.toString() + " and " + exp.toString() + " have different types.");
             }
-            if(exp.getType().kind().equals(KindT.STRUCT)){
-                throw new TypingException("Error. An struct cannot be equal to another one. Must go field by field.");
-            }
+            // if(exp.getType().kind().equals(KindT.STRUCT)){ AHORA SI QUE PERMITIMOS QUE SE IGUALEN DOS STRUCTS
+            //     throw new TypingException("Error. An struct cannot be equal to another one. Must go field by field.");
+            // }
             setType(exp.getType()); //para comprobar el bucle for
         }
     }
 
     public void generateCode() throws GCodingException {
+        Program.getCode().println(" ;;generating code for assignation");
         if(exp.kindExp().equals(KindE.ACCESS) && !((A) exp).kindA().equals(KindA.ADDRESS)){
             exp.calculateAddress(); //es un acceso
             access.calculateAddress();
-            Program.getCode().println("i32.const " + exp.getType().getSize()/4);
-            Program.getCode().println("call $copyn$"); //copiamos de una direccion a otra de tamaño exp.getType().getSize()/4
+            Program.getCode().println(" i32.const " + exp.getType().getSize()/4);
+            Program.getCode().println(" call $copyn$"); //copiamos de una direccion a otra de tamaño exp.getType().getSize()/4
         }
         else{
-            access.calculateAddress();
-            exp.generateCode();
-            Program.getCode().println("i32.store");
+            access.calculateAddress(); //donde 
+            exp.generateCode(); //que 
+            Program.getCode().println("i32.store"); //guardamos
         }
     }
 }

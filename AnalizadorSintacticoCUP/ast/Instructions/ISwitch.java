@@ -91,7 +91,7 @@ public class ISwitch extends IBlock {
             Program.getCode().println("local.set $temp"); //mantenemos el valor en la pila
         }
         if(defaultCase != null){
-            Program.getCode().println("block $default"); //???? haria falta si no lo vamos a volver a coger 
+            Program.getCode().println("block $default"); 
             defaultCase.generateCode();
             Program.getCode().println("end");
             Program.getCode().println("local.set $temp"); //??

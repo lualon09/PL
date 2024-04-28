@@ -25,9 +25,11 @@
  i32.const 4
  i32.add
  local.set $localsStart
+ ;;generating code for declaration
 i32.const 8
 i32.const 1
 call $copyn$
+ ;;end generating code for declaration
 ;; generating code of const var
  ;;generating code for EConst
  i32.const 0
@@ -60,6 +62,7 @@ call $copyn$
  i32.const 4
  i32.add
  local.set $localsStart
+ ;; generating code for IReturn
  ;;generating code for exp ebinSUM(AVar(constantesNo),(INT:1))
  ;;generating code for access
 ;; loading paramconstantesNo
@@ -71,8 +74,8 @@ i32.load
  ;;generating code for EConst
  i32.const 1
  i32.add
-call $freeStack
-return
+ call $freeStack
+ return
  call $freeStack
 )
 ;; generating code of function main
@@ -90,15 +93,18 @@ return
  i32.const 4
  i32.add
  local.set $localsStart
+ ;;generating code for declaration
 i32.const 0
 local.get $localsStart
 i32.add
 i32.const 1
 call $copyn$
+ ;;end generating code for declaration
+ ;; generating code for IReturn
  ;;generating code for EConst
  i32.const 0
-call $freeStack
-return
+ call $freeStack
+ return
  call $freeStack
 )
 (func $reserveStack (param $size i32)

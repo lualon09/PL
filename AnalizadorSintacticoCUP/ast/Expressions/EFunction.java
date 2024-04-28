@@ -75,7 +75,7 @@ public class EFunction extends E{
 
     public void generateCode() throws GCodingException {
         Program.getCode().println(" global.get $SP"); //cogemos la posicion del puntero a la pila
-        Program.getCode().println(" i32.const " + 8); //+4 seria el MP de la funcion, +8 ya apunta al primer parametro
+        Program.getCode().println(" i32.const " + 4); //+4 ya apunta al primer parametro
         Program.getCode().println(" i32.add");
         Program.getCode().println(" local.set $temp");//guarda el comienzo de memoria de la funcion. MP de la funcion
         

@@ -75,6 +75,7 @@ public class IIfElse extends IBlock{
     }
 
     public void generateCode() throws GCodingException {
+        Program.getCode().println(" ;;generating code for ifElse");
         cond.generateCode();
         Program.getCode().println("if");
         super.generateCode();

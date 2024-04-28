@@ -81,15 +81,16 @@ public class IValuefor extends IBlock {
             else{
                 cases.get(i).setNextLabel("$default");
             }
+            var.calculateAddress();
             cases.get(i).generateCode();
-            Program.getCode().println("local.set $" + var);
-            Program.getCode().println("i32.store"); //ALGO ASI AUNQUE AHROA ESTE MAL
-
+            Program.getCode().println("i32.store");
             Program.getCode().println("end");
         }
         if(defaultCase != null){
             Program.getCode().println("block $default");
+            var.calculateAddress();
             defaultCase.generateCode();
+            Program.getCode().println("i32.store");
             Program.getCode().println("end");
         }
 

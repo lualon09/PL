@@ -41,19 +41,38 @@ public class EUnary extends E {
   }
 
   public void generateCodeSumL() throws GCodingException {
-      TArray typeList = opnd.getType();
-      EConst sizeList = typeList.getSizeArray();
+      T typeList = opnd.getType();
+      EConst sizeList = ((TArray) typeList).getSizeArray();
       T typeElems = typeList.getT();
 
       Program.getCode().println(" i32.const 0");
 
       for(int i = 0; i < Integer.parseInt(sizeList.getValue()); i++){
-        Program.getCode().println(" i32.const 0");
+          opnd.calculateAddress(); //calculamos la direccion de comienzo del array
+          Program.getCode().println(" i32.const" + i*typeElems.getSize());
+          Program.getCode().println(" i32.load");
+          Program.getCode().println(" i32.add");
       }
-
   }
 
+  public void generateCodeProdL() throws GCodingException {
+    T typeList = opnd.getType();
+    EConst sizeList = ((TArray) typeList).getSizeArray();
+    T typeElems = typeList.getT();
+
+    Program.getCode().println(" i32.const 1");
+
+    for(int i = 0; i < Integer.parseInt(sizeList.getValue()); i++){
+        opnd.calculateAddress(); //calculamos la direccion de comienzo del array
+        Program.getCode().println(" i32.const" + i*typeElems.getSize());
+        Program.getCode().println(" i32.load");
+        Program.getCode().println(" i32.mul");
+    }
+}
+
   public void generateCode() throws GCodingException {
+
+    Program.getCode().println(" ;; generating code for Unary expression");
     
     opnd.generateCode();
 
@@ -62,7 +81,7 @@ public class EUnary extends E {
         generateCodeSumL();
         break;
       case PRODL:
-       // generateCodeProdL();
+        generateCodeProdL();
         break;
       case NOT:
         Program.getCode().println("i32.eqz");

@@ -62,7 +62,7 @@ public class SwitchInstruction extends IBlock{
     }
 
     public void generateCode() throws GCodingException {
-        Program.getCode().println("local.get $temp");
+        Program.getCode().println("local.get $temp"); //dejamos $temp en la cima de la pila para no perderlo
         if(exp != null){
             exp.generateCode();
             Program.getCode().println("local.get $temp");

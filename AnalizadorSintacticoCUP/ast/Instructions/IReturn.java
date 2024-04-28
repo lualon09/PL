@@ -72,10 +72,16 @@ public class IReturn extends I{
     }
 
     public void generateCode() throws GCodingException {
+        Program.getCode().println(" ;; generating code for IReturn");
         if(expReturn != null){
-            expReturn.generateCode();
+            if(expReturn.getType().kind().equals(KindT.ARRAY) || expReturn.getType().kind().equals(KindT.STRUCT)){
+                expReturn.calculateAddress();
+            }
+            else{
+                expReturn.generateCode();
+            }
         }
-        Program.getCode().println("call $freeStack"); // esto para??
-        Program.getCode().println("return");
+        Program.getCode().println(" call $freeStack");
+        Program.getCode().println(" return");
     }
 }
