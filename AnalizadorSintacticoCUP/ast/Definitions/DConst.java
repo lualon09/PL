@@ -60,7 +60,7 @@ public class DConst extends D{
             exp.calculateAddress(); //es un acceso
             this.calculateAddress();
             Program.getCode().println(" i32.const " + exp.getType().getSize()/4);
-            Program.getCode().println(" call $copyn$"); //copiamos de una direccion a otra de tamaño exp.getType().getSize()/4
+            Program.getCode().println(" call $copyn"); //copiamos de una direccion a otra de tamaño exp.getType().getSize()/4
         }
         else{
             this.calculateAddress();

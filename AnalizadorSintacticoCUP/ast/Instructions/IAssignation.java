@@ -61,7 +61,7 @@ public class IAssignation extends I{
             exp.calculateAddress(); //es un acceso
             access.calculateAddress();
             Program.getCode().println(" i32.const " + exp.getType().getSize()/4);
-            Program.getCode().println(" call $copyn$"); //copiamos de una direccion a otra de tamaño exp.getType().getSize()/4
+            Program.getCode().println(" call $copyn"); //copiamos de una direccion a otra de tamaño exp.getType().getSize()/4
         }
         else{
             access.calculateAddress(); //donde 

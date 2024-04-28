@@ -103,7 +103,7 @@
  local.get $localsStart
  i32.add
  i32.const 1
- call $copyn$
+ call $copyn
  ;;end generating code for declaration
  ;;generating code for assignation
  i32.const 4
@@ -163,7 +163,7 @@
  local.get $localsStart
  i32.add
  i32.const 1
- call $copyn$
+ call $copyn
  ;;generating code for declaration
  ;;end generating code for declaration
  ;;generating code for declaration
@@ -203,7 +203,7 @@
  i32.add
  ;;end of generating code for access to array
  i32.const 1
- call $copyn$
+ call $copyn
  ;;generating code for declaration
  ;;generating code for APointer AArray (AVar(array2)[(INT:0)])
  ;;generating code for declaration
@@ -212,7 +212,7 @@
  local.get $localsStart
  i32.add
  i32.const 1
- call $copyn$
+ call $copyn
  ;;end generating code for declaration
  ;;generating code for declaration
  ;;generating code for index of array(INT:0)
@@ -230,7 +230,7 @@
  local.get $localsStart
  i32.add
  i32.const 1
- call $copyn$
+ call $copyn
  ;;end generating code for declaration
  ;; generating code for IReturn
  ;;generating code for EConst

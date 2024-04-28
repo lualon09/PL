@@ -1,14 +1,14 @@
 (func $reserveStack (param $size i32)
    (result i32)
-   get_global $MP
-   get_global $SP
-   set_global $MP
-   get_global $SP
-   get_local $size
+   global.get $MP
+   global.get $SP
+   global.set $MP
+   global.get $SP
+   local.get $size
    i32.add
-   set_global $SP
-   get_global $SP
-   get_global $NP
+   global.set $SP
+   global.get $SP
+   global.get $NP
    i32.gt_u
    if
    i32.const 3
@@ -17,23 +17,23 @@
 )
 
 (func $freeStack (type $_sig_void)
-   get_global $MP
+   global.get $MP
    i32.load
    i32.load offset=4
-   set_global $SP
-   get_global $MP
+   global.set $SP
+   global.get $MP
    i32.load
-   set_global $MP   
+   global.set $MP   
 )
 
 (func $reserveHeap (type $_sig_i32)
    (param $size i32)
 
 
-   get_global $NP
-   get_local $size
+   global.get $NP
+   local.get $size
    i32.sub
-   set_global $NP
+   global.set $NP
   
 
 
@@ -45,25 +45,25 @@
    (param $n i32)
    block
      loop
-       get_local $n
+       local.get $n
        i32.eqz
        br_if 1
-       get_local $n
+       local.get $n
        i32.const 1
        i32.sub
-       set_local $n
-       get_local $dest
-       get_local $src
+       local.set $n
+       local.get $dest
+       local.get $src
        i32.load
        i32.store
-       get_local $dest
+       local.get $dest
        i32.const 4
        i32.add
-       set_local $dest
-       get_local $src
+       local.set $dest
+       local.get $src
        i32.const 4
        i32.add
-       set_local $src
+       local.set $src
        br 0
      end
    end

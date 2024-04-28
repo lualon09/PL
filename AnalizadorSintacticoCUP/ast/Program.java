@@ -87,7 +87,7 @@ public class Program extends ASTNode {
 
     public void generateCode() throws GCodingException {
         try{
-            code = new PrintWriter(new FileWriter("code/examples/1.wat")); //ya le cambiaremos el nombre
+            code = new PrintWriter(new FileWriter("code/1.wat")); //ya le cambiaremos el nombre
             FileReader prelude = new FileReader("code/prelude.wat");
             prelude.transferTo(code);
             prelude.close();
