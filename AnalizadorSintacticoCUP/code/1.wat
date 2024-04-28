@@ -69,7 +69,7 @@
  i32.const 1
  i32.store
  ;;end generating code for declaration
- ;;generating code for assignation
+ ;;generating code for assignation assign:AVar(x)=SUM(AVar(x),(INT:1))
  i32.const 0
  local.get $localsStart
  i32.add
@@ -83,7 +83,7 @@
  i32.const 1
  i32.add
  i32.store
- ;;generating code for assignation
+ ;;generating code for assignation assign:AVar(x)=SUB(AVar(x),(INT:1))
  i32.const 0
  local.get $localsStart
  i32.add
@@ -107,14 +107,14 @@
  i32.const 1
  call $copyn
  ;;end generating code for declaration
- ;;generating code for assignation
+ ;;generating code for assignation assign:AVar(y)=(INT:0)
  i32.const 4
  local.get $localsStart
  i32.add
  ;;generating code for EConst
  i32.const 0
  i32.store
- ;;generating code for assignation
+ ;;generating code for assignation assign:AVar(y)=(INT:1)
  i32.const 4
  local.get $localsStart
  i32.add
@@ -130,12 +130,12 @@
  call $show
  ;;generating code for declaration
  ;;end generating code for declaration
- ;;generating code for assignation
+ ;;generating code for assignation assign:AVar(array)=[(INT:1)]
  i32.const 8
  local.get $localsStart
  i32.add
  i32.store
- ;;generating code for assignation
+ ;;generating code for assignation assign:AArray (AVar(array)[(INT:0)])=(INT:2)
  ;;generating code for index of array(INT:0)
  ;;generating code for EConst
  i32.const 0
@@ -152,12 +152,12 @@
  i32.store
  ;;generating code for declaration
  ;;end generating code for declaration
- ;;generating code for assignation
+ ;;generating code for assignation assign:AVar(array1)=[(INT:1)]
  i32.const 12
  local.get $localsStart
  i32.add
  i32.store
- ;;generating code for assignation
+ ;;generating code for assignation assign:AVar(array)=AVar(array1)
  i32.const 12
  local.get $localsStart
  i32.add
@@ -177,7 +177,7 @@
  global.get $NP
  i32.store
  ;;end generating code for declaration
- ;;generating code for assignation
+ ;;generating code for assignation assign:APointer(*AVar(puntero))=[(INT:1)]
  ;;generating code for APointer AVar(puntero)
  ;;generating code for declaration
  i32.const 24
@@ -189,7 +189,7 @@
  i32.store
  ;;end generating code for declaration
  i32.store
- ;;generating code for assignation
+ ;;generating code for assignation assign:AArray (AVar(array2)[(INT:0)])=AVar(puntero)
  i32.const 24
  local.get $localsStart
  i32.add

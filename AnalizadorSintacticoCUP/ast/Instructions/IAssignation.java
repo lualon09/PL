@@ -56,7 +56,7 @@ public class IAssignation extends I{
     }
 
     public void generateCode() throws GCodingException {
-        Program.getCode().println(" ;;generating code for assignation");
+        Program.getCode().println(" ;;generating code for assignation " + toString());
         if(exp.kindExp().equals(KindE.ACCESS) && !((A) exp).kindA().equals(KindA.ADDRESS)){
             exp.calculateAddress(); //es un acceso
             access.calculateAddress();
