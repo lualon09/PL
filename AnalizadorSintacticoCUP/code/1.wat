@@ -84,6 +84,7 @@
  i32.const 1
  i32.add
  i32.store
+ ;;end generating code for assignation assign:AVar(x)=SUM(AVar(x),(INT:1))
  ;;generating code for assignation assign:AVar(x)=SUB(AVar(x),(INT:1))
  i32.const 0
  local.get $localsStart
@@ -99,6 +100,7 @@
  i32.const 1
  i32.sub
  i32.store
+ ;;end generating code for assignation assign:AVar(x)=SUB(AVar(x),(INT:1))
  ;;generating code for declaration dec:y(type:INT)=AVar(x)
  i32.const 0
  local.get $localsStart
@@ -116,6 +118,7 @@
  ;;generating code for EConst
  i32.const 0
  i32.store
+ ;;end generating code for assignation assign:AVar(y)=(INT:0)
  ;;generating code for assignation assign:AVar(y)=(INT:1)
  i32.const 4
  local.get $localsStart
@@ -123,6 +126,7 @@
  ;;generating code for EConst
  i32.const 1
  i32.store
+ ;;end generating code for assignation assign:AVar(y)=(INT:1)
  ;; generating code for IShow
  ;;generating code for access
  i32.const 0
@@ -142,6 +146,7 @@
  ;;generating code for EConst
  i32.const 1
  i32.store
+ ;;end generating code for assignation assign:AVar(array)=[(INT:1)]
  ;;generating code for assignation assign:AArray (AVar(array)[(INT:0)])=(INT:2)
  ;;generating code for index of array(INT:0)
  ;;generating code for EConst
@@ -157,6 +162,7 @@
  ;;generating code for EConst
  i32.const 2
  i32.store
+ ;;end generating code for assignation assign:AArray (AVar(array)[(INT:0)])=(INT:2)
  ;;generating code for declaration dec:array1(type:List<INT>[(INT:1)])
  ;;end generating code for declaration
  ;;generating code for assignation assign:AVar(array1)=[(INT:1)]
@@ -168,6 +174,7 @@
  ;;generating code for EConst
  i32.const 1
  i32.store
+ ;;end generating code for assignation assign:AVar(array1)=[(INT:1)]
  ;;generating code for assignation assign:AVar(array)=AVar(array1)
  i32.const 12
  local.get $localsStart
@@ -177,6 +184,7 @@
  i32.add
  i32.const 1
  call $copyn
+ ;;end generating code for assignation assign:AVar(array)=AVar(array1)
  ;;generating code for declaration dec:array2(type:List<List<INT>[(INT:1)]*>[(INT:2)])
  ;;end generating code for declaration
  ;;generating code for declaration dec:puntero(type:List<INT>[(INT:1)]*)=new List<INT>[(INT:1)]
@@ -204,6 +212,7 @@
  ;;generating code for EConst
  i32.const 1
  i32.store
+ ;;end generating code for assignation assign:APointer(*AVar(puntero))=[(INT:1)]
  ;;generating code for assignation assign:AArray (AVar(array2)[(INT:0)])=AVar(puntero)
  i32.const 24
  local.get $localsStart
@@ -221,6 +230,7 @@
  ;;end of generating code for access to array
  i32.const 1
  call $copyn
+ ;;end generating code for assignation assign:AArray (AVar(array2)[(INT:0)])=AVar(puntero)
  ;;generating code for declaration dec:aux(type:List<INT>[(INT:1)])=APointer(*AArray (AVar(array2)[(INT:0)]))
  ;;generating code for APointer AArray (AVar(array2)[(INT:0)])
  ;;generating code for declaration dec:array2(type:List<List<INT>[(INT:1)]*>[(INT:2)])

@@ -80,5 +80,6 @@ public class IAssignation extends I{
             exp.generateCode(); //que 
             Program.getCode().println(" i32.store"); //guardamos
         }
+        Program.getCode().println(" ;;end generating code for assignation " + toString());
     }
 }
