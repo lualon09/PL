@@ -15,7 +15,6 @@ import ast.Program;
 public class DefinitionList {
 
     private List<IDeclaration> variables;
-    private List<DFunction> functions;
     private List<DStruct> structs;
     private List<DTypedef> typedefs;
     private List<DConst> consts;
@@ -23,7 +22,6 @@ public class DefinitionList {
     
     public DefinitionList(){
         variables = new ArrayList<IDeclaration>(); //variables globales
-        functions = new ArrayList<DFunction>();
         structs = new ArrayList<DStruct>();
         typedefs = new ArrayList<DTypedef>();
         consts = new ArrayList<DConst>();
@@ -39,7 +37,6 @@ public class DefinitionList {
         addNode(d);
     }
     public void addFunc(DFunction f){
-        // functions.add(0, f);
         addNode(f);
     }
     public void addStruct(DStruct s){
@@ -59,21 +56,6 @@ public class DefinitionList {
         for(ASTNode a: tree){
             s.append(a.toString() + ", "); //añadir para que para el ultimo no salga??
         }
-        // if(!variables.isEmpty()){
-        //     s.append("Global variables" + variables.toString() + " ");
-        // }
-        // if (!consts.isEmpty()){
-        //     s.append("Consts" + consts.toString()+ " ");
-        // }
-        // if (!typedefs.isEmpty()){
-        //     s.append("Typedefs" + typedefs.toString()+ " ");
-        // }
-        // if (!structs.isEmpty()){
-        //     s.append("Structs" + structs.toString()+ " ");
-        // }
-        // if (!functions.isEmpty()){
-        //     s.append("Functions" + functions.toString()+ " ");
-        // }
         return s.toString();
     }
 
@@ -81,42 +63,12 @@ public class DefinitionList {
         for(ASTNode a: tree){
             a.bind();
         }
-        // for(IDeclaration var: variables){ //vinculamos las variables globales
-        //     var.bind();
-        // }
-        // for(DConst c: consts){ //vinculamos las constantes
-        //     c.bind();
-        // }
-        // for(DTypedef t: typedefs){ //vinculamos los typedefs
-        //     t.bind();
-        // }
-        // for(DStruct s: structs){ //vinculamos los structs
-        //     s.bind();
-        // }
-        // for(DFunction f: functions){ //vinculamos las funciones
-        //     f.bind();
-        // }
     }
 
     public void type() throws TypingException {
         for(ASTNode a: tree){
             a.type();
         }
-        // for(IDeclaration var: variables){ //chequeamos tipos las variables globales
-        //     var.type();
-        // }
-        // for(DConst c: consts){ //chequeamos las constantes
-        //     c.type();
-        // }
-        // for(DTypedef t: typedefs){ //chequeamos los typedefs
-        //     t.type();
-        // }
-        // for(DStruct s: structs){ //chequeamos los structs
-        //     s.type();
-        // }
-        // for(DFunction f: functions){ //chequeamos las funciones
-        //     f.type();
-        // }
     }
 
     public void generateCodeGlobal() throws GCodingException {

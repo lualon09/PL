@@ -29,8 +29,8 @@
  drop
  call $freeStack
 )
- ;; generating code of function suma
-(func $suma
+ ;; generating code of function main
+(func $main
  (result i32)
  (local $temp i32)
  (local $localsStart i32)
@@ -44,42 +44,7 @@
  i32.const 4
  i32.add
  local.set $localsStart
- ;; generating code for IReturn
- ;;generating code for exp ebinSUM(AVar(a),AVar(b))
- ;;generating code for access
- ;; loading parama
- i32.const 0
- local.get $localsStart
- i32.add
- i32.load
- ;;end generating code for access
- ;;generating code for access
- ;; loading paramb
- i32.const 4
- local.get $localsStart
- i32.add
- i32.load
- ;;end generating code for access
- i32.add
- call $freeStack
- return
-)
- ;; generating code of function main
-(func $main
- (result i32)
- (local $temp i32)
- (local $localsStart i32)
- i32.const 20
- call $reserveStack
- local.set $temp
- global.get $MP
- local.get $temp
- i32.store
- global.get $MP
- i32.const 4
- i32.add
- local.set $localsStart
- ;;generating code for declaration dec:a(type:INT)=(INT:3)
+ ;;generating code for declaration dec:x(type:INT)=(INT:3)
  i32.const 0
  local.get $localsStart
  i32.add
@@ -87,81 +52,89 @@
  i32.const 3
  i32.store
  ;;end generating code for declaration
- ;;generating code for declaration dec:b(type:INT)=(INT:4)
+ ;;generating code for declaration dec:resultado(type:INT)
+ ;;end generating code for declaration
+ block $break
+ block
+ block
+ block
+ block
  i32.const 4
  local.get $localsStart
  i32.add
+ ;;generating code for exp ebinLESS(AVar(x),(INT:2))
+ ;;generating code for access
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
  ;;generating code for EConst
- i32.const 4
+ i32.const 2
+ i32.lt_s
+ i32.eqz
+ br_if 0 
+ ;;generating code for EConst
+ i32.const 0
  i32.store
- ;;end generating code for declaration
- ;;generating code for declaration dec:c(type:INT)=(INT:3)
- i32.const 8
+ br $break
+ end
+ i32.const 4
+ local.get $localsStart
+ i32.add
+ ;;generating code for exp ebinEQUAL(AVar(x),(INT:1))
+ ;;generating code for access
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ ;;generating code for EConst
+ i32.const 1
+ i32.eq
+ i32.eqz
+ br_if 0 
+ ;;generating code for EConst
+ i32.const 1
+ i32.store
+ br $break
+ end
+ i32.const 4
+ local.get $localsStart
+ i32.add
+ ;;generating code for exp ebinEQUAL(AVar(x),(INT:2))
+ ;;generating code for access
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ ;;generating code for EConst
+ i32.const 2
+ i32.eq
+ i32.eqz
+ br_if 0 
+ ;;generating code for EConst
+ i32.const 2
+ i32.store
+ br $break
+ end
+ i32.const 4
  local.get $localsStart
  i32.add
  ;;generating code for EConst
  i32.const 3
  i32.store
- ;;end generating code for declaration
+ br $break
+ end
+ end
  ;; generating code for IShow
- ;;generating code for exp ebinSUM(call:suma([AVar(a), AVar(b)]),call:suma([AVar(b), AVar(c)]))
- global.get $SP
- i32.const 4
- i32.add
- local.set $temp
-;; Treating the argument AVar(a)
- i32.const 0
- local.get $temp
- i32.add
- ;;generating code for access
- i32.const 0
- local.get $localsStart
- i32.add
- i32.load
- ;;end generating code for access
- i32.store
-;; Treating the argument AVar(b)
- i32.const 4
- local.get $temp
- i32.add
  ;;generating code for access
  i32.const 4
  local.get $localsStart
  i32.add
  i32.load
  ;;end generating code for access
- i32.store
- ;; end copying arguments
- call $suma
- global.get $SP
- i32.const 4
- i32.add
- local.set $temp
-;; Treating the argument AVar(b)
- i32.const 0
- local.get $temp
- i32.add
- ;;generating code for access
- i32.const 4
- local.get $localsStart
- i32.add
- i32.load
- ;;end generating code for access
- i32.store
-;; Treating the argument AVar(c)
- i32.const 4
- local.get $temp
- i32.add
- ;;generating code for access
- i32.const 8
- local.get $localsStart
- i32.add
- i32.load
- ;;end generating code for access
- i32.store
- ;; end copying arguments
- call $suma
- i32.add
  call $show
  ;; generating code for IReturn
  ;;generating code for EConst

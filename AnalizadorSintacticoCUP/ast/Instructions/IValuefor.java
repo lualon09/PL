@@ -6,6 +6,7 @@ import ast.Program;
 import ast.Expressions.Accesses.A;
 import exc.*;
 import ast.Types.*;
+import ast.Definitions.DTypedef;
 
 public class IValuefor extends IBlock {
     private A var;
@@ -125,4 +126,6 @@ public class IValuefor extends IBlock {
     public int maxMemory(){
         return 0; //no se permiten declaraciones
     }
+
+    public void typedef(List<DTypedef> typedefs){}
 }
