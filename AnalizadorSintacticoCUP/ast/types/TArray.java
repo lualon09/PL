@@ -32,6 +32,12 @@ public class TArray extends T{
 
     @Override
     public boolean equals(Object t){
+        System.out.println(kind().toString() + (((T) t).kind()).toString());
+        System.out.println(kind().equals(((T) t).kind()));
+        System.out.println(((TArray) t).getSizeArray().toString() + " " + this.size.toString());
+        System.out.println(((TArray) t).getSizeArray().equals(this.size));
+        System.out.println(((T) t).getT().toString() + (this.getT()).toString());
+        System.out.println(((T) t).getT().equals(this.getT()));
         return kind().equals(((T) t).kind()) && ((TArray) t).getSizeArray().equals(this.size) && ((T) t).getT().equals(this.getT());
     }
 

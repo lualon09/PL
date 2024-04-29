@@ -1,0 +1,49 @@
+// Función para imprimir una matriz
+imprimirMatriz(matriz:&List<List<Int>[3]>[3]) -> Void{
+    for (Int i = 0; i < 3; i = i + 1) {
+        for(Int j = 0; j < 3; j = j + 1){
+            show(matriz[i][j]);
+        }
+    }
+    return;
+}
+
+// Función para multiplicar dos matrices
+productoMatrices(matriz1:&List<List<Int>[3]>[3], matriz2:&List<List<Int>[3]>[3]) -> List<List<Int>[3]>[3]{
+    Int filasMatriz1 = 3;
+    Int columnasMatriz1 = 3;
+    Int columnasMatriz2 = 3;
+
+    // Inicializar la matriz resultado con todos los elementos en 0
+    List<List<Int>[3]>[3] resultado;
+
+    for (Int i = 0; i < filasMatriz1; i = i + 1) {
+        for (Int j = 0; j < columnasMatriz2; j = j + 1) {
+            for (Int k = 0; k < columnasMatriz1; k = k + 1) {
+                resultado[i][j] += matriz1[i][k] * matriz2[k][j];
+            }
+        }
+    }
+
+    return resultado;
+}
+
+main() -> Int {
+    List<List<Int>[3]>[3] matriz1 = {{1, 2, 1},
+                                    {0, 1, 0}, {1,0,1}};
+
+    List<List<Int>[3]>[3] matriz2 = {{2,4,0}, {1,3,0}, {0,1,1}};
+
+    // Imprimir las matrices originales
+    imprimirMatriz(matriz1);
+
+    imprimirMatriz(matriz2);
+
+    // Calcular el producto de las matrices
+    List<List<Int>[3]>[3] resultado = productoMatrices(matriz1, matriz2);
+
+    // Imprimir el resultado
+    imprimirMatriz(resultado);
+
+    return 0;
+}

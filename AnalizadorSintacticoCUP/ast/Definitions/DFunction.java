@@ -84,7 +84,8 @@ public class DFunction extends D {
         for(I i: body){
             i.type();
         }
-        // returnType.type(); deberiamos de ponerlo por si acaso devuelve algo de tipo struct?
+        // esto no sabemos si va aqui
+        returnType.type(); //deberiamos de ponerlo por si acaso devuelve algo de tipo struct?
     }
 
     public List<Parameter> getParameters(){
