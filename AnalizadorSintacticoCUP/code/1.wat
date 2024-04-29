@@ -68,15 +68,6 @@
  i32.store
  ;;end generating code for assignation assign:AVar(res)=(INT:1)
  else
- ;; generating code for IShow
- ;;generating code for access
- ;; loading paramn
- i32.const 0
- local.get $localsStart
- i32.add
- i32.load
- ;;end generating code for access
- call $show
  ;;generating code for assignation assign:AVar(res)=SUM(call:calculaFibonacci([SUB(AVar(n),(INT:1))]),call:calculaFibonacci([SUB(AVar(n),(INT:2))]))
  i32.const 4
  local.get $localsStart
@@ -130,14 +121,6 @@
  i32.store
  ;;end generating code for assignation assign:AVar(res)=SUM(call:calculaFibonacci([SUB(AVar(n),(INT:1))]),call:calculaFibonacci([SUB(AVar(n),(INT:2))]))
  end
- ;; generating code for IShow
- ;;generating code for access
- i32.const 4
- local.get $localsStart
- i32.add
- i32.load
- ;;end generating code for access
- call $show
  ;; generating code for IReturn
  ;;generating code for access
  i32.const 4
@@ -164,12 +147,12 @@
  i32.const 4
  i32.add
  local.set $localsStart
- ;;generating code for declaration dec:n(type:INT)=(INT:5)
+ ;;generating code for declaration dec:n(type:INT)=(INT:4)
  i32.const 0
  local.get $localsStart
  i32.add
  ;;generating code for EConst
- i32.const 5
+ i32.const 4
  i32.store
  ;;end generating code for declaration
  ;;generating code for declaration dec:sol(type:INT)=call:calculaFibonacci([AVar(n)])
@@ -230,8 +213,6 @@
 
 (func $freeStack (type $_sig_void)
    global.get $MP
-   i32.load
-   i32.load offset=4
    global.set $SP
    global.get $MP
    i32.load

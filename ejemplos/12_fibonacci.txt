@@ -6,17 +6,15 @@ calculaFibonacci(n: Int) -> Int{
 	if (n <= 1) {
 		res = 1;
 	} else {
-		show(n);
 		res = calculaFibonacci(n - 1) + calculaFibonacci(n - 2);
 	}
-	show(res);
 	return res;
 }
 
 
 main() -> Int{
 
-    Int n = 5;
+    Int n = 4;
 
     Int sol = calculaFibonacci(n);
 

@@ -30,6 +30,7 @@ public class Parameter extends IDeclaration {
         Program.getCode().println(" ;; loading param" + name);
         super.calculateAddress(); //calculamos la direccion
         if(isRef()){
+            Program.getCode().println(" ;; parameter is by reference"); 
             Program.getCode().println(" i32.load"); //si es por referencia es la direccion de lo que haya en donde el parametro. es el valor como tal
         }
     }

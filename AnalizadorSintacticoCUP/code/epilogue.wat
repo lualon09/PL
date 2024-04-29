@@ -18,8 +18,6 @@
 
 (func $freeStack (type $_sig_void)
    global.get $MP
-   i32.load
-   i32.load offset=4
    global.set $SP
    global.get $MP
    i32.load
