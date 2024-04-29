@@ -1,13 +1,4 @@
-* si hacemos array1 = array2, ¿debería de fallar? y array1 = {1,2,3}???
 * binding del alias. TODO DEL TYPEDEF
-* permitimos que se igualen dos structs tanto en declaracion como en asignacion
 * los switch ????? en generateCode
-* EN EL VALUEFOR NOS FALTA HACER LA ASIGNACION
 * permitimos que haya punteros con new Int y sin new Int
-* hay que hacer algo con las declaraciones que no se les iguala a nada??
-* foto pablo
-* antes de hacer un call a una funcion hay que hacer algo con los SP, MP, etc??
-* nos falla el repeat
-* el valor por referencia
-* fibonnacii??
 * añadir suma de punteros
