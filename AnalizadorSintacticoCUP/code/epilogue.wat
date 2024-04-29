@@ -66,4 +66,8 @@
      end
    end
 )
+(export "memory" (memory 0))
+(export "init" (func $preMain))
 )
+
+

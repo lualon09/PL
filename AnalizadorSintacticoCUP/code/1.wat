@@ -6,7 +6,7 @@
 (type $_sig_void (func ))
 (import "runtime" "exceptionHandler" (func $exception (type $_sig_i32)))
 (import "runtime" "print" (func $show (type $_sig_i32)))
-(import "runtime" "read" (func $read (type $_sig_ri32)))
+(import "runtime" "scan" (func $read (type $_sig_ri32)))
 (memory 2000)
 (global $SP (mut i32) (i32.const 0)) ;; start of stack
 (global $MP (mut i32) (i32.const 0)) ;; mark pointer
@@ -148,4 +148,8 @@
      end
    end
 )
+(export "memory" (memory 0))
+(export "init" (func $preMain))
 )
+
+
