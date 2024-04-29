@@ -31,6 +31,6 @@ main() -> Int{
 
     tInfo * nombrePuntero; //puntero de un array
     (*nombrePuntero).campo = 0;
-
+    
     return 0;
 } 
