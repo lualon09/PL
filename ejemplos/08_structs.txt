@@ -14,12 +14,29 @@ Struct tInfo2{
     Int x = 0;
 };
 
+pruebaStr(v1:Int, v2:Int, v3:Bool) -> tInfo{
+    tInfo2 str;
+    str.var1 = v1;
+    str.var2 = v2;
+    str.varB1 = v3;
+    str.varB2 = False;
+    
+    return str;
+}
+
+muestraStruct(str:tInfo) -> Void {
+    show(str.var1);
+    show(str.var2);
+    show(str.varB1);
+    show(str.varB2);
+}
+
 main() -> Int{
 
     Int var3 = 3;
     Bool varB4 = True;
 
-    tInfo str;
+    /*tInfo str;
     str.var1 = var3;                //asignamos la var3 al campo var1 de la variable de tipo Struct
     str.varB1 = not varB4;          //asignamos not varB4 al campo varB1 de la variable de tipo Struct
 
@@ -30,7 +47,14 @@ main() -> Int{
     str3.hola.var1 = 0;
 
     List<tInfo>[1] listastructs;
-    listastructs[0].var1 = 1;
+    listastructs[0].var1 = 1;*/
+
+    tInfo solucion = pruebaStr(var3,var3,varB4);
+    muestraStruct(solucion);
+
+    tInfo sol2;
+    sol2 = pruebaStr(1,1,True);
+    muestraStruct(sol2);    
 
     return 0;
 }    
