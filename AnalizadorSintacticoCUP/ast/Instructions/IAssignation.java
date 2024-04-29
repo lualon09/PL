@@ -75,7 +75,7 @@ public class IAssignation extends I{
             Program.getCode().println(" i32.const " + exp.getType().getSize()/4);
             Program.getCode().println(" call $copyn"); //copiamos de una direccion a otra de tamaño exp.getType().getSize()/4
         }
-        else if(exp.kindExp().equals(KindE.FUNCTION) && access.getType().kind().equals(KindT.ARRAY)){
+        else if(exp.kindExp().equals(KindE.FUNCTION) && (access.getType().kind().equals(KindT.ARRAY) || access.getType().kind().equals(KindT.STRUCT))){
             exp.generateCode(); //que 
             access.calculateAddress(); //donde 
             Program.getCode().println(" i32.const " + exp.getType().getSize()/4);
