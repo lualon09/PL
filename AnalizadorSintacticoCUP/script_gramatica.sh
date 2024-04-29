@@ -5,7 +5,7 @@ java -cp ../../cup.jar java_cup.Main -parser AnalizadorSintacticoTiny -symbols C
 cd ..   
 javac -cp "../cup.jar:." */*.java
 
-java -cp "../cup.jar:." asint.Main  ../ejemplos/12_fibonacci.txt
+java -cp "../cup.jar:." asint.Main  ../ejemplos/07_arrays.txt
 
 cd code
 wat2wasm 1.wat

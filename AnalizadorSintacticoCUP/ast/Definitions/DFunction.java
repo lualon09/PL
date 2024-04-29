@@ -147,7 +147,6 @@ public class DFunction extends D {
         for(I i: body){
             i.generateCode();
         }
-        Program.endFunction();
         // como obligamos a que siempre haya return y sea la ultima instruccion, no hace falta hacer nada
         Program.getCode().println(")");
     }   

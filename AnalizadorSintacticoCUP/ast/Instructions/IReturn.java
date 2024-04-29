@@ -81,7 +81,7 @@ public class IReturn extends I{
                 expReturn.generateCode();
             }
         }
-        Program.getCode().println(" call $freeStack");
+        Program.endFunction();
         Program.getCode().println(" return");
     }
 }
