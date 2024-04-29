@@ -38,9 +38,6 @@ public class EConst extends E{ //Expresion Constante
     }
     @Override
     public boolean equals(Object e){
-        System.out.println(((E) e).kindExp().toString() + (KindE.CONST).toString());
-        System.out.println(type.toString() + ((EConst) e).getType().toString());
-        System.out.println(value.toString() + (((EConst) e).getValue()).toString());
         return ((E) e).kindExp().equals(KindE.CONST) && type.equals(((EConst) e).getType()) && value.equals(((EConst) e).getValue());
     }
 

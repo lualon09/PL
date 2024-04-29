@@ -10,3 +10,4 @@
 * nos falla el repeat
 * el valor por referencia
 * fibonnacii??
+* añadir suma de punteros
