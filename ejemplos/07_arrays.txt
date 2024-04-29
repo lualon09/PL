@@ -6,14 +6,19 @@ main() -> Int{
     // Declaración de arrays simples.
     
     
-    List<Int>[5] array1 = {1,4,6,7,8};                
+    List<Int>[5] array1 = {1,4,6,7,8};
+    for(Int i = 0; i < 5; i = i + 1){
+        show(array1[i]);
+    }   
+    List<Int>[5] array2 = array1;  
+    for(Int i = 0; i < 5; i = i + 1){
+        show(array2[i]);
+    }
+
     List<Int>[7] array3;  //inicializamos el array mediante un bucle
     for(Int i = 0; i < 7; i = i + 1){
         array3[i] = i;
         show(array3[i]);
-    }
-    for(Int i = 0; i < 5; i = i + 1){
-        show(array1[i]);
     }
     
     Int var1 = array1[2] + array3[4];           //var1 = 6 + 4 = 10

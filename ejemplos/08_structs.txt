@@ -15,7 +15,7 @@ Struct tInfo2{
 };
 
 pruebaStr(v1:Int, v2:Int, v3:Bool) -> tInfo{
-    tInfo2 str;
+    tInfo str;
     str.var1 = v1;
     str.var2 = v2;
     str.varB1 = v3;
@@ -52,11 +52,15 @@ main() -> Int{
     listastructs[0].var1 = 1;*/
 
     tInfo solucion = pruebaStr(var3,var3,varB4);
-    muestraStruct(solucion);
+    // muestraStruct(solucion);
 
     tInfo sol2;
     sol2 = pruebaStr(1,1,True);
-    muestraStruct(sol2);    
+    // muestraStruct(sol2);    
+
+    muestraStruct(solucion);
+    sol2 = solucion;
+    muestraStruct(sol2);
 
     return 0;
 }    
