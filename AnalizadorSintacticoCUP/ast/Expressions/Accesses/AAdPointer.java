@@ -22,7 +22,6 @@ public class AAdPointer extends A{
     public void bind() throws BindingException{
         access.bind(); 
         this.bindNode = access.bindNode;
-        System.out.println("Mi binding node es" + this.bindNode.toString());
     }
 
     public void type() throws TypingException {

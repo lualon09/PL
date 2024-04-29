@@ -1,4 +1,3 @@
 * binding del alias. TODO DEL TYPEDEF
 * los switch ????? en generateCode
 * permitimos que haya punteros con new Int y sin new Int
-* probar el read
