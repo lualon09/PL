@@ -723,9 +723,7 @@
  i32.const 1
  i32.store
  ;;end generating code for declaration
- ;;generating code for declaration dec:resultado(type:List<List<INT>[(INT:3)]>[(INT:3)])
- ;;end generating code for declaration
- ;;generating code for assignation assign:AVar(resultado)=call:productoMatrices([AVar(matriz1), AVar(matriz2)])
+ ;;generating code for declaration dec:resultado(type:List<List<INT>[(INT:3)]>[(INT:3)])=call:productoMatrices([AVar(matriz1), AVar(matriz2)])
  global.get $SP
  i32.const 4
  i32.add
@@ -769,7 +767,7 @@
  i32.add
  i32.const 9
  call $copyn
- ;;end generating code for assignation assign:AVar(resultado)=call:productoMatrices([AVar(matriz1), AVar(matriz2)])
+ ;;end generating code for declaration
  global.get $SP
  i32.const 4
  i32.add

@@ -40,8 +40,7 @@ main() -> Int {
     // imprimirMatriz(matriz2);
 
     // Calcular el producto de las matrices
-    List<List<Int>[3]>[3] resultado;
-    resultado = productoMatrices(matriz1, matriz2);
+    List<List<Int>[3]>[3] resultado = productoMatrices(matriz1, matriz2);
 
     // List<List<Int>[3]>[3] resultado = {{1,2,3}, {4,5,6}, {7,8,9}};
     // productoMatrices(matriz1, matriz2);
