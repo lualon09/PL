@@ -3,6 +3,7 @@ package ast.Instructions;
 import java.util.List;
 
 import ast.Program;
+import ast.Definitions.DTypedef;
 import ast.Expressions.E;
 import exc.*;
 import ast.Types.*;
@@ -163,5 +164,14 @@ public class ISwitch extends IBlock {
             }
         }
         return max;
+    }
+
+    public void typedef(List<DTypedef> typedefs){
+        for(SwitchInstruction s: cases){
+            s.typedef(typedefs);
+        }
+        if(defaultCase != null){
+            defaultCase.typedef(typedefs);
+        }
     }
 }

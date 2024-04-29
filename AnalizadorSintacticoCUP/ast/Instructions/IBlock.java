@@ -5,6 +5,7 @@ import ast.ASTNode;
 import exc.BindingException;
 import exc.GCodingException;
 import exc.TypingException;
+import ast.Definitions.DTypedef;
 
 public class IBlock extends I{
     protected List<I> inst;
@@ -70,6 +71,12 @@ public class IBlock extends I{
             max = c;
         }
         return max;
+    }
+
+    public void typedef(List<DTypedef> typedefs){
+        for (I i : inst) {
+            i.typedef(typedefs); //generamos codigo de todas las instrucciones
+        }
     }
 
 

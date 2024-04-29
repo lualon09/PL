@@ -7,6 +7,7 @@ import ast.Expressions.*;
 import exc.BindingException;
 import exc.GCodingException;
 import exc.TypingException;
+import ast.Definitions.DTypedef;
 
 public class SwitchInstruction extends IBlock{
 
@@ -91,6 +92,10 @@ public class SwitchInstruction extends IBlock{
 
     public void setNextLabel(int label){
         nextLabel = label;
+    }
+
+    public void typedef(List<DTypedef> typedefs){
+        super.typedef(typedefs);
     }
 
     

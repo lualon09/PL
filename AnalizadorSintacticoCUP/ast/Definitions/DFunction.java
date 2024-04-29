@@ -150,5 +150,18 @@ public class DFunction extends D {
         }
         // como obligamos a que siempre haya return y sea la ultima instruccion, no hace falta hacer nada
         Program.getCode().println(")");
-    }   
+    }
+
+    public void typedef(List<DTypedef> typedefs){
+        for(Parameter p: params){
+            p.typedef(typedefs);
+        }
+        for(I i: body){
+            i.typedef(typedefs);
+        }
+        DTypedef found = findTypedef(typedefs, returnType);
+        if(found != null) { //la constante es de tipo typedef
+            returnType = found.getType();
+        }
+    }
 }

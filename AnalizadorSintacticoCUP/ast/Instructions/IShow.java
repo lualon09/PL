@@ -40,6 +40,5 @@ public class IShow extends I{
         Program.getCode().println(" ;; generating code for IShow");
         exp.generateCode();
         Program.getCode().println(" call $show");
-        // como se imprimen en web assembly los booleanos????????
     }
 }

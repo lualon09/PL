@@ -9,6 +9,9 @@ import ast.Types.T;
 import exc.BindingException;
 import exc.GCodingException;
 import exc.TypingException;
+
+import java.util.List;
+
 import ast.Program;
 
 public class DConst extends D{
@@ -70,6 +73,13 @@ public class DConst extends D{
             this.calculateAddress();
             exp.generateCode();
             Program.getCode().println(" i32.store");
+        }
+    }
+
+    public void typedef(List<DTypedef> typedefs){
+        DTypedef found = findTypedef(typedefs, type);
+        if(found != null) { //la constante es de tipo typedef
+            type = found.getType();
         }
     }
 

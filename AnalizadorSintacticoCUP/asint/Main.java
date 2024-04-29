@@ -16,8 +16,15 @@ public class Main {
 	 AnalizadorSintacticoTiny asint = new AnalizadorSintacticoTiny(alex);
 	 try {
 	    Program p = (Program) asint.parse().value;
-		System.out.println("TREE AST");
+		System.out.println("*********************TREE AST*********************");
 		System.out.println(p);
+
+		// simplicamos los typedefs
+		p.typedef(null);
+
+		System.out.println("*********************TREE AST DESPUES DEL ALIAS*********************");
+		System.out.println(p);
+
 		try{
 			System.out.println("*********************BINDING********************");
 			p.bind(); // vinculacion
@@ -28,11 +35,11 @@ public class Main {
 				System.out.println("Correct typing!");
 
 				System.out.println("*********************DELTAS********************");
-				p.setDelta(0); //tipado
+				p.setDelta(0); //deltas
 				System.out.println("Correct deltas!");
 				try{
 					System.out.println("*********************GENERATING CODE********************");
-					p.generateCode();
+					p.generateCode(); //generacion de codigo
 					System.out.println("Correct generated code!");
 				}catch(GCodingException ce){
 					ce.printStackTrace();

@@ -2,6 +2,7 @@ package ast.Instructions;
 
 import ast.ASTNode;
 import ast.Program;
+import ast.Definitions.DTypedef;
 import ast.Expressions.E;
 import ast.Types.T;
 import exc.BindingException;
@@ -11,6 +12,8 @@ import ast.Types.TBasics;
 import ast.Types.KindT;
 import ast.Expressions.KindE;
 import java.util.ArrayList;
+import java.util.List;
+
 import ast.Expressions.EArray;
 import ast.Expressions.Accesses.KindA;
 import ast.Expressions.Accesses.A;
@@ -158,6 +161,13 @@ public class IDeclaration extends I{
             }
         }
         Program.getCode().println(" ;;end generating code for declaration");
+    }
+
+    public void typedef(List<DTypedef> typedefs){
+        DTypedef found = findTypedef(typedefs, type);
+        if(found != null) { //la constante es de tipo typedef
+            type = found.getType();
+        }
     }
 
     // public void generateCode() throws GCodingException {

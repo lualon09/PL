@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.FileWriter;
 import java.io.FileReader;
+import java.util.List;
+import ast.Definitions.DTypedef;
 import exc.*;
 
 
@@ -121,5 +123,9 @@ public class Program extends ASTNode {
 
     public static PrintWriter getCode(){
         return code;
+    }
+
+    public void typedef(List<DTypedef> typedefs){
+        definitionList.typedefs();
     }
 }

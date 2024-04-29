@@ -5,6 +5,7 @@ import ast.Expressions.E;
 import ast.Types.KindT;
 import ast.ASTNode;
 import ast.Program;
+import ast.Definitions.DTypedef;
 import exc.BindingException;
 import exc.TypingException;
 import exc.GCodingException;
@@ -86,5 +87,11 @@ public class IFor extends IBlock {
         int c = dec.getSize();
         return c + super.maxMemory();
     }
+
+    public void typedef(List<DTypedef> typedefs){
+        dec.typedef(typedefs);
+        super.typedef(typedefs);
+    }
+
 }
 

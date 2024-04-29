@@ -1,7 +1,9 @@
 package ast.Expressions;
+import java.util.List;
+
 import ast.ASTNode;
 import ast.NodeKind;
-
+import ast.Definitions.DTypedef;
 import exc.*;
 
 public abstract class E extends ASTNode {
@@ -15,6 +17,7 @@ public abstract class E extends ASTNode {
     public void bind() throws BindingException {}
     public void type() throws TypingException {}
     public void generateCode() throws GCodingException{}
+    public void typedef(List<DTypedef> typedefs){}
 
     public int setDelta(int delta){
         return delta;

@@ -3,6 +3,7 @@ package ast.Instructions;
 import java.util.List;
 
 import ast.Program;
+import ast.Definitions.DTypedef;
 import ast.Expressions.E;
 import ast.Expressions.KindE;
 import ast.Expressions.Accesses.AVariable;
@@ -63,6 +64,11 @@ public class IRepeat extends IBlock {
     public int maxMemory(){
         return forAux.maxMemory();
     }
+
+    public void typedef(List<DTypedef> typedefs){
+        forAux.typedef(typedefs);
+    }
+    
 
 
 }

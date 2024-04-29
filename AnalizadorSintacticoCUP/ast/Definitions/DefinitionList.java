@@ -47,7 +47,7 @@ public class DefinitionList {
         addNode(s);
     }
     public void addTypedef(DTypedef t){
-        // typedefs.add(0, t);
+        typedefs.add(0, t);
         addNode(t);
     }
     public void addConst(DConst c){
@@ -57,7 +57,7 @@ public class DefinitionList {
     public String toString(){
         StringBuilder s = new StringBuilder();
         for(ASTNode a: tree){
-            s.append(a.toString());
+            s.append(a.toString() + ", "); //añadir para que para el ultimo no salga??
         }
         // if(!variables.isEmpty()){
         //     s.append("Global variables" + variables.toString() + " ");
@@ -165,5 +165,28 @@ public class DefinitionList {
             aux = a.setDelta(aux);
         }
         return aux;
+    }
+
+    public void simplifyTypedefs(int p){
+        for(int j = p - 1; j >= 0; j--){
+            if(typedefs.get(p).getTypedefType().toString().equals(typedefs.get(j).getName())){ //Es igual a uno de los alias definido anteriormente
+                simplifyTypedefs(j);
+                typedefs.get(p).setType(typedefs.get(j).getType()); //le damos el mismo tipo que al anterior
+                return ;
+            }
+        }
+        //si estamos aqui es porque es un tipo basico. no otro alias.
+        typedefs.get(p).setType(typedefs.get(p).getTypedefType());
+    }
+
+    public void typedefs(){
+        for(int i = typedefs.size()-1; i >= 0; i--){
+            simplifyTypedefs(i); //simplificamos todos los typedefs
+        }
+
+        for(int i = 0; i < tree.size(); i++){
+            tree.get(i).typedef(typedefs);
+        }
+
     }
 }

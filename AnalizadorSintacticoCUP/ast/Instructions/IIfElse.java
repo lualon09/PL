@@ -1,6 +1,7 @@
 package ast.Instructions;
 
 import ast.Program;
+import ast.Definitions.DTypedef;
 import ast.Expressions.*;
 import ast.Types.KindT;
 
@@ -95,6 +96,13 @@ public class IIfElse extends IBlock{
             }
         }
         return maxIf;
+    }
+
+    public void typedef(List<DTypedef> typedefs){
+        super.typedef(typedefs);
+        if(inst_else != null){
+            else_block.typedef(typedefs);
+        }
     }
     
 }

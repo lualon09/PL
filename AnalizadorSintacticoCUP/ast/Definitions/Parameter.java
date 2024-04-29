@@ -1,5 +1,7 @@
 package ast.Definitions;
 
+import java.util.List;
+
 import ast.Program;
 import ast.Instructions.IDeclaration;
 import ast.Types.T;
@@ -42,5 +44,9 @@ public class Parameter extends IDeclaration {
             return delta + 4;
         }
         return super.setDelta(delta);
+    }
+
+    public void typedef(List<DTypedef> typedefs){
+        super.typedef(typedefs);
     }
 }

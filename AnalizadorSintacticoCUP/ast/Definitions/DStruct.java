@@ -57,4 +57,10 @@ public class DStruct extends D{
         }
         return delta;
     }
+
+    public void typedef(List<DTypedef> typedefs){
+        for(IDeclaration i: fields){
+            i.typedef(typedefs);
+        }
+    }
 }

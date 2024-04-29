@@ -8,6 +8,7 @@ import ast.Expressions.E;
 import ast.ASTNode;
 import ast.Program;
 import ast.Types.*;
+import ast.Definitions.DTypedef;
 
 public class IWhile extends IBlock {
     private E cond;
@@ -54,5 +55,9 @@ public class IWhile extends IBlock {
         Program.getCode().println(" br 0");
         Program.getCode().println(" end"); //loop
         Program.getCode().println(" end"); //block
+    }
+
+    public void typedef(List<DTypedef> typedefs){
+        super.typedef(typedefs);
     }
 }

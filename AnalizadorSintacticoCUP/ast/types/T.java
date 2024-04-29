@@ -1,9 +1,13 @@
 package ast.Types;
 
 import ast.NodeKind;
+import ast.Definitions.DTypedef;
 import exc.BindingException;
 import exc.GCodingException;
 import exc.TypingException;
+
+import java.util.List;
+
 import ast.ASTNode;
 
 public abstract class T extends ASTNode {
@@ -29,6 +33,7 @@ public abstract class T extends ASTNode {
     public void bind() throws BindingException{}
     public void type() throws TypingException{}
     public void generateCode() throws GCodingException {}
+    public void typedef(List<DTypedef> typedefs){}
     public int setDelta(int delta) { return delta; }
 
     @Override
