@@ -5,7 +5,7 @@ main() -> Int{
     
     // Declaración de arrays simples.
     
-    /*
+    
     List<Int>[5] array1 = {1,4,6,7,8};                
     List<Int>[7] array3;  //inicializamos el array mediante un bucle
     for(Int i = 0; i < 7; i = i + 1){
@@ -21,7 +21,7 @@ main() -> Int{
     Bool varB1 = arrayB1[1];                    //varB1 = False
     show(varB1); 
 
-    */ 
+    
     List<List<Int>[2]>[2] arrayMult = {{1,2},{2,3}};                        //declaración de un array de 2 dimensiones
     for(Int i = 0; i < 2; i = i + 1){ //usamos dos bucles anidados
         for(Int j = 0; j < 2; j = j + 1){
@@ -29,7 +29,7 @@ main() -> Int{
         }
     }
     
-    /*
+
     List<List<List<Int>[5]>[6]>[7] arrayMult3; //declaración de un array de 3 dimensiones
     for(Int i = 0; i < 7; i = i + 1){ //usamos tres bucles anidados
         for(Int j = 0; j < 6; j = j + 1){
@@ -39,6 +39,6 @@ main() -> Int{
             }
         }
     }
-    */
+    
     return 0;
 }      

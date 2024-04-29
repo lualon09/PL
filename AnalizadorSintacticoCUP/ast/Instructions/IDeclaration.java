@@ -115,18 +115,28 @@ public class IDeclaration extends I{
         }
     }
 
+    public void generateCodeArray(E expr, int pos) throws GCodingException{
+        if(expr.kindExp().equals(KindE.ARRAY)){
+            ArrayList<E> expArray = ((EArray) expr).getExpArray();
+            for(int i = 0; i< expArray.size(); i++){
+                generateCodeArray(expArray.get(i), pos + i*expArray.get(i).getType().getSize());
+            }
+        }
+        else{
+            calculateAddress();
+            Program.getCode().println(" i32.const " + pos);
+            Program.getCode().println(" i32.add");
+            expr.generateCode();
+            Program.getCode().println(" i32.store");
+        }
+    }
     public void generateCode() throws GCodingException {
         Program.getCode().println(" ;;generating code for declaration " + toString());
         if(exp != null){
             if(exp.kindExp().equals(KindE.ARRAY)){
                 ArrayList<E> expArray = ((EArray) exp).getExpArray();
                 for(int i = 0; i< expArray.size(); i++){
-                    calculateAddress(); //calculamos direccion de comienzo del array
-                    Program.getCode().println(" i32.const " + i*expArray.get(i).getType().getSize());
-                    Program.getCode().println(" i32.add");
-                    Program.getCode().println(";; voy a geerar el codigo del acceso al array " + expArray.get(i).toString());
-                    expArray.get(i).generateCode();
-                    Program.getCode().println(" i32.store");
+                    generateCodeArray(expArray.get(i), i*expArray.get(i).getType().getSize());
                 }
             }
             else if(exp.kindExp().equals(KindE.ACCESS) && !((A) exp).kindA().equals(KindA.ADDRESS)){
@@ -143,4 +153,33 @@ public class IDeclaration extends I{
         }
         Program.getCode().println(" ;;end generating code for declaration");
     }
+
+    // public void generateCode() throws GCodingException {
+    //     Program.getCode().println(" ;;generating code for declaration " + toString());
+    //     if(exp != null){
+    //         if(exp.kindExp().equals(KindE.ARRAY)){
+    //             ArrayList<E> expArray = ((EArray) exp).getExpArray();
+    //             for(int i = 0; i< expArray.size(); i++){
+    //                 calculateAddress(); //calculamos direccion de comienzo del array
+    //                 Program.getCode().println(" i32.const " + i*expArray.get(i).getType().getSize());
+    //                 Program.getCode().println(" i32.add");
+    //                 Program.getCode().println(";; voy a geerar el codigo del acceso al array " + expArray.get(i).toString());
+    //                 expArray.get(i).generateCode();
+    //                 Program.getCode().println(" i32.store");
+    //             }
+    //         }
+    //         else if(exp.kindExp().equals(KindE.ACCESS) && !((A) exp).kindA().equals(KindA.ADDRESS)){
+    //             exp.calculateAddress(); //es un acceso
+    //             this.calculateAddress();
+    //             Program.getCode().println(" i32.const " + exp.getType().getSize()/4);
+    //             Program.getCode().println(" call $copyn"); //copiamos de una direccion a otra de tamaño exp.getType().getSize()/4
+    //         }
+    //         else{
+    //             this.calculateAddress();
+    //             exp.generateCode();
+    //             Program.getCode().println(" i32.store");
+    //         }
+    //     }
+    //     Program.getCode().println(" ;;end generating code for declaration");
+    // }
 }
