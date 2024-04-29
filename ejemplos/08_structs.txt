@@ -29,6 +29,8 @@ muestraStruct(str:tInfo) -> Void {
     show(str.var2);
     show(str.varB1);
     show(str.varB2);
+    
+    return;
 }
 
 main() -> Int{
