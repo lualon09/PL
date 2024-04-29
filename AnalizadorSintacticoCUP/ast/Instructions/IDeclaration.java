@@ -124,6 +124,7 @@ public class IDeclaration extends I{
                     calculateAddress(); //calculamos direccion de comienzo del array
                     Program.getCode().println(" i32.const " + i*expArray.get(i).getType().getSize());
                     Program.getCode().println(" i32.add");
+                    Program.getCode().println(";; voy a geerar el codigo del acceso al array " + expArray.get(i).toString());
                     expArray.get(i).generateCode();
                     Program.getCode().println(" i32.store");
                 }

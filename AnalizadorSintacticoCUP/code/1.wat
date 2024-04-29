@@ -50,12 +50,14 @@
  i32.add
  i32.const 0
  i32.add
+;; voy a geerar el codigo del acceso al array [(INT:1), (INT:2)]
  i32.store
  i32.const 0
  local.get $localsStart
  i32.add
  i32.const 8
  i32.add
+;; voy a geerar el codigo del acceso al array [(INT:2), (INT:3)]
  i32.store
  ;;end generating code for declaration
  ;;generating code for IFor
