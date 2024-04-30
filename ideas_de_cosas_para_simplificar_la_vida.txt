@@ -1,2 +1,3 @@
 * binding del alias. TODO DEL TYPEDEF
 * los switch ????? en generateCode
+* comprobar que los switch van en orden

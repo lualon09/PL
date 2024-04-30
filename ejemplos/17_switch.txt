@@ -14,9 +14,22 @@ main() -> Int {
         break;
    }
 
+   show(resultado); //resultado debe valer 2.
+
+   switch(x) {
+    case 1: Int i = 3; resultado = 0;
+        break;
+    case 4: resultado = 1; Int y = 4; Int x = 4;
+        break;
+    case 10: resultado = 2;
+        break;
+    default: resultado = 10;
+        break;
+   }
+
    Int z = 0;
 
-   show(resultado); //resultado debe valer 2.
+   show(resultado); //resultado debe valer 10.
 
    return 0;
 }
