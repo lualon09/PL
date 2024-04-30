@@ -34,7 +34,7 @@
  (result i32)
  (local $temp i32)
  (local $localsStart i32)
- i32.const 28
+ i32.const 32
  call $reserveStack
  local.set $temp
  global.get $MP
@@ -195,9 +195,9 @@
  ;;end generating code for assignation assign:AVar(resultado)=(INT:0)
  br 10
  end
- br 9
- end
  br 8
+ end
+ br 7
  end
  ;;generating code for case 1
  ;;generating code for assignation assign:AVar(resultado)=(INT:1)
@@ -226,8 +226,6 @@
  ;;end generating code for declaration
  br 7
  end
- br 6
- end
  br 5
  end
  br 4
@@ -235,6 +233,8 @@
  br 3
  end
  br 2
+ end
+ br 1
  end
  ;;generating code for case 2
  ;;generating code for assignation assign:AVar(resultado)=(INT:2)
@@ -265,6 +265,218 @@
  i32.const 0
  i32.store
  ;;end generating code for declaration
+ ;; generating code for IShow
+ ;;generating code for access
+ i32.const 8
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ call $show
+ ;;generating code for switch
+ block
+ block
+ block
+ block
+ block
+ block
+ block
+ ;;generating code for exp ebinSUM(AVar(x),(INT:2))
+ ;;generating code for access
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ ;;generating code for EConst
+ i32.const 2
+ i32.add
+ i32.const 0
+ i32.sub
+ br_table 0 1 2 3 4 5 
+ end
+ ;;generating code for case 0
+ ;;generating code for declaration dec:i(type:INT)=(INT:3)
+ i32.const 16
+ local.get $localsStart
+ i32.add
+ ;;generating code for EConst
+ i32.const 3
+ i32.store
+ ;;end generating code for declaration
+ ;;generating code for assignation assign:AVar(resultado)=(INT:0)
+ i32.const 8
+ local.get $localsStart
+ i32.add
+ ;;generating code for EConst
+ i32.const 0
+ i32.store
+ ;;end generating code for assignation assign:AVar(resultado)=(INT:0)
+ br 5
+ end
+ ;;generating code for case 1
+ ;;generating code for assignation assign:AVar(resultado)=(INT:1)
+ i32.const 8
+ local.get $localsStart
+ i32.add
+ ;;generating code for EConst
+ i32.const 1
+ i32.store
+ ;;end generating code for assignation assign:AVar(resultado)=(INT:1)
+ ;;generating code for declaration dec:y(type:INT)=(INT:4)
+ i32.const 16
+ local.get $localsStart
+ i32.add
+ ;;generating code for EConst
+ i32.const 4
+ i32.store
+ ;;end generating code for declaration
+ ;;generating code for declaration dec:x(type:INT)=(INT:4)
+ i32.const 20
+ local.get $localsStart
+ i32.add
+ ;;generating code for EConst
+ i32.const 4
+ i32.store
+ ;;end generating code for declaration
+ br 4
+ end
+ br 2
+ end
+ br 1
+ end
+ ;;generating code for case 2
+ ;;generating code for assignation assign:AVar(resultado)=(INT:3)
+ i32.const 8
+ local.get $localsStart
+ i32.add
+ ;;generating code for EConst
+ i32.const 3
+ i32.store
+ ;;end generating code for assignation assign:AVar(resultado)=(INT:3)
+ br 1
+ end
+ ;;generating code for assignation assign:AVar(resultado)=(INT:10)
+ i32.const 8
+ local.get $localsStart
+ i32.add
+ ;;generating code for EConst
+ i32.const 10
+ i32.store
+ ;;end generating code for assignation assign:AVar(resultado)=(INT:10)
+ end
+ ;;end generating code for switch
+ ;; generating code for IShow
+ ;;generating code for access
+ i32.const 8
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ call $show
+ ;;generating code for assignation assign:AVar(x)=(INT:-1)
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ ;;generating code for EConst
+ i32.const -1
+ i32.store
+ ;;end generating code for assignation assign:AVar(x)=(INT:-1)
+ ;;generating code for switch
+ block
+ block
+ block
+ block
+ block
+ block
+ block
+ block
+ block
+ ;;generating code for access
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ i32.const -2
+ i32.sub
+ br_table 0 1 2 3 4 5 6 7 
+ end
+ ;;generating code for case 0
+ ;;generating code for declaration dec:i(type:INT)=(INT:3)
+ i32.const 16
+ local.get $localsStart
+ i32.add
+ ;;generating code for EConst
+ i32.const 3
+ i32.store
+ ;;end generating code for declaration
+ ;;generating code for assignation assign:AVar(resultado)=(INT:0)
+ i32.const 8
+ local.get $localsStart
+ i32.add
+ ;;generating code for EConst
+ i32.const 0
+ i32.store
+ ;;end generating code for assignation assign:AVar(resultado)=(INT:0)
+ br 7
+ end
+ ;;generating code for case 1
+ ;;generating code for assignation assign:AVar(resultado)=(INT:1)
+ i32.const 8
+ local.get $localsStart
+ i32.add
+ ;;generating code for EConst
+ i32.const 1
+ i32.store
+ ;;end generating code for assignation assign:AVar(resultado)=(INT:1)
+ ;;generating code for declaration dec:y(type:INT)=(INT:4)
+ i32.const 16
+ local.get $localsStart
+ i32.add
+ ;;generating code for EConst
+ i32.const 4
+ i32.store
+ ;;end generating code for declaration
+ ;;generating code for declaration dec:x(type:INT)=(INT:4)
+ i32.const 20
+ local.get $localsStart
+ i32.add
+ ;;generating code for EConst
+ i32.const 4
+ i32.store
+ ;;end generating code for declaration
+ br 6
+ end
+ br 4
+ end
+ br 3
+ end
+ br 2
+ end
+ br 1
+ end
+ ;;generating code for case 2
+ ;;generating code for assignation assign:AVar(resultado)=(INT:3)
+ i32.const 8
+ local.get $localsStart
+ i32.add
+ ;;generating code for EConst
+ i32.const 3
+ i32.store
+ ;;end generating code for assignation assign:AVar(resultado)=(INT:3)
+ br 1
+ end
+ ;;generating code for assignation assign:AVar(resultado)=(INT:10)
+ i32.const 8
+ local.get $localsStart
+ i32.add
+ ;;generating code for EConst
+ i32.const 10
+ i32.store
+ ;;end generating code for assignation assign:AVar(resultado)=(INT:10)
+ end
+ ;;end generating code for switch
  ;; generating code for IShow
  ;;generating code for access
  i32.const 8

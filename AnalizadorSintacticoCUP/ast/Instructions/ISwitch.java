@@ -195,9 +195,14 @@ public class ISwitch extends IBlock {
                 Program.getCode().println(" ;;generating code for case " + j);
                 s.generateCode();
                 j++;
+                Program.getCode().println(" br " + (range-i));
+                Program.getCode().println(" end");
             }
-            Program.getCode().println(" br " + (range-i));
-            Program.getCode().println(" end");
+            else{
+                Program.getCode().println(" br " + (range - i - 1));
+                Program.getCode().println(" end");
+            }
+           
         }
 
         if(defaultCase != null){
