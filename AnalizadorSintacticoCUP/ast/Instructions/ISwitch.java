@@ -64,6 +64,17 @@ public class ISwitch extends IBlock {
         if(defaultCase != null){
             defaultCase.type();
         }
+        // comprobamos que los casos del switch van en orden creciente
+        int aux;
+        if(cases.size() > 0){
+            aux = cases.get(0).getCaseInt();
+            for(int i = 1; i < cases.size(); i++){
+                if(cases.get(i).getCaseInt() <= aux){
+                    throw new TypingException("Error. Switch cases must be in ascendant order.");
+                }
+                aux = cases.get(i).getCaseInt();
+            }
+        }
     }
 
     public int setDelta(int delta) {
@@ -76,86 +87,6 @@ public class ISwitch extends IBlock {
         }
         return delta;
     }
-
-    // public void generateCode() throws GCodingException {
-    //     // cond.generateCode();
-    //     // Program.getCode().println(" local.set $temp"); //guardamos la condicion en variable temporal
-    //     // for(int i = 0; i < cases.size(); i++){
-    //     //     Program.getCode().println(" block $label" + i);
-    //     //     if(i < cases.size() - 1){
-    //     //         int next = i +1;
-    //     //         cases.get(i).setNextLabel("$label" + next);
-    //     //     }
-    //     //     else{
-    //     //         cases.get(i).setNextLabel("$default");
-    //     //     }
-    //     //     cases.get(i).generateCode();
-    //     //     Program.getCode().println(" end");
-    //     //     Program.getCode().println(" local.set $temp"); //mantenemos el valor en la pila
-    //     // }
-    //     // if(defaultCase != null){
-    //     //     Program.getCode().println(" block $default"); 
-    //     //     defaultCase.generateCode();
-    //     //     Program.getCode().println(" end");
-    //     //     Program.getCode().println(" local.set $temp"); //??
-    //     // }
-    //     // Program.getCode().println(" block $break"); //etiqueta para el break
-    //     // Program.getCode().println(" end");
-
-    //     // cond.generateCode();
-    //     // Program.getCode().println(" local.set $temp"); //guardamos la condicion en variable temporal
-
-    //     // Program.getCode().println(" block");
-    //     // for(int i = 0; i < cases.size(); i++){
-    //     //     Program.getCode().println(" block");
-    //     //     if(i > 0){
-    //     //         int next = cases.size() - i;
-    //     //         cases.get(i).setNextLabel(next);
-    //     //     }
-    //     //     else{
-    //     //         cases.get(i).setNextLabel(0);
-    //     //     }
-    //     // }
-    //     // Program.getCode().println(" block");
-    //     // Program.getCode().pritnln(" local.set $temp");
-    //     // Program.getCode().print(" br_table ");
-    //     // for(int i = 0; i < cases.size(); i++){
-    //     //     Program.getCode().print(i + " ");
-    //     // }
-    //     // Program.getCode().println("");
-
-    //     // for(int i = 0; i < cases.size(); i++){
-    //     //     cases.get(i).generateCode();
-    //     //     Program.getCode().println(" local.set $temp");
-            
-    //     // }
-
-    //     // if(defaultCase != null){
-    //     //     defaultCase.generateCode();
-    //     // }
-    //     // Program.getCode().println(" end");
-        
-    //     cond.generateCode();
-    //     Program.getCode().println(" local.set $temp");
-    //     Program.getCode().println(" block $break"); 
-    //     for(int i = 0; i < cases.size(); i++){
-    //         Program.getCode().println(" block");
-    //     }
-    //     if(defaultCase != null){
-    //         Program.getCode().println(" block");
-    //     }
-    //     for(int i = 0; i < cases.size(); i++){
-    //         cases.get(i).generateCode();
-    //         Program.getCode().println(" local.set $temp");
-    //     }
-
-    //     if(defaultCase != null){
-    //         defaultCase.generateCode();
-    //         Program.getCode().println(" local.set $temp");
-    //     }
-    //     Program.getCode().println(" end");
-
-    // }
 
     public void calculateMinMax() {
         if (cases.size() > 0) {
@@ -213,61 +144,6 @@ public class ISwitch extends IBlock {
 
         Program.getCode().println(" ;;end generating code for switch");
     }  
-
-    // public void generateCode() throws GCodingException {
-
-    //     /// Rango de los casos que no son otherwise
-    //     int rango = 0;
-    //     if (cases.size() > 0) {
-    //         rango = cases.size(); //en realidad no es esto
-    //     }
-
-    //     /// El primer block es para poder salir del match
-    //     /// El ultimo block es para poner br_table y la expresion a evaluar por dentro
-    //     for (int i = 0; i < rango + 2; ++i) {
-    //         Program.getCode().println(" block");
-    //     }
-
-    //     cond.generateCode();
-       
-    //     Program.getCode().println(" i32.const" + min);
-    //     Program.getCode().println(" i32.sub");
-
-    //     Program.getCode().print(" br_table ");
-    //     for(int i = 0; i <= rango; i++){
-    //         Program.getCode().print(i + " ");
-    //     }
-    //     Program.getCode().println("");
-    //     Program.getCode().println(" end");
-
-    //     out.br_table(rango);
-    //     out.comment("Fin bloque n + 2");
-    //     out.end();
-
-    //     /// Ahora el caso min -> 0, el caso min + 1 -> 1, etc
-    //     int j = 0; /// Indice por el que vamos en la lista de nonOtherwiseCases
-    //     for (int i = 0; i < rango; ++i) {
-    //         out.comment(String.format("Caso %d de br_table", i));
-
-    //         Case c = nonOtherwiseCases.get(j);
-    //         if (c.exprValue == i + min) {
-    //             out.comment(String.format("Caso %d de match", c.exprValue));
-    //             c.compileAsInstruction(out);
-    //             ++j;
-    //         }
-
-    //         out.br(rango - i);
-    //         out.end();
-    //     }
-
-    //     if (otherwiseCase != null) {
-    //         out.comment("Caso otherwise");
-    //         otherwiseCase.compileAsInstruction(out);
-    //     }
-
-    //     out.end();
-    // }
-
 
     public int maxMemory(){
         int max = 0;
