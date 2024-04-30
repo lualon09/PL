@@ -38,7 +38,7 @@ main() -> Int{
     Int var3 = 3;
     Bool varB4 = True;
 
-    /*tInfo str;
+    tInfo str;
     str.var1 = var3;                //asignamos la var3 al campo var1 de la variable de tipo Struct
     str.varB1 = not varB4;          //asignamos not varB4 al campo varB1 de la variable de tipo Struct
 
@@ -49,7 +49,7 @@ main() -> Int{
     str3.hola.var1 = 0;
 
     List<tInfo>[1] listastructs;
-    listastructs[0].var1 = 1;*/
+    listastructs[0].var1 = 1;
 
     tInfo solucion = pruebaStr(var3,var3,varB4);
     // muestraStruct(solucion);

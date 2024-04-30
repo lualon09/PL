@@ -19,7 +19,6 @@ public class Program extends ASTNode {
 
     private static DefinitionList definitionList;
     private static SymbolsTableStack stack;
-    private static ArrayList<String> typeList = new ArrayList<String>(); //yo creo que esto puede sobrar
     private static PrintWriter code;
 
 
@@ -111,10 +110,6 @@ public class Program extends ASTNode {
         }catch(IOException e){
             e.printStackTrace();
         }
-    }
-
-    public static void addType(String t) {
-        typeList.add(t);
     }
 
     public static DefinitionList getDefinitionList() {

@@ -23,20 +23,3 @@ main() -> Int {
 
     return 0;
 }
-
-/*
-main() -> Int{
-    Int numero = 1;
-
-    show(numero);
-
-    // Paso por valor
-    incrementarPorValor(numero);
-    show(numero); //el número debe mantenerse igual
-
-    // Paso por referencia
-    incrementarPorReferencia(numero);
-    show(numero);//el número debe cambiar (haberse incrementado)
-
-    return 0;
-} */

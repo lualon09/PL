@@ -13,7 +13,6 @@ public class DTypedef extends D {
     public DTypedef(String name, T t){
         this.name = name;
         this.t = t;
-        Program.addType(name);
     }
 
     @Override

@@ -17,7 +17,6 @@ public class DStruct extends D{
     public DStruct(String name, List<IDeclaration> fields){
         this.name = name;
         this.fields = fields;
-        Program.addType(name);
     }
     @Override
     public KindD kindD() {
