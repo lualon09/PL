@@ -6,9 +6,7 @@ import exc.GCodingException;
 
 public class ERead extends E{
 
-    public ERead(){
-        // this.type = new BasicTypes(KindTypes.INT); //solo leemos enteros
-    }
+    public ERead(){}
 
     @Override
     public KindE kindExp() {

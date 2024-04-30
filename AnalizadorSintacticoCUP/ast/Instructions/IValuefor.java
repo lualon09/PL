@@ -96,31 +96,6 @@ public class IValuefor extends IBlock {
             Program.getCode().println(" end");
         }
         Program.getCode().println(" end");
-
-        // for(int i = 0; i < cases.size(); i++){
-        //     Program.getCode().println(" block $label" + i);
-        //     if(i < cases.size() - 1){
-        //         int next = i +1;
-        //         cases.get(i).setNextLabel("$label" + next);
-        //     }
-        //     else{
-        //         cases.get(i).setNextLabel("$default");
-        //     }
-        //     var.calculateAddress();
-        //     cases.get(i).generateCode();
-        //     Program.getCode().println(" i32.store");
-        //     Program.getCode().println(" end");
-        // }
-        // if(defaultCase != null){
-        //     Program.getCode().println(" block $default");
-        //     var.calculateAddress();
-        //     defaultCase.generateCode();
-        //     Program.getCode().println(" i32.store");
-        //     Program.getCode().println(" end");
-        // }
-
-        // Program.getCode().println(" block $break"); //etiqueta para el break
-        // Program.getCode().println(" end");
     }
 
     public int maxMemory(){

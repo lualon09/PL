@@ -35,7 +35,7 @@ public class IFor extends IBlock {
         
         dec.bind();
         cond.bind();
-        assign.bind(); //esto va aqui??
+        assign.bind(); 
 
         super.bind();
 
@@ -58,7 +58,6 @@ public class IFor extends IBlock {
             throw new TypingException("The assignation of the for is not an Int.");
         }
         super.type();
-        // el setType de algo??
     }
 
     public int setDelta(int delta) {

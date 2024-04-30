@@ -155,6 +155,61 @@ public class ISwitch extends IBlock {
 
     }
 
+    public void generateCode() throws GCodingException {
+
+        /// Rango de los casos que no son otherwise
+        int rango = 0;
+        if (cases.size() > 0) {
+            rango = cases.size(); //en realidad no es esto
+        }
+
+        /// El primer block es para poder salir del match
+        /// El ultimo block es para poner br_table y la expresion a evaluar por dentro
+        for (int i = 0; i < rango + 2; ++i) {
+            Program.getCode().println(" block");
+        }
+
+        cond.generateCode();
+       
+        Program.getCode().println(" i32.const" + min);
+        Program.getCode().println(" i32.sub");
+
+        Program.getCode().print(" br_table ");
+        for(int i = 0; i <= rango; i++){
+            Program.getCode().print(i + " ");
+        }
+        Program.getCode().println("");
+        Program.getCode().println(" end");
+
+        out.br_table(rango);
+        out.comment("Fin bloque n + 2");
+        out.end();
+
+        /// Ahora el caso min -> 0, el caso min + 1 -> 1, etc
+        int j = 0; /// Indice por el que vamos en la lista de nonOtherwiseCases
+        for (int i = 0; i < rango; ++i) {
+            out.comment(String.format("Caso %d de br_table", i));
+
+            Case c = nonOtherwiseCases.get(j);
+            if (c.exprValue == i + min) {
+                out.comment(String.format("Caso %d de match", c.exprValue));
+                c.compileAsInstruction(out);
+                ++j;
+            }
+
+            out.br(rango - i);
+            out.end();
+        }
+
+        if (otherwiseCase != null) {
+            out.comment("Caso otherwise");
+            otherwiseCase.compileAsInstruction(out);
+        }
+
+        out.end();
+    }
+    }
+
     public int maxMemory(){
         int max = 0;
         for(SwitchInstruction s: cases){

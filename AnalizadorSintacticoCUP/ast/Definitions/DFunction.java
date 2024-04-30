@@ -56,10 +56,7 @@ public class DFunction extends D {
         for(Parameter p: params){
             p.bind();
         }
-        returnType.bind(); //deberiamos de ponerlo por si acaso devuelve algo de tipo struct?
-        // if(returnType.kind().equals(KindT.ARRAY) || returnType.kind().equals(KindT.STRUCT)){ AHORA SI QUE LO PERMITIMOS
-        //     throw new BindingException("Function " + name + " does not return INT, BOOL or VOID.");
-        // }
+        returnType.bind(); 
         for(I i: body){
             if(i.kind().equals(KindI.RETURN)){
                 ((IReturn) i).setFunction(this);
@@ -84,8 +81,7 @@ public class DFunction extends D {
         for(I i: body){
             i.type();
         }
-        // esto no sabemos si va aqui
-        returnType.type(); //deberiamos de ponerlo por si acaso devuelve algo de tipo struct?
+        returnType.type();
     }
 
     public List<Parameter> getParameters(){
@@ -142,7 +138,6 @@ public class DFunction extends D {
         Program.getCode().println("");
         
         Program.preFunction(size);
-        //algo con los parametros??
 
         // generamos codigo de las instrucciones
         for(I i: body){

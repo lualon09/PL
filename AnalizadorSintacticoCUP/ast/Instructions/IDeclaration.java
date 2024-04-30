@@ -58,7 +58,6 @@ public class IDeclaration extends I{
 
         // nos falta asignar a este nodo, como binding node el de la declaracion del struct
         this.bindNode = type.bindNode;
-        //this.bindNode = node;
     }
 
     public T getType(){
@@ -83,9 +82,6 @@ public class IDeclaration extends I{
                     throw new TypingException(exp.toString() + " and " + name + " do not have the same type.");
                 }
             }
-            // if(type.kind().equals(KindT.STRUCT)){
-            //     throw new TypingException("Error. Struct cannot be initialized. Must be field by field.");
-            // }
         }
     }
 
@@ -169,33 +165,4 @@ public class IDeclaration extends I{
             type = found.getType();
         }
     }
-
-    // public void generateCode() throws GCodingException {
-    //     Program.getCode().println(" ;;generating code for declaration " + toString());
-    //     if(exp != null){
-    //         if(exp.kindExp().equals(KindE.ARRAY)){
-    //             ArrayList<E> expArray = ((EArray) exp).getExpArray();
-    //             for(int i = 0; i< expArray.size(); i++){
-    //                 calculateAddress(); //calculamos direccion de comienzo del array
-    //                 Program.getCode().println(" i32.const " + i*expArray.get(i).getType().getSize());
-    //                 Program.getCode().println(" i32.add");
-    //                 Program.getCode().println(";; voy a geerar el codigo del acceso al array " + expArray.get(i).toString());
-    //                 expArray.get(i).generateCode();
-    //                 Program.getCode().println(" i32.store");
-    //             }
-    //         }
-    //         else if(exp.kindExp().equals(KindE.ACCESS) && !((A) exp).kindA().equals(KindA.ADDRESS)){
-    //             exp.calculateAddress(); //es un acceso
-    //             this.calculateAddress();
-    //             Program.getCode().println(" i32.const " + exp.getType().getSize()/4);
-    //             Program.getCode().println(" call $copyn"); //copiamos de una direccion a otra de tamaño exp.getType().getSize()/4
-    //         }
-    //         else{
-    //             this.calculateAddress();
-    //             exp.generateCode();
-    //             Program.getCode().println(" i32.store");
-    //         }
-    //     }
-    //     Program.getCode().println(" ;;end generating code for declaration");
-    // }
 }

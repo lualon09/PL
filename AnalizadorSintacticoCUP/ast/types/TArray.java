@@ -35,7 +35,6 @@ public class TArray extends T{
         return kind().equals(((T) t).kind()) && ((TArray) t).getSizeArray().equals(this.size) && ((T) t).getT().equals(this.getT());
     }
 
-    // eso no tengo claro si va a aqui, pero habría que hacer binding del tipo de arriba
     public void bind() throws BindingException{
         if(getT().kind().equals(KindT.STRUCT)){ //en el caso de que sea struct hacemos binding con el struct
             getT().bind();

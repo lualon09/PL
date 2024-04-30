@@ -22,10 +22,10 @@ public class DefinitionList {
     
     public DefinitionList(){
         variables = new ArrayList<IDeclaration>(); //variables globales
-        structs = new ArrayList<DStruct>();
-        typedefs = new ArrayList<DTypedef>();
-        consts = new ArrayList<DConst>();
-        tree = new ArrayList<ASTNode>();
+        structs = new ArrayList<DStruct>(); //structs
+        typedefs = new ArrayList<DTypedef>(); //typedefs
+        consts = new ArrayList<DConst>(); //constantes
+        tree = new ArrayList<ASTNode>(); //arbol general
     }
 
     public void addNode(ASTNode a){
@@ -135,7 +135,6 @@ public class DefinitionList {
         for(int i = typedefs.size()-1; i >= 0; i--){
             simplifyTypedefs(i); //simplificamos todos los typedefs
         }
-
         for(int i = 0; i < tree.size(); i++){
             tree.get(i).typedef(typedefs);
         }
