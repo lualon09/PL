@@ -1,0 +1,2 @@
+* nos falta comprobar si se chocan en reserve heap
+* ver que pasa si se hace return {1,2,3}
