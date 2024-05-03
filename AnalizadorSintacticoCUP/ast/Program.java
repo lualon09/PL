@@ -113,7 +113,7 @@ public class Program extends ASTNode {
         }
     }
 
-    private void setFileName(String file){
+    public void setFileName(String file){
         fileName = file;
     }
 
