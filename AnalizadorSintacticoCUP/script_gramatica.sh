@@ -7,7 +7,7 @@ javac -cp "../cup.jar:." */*.java
 
 java -cp "../cup.jar:." asint.Main  ../ejemplos/00_basic.txt
 
-cd code
-wat2wasm 1.wat
-node main.js
-cd .. 
+# cd code
+# wat2wasm code.wat
+# node main.js
+# cd .. 

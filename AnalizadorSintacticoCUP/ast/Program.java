@@ -20,6 +20,7 @@ public class Program extends ASTNode {
     private static DefinitionList definitionList;
     private static SymbolsTableStack stack;
     private static PrintWriter code;
+    private String fileName;
 
 
     public Program(DefinitionList list){
@@ -89,7 +90,7 @@ public class Program extends ASTNode {
 
     public void generateCode() throws GCodingException {
         try{
-            code = new PrintWriter(new FileWriter("code/1.wat")); //ya le cambiaremos el nombre
+            code = new PrintWriter(new FileWriter("code/" + fileName)); //ya le cambiaremos el nombre
             FileReader prelude = new FileReader("code/prelude.wat");
             prelude.transferTo(code);
             prelude.close();
@@ -110,6 +111,10 @@ public class Program extends ASTNode {
         }catch(IOException e){
             e.printStackTrace();
         }
+    }
+
+    private void setFileName(String file){
+        fileName = file;
     }
 
     public static DefinitionList getDefinitionList() {

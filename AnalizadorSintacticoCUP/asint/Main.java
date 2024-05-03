@@ -39,6 +39,8 @@ public class Main {
 				System.out.println("Correct deltas!");
 				try{
 					System.out.println("*********************GENERATING CODE********************");
+					String file = args[0].replace(".txt", ".wat").replace("examples", "examplesCode");
+					p.setFileName(file);
 					p.generateCode(); //generacion de codigo
 					System.out.println("Correct generated code!");
 				}catch(GCodingException ce){

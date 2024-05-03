@@ -47,14 +47,19 @@ var importObjects = {
     }};
 
 async function start() {
-    const code = readFileSync("1.wasm");
+    var filename = "prueba.wasm"
+    if (process.argv.length > 2) {
+        filename = process.argv[2];
+    }
+    const code = readFileSync(filename);
     wasmModule = await WebAssembly.compile(code);
     instance = await WebAssembly.instantiate(wasmModule, importObjects);
+    process.exit(0);
 //    await instance.exports.init();
 }
 
 async function run() {
-    // await readInput(2); //que hacemos con esto???
+    // await readInput(2); //esto hay que descomentarlo y poner en el 2 el numero de cosas a leer
     start();
 }
 
