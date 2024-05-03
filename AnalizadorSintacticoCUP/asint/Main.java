@@ -24,7 +24,7 @@ public class Main {
 
 		System.out.println("*********************TREE AST DESPUES DEL ALIAS*********************");
 		System.out.println(p);
-
+		
 		try{
 			System.out.println("*********************BINDING********************");
 			p.bind(); // vinculacion
