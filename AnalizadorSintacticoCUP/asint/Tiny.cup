@@ -71,14 +71,14 @@ non terminal SwitchInstruction DEFAULTEXP;
 non terminal ArrayList<ValueforInstruction> CASEEXPVF;
 non terminal ValueforInstruction DEFAULTEXPVF;
 non terminal ArrayList<DImport> IMPORTLIST;
-non terminal Dimport IMPORTDEC;
+non terminal DImport IMPORTDEC;
 
 
 //------------DECLARATIONes de constantes, funciones, TYPEDEF, structs y la función main-------------- 
 
 //----Programa Principal----
 S ::=  IMPORTLIST:imports DECLARATIONS:declarations
-      {:RESULT = new Program(declarations.addImports(imports));:};
+      {:declarations.addImports(imports); RESULT = new Program(declarations);:};
 
 //----DECLARATION de variables y asignacion--
 
