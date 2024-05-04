@@ -11,53 +11,60 @@ import exc.TypingException;
 
 public class Main {
    public static void main(String[] args) throws Exception {
-     Reader input = new InputStreamReader(new FileInputStream(args[0]));
-	 AnalizadorLexicoTiny alex = new AnalizadorLexicoTiny(input);
-	 AnalizadorSintacticoTiny asint = new AnalizadorSintacticoTiny(alex);
-	 try {
-	    Program p = (Program) asint.parse().value;
-		System.out.println("*********************TREE AST*********************");
-		System.out.println(p);
 
-		// simplicamos los typedefs
-		p.typedef(null);
+		Reader input = new InputStreamReader(new FileInputStream(args[0]));
+		AnalizadorLexicoTiny alex = new AnalizadorLexicoTiny(input);
+		AnalizadorSintacticoTiny asint = new AnalizadorSintacticoTiny(alex);
 
-		System.out.println("*********************TREE AST DESPUES DEL ALIAS*********************");
-		System.out.println(p);
-		
+		try {
+			Program p = (Program) asint.parse().value;
+			System.out.println("*********************TREE AST*********************");
+			System.out.println(p);
+
+			// simplicamos los typedefs
+			p.typedef(null);
+
+			System.out.println("*********************TREE AST DESPUES DEL ALIAS*********************");
+			System.out.println(p);
+		}catch(Exception e){
+			System.out.println("Something went wrong with the parsing...");
+			e.printStackTrace();
+			exit(0);
+		}
+
 		try{
 			System.out.println("*********************BINDING********************");
 			p.bind(); // vinculacion
 			System.out.println("Correct binding!");
-			try{
-				System.out.println("*********************TYPING********************");
-				p.type(); //tipado
-				System.out.println("Correct typing!");
-
-				System.out.println("*********************DELTAS********************");
-				p.setDelta(0); //deltas
-				System.out.println("Correct deltas!");
-				try{
-					System.out.println("*********************GENERATING CODE********************");
-					String file = args[0].replace(".txt", ".wat").replace("examples", "examplesCode");
-					p.setFileName(file);
-					p.generateCode(); //generacion de codigo
-					System.out.println("Correct generated code!");
-				}catch(GCodingException ce){
-					ce.printStackTrace();
-				}
-			}catch(TypingException te){
-				te.printStackTrace();
-			}
 		} catch(BindingException be){
 			be.printStackTrace();
+			exit(0);
 		}
-	}
-	catch(Exception e){
-		System.out.println("Something went wrong with the parsing...");
-		e.printStackTrace();
-	}
+
+		try{
+			System.out.println("*********************TYPING********************");
+			p.type(); //tipado
+			System.out.println("Correct typing!");
+
+			System.out.println("*********************DELTAS********************");
+			p.setDelta(0); //deltas
+			System.out.println("Correct deltas!");
+		}catch(TypingException te){
+			te.printStackTrace();
+			exit(0);
+		}
+
+		try{
+			System.out.println("*********************GENERATING CODE********************");
+			String file = args[0].replace(".txt", ".wat").replace("examples", "examplesCode");
+			p.setFileName(file);
+			p.generateCode(); //generacion de codigo
+			System.out.println("Correct generated code!");
+		}catch(GCodingException ce){
+			ce.printStackTrace();
+			exit(0);
+		}
 		
- }
+ 	}
 }   
    
