@@ -20,6 +20,7 @@ public class DefinitionList {
     private List<DTypedef> typedefs;
     private List<DConst> consts;
     private List<ASTNode> tree;
+    private List<DImport> imports;
     
     public DefinitionList(){
         variables = new ArrayList<IDeclaration>(); //variables globales
@@ -28,6 +29,7 @@ public class DefinitionList {
         consts = new ArrayList<DConst>(); //constantes
         tree = new ArrayList<ASTNode>(); //arbol general
         functions = new ArrayList<DFunction>(); //funciones
+        imports = new ArrayList<DImport>();
     }
 
     public void addNode(ASTNode a){
@@ -178,6 +180,11 @@ public class DefinitionList {
         return consts;
     }
 
+    public List<DImport> getImports(){
+        return imports;
+    }
+
+
     public boolean thereIsMain(){
         for(DFunction f: functions){
             if(f.getName().equals("main")){
@@ -186,4 +193,11 @@ public class DefinitionList {
         }
         return false;
     }
+
+    public void addImports(ArrayList<DImports> imp){
+        for(int i = 0; i < imports.size(); i++){
+            this.imports.add(imp.get(i));
+        }
+    }
+ 
 }

@@ -34,7 +34,7 @@ terminal TYPEINT, TYPEBOOL, VOID,
          AND, OR, NOT, PAP, PCIERRE, CAP, CCIERRE, LLAP, LLCIERRE, FLECHA,
          IGUAL, COMA, PUNTOYCOMA, AMPERSAND, PUNTO, DOSPUNTOS, 
          WHILE, FOR, REPEAT, IF, ELSE, STRUCT, SWITCH, VALUEFOR, CASE, BREAK, DEFAULT,
-         RETURN, SHOW, READ, TYPEDEF, CONST, LIST, NEW;
+         RETURN, SHOW, READ, TYPEDEF, CONST, LIST, NEW, IMPORT;
 
 terminal TokenValue IDEN, ENT, TRUE, FALSE;
 
@@ -70,23 +70,25 @@ non terminal ArrayList<SwitchInstruction> CASEEXP;
 non terminal SwitchInstruction DEFAULTEXP;
 non terminal ArrayList<ValueforInstruction> CASEEXPVF;
 non terminal ValueforInstruction DEFAULTEXPVF;
-non terminal ArrayList<DImports> IMPORTLIST;
-non terminal DImports IMPORT;
+non terminal ArrayList<DImport> IMPORTLIST;
+non terminal Dimport IMPORTDEC;
 
 
 //------------DECLARATIONes de constantes, funciones, TYPEDEF, structs y la función main-------------- 
 
 //----Programa Principal----
 S ::=  IMPORTLIST:imports DECLARATIONS:declarations
-      {:RESULT = new Program(declarations.addImp(imports));:};
+      {:RESULT = new Program(declarations.addImports(imports));:};
 
 //----DECLARATION de variables y asignacion--
 
-IMPORTLIST ::= IMPORT:i IMPORTLIST:listimports
-            {:listimports.add(i); RESULT = listimports;:}
+IMPORTLIST ::= IMPORTDEC:i  IMPORTLIST:listimports
+            {:listimports.add(0, i); RESULT = listimports;:}
             |
-            {:RESULT = new ArrayList<DImports>();:};
+            {:RESULT = new ArrayList<DImport>();:};
 
+IMPORTDEC ::= IMPORT IDEN:val
+            {:RESULT = new DImport(val.lexema);:}
 
 DECLARATIONS ::= DECLARATION:d DECLARATIONS:list
                  {:list.addVar(d); RESULT = list; d.setGlobal();:}
