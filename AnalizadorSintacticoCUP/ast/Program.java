@@ -2,6 +2,7 @@ package ast;
 
 import ast.Definitions.DFunction;
 import ast.Definitions.DefinitionList;
+import ast.Definitions.DImport;
 
 import java.util.ArrayList;
 import java.io.FileInputStream;
@@ -134,14 +135,21 @@ public class Program extends ASTNode {
         definitionList.typedefs();
     }
 
-    public void import(){
+    public void imports() throws ImportException {
         List<DImport> imports = definitionList.getImports();
-        for(int i = 0; i < imports.size(); i++){
-            Reader input = new InputStreamReader(new FileInputStream(imports.get(i).getModuleName()));
-            AnalizadorLexicoTiny alex = new AnalizadorLexicoTiny(input);
-            AnalizadorSintacticoTiny asint = new AnalizadorSintacticoTiny(alex);
-            Program import = (Program) asint.parse().value; //con esto tenemos el nuevo arbol
-            definitionList.addAll(import.getDefinitionList());
-        }   
+        try{
+            for(int i = 0; i < imports.size(); i++){
+                Reader input = new InputStreamReader(new FileInputStream(imports.get(i).getModuleName()));
+                AnalizadorLexicoTiny alex = new AnalizadorLexicoTiny(input);
+                AnalizadorSintacticoTiny asint = new AnalizadorSintacticoTiny(alex);
+                Program import = (Program) asint.parse().value; //con esto tenemos el nuevo arbol del archivo import
+                if(import.getDefinitionList().thereIsMain()){
+                    throw new ImportException("Error. There is a main in import file.");
+                }
+                definitionList.addAll(import.getDefinitionList());
+            }   
+        catch(Exception e){
+            throw new ImportException("Error in import.");
+        }
     }
 }

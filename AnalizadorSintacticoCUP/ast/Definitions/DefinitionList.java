@@ -15,6 +15,7 @@ import ast.Program;
 public class DefinitionList {
 
     private List<IDeclaration> variables;
+    private List<DFunction> functions;
     private List<DStruct> structs;
     private List<DTypedef> typedefs;
     private List<DConst> consts;
@@ -26,6 +27,7 @@ public class DefinitionList {
         typedefs = new ArrayList<DTypedef>(); //typedefs
         consts = new ArrayList<DConst>(); //constantes
         tree = new ArrayList<ASTNode>(); //arbol general
+        functions = new ArrayList<DFunction>(); //funciones
     }
 
     public void addNode(ASTNode a){
@@ -37,6 +39,7 @@ public class DefinitionList {
         addNode(d);
     }
     public void addFunc(DFunction f){
+        functions.add(0,f);
         addNode(f);
     }
     public void addStruct(DStruct s){
@@ -159,7 +162,6 @@ public class DefinitionList {
         }
     }
 
-
     public List<DStruct> getStructs(){
         return structs;
     }
@@ -174,5 +176,14 @@ public class DefinitionList {
     }
     public List<DConst> getConst(){
         return consts;
+    }
+
+    public boolean thereIsMain(){
+        for(DFunction f: functions){
+            if(f.getName().equals("main")){
+                return true;
+            }
+        }
+        return false;
     }
 }

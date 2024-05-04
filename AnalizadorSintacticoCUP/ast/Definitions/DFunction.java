@@ -159,4 +159,8 @@ public class DFunction extends D {
             returnType = found.getType();
         }
     }
+
+    public String getName(){
+        return name;
+    }
 }
