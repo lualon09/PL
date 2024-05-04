@@ -1,0 +1,15 @@
+calculaMedia(arr:List<Int>[5], n:Int) -> Int{
+    Int i = 0;
+    Int suma = 0;
+    Int resultado;
+    if (n > 0) {
+        repeat(n) {
+            suma = suma + arr[i];
+            i = i + 1;
+        }
+        resultado = suma / n;
+    } else {
+        resultado = 0;
+    }
+    return resultado;
+}
