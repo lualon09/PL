@@ -3,13 +3,15 @@ package alex;
 import asint.ClaseLexica;
 
 public class ALexOperations {
-  private AnalizadorLexicoTiny alex;
-  public ALexOperations(AnalizadorLexicoTiny alex) {
-   this.alex = alex;   
-  }
-  public UnidadLexica unidadId() {
-   return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.IDEN,
-                                       alex.lexema()); 
+   private AnalizadorLexicoTiny alex;
+   public ALexOperations(AnalizadorLexicoTiny alex) {
+      this.alex = alex;   
+   }
+   public UnidadLexica unidadImport(){
+      return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.IMPORT); 
+   }
+   public UnidadLexica unidadId() {
+      return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.IDEN,alex.lexema()); 
    } 
    public UnidadLexica unidadTipoInt() {
       return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.TYPEINT); 

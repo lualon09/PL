@@ -29,6 +29,7 @@ import errors.GestionErroresTiny;
   ops = new ALexOperations(this);
 %init}
 
+import = import
 
 Int = Int
 Bool = Bool
@@ -110,6 +111,7 @@ flecha = \->
 
 
 %%
+{import}                  {return ops.}
 {separador}               {}
 {comentario}              {}
 {comentarioLargo}         {}
