@@ -8,11 +8,11 @@ import exc.BindingException;
 import exc.TypingException;
 import exc.GCodingException;
 
-public class DImports extends D {
+public class DImport extends D {
 
     private String name;
 
-    public DImports(String name){
+    public DImport(String name){
         this.name = name;
     }
 
