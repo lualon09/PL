@@ -111,7 +111,6 @@ flecha = \->
 
 
 %%
-{import}                  {return ops.}
 {separador}               {}
 {comentario}              {}
 {comentarioLargo}         {}
@@ -175,6 +174,7 @@ flecha = \->
 {typedef}                 {return ops.unidadTypedef();}
 {new}                     {return ops.unidadNew();}
 {const}                   {return ops.unidadConstante();}
+{import}                  {return ops.unidadImport();}
 
 {identificador}           {return ops.unidadId();}
 [^]                       {errores.errorLexico(fila(),columna(),lexema());}  

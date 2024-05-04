@@ -20,7 +20,6 @@ import asint.AnalizadorSintacticoTiny;
 import ast.Definitions.DTypedef;
 import exc.*;
 
-
 public class Program extends ASTNode {
 
     private static DefinitionList definitionList;
@@ -28,8 +27,7 @@ public class Program extends ASTNode {
     private static PrintWriter code;
     private String fileName;
 
-
-    public Program(DefinitionList list){
+    public Program(DefinitionList list) {
         this.definitionList = list;
         this.stack = new SymbolsTableStack();
     }
@@ -41,14 +39,14 @@ public class Program extends ASTNode {
 
     @Override
     public String toString() {
-       return "program {" + definitionList.toString() + "}";
+        return "program {" + definitionList.toString() + "}";
     }
 
-    public static SymbolsTableStack getTableStack(){
+    public static SymbolsTableStack getTableStack() {
         return stack;
     }
 
-    public void bind() throws BindingException{
+    public void bind() throws BindingException {
         stack.openBlock();
         definitionList.bind();
         stack.closeBlock();
@@ -59,11 +57,11 @@ public class Program extends ASTNode {
     }
 
     @Override
-    public int setDelta(int delta){
+    public int setDelta(int delta) {
         return definitionList.setDelta(delta);
     }
 
-    public static void preFunction(int size){
+    public static void preFunction(int size) {
         code.println(" (local $temp i32)");
         code.println(" (local $localsStart i32)");
         code.println(" i32.const " + size);
@@ -78,14 +76,13 @@ public class Program extends ASTNode {
         code.println(" local.set $localsStart");
     }
 
-    public static void endFunction(){
+    public static void endFunction() {
         code.println(" call $freeStack");
     }
 
-
     public void preMaingenerateCode() throws GCodingException {
         code.println("(func $preMain ");
-        int size = definitionList.getMaxMemoryGlobal(); //cogemos el tamaño de las variables globales y constantes
+        int size = definitionList.getMaxMemoryGlobal(); // cogemos el tamaño de las variables globales y constantes
         preFunction(size + 4);
         definitionList.generateCodeGlobal();
         code.println(" call $main");
@@ -95,8 +92,8 @@ public class Program extends ASTNode {
     }
 
     public void generateCode() throws GCodingException {
-        try{
-            code = new PrintWriter(new FileWriter("code/" + fileName)); //ya le cambiaremos el nombre
+        try {
+            code = new PrintWriter(new FileWriter("code/" + fileName)); // ya le cambiaremos el nombre
             FileReader prelude = new FileReader("code/prelude.wat");
             prelude.transferTo(code);
             prelude.close();
@@ -104,7 +101,7 @@ public class Program extends ASTNode {
             // hacemos el premain
             preMaingenerateCode();
 
-            //generamos el resto de funciones
+            // generamos el resto de funciones
             definitionList.generateCode();
 
             // aqui no sabemos muy bien que hay que poner
@@ -114,12 +111,12 @@ public class Program extends ASTNode {
             epilogue.close();
 
             code.close();
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void setFileName(String file){
+    public void setFileName(String file) {
         fileName = file;
     }
 
@@ -127,11 +124,11 @@ public class Program extends ASTNode {
         return definitionList;
     }
 
-    public static PrintWriter getCode(){
+    public static PrintWriter getCode() {
         return code;
     }
 
-    public void typedef(List<DTypedef> typedefs){
+    public void typedef(List<DTypedef> typedefs) {
         definitionList.typedefs();
     }
 
@@ -142,13 +139,13 @@ public class Program extends ASTNode {
                 Reader input = new InputStreamReader(new FileInputStream(imports.get(i).getModuleName()));
                 AnalizadorLexicoTiny alex = new AnalizadorLexicoTiny(input);
                 AnalizadorSintacticoTiny asint = new AnalizadorSintacticoTiny(alex);
-                Program import = (Program) asint.parse().value; //con esto tenemos el nuevo arbol del archivo import
-                if(import.getDefinitionList().thereIsMain()){
+                Program pImport = (Program) asint.parse().value; //con esto tenemos el nuevo arbol del archivo import
+                if(pImport.getDefinitionList().thereIsMain()){
                     throw new ImportException("Error. There is a main in import file.");
                 }
-                definitionList.addAll(import.getDefinitionList());
+                definitionList.addAll(pImport.getDefinitionList());
             }   
-        catch(Exception e){
+        }catch(Exception e){
             throw new ImportException("Error in import.");
         }
     }

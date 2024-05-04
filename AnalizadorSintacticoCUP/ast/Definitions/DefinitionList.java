@@ -150,7 +150,7 @@ public class DefinitionList {
         }
         List<IDeclaration> varImport = list.getVar();
         for(int i = varImport.size() - 1; i >= 0; i--){
-            addVar(null);(varImport.get(i));
+            addVar(varImport.get(i));
         }
         List<DStruct> constImport = list.getConst();
         for(int i = constImport.size() - 1; i >= 0; i--){
