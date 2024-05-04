@@ -1,2 +1,7 @@
 * nos falta comprobar si se chocan en reserve heap
 * ver que pasa si se hace return {1,2,3}
+* comprobar que el indice de la lista la que se quiere acceder es valido
+* modulos?
+* arreglar ficheros generacion
+* try y catch de clase programa
+* new(inicializacion)??
