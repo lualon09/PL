@@ -40,8 +40,33 @@ public class AArray extends A{
         }       
     }
 
+    public void correctIndex() throws GCodingException {
+        // Primero comprobamos que no se pasa el index del array
+        Program.getCode().println(" ;;generating code for index of array" + exp.toString() + " to see if it's correct");
+        exp.generateCode();
+        Program.getCode().println("i32.const " + ((TArray) access.getType()).getSizeArray().getValue());
+        Program.getCode().println("i32.ge_s");
+        Program.getCode().println("if");
+        Program.getCode().println("i32.const 3");
+        Program.getCode().println("call $exception");
+        Program.getCode().println("end");
+
+        // tambien comprobamos que sea >= 0
+        Program.getCode().println("i32.const 0");
+        exp.generateCode();
+        Program.getCode().println("i32.gt_s");
+        Program.getCode().println("if");
+        Program.getCode().println("i32.const 3");
+        Program.getCode().println("call $exception");
+        Program.getCode().println("end");
+
+    }
+
     public void calculateAddress() {
         try{
+        
+            correctIndex();
+            // ahora calculamos el acceso al array
             Program.getCode().println(" ;;generating code for index of array" + exp.toString());
             exp.generateCode();
             Program.getCode().println(" i32.const " + getType().getSize());

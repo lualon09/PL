@@ -111,6 +111,31 @@
  br_if 1
  ;; generating code for IShow
  ;;generating code for access
+ ;;generating code for index of arrayAVar(i) to see if it's correct
+ ;;generating code for access
+ i32.const 20
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.const 5
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for access
+ i32.const 20
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
  ;;generating code for index of arrayAVar(i)
  ;;generating code for access
  i32.const 20
@@ -184,6 +209,31 @@
  br_if 1
  ;; generating code for IShow
  ;;generating code for access
+ ;;generating code for index of arrayAVar(i) to see if it's correct
+ ;;generating code for access
+ i32.const 40
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.const 5
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for access
+ i32.const 40
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
  ;;generating code for index of arrayAVar(i)
  ;;generating code for access
  i32.const 40
@@ -251,6 +301,31 @@
  i32.const 68
  local.get $localsStart
  i32.add
+ ;;generating code for index of arrayAVar(i) to see if it's correct
+ ;;generating code for access
+ i32.const 68
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.const 7
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for access
+ i32.const 68
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
  ;;generating code for index of arrayAVar(i)
  ;;generating code for access
  i32.const 68
@@ -271,6 +346,31 @@
  ;;end generating code for assignation assign:AArray (AVar(array3)[AVar(i)])=AVar(i)
  ;; generating code for IShow
  ;;generating code for access
+ ;;generating code for index of arrayAVar(i) to see if it's correct
+ ;;generating code for access
+ i32.const 68
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.const 7
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for access
+ i32.const 68
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
  ;;generating code for index of arrayAVar(i)
  ;;generating code for access
  i32.const 68
@@ -315,6 +415,23 @@
  i32.add
  ;;generating code for exp ebinSUM(AArray (AVar(array1)[(INT:2)]),AArray (AVar(array3)[(INT:4)]))
  ;;generating code for access
+ ;;generating code for index of array(INT:2) to see if it's correct
+ ;;generating code for EConst
+ i32.const 2
+i32.const 5
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for EConst
+ i32.const 2
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
  ;;generating code for index of array(INT:2)
  ;;generating code for EConst
  i32.const 2
@@ -329,6 +446,23 @@
  i32.load
  ;;end generating code for access
  ;;generating code for access
+ ;;generating code for index of array(INT:4) to see if it's correct
+ ;;generating code for EConst
+ i32.const 4
+i32.const 7
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for EConst
+ i32.const 4
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
  ;;generating code for index of array(INT:4)
  ;;generating code for EConst
  i32.const 4
@@ -364,6 +498,23 @@
  i32.store
  ;;end generating code for declaration
  ;;generating code for declaration dec:varB1(type:BOOL)=AArray (AVar(arrayB1)[(INT:1)])
+ ;;generating code for index of array(INT:1) to see if it's correct
+ ;;generating code for EConst
+ i32.const 1
+i32.const 2
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for EConst
+ i32.const 1
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
  ;;generating code for index of array(INT:1)
  ;;generating code for EConst
  i32.const 1
@@ -471,6 +622,31 @@
  br_if 1
  ;; generating code for IShow
  ;;generating code for access
+ ;;generating code for index of arrayAVar(j) to see if it's correct
+ ;;generating code for access
+ i32.const 104
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.const 2
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for access
+ i32.const 104
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
  ;;generating code for index of arrayAVar(j)
  ;;generating code for access
  i32.const 104
@@ -481,6 +657,31 @@
  i32.const 4
  i32.mul
  ;;generating code for access arrayAArray (AVar(arrayMult)[AVar(i)])
+ ;;generating code for index of arrayAVar(i) to see if it's correct
+ ;;generating code for access
+ i32.const 100
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.const 2
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for access
+ i32.const 100
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
  ;;generating code for index of arrayAVar(i)
  ;;generating code for access
  i32.const 100
@@ -616,6 +817,31 @@
  i32.const 948
  local.get $localsStart
  i32.add
+ ;;generating code for index of arrayAVar(k) to see if it's correct
+ ;;generating code for access
+ i32.const 948
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.const 5
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for access
+ i32.const 948
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
  ;;generating code for index of arrayAVar(k)
  ;;generating code for access
  i32.const 948
@@ -626,6 +852,31 @@
  i32.const 4
  i32.mul
  ;;generating code for access arrayAArray (AArray (AVar(arrayMult3)[AVar(i)])[AVar(j)])
+ ;;generating code for index of arrayAVar(j) to see if it's correct
+ ;;generating code for access
+ i32.const 944
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.const 6
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for access
+ i32.const 944
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
  ;;generating code for index of arrayAVar(j)
  ;;generating code for access
  i32.const 944
@@ -636,6 +887,31 @@
  i32.const 20
  i32.mul
  ;;generating code for access arrayAArray (AVar(arrayMult3)[AVar(i)])
+ ;;generating code for index of arrayAVar(i) to see if it's correct
+ ;;generating code for access
+ i32.const 940
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.const 7
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for access
+ i32.const 940
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
  ;;generating code for index of arrayAVar(i)
  ;;generating code for access
  i32.const 940
@@ -660,6 +936,31 @@
  ;;end generating code for assignation assign:AArray (AArray (AArray (AVar(arrayMult3)[AVar(i)])[AVar(j)])[AVar(k)])=AVar(k)
  ;; generating code for IShow
  ;;generating code for access
+ ;;generating code for index of arrayAVar(k) to see if it's correct
+ ;;generating code for access
+ i32.const 948
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.const 5
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for access
+ i32.const 948
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
  ;;generating code for index of arrayAVar(k)
  ;;generating code for access
  i32.const 948
@@ -670,6 +971,31 @@
  i32.const 4
  i32.mul
  ;;generating code for access arrayAArray (AArray (AVar(arrayMult3)[AVar(i)])[AVar(j)])
+ ;;generating code for index of arrayAVar(j) to see if it's correct
+ ;;generating code for access
+ i32.const 944
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.const 6
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for access
+ i32.const 944
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
  ;;generating code for index of arrayAVar(j)
  ;;generating code for access
  i32.const 944
@@ -680,6 +1006,31 @@
  i32.const 20
  i32.mul
  ;;generating code for access arrayAArray (AVar(arrayMult3)[AVar(i)])
+ ;;generating code for index of arrayAVar(i) to see if it's correct
+ ;;generating code for access
+ i32.const 940
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.const 7
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for access
+ i32.const 940
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
  ;;generating code for index of arrayAVar(i)
  ;;generating code for access
  i32.const 940
@@ -802,9 +1153,14 @@
    local.get $size
    i32.sub
    global.set $NP
-  
 
-
+   global.get $SP
+   global.get $NP 
+   i32.gt_u ;; comprobamos si SP es mayor que NP
+   if
+   i32.const 3
+   call $exception ;; se han cruzado, error
+   end
 )
 
 (func $copyn (type $_sig_i32i32i32) ;; copy $n i32 slots from $src to $dest

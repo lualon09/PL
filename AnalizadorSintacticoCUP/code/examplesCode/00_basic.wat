@@ -148,6 +148,23 @@
  i32.store
  ;;end generating code for assignation assign:AVar(array)=[(INT:1)]
  ;;generating code for assignation assign:AArray (AVar(array)[(INT:0)])=(INT:2)
+ ;;generating code for index of array(INT:0) to see if it's correct
+ ;;generating code for EConst
+ i32.const 0
+i32.const 1
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for EConst
+ i32.const 0
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
  ;;generating code for index of array(INT:0)
  ;;generating code for EConst
  i32.const 0
@@ -165,6 +182,23 @@
  ;;end generating code for assignation assign:AArray (AVar(array)[(INT:0)])=(INT:2)
  ;; generating code for IShow
  ;;generating code for access
+ ;;generating code for index of array(INT:0) to see if it's correct
+ ;;generating code for EConst
+ i32.const 0
+i32.const 1
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for EConst
+ i32.const 0
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
  ;;generating code for index of array(INT:0)
  ;;generating code for EConst
  i32.const 0
@@ -228,6 +262,23 @@ i32.load
  i32.const 24
  local.get $localsStart
  i32.add
+ ;;generating code for index of array(INT:0) to see if it's correct
+ ;;generating code for EConst
+ i32.const 0
+i32.const 2
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for EConst
+ i32.const 0
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
  ;;generating code for index of array(INT:0)
  ;;generating code for EConst
  i32.const 0
@@ -244,6 +295,23 @@ i32.load
  ;;end generating code for assignation assign:AArray (AVar(array2)[(INT:0)])=AVar(puntero)
  ;;generating code for declaration dec:aux(type:List<INT>[(INT:1)])=APointer(*AArray (AVar(array2)[(INT:0)]))
  ;;generating code for APointer AArray (AVar(array2)[(INT:0)])
+ ;;generating code for index of array(INT:0) to see if it's correct
+ ;;generating code for EConst
+ i32.const 0
+i32.const 2
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for EConst
+ i32.const 0
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
  ;;generating code for index of array(INT:0)
  ;;generating code for EConst
  i32.const 0
@@ -263,6 +331,23 @@ i32.load
  call $copyn
  ;;end generating code for declaration
  ;;generating code for declaration dec:a(type:INT)=AArray (APointer(*AArray (AVar(array2)[(INT:0)]))[(INT:0)])
+ ;;generating code for index of array(INT:0) to see if it's correct
+ ;;generating code for EConst
+ i32.const 0
+i32.const 1
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for EConst
+ i32.const 0
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
  ;;generating code for index of array(INT:0)
  ;;generating code for EConst
  i32.const 0
@@ -270,6 +355,23 @@ i32.load
  i32.mul
  ;;generating code for access arrayAPointer(*AArray (AVar(array2)[(INT:0)]))
  ;;generating code for APointer AArray (AVar(array2)[(INT:0)])
+ ;;generating code for index of array(INT:0) to see if it's correct
+ ;;generating code for EConst
+ i32.const 0
+i32.const 2
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for EConst
+ i32.const 0
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
  ;;generating code for index of array(INT:0)
  ;;generating code for EConst
  i32.const 0
@@ -330,9 +432,14 @@ i32.load
    local.get $size
    i32.sub
    global.set $NP
-  
 
-
+   global.get $SP
+   global.get $NP 
+   i32.gt_u ;; comprobamos si SP es mayor que NP
+   if
+   i32.const 3
+   call $exception ;; se han cruzado, error
+   end
 )
 
 (func $copyn (type $_sig_i32i32i32) ;; copy $n i32 slots from $src to $dest

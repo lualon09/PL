@@ -33,8 +33,8 @@
    i32.sub
    global.set $NP
 
-   get_global $SP
-   get_global $NP 
+   global.get $SP
+   global.get $NP 
    i32.gt_u ;; comprobamos si SP es mayor que NP
    if
    i32.const 3

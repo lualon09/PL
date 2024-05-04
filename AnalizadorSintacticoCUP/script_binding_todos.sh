@@ -5,6 +5,16 @@ java -cp ../../cup.jar java_cup.Main -parser AnalizadorSintacticoTiny -symbols C
 cd ..   
 javac -cp "../cup.jar:." */*.java
 
+carpeta="code/examplesCode"
+
+# Iterar sobre los archivos en la carpeta para borrar los wasm.
+for archivo in "$carpeta"/*.wasm; do
+    if [ -f "$archivo" ]; then
+        # Eliminar el archivo
+        rm "$archivo"
+    fi
+done
+
 # Iterar sobre todos los archivos en la carpeta examples/
 for archivo in examples/*; do
     # Verificar si el archivo es un archivo regular
@@ -13,9 +23,13 @@ for archivo in examples/*; do
         echo "Estoy probando ahora con el archivo $archivo"
         # Ejecutar el analizador sintáctico para el archivo actual
         java -cp "../cup.jar:." asint.Main "$archivo"
-        # cd code
-        # wat2wasm 1.wat
-        # node main.js
-        # cd ..
+        cd code/examplesCode
+        nombre_archivo_sin_extension=$(basename $archivo .txt)
+        echo "y es " $archivo $nombre_archivo_sin_extension
+        wat2wasm "$nombre_archivo_sin_extension".wat
+        cd ..
+        node main.js examplesCode/"$nombre_archivo_sin_extension".wasm
+        cd ..
+
     fi
 done

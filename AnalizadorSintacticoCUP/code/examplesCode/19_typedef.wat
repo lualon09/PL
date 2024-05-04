@@ -207,6 +207,23 @@
  ;;end generating code for declaration
  ;; generating code for IShow
  ;;generating code for access
+ ;;generating code for index of array(INT:0) to see if it's correct
+ ;;generating code for EConst
+ i32.const 0
+i32.const 5
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for EConst
+ i32.const 0
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
  ;;generating code for index of array(INT:0)
  ;;generating code for EConst
  i32.const 0
@@ -261,9 +278,14 @@
    local.get $size
    i32.sub
    global.set $NP
-  
 
-
+   global.get $SP
+   global.get $NP 
+   i32.gt_u ;; comprobamos si SP es mayor que NP
+   if
+   i32.const 3
+   call $exception ;; se han cruzado, error
+   end
 )
 
 (func $copyn (type $_sig_i32i32i32) ;; copy $n i32 slots from $src to $dest
