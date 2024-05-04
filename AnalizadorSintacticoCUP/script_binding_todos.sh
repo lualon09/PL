@@ -25,7 +25,6 @@ for archivo in examples/*; do
         java -cp "../cup.jar:." asint.Main "$archivo"
         cd code/examplesCode
         nombre_archivo_sin_extension=$(basename $archivo .txt)
-        echo "y es " $archivo $nombre_archivo_sin_extension
         wat2wasm "$nombre_archivo_sin_extension".wat
         cd ..
         node main.js examplesCode/"$nombre_archivo_sin_extension".wasm
