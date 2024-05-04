@@ -96,10 +96,6 @@ public class DefinitionList {
         }
     }
 
-    public List<DStruct> getStructs(){
-        return structs;
-    }
-
     public int getMaxMemoryGlobal(){
         int c= 0;
         for(IDeclaration i: variables){
@@ -138,6 +134,45 @@ public class DefinitionList {
         for(int i = 0; i < tree.size(); i++){
             tree.get(i).typedef(typedefs);
         }
+    }
 
+    public void addAll(DefinitionList list){
+        List<DStruct> structsImport = list.getStructs();
+        for(int i = structsImport.size() - 1; i >= 0; i--){
+            addStruct(structsImport.get(i));
+        }
+        List<ASTNode> treeImport = list.getASTNodes();
+        for(int i = treeImport.size() - 1; i >= 0; i--){
+            addNode(treeImport.get(i));
+        }
+        List<IDeclaration> varImport = list.getVar();
+        for(int i = varImport.size() - 1; i >= 0; i--){
+            addVar(null);(varImport.get(i));
+        }
+        List<DStruct> constImport = list.getConst();
+        for(int i = constImport.size() - 1; i >= 0; i--){
+            addConst(constImport.get(i));
+        }
+        List<DTypedef> typedefsImport = list.getTypedefs();
+        for(int i = typedefsImport.size() - 1; i >= 0; i--){
+            addTypedef(typedefsImport.get(i));
+        }
+    }
+
+
+    public List<DStruct> getStructs(){
+        return structs;
+    }
+    public List<ASTNode> getASTNodes(){
+       return tree;
+    }
+    public List<IDeclaration> getVar(){
+        return variables;
+    }
+    public List<DTypedef> getTypedefs(){
+        return typedefs;
+    }
+    public List<DConst> getConst(){
+        return consts;
     }
 }

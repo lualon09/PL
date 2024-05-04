@@ -19,6 +19,8 @@ public class Main {
 			System.out.println("*********************TREE AST*********************");
 			System.out.println(p);
 
+			p.imports();
+
 			// simplicamos los typedefs
 			p.typedef(null);
 

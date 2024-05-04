@@ -2,15 +2,20 @@ package ast;
 
 import ast.Definitions.DFunction;
 import ast.Definitions.DefinitionList;
-import exc.BindingException;
-import exc.TypingException;
+
 import java.util.ArrayList;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.Reader;
 import java.io.FileWriter;
 import java.io.FileReader;
 import java.util.List;
+
+import alex.AnalizadorLexicoTiny;
+import asint.AnalizadorSintacticoTiny;
 import ast.Definitions.DTypedef;
 import exc.*;
 
@@ -127,5 +132,16 @@ public class Program extends ASTNode {
 
     public void typedef(List<DTypedef> typedefs){
         definitionList.typedefs();
+    }
+
+    public void import(){
+        List<DImport> imports = definitionList.getImports();
+        for(int i = 0; i < imports.size(); i++){
+            Reader input = new InputStreamReader(new FileInputStream(imports.get(i).getModuleName()));
+            AnalizadorLexicoTiny alex = new AnalizadorLexicoTiny(input);
+            AnalizadorSintacticoTiny asint = new AnalizadorSintacticoTiny(alex);
+            Program import = (Program) asint.parse().value; //con esto tenemos el nuevo arbol
+            definitionList.addAll(import.getDefinitionList());
+        }   
     }
 }
