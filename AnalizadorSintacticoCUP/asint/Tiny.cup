@@ -87,7 +87,7 @@ IMPORTLIST ::= IMPORTDEC:i  IMPORTLIST:listimports
             |
             {:RESULT = new ArrayList<DImport>();:};
 
-IMPORTDEC ::= IMP IDEN:val
+IMPORTDEC ::= IMP IDEN:val PUNTOYCOMA
             {:RESULT = new DImport(val.lexema);:};
 
 DECLARATIONS ::= DECLARATION:d DECLARATIONS:list
