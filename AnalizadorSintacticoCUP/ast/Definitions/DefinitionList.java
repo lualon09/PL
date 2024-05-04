@@ -184,7 +184,6 @@ public class DefinitionList {
         return imports;
     }
 
-
     public boolean thereIsMain(){
         for(DFunction f: functions){
             if(f.getName().equals("main")){
@@ -194,7 +193,7 @@ public class DefinitionList {
         return false;
     }
 
-    public void addImports(ArrayList<DImports> imp){
+    public void addImports(ArrayList<DImport> imp){
         for(int i = 0; i < imports.size(); i++){
             this.imports.add(imp.get(i));
         }
