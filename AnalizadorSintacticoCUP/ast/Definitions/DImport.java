@@ -19,4 +19,13 @@ public class DImport extends D {
     public String getModuleName(){
         return this.name;
     }
+
+    public String toString(){
+        return "import " + name;
+    }
+
+    @Override
+    public KindD kindD() {
+        return KindD.IMPORT;
+    }
 }
