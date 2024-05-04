@@ -36,7 +36,7 @@ terminal TYPEINT, TYPEBOOL, VOID,
          WHILE, FOR, REPEAT, IF, ELSE, STRUCT, SWITCH, VALUEFOR, CASE, BREAK, DEFAULT,
          RETURN, SHOW, READ, TYPEDEF, CONST, LIST, NEW, IMP;
 
-terminal TokenValue IDEN, ENT, TRUE, FALSE;
+terminal TokenValue IDEN, ENT, TRUE, FALSE, FILE;
 
 non terminal S;
 
@@ -87,7 +87,7 @@ IMPORTLIST ::= IMPORTDEC:i  IMPORTLIST:listimports
             |
             {:RESULT = new ArrayList<DImport>();:};
 
-IMPORTDEC ::= IMP IDEN:val PUNTOYCOMA
+IMPORTDEC ::= IMP FILE:val PUNTOYCOMA
             {:RESULT = new DImport(val.lexema);:};
 
 DECLARATIONS ::= DECLARATION:d DECLARATIONS:list

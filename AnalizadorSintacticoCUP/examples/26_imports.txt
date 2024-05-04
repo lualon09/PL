@@ -1,4 +1,4 @@
-import media.txt
+import media;
 
 main() -> Int{
     Int length = 5;

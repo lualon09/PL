@@ -29,7 +29,6 @@ import errors.GestionErroresTiny;
   ops = new ALexOperations(this);
 %init}
 
-import = import
 
 Int = Int
 Bool = Bool
@@ -53,6 +52,7 @@ case = case
 default = default
 
 typedef = typedef
+import = import
 
 Struct = Struct
 
@@ -157,6 +157,7 @@ flecha = \->
 {False}                   {return ops.unidadFalse();}
 {List}                    {return ops.unidadList();}
 
+{import}                  {return ops.unidadImport();}
 {while}                   {return ops.unidadWhile();}
 {for}                     {return ops.unidadFor();}
 {repeat}                  {return ops.unidadRepeat();}
@@ -174,7 +175,6 @@ flecha = \->
 {typedef}                 {return ops.unidadTypedef();}
 {new}                     {return ops.unidadNew();}
 {const}                   {return ops.unidadConstante();}
-{import}                  {return ops.unidadImport();}
 
 {identificador}           {return ops.unidadId();}
 [^]                       {errores.errorLexico(fila(),columna(),lexema());}  

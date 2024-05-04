@@ -6,7 +6,7 @@ cd ..
 javac -cp "../cup.jar:." */*.java
 
 # java -cp "../cup.jar:." asint.Main  ../examples/00_basic.txt
-java -cp "../cup.jar:." asint.Main  examples/00_basic.txt
+java -cp "../cup.jar:." asint.Main  examples/26_imports.txt
 
 # cd code
 # wat2wasm code.wat
