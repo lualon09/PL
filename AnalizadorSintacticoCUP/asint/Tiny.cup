@@ -34,7 +34,7 @@ terminal TYPEINT, TYPEBOOL, VOID,
          AND, OR, NOT, PAP, PCIERRE, CAP, CCIERRE, LLAP, LLCIERRE, FLECHA,
          IGUAL, COMA, PUNTOYCOMA, AMPERSAND, PUNTO, DOSPUNTOS, 
          WHILE, FOR, REPEAT, IF, ELSE, STRUCT, SWITCH, VALUEFOR, CASE, BREAK, DEFAULT,
-         RETURN, SHOW, READ, TYPEDEF, CONST, LIST, NEW, IMPORT;
+         RETURN, SHOW, READ, TYPEDEF, CONST, LIST, NEW, IMP;
 
 terminal TokenValue IDEN, ENT, TRUE, FALSE;
 
@@ -87,8 +87,8 @@ IMPORTLIST ::= IMPORTDEC:i  IMPORTLIST:listimports
             |
             {:RESULT = new ArrayList<DImport>();:};
 
-IMPORTDEC ::= IMPORT IDEN:val
-            {:RESULT = new DImport(val.lexema);:}
+IMPORTDEC ::= IMP IDEN:val
+            {:RESULT = new DImport(val.lexema);:};
 
 DECLARATIONS ::= DECLARATION:d DECLARATIONS:list
                  {:list.addVar(d); RESULT = list; d.setGlobal();:}

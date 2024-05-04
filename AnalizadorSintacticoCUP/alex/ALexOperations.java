@@ -8,7 +8,7 @@ public class ALexOperations {
       this.alex = alex;   
    }
    public UnidadLexica unidadImport(){
-      return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.IMPORT); 
+      return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.IMP); 
    }
    public UnidadLexica unidadId() {
       return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.IDEN,alex.lexema()); 
