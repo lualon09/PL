@@ -1,0 +1,9 @@
+import media.txt
+
+main() -> Int{
+    Int length = 5;
+    List<Int>[5] array = {1,2,3,4,5};
+    Int sol = calculaMedia(array,length);
+    show(sol);
+    return 0;
+}
