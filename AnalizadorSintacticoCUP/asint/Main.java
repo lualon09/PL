@@ -12,6 +12,7 @@ import exc.TypingException;
 
 public class Main {
 	public static void main(String[] args) throws Exception {
+		System.out.println("Manejo el archivo " + args[0]);
 		Reader input = new InputStreamReader(new FileInputStream(args[0]));
 		AnalizadorLexicoTiny alex = new AnalizadorLexicoTiny(input);
 		AnalizadorSintacticoTiny asint = new AnalizadorSintacticoTiny(alex);

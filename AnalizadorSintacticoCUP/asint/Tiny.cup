@@ -36,7 +36,7 @@ terminal TYPEINT, TYPEBOOL, VOID,
          WHILE, FOR, REPEAT, IF, ELSE, STRUCT, SWITCH, VALUEFOR, CASE, BREAK, DEFAULT,
          RETURN, SHOW, READ, TYPEDEF, CONST, LIST, NEW, IMP;
 
-terminal TokenValue IDEN, ENT, TRUE, FALSE, FILE;
+terminal TokenValue IDEN, ENT, TRUE, FALSE;
 
 non terminal S;
 
@@ -52,6 +52,7 @@ non terminal IDeclaration DECLARATION;
 non terminal DConst CONSTVAR;
 non terminal DStruct STRUCTDEC;
 non terminal DFunction  FUNCDEC;
+non terminal DImport IMPORTDEC;
 non terminal DTypedef TYPEDEFDEC;
 non terminal IAssignation ASIG;
 non terminal ArrayList<IDeclaration> FIELDS;
@@ -70,25 +71,24 @@ non terminal ArrayList<SwitchInstruction> CASEEXP;
 non terminal SwitchInstruction DEFAULTEXP;
 non terminal ArrayList<ValueforInstruction> CASEEXPVF;
 non terminal ValueforInstruction DEFAULTEXPVF;
-non terminal ArrayList<DImport> IMPORTLIST;
-non terminal DImport IMPORTDEC;
+// non terminal ArrayList<DImport> IMPORTLIST;
 
 
 //------------DECLARATIONes de constantes, funciones, TYPEDEF, structs y la función main-------------- 
 
 //----Programa Principal----
-S ::=  IMPORTLIST:imports DECLARATIONS:declarations
-      {:declarations.addImports(imports); RESULT = new Program(declarations);:};
+// S ::=  IMPORTLIST:imports DECLARATIONS:declarations
+//      {:declarations.addImports(imports); RESULT = new Program(declarations);:};
+
+S ::=  DECLARATIONS:declarations
+      {:RESULT = new Program(declarations);:};
 
 //----DECLARATION de variables y asignacion--
 
-IMPORTLIST ::= IMPORTDEC:i  IMPORTLIST:listimports
-            {:listimports.add(0, i); RESULT = listimports;:}
-            |
-            {:RESULT = new ArrayList<DImport>();:};
-
-IMPORTDEC ::= IMP FILE:val PUNTOYCOMA
-            {:RESULT = new DImport(val.lexema);:};
+// IMPORTLIST ::= IMPORTDEC:i  IMPORTLIST:listimports
+//            {:listimports.add(0, i); RESULT = listimports;:}
+//            |
+//          {:RESULT = new ArrayList<DImport>();:};
 
 DECLARATIONS ::= DECLARATION:d DECLARATIONS:list
                  {:list.addVar(d); RESULT = list; d.setGlobal();:}
@@ -100,6 +100,8 @@ DECLARATIONS ::= DECLARATION:d DECLARATIONS:list
                  {:list.addTypedef(t); RESULT = list;:} 
                  | FUNCDEC:f DECLARATIONS:list
                  {:list.addFunc(f); RESULT = list;:} 
+                 | IMPORTDEC:i DECLARATIONS:list
+                 {:list.addImport(i); RESULT = list;:}
                  | 
                  {:RESULT = new DefinitionList();:};
 
@@ -142,6 +144,9 @@ TYPEDEFDEC ::= TYPEDEF IDEN:name IGUAL TYPE:t PUNTOYCOMA
               {:RESULT = new DTypedef(name.lexema, t);:}
               | TYPEDEF IDEN IGUAL TYPE error
               {:System.out.println("Error. Missing ;"); RESULT = null;:};
+
+IMPORTDEC ::= IMP IDEN:val PUNTOYCOMA
+            {:RESULT = new DImport(val.lexema);:};
 
 //----DECLARATION de funciones----
 FUNCDEC ::= IDEN:name PAP PARAMS:p PCIERRE FLECHA TYPE:tReturn BINST:i 
