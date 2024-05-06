@@ -15,7 +15,7 @@
 (func $preMain 
  (local $temp i32)
  (local $localsStart i32)
- i32.const 4
+ i32.const 8
  call $reserveStack
  local.set $temp
  global.get $MP
@@ -25,6 +25,12 @@
  i32.const 4
  i32.add
  local.set $localsStart
+ ;;generating code for declaration dec:varglobal(type:INT)=(INT:7)
+ i32.const 0
+ ;;generating code for EConst
+ i32.const 7
+ i32.store
+ ;;end generating code for declaration
  call $main
  drop
  call $freeStack
@@ -244,7 +250,7 @@ end
  (result i32)
  (local $temp i32)
  (local $localsStart i32)
- i32.const 36
+ i32.const 40
  call $reserveStack
  local.set $temp
  global.get $MP
@@ -351,6 +357,38 @@ end
  i32.const 24
  local.get $localsStart
  i32.add
+ i32.load
+ ;;end generating code for access
+ call $show
+ ;;generating code for declaration dec:aux(type:tImport)
+ ;;end generating code for declaration
+ ;;generating code for assignation assign:AStruct(AVar(aux).imp)=(INT:1)
+ ;;generating code for struct accessAVar(aux)
+ i32.const 28
+ local.get $localsStart
+ i32.add
+ i32.const 0
+ i32.add
+ ;;end of generating code for struct accessAVar(aux)
+ ;;generating code for EConst
+ i32.const 1
+ i32.store
+ ;;end generating code for assignation assign:AStruct(AVar(aux).imp)=(INT:1)
+ ;; generating code for IShow
+ ;;generating code for access
+ ;;generating code for struct accessAVar(aux)
+ i32.const 28
+ local.get $localsStart
+ i32.add
+ i32.const 0
+ i32.add
+ ;;end of generating code for struct accessAVar(aux)
+ i32.load
+ ;;end generating code for access
+ call $show
+ ;; generating code for IShow
+ ;;generating code for access
+ i32.const 0
  i32.load
  ;;end generating code for access
  call $show

@@ -5,5 +5,13 @@ main() -> Int{
     List<Int>[5] array = {1,2,3,4,5};
     Int sol = calculaMedia(array,length);
     show(sol);
+
+    tImport aux;
+    aux.imp = 1;
+    show(aux.imp);
+
+    show(varglobal);
+
+
     return 0;
 }

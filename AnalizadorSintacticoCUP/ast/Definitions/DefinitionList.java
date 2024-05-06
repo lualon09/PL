@@ -162,23 +162,24 @@ public class DefinitionList {
 
         List<DStruct> structsImport = list.getStructs();
         for(int i = structsImport.size() - 1; i >= 0; i--){
-            addStruct(structsImport.get(i));
+            structs.add(0, structsImport.get(i));
         }
+
         List<ASTNode> treeImport = list.getASTNodes();
         for(int i = treeImport.size() - 1; i >= 0; i--){
             addNode(treeImport.get(i));
         }
         List<IDeclaration> varImport = list.getVar();
         for(int i = varImport.size() - 1; i >= 0; i--){
-            addVar(varImport.get(i));
+            variables.add(0, varImport.get(i));
         }
         List<DConst> constImport = list.getConst();
         for(int i = constImport.size() - 1; i >= 0; i--){
-            addConst(constImport.get(i));
+            consts.add(0,constImport.get(i));
         }
         List<DTypedef> typedefsImport = list.getTypedefs();
         for(int i = typedefsImport.size() - 1; i >= 0; i--){
-            addTypedef(typedefsImport.get(i));
+            typedefs.add(0, typedefsImport.get(i));
         }
     }
 

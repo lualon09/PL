@@ -68,6 +68,8 @@ return = return
 letra  = ([A-Z]|[a-z])
 identificador = {letra}({letra}|{digito})*
 
+archivo = ({identificador}{\/})*{identificador}{punto}{identificador}
+
 digitoPositivo = [1-9]
 digito = ({digitoPositivo}|0)
 parteEntera = ({digitoPositivo}{digito}*|0)
@@ -177,4 +179,5 @@ flecha = \->
 {const}                   {return ops.unidadConstante();}
 
 {identificador}           {return ops.unidadId();}
+{archivo}                 {return ops.unidadArchivo();}
 [^]                       {errores.errorLexico(fila(),columna(),lexema());}  

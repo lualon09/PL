@@ -18,17 +18,18 @@ done
 # Iterar sobre todos los archivos en la carpeta examples/
 for archivo in examples/*; do
     # Verificar si el archivo es un archivo regular
-    if [ -f "$archivo" ]; then
+    if [ -f "$archivo" ] && [ "$(basename "$archivo")" != "media.txt" ]; then
         echo "--------------------------------------"
         echo "Estoy probando ahora con el archivo $archivo"
         # Ejecutar el analizador sintáctico para el archivo actual
         java -cp "../cup.jar:." asint.Main "$archivo"
-        cd code/examplesCode
-        nombre_archivo_sin_extension=$(basename $archivo .txt)
-        wat2wasm "$nombre_archivo_sin_extension".wat
-        cd ..
-        node main.js examplesCode/"$nombre_archivo_sin_extension".wasm
-        cd ..
-
+        if [ "$(basename "$archivo")" != "22_errores_sintax.txt" ] && [ "$(basename "$archivo")" != "23_errores_tipado.txt" ]; then
+            cd code/examplesCode
+            nombre_archivo_sin_extension=$(basename $archivo .txt)
+            wat2wasm "$nombre_archivo_sin_extension".wat
+            cd ..
+            node main.js examplesCode/"$nombre_archivo_sin_extension".wasm
+            cd ..
+        fi
     fi
 done

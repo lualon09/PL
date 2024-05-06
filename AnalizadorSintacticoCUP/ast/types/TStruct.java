@@ -26,12 +26,10 @@ public class TStruct extends T {
     }
 
     public void setListStructs(List<DStruct> structs){
-        System.out.println("Entro aqui");
         this.structs = structs;
     }
 
     public void bind() throws BindingException{
-        System.out.println("Estoy haciendo el binding de " + this.toString());
         boolean found = false;
         for(DStruct s: structs){
             if(name.equals(s.getName())) {

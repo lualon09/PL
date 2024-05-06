@@ -13,3 +13,9 @@ calculaMedia(arr:List<Int>[5], n:Int) -> Int{
     }
     return resultado;
 }
+
+Struct tImport {
+    Int imp = 0;
+};
+
+Int varglobal = 7;
