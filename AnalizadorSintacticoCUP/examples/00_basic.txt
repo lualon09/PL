@@ -26,5 +26,6 @@ main() -> Int {
     array2[0] = puntero;
     List<Int>[1] aux =  *array2[0];
     Int a = (*array2[0])[0];
+
     return 0; 
 }

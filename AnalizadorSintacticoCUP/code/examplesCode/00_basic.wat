@@ -46,12 +46,31 @@
  drop
  call $freeStack
 )
+ ;; generating code of function prueba
+(func $prueba
+ (result i32)
+ (local $temp i32)
+ (local $localsStart i32)
+ i32.const 8
+ call $reserveStack
+ local.set $temp
+ global.get $MP
+ local.get $temp
+ i32.store
+ global.get $MP
+ i32.const 4
+ i32.add
+ local.set $localsStart
+ ;; generating code for IReturn
+ call $freeStack
+ return
+)
  ;; generating code of function main
 (func $main
  (result i32)
  (local $temp i32)
  (local $localsStart i32)
- i32.const 44
+ i32.const 56
  call $reserveStack
  local.set $temp
  global.get $MP
@@ -392,6 +411,118 @@ i32.load
  i32.const 1
  call $copyn
  ;;end generating code for declaration
+ ;;generating code for declaration dec:prueb(type:List<INT>[(INT:3)])=call:prueba([])
+ global.get $SP
+ i32.const 4
+ i32.add
+ local.set $temp
+ ;; end copying arguments
+ call $prueba
+ i32.const 36
+ local.get $localsStart
+ i32.add
+ i32.const 3
+ call $copyn
+ ;;end generating code for declaration
+ ;; generating code for IShow
+ ;;generating code for access
+ ;;generating code for index of array(INT:0) to see if it's correct
+ ;;generating code for EConst
+ i32.const 0
+i32.const 3
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for EConst
+ i32.const 0
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
+ ;;generating code for index of array(INT:0)
+ ;;generating code for EConst
+ i32.const 0
+ i32.const 4
+ i32.mul
+ ;;generating code for access arrayAVar(prueb)
+ i32.const 36
+ local.get $localsStart
+ i32.add
+ i32.add
+ ;;end of generating code for access to array
+ i32.load
+ ;;end generating code for access
+ call $show
+ ;; generating code for IShow
+ ;;generating code for access
+ ;;generating code for index of array(INT:1) to see if it's correct
+ ;;generating code for EConst
+ i32.const 1
+i32.const 3
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for EConst
+ i32.const 1
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
+ ;;generating code for index of array(INT:1)
+ ;;generating code for EConst
+ i32.const 1
+ i32.const 4
+ i32.mul
+ ;;generating code for access arrayAVar(prueb)
+ i32.const 36
+ local.get $localsStart
+ i32.add
+ i32.add
+ ;;end of generating code for access to array
+ i32.load
+ ;;end generating code for access
+ call $show
+ ;; generating code for IShow
+ ;;generating code for access
+ ;;generating code for index of array(INT:2) to see if it's correct
+ ;;generating code for EConst
+ i32.const 2
+i32.const 3
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for EConst
+ i32.const 2
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
+ ;;generating code for index of array(INT:2)
+ ;;generating code for EConst
+ i32.const 2
+ i32.const 4
+ i32.mul
+ ;;generating code for access arrayAVar(prueb)
+ i32.const 36
+ local.get $localsStart
+ i32.add
+ i32.add
+ ;;end of generating code for access to array
+ i32.load
+ ;;end generating code for access
+ call $show
  ;; generating code for IReturn
  ;;generating code for EConst
  i32.const 0
