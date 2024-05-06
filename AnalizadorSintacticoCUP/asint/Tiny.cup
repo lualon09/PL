@@ -36,7 +36,7 @@ terminal TYPEINT, TYPEBOOL, VOID,
          WHILE, FOR, REPEAT, IF, ELSE, STRUCT, SWITCH, VALUEFOR, CASE, BREAK, DEFAULT,
          RETURN, SHOW, READ, TYPEDEF, CONST, LIST, NEW, IMP;
 
-terminal TokenValue IDEN, ENT, TRUE, FALSE;
+terminal TokenValue IDEN, ENT, TRUE, FALSE, FILE;
 
 non terminal S;
 
@@ -145,7 +145,7 @@ TYPEDEFDEC ::= TYPEDEF IDEN:name IGUAL TYPE:t PUNTOYCOMA
               | TYPEDEF IDEN IGUAL TYPE error
               {:System.out.println("Error. Missing ;"); RESULT = null;:};
 
-IMPORTDEC ::= IMP IDEN:val PUNTOYCOMA
+IMPORTDEC ::= IMP FILE:val PUNTOYCOMA
             {:RESULT = new DImport(val.lexema);:};
 
 //----DECLARATION de funciones----
