@@ -12,6 +12,5 @@ main() -> Int{
 
     show(varglobal);
 
-
     return 0;
 }
