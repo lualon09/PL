@@ -13,7 +13,7 @@ public class DImport extends D {
     private String name;
 
     public DImport(String name){
-        this.name = "examples/" + name + ".txt";
+        this.name = name;
     }
 
     public String getModuleName(){
