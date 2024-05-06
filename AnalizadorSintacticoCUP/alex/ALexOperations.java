@@ -13,6 +13,9 @@ public class ALexOperations {
    public UnidadLexica unidadId() {
       return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.IDEN,alex.lexema()); 
    } 
+   public UnidadLexica unidadArchivo(){
+      return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.ARCH,alex.lexema()); 
+   }
    public UnidadLexica unidadTipoInt() {
       return new UnidadLexica(alex.fila(),alex.columna(),ClaseLexica.TYPEINT); 
    }
