@@ -20,7 +20,7 @@ for archivo in examples/*; do
     # Verificar si el archivo es un archivo regular
     if [ -f "$archivo" ] && [ "$(basename "$archivo")" != "media.txt" ]; then
         echo "--------------------------------------"
-        echo "Estoy probando ahora con el archivo $archivo"
+        echo "PROBANDO EL ARCHIVO $archivo"
         # Ejecutar el analizador sintáctico para el archivo actual
         java -cp "../cup.jar:." asint.Main "$archivo"
         if [ "$(basename "$archivo")" != "22_errores_sintax.txt" ] && [ "$(basename "$archivo")" != "23_errores_tipado.txt" ]; then
