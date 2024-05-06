@@ -136,7 +136,6 @@ public class Program extends ASTNode {
         List<DImport> imports = definitionList.getImports();
         try{
             for(int i = 0; i < imports.size(); i++){
-                System.out.println("Manejo el archivo " + imports.get(i).getModuleName());
                 Reader input = new InputStreamReader(new FileInputStream(imports.get(i).getModuleName()));
                 AnalizadorLexicoTiny alex = new AnalizadorLexicoTiny(input);
                 AnalizadorSintacticoTiny asint = new AnalizadorSintacticoTiny(alex);
@@ -144,14 +143,6 @@ public class Program extends ASTNode {
                 if(pImport.getDefinitionList().thereIsMain()){
                     throw new ImportException("Error. There is a main in import file.");
                 }
-
-                System.out.println("");
-                System.out.println("lista de definiciones original " + definitionList.toString());
-                System.out.println("");
-
-                System.out.println("");
-                System.out.println("lista de definiciones " + pImport.getDefinitionList().toString());
-                System.out.println("");
                 definitionList.addAll(pImport.getDefinitionList());
             }   
         }catch(Exception e){

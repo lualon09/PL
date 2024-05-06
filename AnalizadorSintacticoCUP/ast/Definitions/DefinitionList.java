@@ -44,7 +44,6 @@ public class DefinitionList {
         addNode(d);
     }
     public void addFunc(DFunction f){
-        System.out.println("Estoy añadiendo la funcion " + f.toString());
         functions.add(0,f);
         addNode(f);
     }
