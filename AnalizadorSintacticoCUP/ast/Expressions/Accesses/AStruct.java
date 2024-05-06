@@ -14,6 +14,7 @@ public class AStruct extends A {
     private A access;
     private String field;
     private IDeclaration fieldNode;
+    private static List<DStruct> ds;
 
     public AStruct(A ac, String f){
         this.access = ac;  
@@ -30,12 +31,15 @@ public class AStruct extends A {
         this.bindNode = access.bindNode;
     }
 
+    public void setListStructs(List<DStruct> structs){
+        this.ds = structs;
+    }
+
     public void type() throws TypingException {
         access.type();
         boolean foundField = false;
         // comprobamos si access es de tipo struct 
         if(access.getType().kind().equals(KindT.STRUCT)) {
-            List<DStruct> ds = Program.getDefinitionList().getStructs();
             DStruct found;
             for(DStruct s: ds){
                 if(s.getName().equals(access.getType().toString())){

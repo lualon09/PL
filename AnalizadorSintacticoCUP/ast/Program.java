@@ -22,7 +22,7 @@ import exc.*;
 
 public class Program extends ASTNode {
 
-    private static DefinitionList definitionList;
+    private DefinitionList definitionList;
     private static SymbolsTableStack stack;
     private static PrintWriter code;
     private String fileName;
@@ -120,7 +120,7 @@ public class Program extends ASTNode {
         fileName = file;
     }
 
-    public static DefinitionList getDefinitionList() {
+    public DefinitionList getDefinitionList() {
         return definitionList;
     }
 

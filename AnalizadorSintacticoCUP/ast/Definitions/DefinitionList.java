@@ -1,6 +1,7 @@
 package ast.Definitions;
 
 import ast.Instructions.*;
+import ast.Types.TStruct;
 import exc.BindingException;
 import exc.GCodingException;
 import exc.TypingException;
@@ -11,6 +12,8 @@ import java.util.List;
 import ast.ASTNode;
 import ast.NodeKind;
 import ast.Program;
+import ast.Types.TStruct;
+import ast.Expressions.Accesses.AStruct;
 
 public class DefinitionList {
 
@@ -71,7 +74,15 @@ public class DefinitionList {
         return s.toString();
     }
 
+    public void setStructs(){
+        TStruct aux = new TStruct("aux");
+        aux.setListStructs(structs);
+        AStruct auxA = new AStruct(null, "auxA");
+        auxA.setListStructs(structs);
+    }
+
     public void bind() throws BindingException {
+        setStructs();
         for(ASTNode a: tree){
             a.bind();
         }
@@ -150,23 +161,12 @@ public class DefinitionList {
 
     public void addAll(DefinitionList list){
 
-        System.out.println("");
-        System.out.println("lista de definiciones antes de meter nada " + this.toString());
-        System.out.println("");
-
-
         List<DStruct> structsImport = list.getStructs();
         for(int i = structsImport.size() - 1; i >= 0; i--){
             addStruct(structsImport.get(i));
         }
         List<ASTNode> treeImport = list.getASTNodes();
-
-        System.out.println("");
-        System.out.println("el tree de la nueva definition list esta así " + list.toString());
-        System.out.println("");
-        
         for(int i = treeImport.size() - 1; i >= 0; i--){
-            System.out.println("Añado " + treeImport.get(i).toString());
             addNode(treeImport.get(i));
         }
         List<IDeclaration> varImport = list.getVar();
@@ -181,10 +181,6 @@ public class DefinitionList {
         for(int i = typedefsImport.size() - 1; i >= 0; i--){
             addTypedef(typedefsImport.get(i));
         }
-
-        System.out.println("");
-        System.out.println("lista de definiciones actualizadas " + this.toString());
-        System.out.println("");
     }
 
     public List<DStruct> getStructs(){

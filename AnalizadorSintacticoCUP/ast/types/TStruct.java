@@ -4,12 +4,13 @@ import ast.Program;
 import ast.Definitions.DStruct;
 import ast.ASTNode;
 import ast.Instructions.IDeclaration;
-import java.util.ArrayList;
+import java.util.List;
 import exc.BindingException;
 
 public class TStruct extends T {
 
     private String name;
+    private static List<DStruct> structs;
     
     public TStruct(String name){
         this.name = name;
@@ -24,9 +25,15 @@ public class TStruct extends T {
         return name;
     }
 
+    public void setListStructs(List<DStruct> structs){
+        System.out.println("Entro aqui");
+        this.structs = structs;
+    }
+
     public void bind() throws BindingException{
+        System.out.println("Estoy haciendo el binding de " + this.toString());
         boolean found = false;
-        for(DStruct s: Program.getDefinitionList().getStructs()){
+        for(DStruct s: structs){
             if(name.equals(s.getName())) {
                 bindNode = s;
                 found = true;
