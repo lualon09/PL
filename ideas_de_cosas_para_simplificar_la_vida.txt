@@ -1,2 +1,0 @@
-* ver que pasa si se hace return {1,2,3}
-* new(inicializacion)??
