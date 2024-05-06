@@ -40,7 +40,7 @@ main() -> Int{
         for(Int j = 0; j < 6; j = j + 1){
             for(Int k = 0; k < 5; k = k + 1){
                 arrayMult3[i][j][k] = k;
-                show(arrayMult3[i][j][k]);
+                // show(arrayMult3[i][j][k]);
             }
         }
     }
