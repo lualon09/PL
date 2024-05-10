@@ -1,5 +1,3 @@
-// Si se quiere probar debe descomentarse antes del main.js el await(2).
-
 main()-> Int {
     // Ambos show deberán imprimir los valores que el usuario introduzca por teclado.
     Int a = read();
@@ -8,5 +6,7 @@ main()-> Int {
     show(b);
     Bool aux = False || b || True;
     show(aux);
+    Bool c = read();
+    show(False || True && c);
     return 0;
 }

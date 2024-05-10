@@ -34,7 +34,7 @@
  (result i32)
  (local $temp i32)
  (local $localsStart i32)
- i32.const 20
+ i32.const 24
  call $reserveStack
  local.set $temp
  global.get $MP
@@ -112,6 +112,40 @@
  i32.add
  i32.load
  ;;end generating code for access
+ call $show
+ ;;generating code for declaration dec:c(type:BOOL)=read()
+ call $read
+ i32.const 1
+ i32.ne
+ if
+ i32.const 12
+ local.get $localsStart
+ i32.add
+ i32.const 0
+ i32.store
+ else
+ i32.const 12
+ local.get $localsStart
+ i32.add
+ i32.const 1
+ i32.store
+ end
+ ;;end generating code for declaration
+ ;; generating code for IShow
+ ;;generating code for exp ebinOR((BOOL:False),AND((BOOL:True),AVar(c)))
+ ;;generating code for EConst
+ i32.const 0
+ ;;generating code for exp ebinAND((BOOL:True),AVar(c))
+ ;;generating code for EConst
+ i32.const 1
+ ;;generating code for access
+ i32.const 12
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ i32.and
+ i32.or
  call $show
  ;; generating code for IReturn
  ;;generating code for EConst

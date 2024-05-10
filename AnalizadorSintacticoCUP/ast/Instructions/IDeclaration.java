@@ -161,7 +161,7 @@ public class IDeclaration extends I{
                 Program.getCode().println(" i32.const 0");
                 Program.getCode().println(" i32.store");
                 Program.getCode().println(" else");
-                this.calculateAddress();c
+                this.calculateAddress();
                 Program.getCode().println(" i32.const 1"); //dejamos el uno en la pila
                 Program.getCode().println(" i32.store");
                 Program.getCode().println(" end");
