@@ -9,7 +9,7 @@ main() -> Int {
     default = 3; break;
    }
 
-   show(resultado); //resultado debe valer 3.
+   show(resultado); 
 
    return 0;
 }

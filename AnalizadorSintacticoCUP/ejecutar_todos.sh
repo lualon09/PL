@@ -28,7 +28,7 @@ for archivo in examples/*; do
             nombre_archivo_sin_extension=$(basename $archivo .txt)
             wat2wasm "$nombre_archivo_sin_extension".wat
             cd ..
-            node main.js examplesCode/"$nombre_archivo_sin_extension".wasm
+            node main.js examplesCode/"$nombre_archivo_sin_extension".wasm < input.txt
             cd ..
         fi
     fi

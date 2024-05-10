@@ -6,5 +6,7 @@ main()-> Int {
     show(a);
     Bool b = read();
     show(b);
+    Bool aux = False || b || True;
+    show(aux);
     return 0;
 }

@@ -150,6 +150,22 @@ public class IDeclaration extends I{
                 Program.getCode().println(" i32.const " + exp.getType().getSize()/4);
                 Program.getCode().println(" call $copyn"); //copiamos de una direccion a otra de tamaño exp.getType().getSize()/4
             }
+            else if(exp.kindExp().equals(KindE.READ) && this.getType().kind().equals(KindT.BOOL)){ //si es booleano y se está leyendo 
+                
+                exp.generateCode();
+                //0 es false y 1 es true. Si es cualquier otro valor, lo transformamos a false.
+                Program.getCode().println(" i32.const 1");
+                Program.getCode().println(" i32.ne");
+                Program.getCode().println(" if");
+                this.calculateAddress();
+                Program.getCode().println(" i32.const 0");
+                Program.getCode().println(" i32.store");
+                Program.getCode().println(" else");
+                this.calculateAddress();c
+                Program.getCode().println(" i32.const 1"); //dejamos el uno en la pila
+                Program.getCode().println(" i32.store");
+                Program.getCode().println(" end");
+            }   
             else{
                 this.calculateAddress();
                 exp.generateCode();

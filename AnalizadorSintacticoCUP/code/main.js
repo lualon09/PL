@@ -59,7 +59,7 @@ async function start() {
 }
 
 async function run() {
-    // await readInput(2); //esto hay que descomentarlo y poner en el 2 el numero de cosas a leer
+    await readInput(20); //ponemos 20 como numeros a leer. Además creemos un fichero input.txt con 20 numeros aleatorios. Se leerán solo los necesarios.
     start();
 }
 
