@@ -1,0 +1,9 @@
+calculaFibonacci(n: Int) -> Int{
+	Int res;
+	if (n <= 1) {
+		res = 1;
+	} else {
+		res = calculaFibonacci(n - 1) + calculaFibonacci(n - 2);
+	}
+	return res;
+}

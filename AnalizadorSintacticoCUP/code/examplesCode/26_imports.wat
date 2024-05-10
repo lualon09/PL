@@ -245,6 +245,108 @@ end
  call $freeStack
  return
 )
+ ;; generating code of function calculaFibonacci
+(func $calculaFibonacci
+ (result i32)
+ (local $temp i32)
+ (local $localsStart i32)
+ i32.const 16
+ call $reserveStack
+ local.set $temp
+ global.get $MP
+ local.get $temp
+ i32.store
+ global.get $MP
+ i32.const 4
+ i32.add
+ local.set $localsStart
+ ;;generating code for declaration dec:res(type:INT)
+ ;;end generating code for declaration
+ ;;generating code for ifElse
+ ;;generating code for exp ebinLEQ(AVar(n),(INT:1))
+ ;;generating code for access
+ ;; loading paramn
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ ;;generating code for EConst
+ i32.const 1
+ i32.le_s
+ if
+ ;;generating code for assignation assign:AVar(res)=(INT:1)
+ i32.const 4
+ local.get $localsStart
+ i32.add
+ ;;generating code for EConst
+ i32.const 1
+ i32.store
+ ;;end generating code for assignation assign:AVar(res)=(INT:1)
+ else
+ ;;generating code for assignation assign:AVar(res)=SUM(call:calculaFibonacci([SUB(AVar(n),(INT:1))]),call:calculaFibonacci([SUB(AVar(n),(INT:2))]))
+ i32.const 4
+ local.get $localsStart
+ i32.add
+ ;;generating code for exp ebinSUM(call:calculaFibonacci([SUB(AVar(n),(INT:1))]),call:calculaFibonacci([SUB(AVar(n),(INT:2))]))
+ global.get $SP
+ i32.const 4
+ i32.add
+ local.set $temp
+;; Treating the argument SUB(AVar(n),(INT:1))
+ i32.const 0
+ local.get $temp
+ i32.add
+ ;;generating code for exp ebinSUB(AVar(n),(INT:1))
+ ;;generating code for access
+ ;; loading paramn
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ ;;generating code for EConst
+ i32.const 1
+ i32.sub
+ i32.store
+ ;; end copying arguments
+ call $calculaFibonacci
+ global.get $SP
+ i32.const 4
+ i32.add
+ local.set $temp
+;; Treating the argument SUB(AVar(n),(INT:2))
+ i32.const 0
+ local.get $temp
+ i32.add
+ ;;generating code for exp ebinSUB(AVar(n),(INT:2))
+ ;;generating code for access
+ ;; loading paramn
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ ;;generating code for EConst
+ i32.const 2
+ i32.sub
+ i32.store
+ ;; end copying arguments
+ call $calculaFibonacci
+ i32.add
+ i32.store
+ ;;end generating code for assignation assign:AVar(res)=SUM(call:calculaFibonacci([SUB(AVar(n),(INT:1))]),call:calculaFibonacci([SUB(AVar(n),(INT:2))]))
+ end
+ ;; generating code for IReturn
+ ;;generating code for access
+ i32.const 4
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ call $freeStack
+ return
+)
  ;; generating code of function main
 (func $main
  (result i32)
@@ -268,48 +370,111 @@ end
  i32.const 5
  i32.store
  ;;end generating code for declaration
- ;;generating code for declaration dec:array(type:List<INT>[(INT:5)])=[(INT:1), (INT:2), (INT:3), (INT:4), (INT:5)]
- i32.const 4
+ ;;generating code for declaration dec:array(type:List<INT>[(INT:5)])
+ ;;end generating code for declaration
+ ;;generating code for IFor
+ ;;generating code for declaration dec:i(type:INT)=(INT:0)
+ i32.const 24
  local.get $localsStart
  i32.add
+ ;;generating code for EConst
  i32.const 0
- i32.add
- ;;generating code for EConst
- i32.const 1
- i32.store
- i32.const 4
- local.get $localsStart
- i32.add
- i32.const 4
- i32.add
- ;;generating code for EConst
- i32.const 2
- i32.store
- i32.const 4
- local.get $localsStart
- i32.add
- i32.const 8
- i32.add
- ;;generating code for EConst
- i32.const 3
- i32.store
- i32.const 4
- local.get $localsStart
- i32.add
- i32.const 12
- i32.add
- ;;generating code for EConst
- i32.const 4
- i32.store
- i32.const 4
- local.get $localsStart
- i32.add
- i32.const 16
- i32.add
- ;;generating code for EConst
- i32.const 5
  i32.store
  ;;end generating code for declaration
+ block
+ loop
+ ;;generating code for exp ebinLESS(AVar(i),(INT:5))
+ ;;generating code for access
+ i32.const 24
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ ;;generating code for EConst
+ i32.const 5
+ i32.lt_s
+ i32.eqz
+ br_if 1
+ ;;generating code for assignation assign:AArray (AVar(array)[AVar(i)])=call:calculaFibonacci([AVar(i)])
+ ;;generating code for index of arrayAVar(i) to see if it's correct
+ ;;generating code for access
+ i32.const 24
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.const 5
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for access
+ i32.const 24
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
+ ;;generating code for index of arrayAVar(i)
+ ;;generating code for access
+ i32.const 24
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ i32.const 4
+ i32.mul
+ ;;generating code for access arrayAVar(array)
+ i32.const 4
+ local.get $localsStart
+ i32.add
+ i32.add
+ ;;end of generating code for access to array
+ global.get $SP
+ i32.const 4
+ i32.add
+ local.set $temp
+;; Treating the argument AVar(i)
+ i32.const 0
+ local.get $temp
+ i32.add
+ ;;generating code for access
+ i32.const 24
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ i32.store
+ ;; end copying arguments
+ call $calculaFibonacci
+ i32.store
+ ;;end generating code for assignation assign:AArray (AVar(array)[AVar(i)])=call:calculaFibonacci([AVar(i)])
+ ;;generating code for assignation assign:AVar(i)=SUM(AVar(i),(INT:1))
+ i32.const 24
+ local.get $localsStart
+ i32.add
+ ;;generating code for exp ebinSUM(AVar(i),(INT:1))
+ ;;generating code for access
+ i32.const 24
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ ;;generating code for EConst
+ i32.const 1
+ i32.add
+ i32.store
+ ;;end generating code for assignation assign:AVar(i)=SUM(AVar(i),(INT:1))
+ br 0
+ end
+ end
+ ;;end generating code for IFor
  ;;generating code for declaration dec:sol(type:INT)=call:calculaMedia([AVar(array), AVar(length)])
  i32.const 24
  local.get $localsStart
