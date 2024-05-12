@@ -6,7 +6,6 @@ main() -> Int {
     Int varI;           //declaracion de variables enteras
     varI = 2;           //asignación de un valor a una variable entera
     show(varI);
-    // varI += 2;
     varI += 2;
     Bool varB;
     Bool varB2;

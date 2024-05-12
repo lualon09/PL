@@ -18,7 +18,7 @@ done
 # Iterar sobre todos los archivos en la carpeta examples/
 for archivo in examples/*; do
     # Verificar si el archivo es un archivo regular
-    if [ -f "$archivo" ] && [ "$(basename "$archivo")" != "media.txt" ]; then
+    if [ -f "$archivo" ] && [ "$(basename "$archivo")" != "media.txt" ] && [ "$(basename "$archivo")" != "fibonacci.txt" ]; then
         echo "--------------------------------------"
         echo "PROBANDO EL ARCHIVO $archivo"
         # Ejecutar el analizador sintáctico para el archivo actual

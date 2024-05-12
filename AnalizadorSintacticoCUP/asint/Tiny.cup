@@ -264,6 +264,8 @@ LOOPS ::= WHILE PAP E0:e PCIERRE BINST:list
            {:RESULT = new IWhile(e, list);:}
            | FOR PAP DECLARATION:d E0:exp PUNTOYCOMA ACCESS0:a IGUAL E0:exp2 PCIERRE BINST:list 
            {:RESULT = new IFor(d, exp, new IAssignation((A) a, exp2), list);:}
+           | FOR PAP DECLARATION:d E0:exp PUNTOYCOMA ACCESS0:ac OP2:o IGUAL E0:ex PCIERRE BINST:list 
+           {:RESULT = new IFor(d, exp, new IAssignation((A) ac, new EBin((A) ac, ex, o, new TBasics(KindT.INT))), list);:}
            | REPEAT PAP E0:e PCIERRE BINST:list
            {:RESULT = new IRepeat(e, list);:}
            |WHILE PAP error PCIERRE BINST

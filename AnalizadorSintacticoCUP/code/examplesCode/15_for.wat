@@ -34,7 +34,7 @@
  (result i32)
  (local $temp i32)
  (local $localsStart i32)
- i32.const 20
+ i32.const 24
  call $reserveStack
  local.set $temp
  global.get $MP
@@ -131,6 +131,81 @@
  i32.const 4
  i32.store
  ;;end generating code for declaration
+ ;; generating code for IShow
+ ;;generating code for access
+ i32.const 4
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ call $show
+ ;;generating code for IFor
+ ;;generating code for declaration dec:i(type:INT)=(INT:0)
+ i32.const 12
+ local.get $localsStart
+ i32.add
+ ;;generating code for EConst
+ i32.const 0
+ i32.store
+ ;;end generating code for declaration
+ block
+ loop
+ ;;generating code for exp ebinLESS(AVar(i),AVar(N))
+ ;;generating code for access
+ i32.const 12
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ ;;generating code for access
+ i32.const 0
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ i32.lt_s
+ i32.eqz
+ br_if 1
+ ;;generating code for assignation assign:AVar(x)=SUM(AVar(x),AVar(i))
+ i32.const 4
+ local.get $localsStart
+ i32.add
+ ;;generating code for exp ebinSUM(AVar(x),AVar(i))
+ ;;generating code for access
+ i32.const 4
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ ;;generating code for access
+ i32.const 12
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ i32.add
+ i32.store
+ ;;end generating code for assignation assign:AVar(x)=SUM(AVar(x),AVar(i))
+ ;;generating code for assignation assign:AVar(i)=SUM(AVar(i),(INT:1))
+ i32.const 12
+ local.get $localsStart
+ i32.add
+ ;;generating code for exp ebinSUM(AVar(i),(INT:1))
+ ;;generating code for access
+ i32.const 12
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ ;;generating code for EConst
+ i32.const 1
+ i32.add
+ i32.store
+ ;;end generating code for assignation assign:AVar(i)=SUM(AVar(i),(INT:1))
+ br 0
+ end
+ end
+ ;;end generating code for IFor
  ;; generating code for IShow
  ;;generating code for access
  i32.const 4
