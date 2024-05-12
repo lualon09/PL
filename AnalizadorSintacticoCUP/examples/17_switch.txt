@@ -13,9 +13,46 @@ main() -> Int {
         break;
     default: resultado = 10;
         break;
-   } 
+   }  
 
    show(resultado); //resultado debe valer 2.
+
+
+    //Para probar switches de bools
+    Bool y = True;
+    switch(y) {
+    case True: Int i = 3; resultado = 0;
+        break;
+    default: resultado = 1; Int y = 4; Int x = 4;
+        break;
+    }
+
+    show(resultado);
+
+    //Para probar switchs de bools con representacion entera
+    switch(y) {
+    case 0: Int i = 3; resultado = 0;
+        break;
+    case 1: Int i = 3; resultado = 0;
+        break;
+    default: resultado = 1; Int y = 4; Int x = 4;
+        break;
+    }
+
+    show(resultado);
+
+    //para probar switches sin default
+    Int w = 3;
+    switch(w) {
+    case 1: Int i = 3; resultado = 0;
+        break;
+    case 4: resultado = 1; Int y = 4; Int x = 4;
+        break;
+    case 10: resultado = 2;
+        break;
+   }
+   
+   show(resultado);
 
    switch(x) {
     case 1: Int i = 3; resultado = 0;
