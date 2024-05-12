@@ -27,19 +27,7 @@ main() -> Int {
         break;
     }
 
-    show(resultado);
-
-    //Para probar switchs de bools con representacion entera
-    switch(y) {
-    case 0: Int i = 3; resultado = 0;
-        break;
-    case 1: Int i = 3; resultado = 0;
-        break;
-    default: resultado = 1; Int y = 4; Int x = 4;
-        break;
-    }
-
-    show(resultado);
+    show(resultado); //resultado debe valer 0.
 
     //para probar switches sin default
     Int w = 3;
@@ -52,7 +40,7 @@ main() -> Int {
         break;
    }
    
-   show(resultado);
+   show(resultado); //vale resultado 0.
 
    switch(x) {
     case 1: Int i = 3; resultado = 0;
@@ -69,7 +57,7 @@ main() -> Int {
 
    show(resultado); //resultado debe valer 10.
 
-   switch(x + 2) {
+   switch(x + 2) { //caso de switch con expresion en la condicion
     case 0: Int i = 3; resultado = 0;
         break;
     case 1: resultado = 1; Int y = 4; Int x = 4;
@@ -83,7 +71,7 @@ main() -> Int {
    show(resultado); //resultado debe valer 3.
 
     x = -1;
-   switch(x) {
+   switch(x) { //caso de switch con numeros negativos
     case -2: Int i = 3; resultado = 0;
         break;
     case -1: resultado = 1; Int y = 4; Int x = 4;

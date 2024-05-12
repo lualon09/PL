@@ -11,11 +11,11 @@ import ast.Definitions.DTypedef;
 
 public class SwitchInstruction extends IBlock{
 
-    private EConst exp;
+    private E exp;
     private boolean breakCond;
     private int nextLabel;
     
-    public SwitchInstruction(List<I> inst, EConst exp, boolean breakCond){
+    public SwitchInstruction(List<I> inst, E exp, boolean breakCond){
         super(inst);
         this.exp = exp;
         this.breakCond = breakCond;
@@ -53,6 +53,9 @@ public class SwitchInstruction extends IBlock{
 
     public void type() throws TypingException{
         if(exp != null){
+            if(!exp.kindExp().equals(KindE.CONST)){
+                throw new TypingException("Error. Switch case must be a boolean or integer constant.");
+            }
             exp.type();
             setType(exp.getType());
         }
@@ -63,36 +66,8 @@ public class SwitchInstruction extends IBlock{
     }
 
     public int getCaseInt(){
-        return Integer.parseInt(exp.getValue());
+        return Integer.parseInt(((EConst) exp).transformValue());
     }
-
-    // public void generateCode() throws GCodingException {
-    //     // Program.getCode().println(" local.get $temp"); //dejamos $temp en la cima de la pila para no perderlo
-    //     // if(exp != null){
-    //     //     exp.generateCode();
-    //     //     Program.getCode().println(" local.get $temp");
-    //     //     Program.getCode().println(" i32.eq"); //comparamos los valores
-    //     //     Program.getCode().println(" i32.eqz");
-    //     //     Program.getCode().println(" br_if " + nextLabel);
-    //     // }
-    //     // super.generateCode();
-    //     // Program.getCode().println(" br $break"); //siempre tenemos break
-
-    //     Program.getCode().println(" end");
-    //     Program.getCode().println(" local.get $temp");
-    //     if(exp != null){
-    //         exp.generateCode();
-    //         Program.getCode().println(" local.get $temp");
-    //         Program.getCode().println(" i32.eq"); //comparamos los valores
-    //         Program.getCode().println(" i32.eqz");
-    //         Program.getCode().println(" br_if 0");
-    //     }
-    //     super.generateCode();
-
-    //     if(breakCond){
-    //         Program.getCode().println("br $break");
-    //     }
-    // }
 
     public void generateCode() throws GCodingException {
         super.generateCode();

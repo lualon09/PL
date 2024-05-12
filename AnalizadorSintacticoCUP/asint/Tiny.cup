@@ -293,8 +293,8 @@ SWITCHES ::= SWITCH PAP E0:e PCIERRE LLAP CASEEXP:c DEFAULTEXP:d LLCIERRE
             | VALUEFOR PAP error PCIERRE LLAP CASEEXPVF:c LLCIERRE 
             {:System.out.println("Error in valuefor condition."); RESULT = null;:};
 
-CASEEXP	::= CASE ENT:e DOSPUNTOS INSTLIST:lInst BREAK PUNTOYCOMA CASEEXP:l
-            {:l.add(0, new SwitchInstruction(lInst, new EConst(e.lexema, new TBasics(KindT.INT)), true)); RESULT = l;:}
+CASEEXP	::= CASE E0:e DOSPUNTOS INSTLIST:lInst BREAK PUNTOYCOMA CASEEXP:l
+            {:l.add(0, new SwitchInstruction(lInst, e, true)); RESULT = l;:}
             | 
             {:ArrayList<SwitchInstruction> l = new ArrayList<SwitchInstruction>(); RESULT = l;:};
 

@@ -58,7 +58,7 @@ public class ISwitch extends IBlock {
         for(SwitchInstruction s: cases){
             s.type();
             if(!s.getType().equals(cond.getType())){
-                throw new TypingException("Switch case has not the expected type. Got " + s.getType().toString() + " and got " + cond.getType().toString());
+                throw new TypingException("Switch case has not the expected type. Got " + s.getType().toString() + " and expected " + cond.getType().toString());
             }
         }
         if(defaultCase != null){
