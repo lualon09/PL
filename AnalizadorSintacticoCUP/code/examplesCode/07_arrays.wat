@@ -994,6 +994,106 @@ end
  end
  end
  ;;end generating code for IFor
+ ;;generating code for declaration dec:array(type:List<INT>[(INT:1)])
+ ;;end generating code for declaration
+ ;;generating code for assignation assign:AVar(array)=[(INT:1)]
+ i32.const 940
+ local.get $localsStart
+ i32.add
+ i32.const 0
+ i32.add
+ ;;generating code for EConst
+ i32.const 1
+ i32.store
+ ;;end generating code for assignation assign:AVar(array)=[(INT:1)]
+ ;;generating code for assignation assign:AArray (AVar(array)[(INT:0)])=(INT:2)
+ ;;generating code for index of array(INT:0) to see if it's correct
+ ;;generating code for EConst
+ i32.const 0
+i32.const 1
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for EConst
+ i32.const 0
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
+ ;;generating code for index of array(INT:0)
+ ;;generating code for EConst
+ i32.const 0
+ i32.const 4
+ i32.mul
+ ;;generating code for access arrayAVar(array)
+ i32.const 940
+ local.get $localsStart
+ i32.add
+ i32.add
+ ;;end of generating code for access to array
+ ;;generating code for EConst
+ i32.const 2
+ i32.store
+ ;;end generating code for assignation assign:AArray (AVar(array)[(INT:0)])=(INT:2)
+ ;; generating code for IShow
+ ;;generating code for access
+ ;;generating code for index of array(INT:0) to see if it's correct
+ ;;generating code for EConst
+ i32.const 0
+i32.const 1
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for EConst
+ i32.const 0
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
+ ;;generating code for index of array(INT:0)
+ ;;generating code for EConst
+ i32.const 0
+ i32.const 4
+ i32.mul
+ ;;generating code for access arrayAVar(array)
+ i32.const 940
+ local.get $localsStart
+ i32.add
+ i32.add
+ ;;end of generating code for access to array
+ i32.load
+ ;;end generating code for access
+ call $show
+ ;;generating code for declaration dec:array4(type:List<INT>[(INT:1)])
+ ;;end generating code for declaration
+ ;;generating code for assignation assign:AVar(array4)=[(INT:1)]
+ i32.const 944
+ local.get $localsStart
+ i32.add
+ i32.const 0
+ i32.add
+ ;;generating code for EConst
+ i32.const 1
+ i32.store
+ ;;end generating code for assignation assign:AVar(array4)=[(INT:1)]
+ ;;generating code for assignation assign:AVar(array)=AVar(array4)
+ i32.const 944
+ local.get $localsStart
+ i32.add
+ i32.const 940
+ local.get $localsStart
+ i32.add
+ i32.const 1
+ call $copyn
+ ;;end generating code for assignation assign:AVar(array)=AVar(array4)
  ;; generating code for IReturn
  ;;generating code for EConst
  i32.const 0

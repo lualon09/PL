@@ -34,7 +34,7 @@
  (result i32)
  (local $temp i32)
  (local $localsStart i32)
- i32.const 52
+ i32.const 72
  call $reserveStack
  local.set $temp
  global.get $MP
@@ -273,6 +273,163 @@ i32.load
  i32.const 0
  i32.store
  ;;end generating code for assignation assign:AStruct(APointer(*AVar(nombrePuntero)).campo)=(INT:0)
+ ;;generating code for declaration dec:array2(type:List<List<INT>[(INT:1)]*>[(INT:2)])
+ ;;end generating code for declaration
+ ;;generating code for declaration dec:puntero(type:List<INT>[(INT:1)]*)=new List<INT>[(INT:1)]
+ i32.const 52
+ local.get $localsStart
+ i32.add
+ i32.const 4
+ call $reserveHeap 
+ global.get $NP
+ i32.store
+ ;;end generating code for declaration
+ ;;generating code for assignation assign:APointer(*AVar(puntero))=[(INT:1)]
+ ;;generating code for APointer AVar(puntero)
+ i32.const 52
+ local.get $localsStart
+ i32.add
+i32.load
+ i32.const 0
+ i32.add
+ ;;generating code for EConst
+ i32.const 1
+ i32.store
+ ;;end generating code for assignation assign:APointer(*AVar(puntero))=[(INT:1)]
+ ;;generating code for assignation assign:AArray (AVar(array2)[(INT:0)])=AVar(puntero)
+ i32.const 52
+ local.get $localsStart
+ i32.add
+ ;;generating code for index of array(INT:0) to see if it's correct
+ ;;generating code for EConst
+ i32.const 0
+i32.const 2
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for EConst
+ i32.const 0
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
+ ;;generating code for index of array(INT:0)
+ ;;generating code for EConst
+ i32.const 0
+ i32.const 4
+ i32.mul
+ ;;generating code for access arrayAVar(array2)
+ i32.const 44
+ local.get $localsStart
+ i32.add
+ i32.add
+ ;;end of generating code for access to array
+ i32.const 1
+ call $copyn
+ ;;end generating code for assignation assign:AArray (AVar(array2)[(INT:0)])=AVar(puntero)
+ ;;generating code for declaration dec:aux(type:List<INT>[(INT:1)])=APointer(*AArray (AVar(array2)[(INT:0)]))
+ ;;generating code for APointer AArray (AVar(array2)[(INT:0)])
+ ;;generating code for index of array(INT:0) to see if it's correct
+ ;;generating code for EConst
+ i32.const 0
+i32.const 2
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for EConst
+ i32.const 0
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
+ ;;generating code for index of array(INT:0)
+ ;;generating code for EConst
+ i32.const 0
+ i32.const 4
+ i32.mul
+ ;;generating code for access arrayAVar(array2)
+ i32.const 44
+ local.get $localsStart
+ i32.add
+ i32.add
+ ;;end of generating code for access to array
+i32.load
+ i32.const 56
+ local.get $localsStart
+ i32.add
+ i32.const 1
+ call $copyn
+ ;;end generating code for declaration
+ ;;generating code for declaration dec:a(type:INT)=AArray (APointer(*AArray (AVar(array2)[(INT:0)]))[(INT:0)])
+ ;;generating code for index of array(INT:0) to see if it's correct
+ ;;generating code for EConst
+ i32.const 0
+i32.const 1
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for EConst
+ i32.const 0
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
+ ;;generating code for index of array(INT:0)
+ ;;generating code for EConst
+ i32.const 0
+ i32.const 4
+ i32.mul
+ ;;generating code for access arrayAPointer(*AArray (AVar(array2)[(INT:0)]))
+ ;;generating code for APointer AArray (AVar(array2)[(INT:0)])
+ ;;generating code for index of array(INT:0) to see if it's correct
+ ;;generating code for EConst
+ i32.const 0
+i32.const 2
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for EConst
+ i32.const 0
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
+ ;;generating code for index of array(INT:0)
+ ;;generating code for EConst
+ i32.const 0
+ i32.const 4
+ i32.mul
+ ;;generating code for access arrayAVar(array2)
+ i32.const 44
+ local.get $localsStart
+ i32.add
+ i32.add
+ ;;end of generating code for access to array
+i32.load
+ i32.add
+ ;;end of generating code for access to array
+ i32.const 60
+ local.get $localsStart
+ i32.add
+ i32.const 1
+ call $copyn
+ ;;end generating code for declaration
  ;; generating code for IReturn
  ;;generating code for EConst
  i32.const 0

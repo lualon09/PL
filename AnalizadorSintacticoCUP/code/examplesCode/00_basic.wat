@@ -392,6 +392,14 @@ i32.load
  i32.const 1
  call $copyn
  ;;end generating code for declaration
+ ;; generating code for IShow
+ ;;generating code for EConst
+ i32.const 1
+ call $show
+ ;; generating code for IShow
+ ;;generating code for EConst
+ i32.const 0
+ call $show
  ;; generating code for IReturn
  ;;generating code for EConst
  i32.const 0

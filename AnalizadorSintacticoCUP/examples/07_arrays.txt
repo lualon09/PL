@@ -44,6 +44,15 @@ main() -> Int{
             }
         }
     }
+
+    List<Int>[1] array;
+    array = {1};
+    array[0] = 2;
+    show(array[0]);
+    List<Int>[1] array4;
+    array4 = {1};
+    array = array4;
+   
     
     return 0;
 }      

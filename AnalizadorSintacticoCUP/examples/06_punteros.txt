@@ -29,8 +29,16 @@ main() -> Int{
     *nombre.campoPuntero = 1; //accedemos a un campo puntero de un struct
     nombre.campo = 2;
 
-    tInfo * nombrePuntero; //puntero de un array
+    tInfo * nombrePuntero; //puntero de un struct
     (*nombrePuntero).campo = 0;
+
+    
+    List<List<Int>[1]*>[2] array2; //punteros con listas
+    List<Int>[1] * puntero = new  List<Int>[1];
+    *puntero = {1};
+    array2[0] = puntero;
+    List<Int>[1] aux =  *array2[0];
+    Int a = (*array2[0])[0];
     
     return 0;
 } 
