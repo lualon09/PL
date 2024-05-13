@@ -21,7 +21,7 @@ public class TPointer extends T {
     }
 
     public boolean equals(Object type2){
-        return super.equals(type2) && this.getT().equals(type2);
+        return super.equals(type2) && this.getT().equals(((T) type2).getT());
     }
 
     // eso no tengo claro si va a aqui, pero habría que hacer binding del tipo de arriba

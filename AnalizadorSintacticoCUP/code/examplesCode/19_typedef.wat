@@ -69,7 +69,7 @@
  (result i32)
  (local $temp i32)
  (local $localsStart i32)
- i32.const 40
+ i32.const 60
  call $reserveStack
  local.set $temp
  global.get $MP
@@ -235,6 +235,176 @@ end
  i32.add
  i32.add
  ;;end of generating code for access to array
+ i32.load
+ ;;end generating code for access
+ call $show
+ ;;generating code for declaration dec:p(type:INT*)=new INT
+ i32.const 32
+ local.get $localsStart
+ i32.add
+ i32.const 4
+ call $reserveHeap 
+ global.get $NP
+ i32.store
+ ;;end generating code for declaration
+ ;;generating code for assignation assign:APointer(*AVar(p))=(INT:4)
+ ;;generating code for APointer AVar(p)
+ i32.const 32
+ local.get $localsStart
+ i32.add
+i32.load
+ ;;generating code for EConst
+ i32.const 4
+ i32.store
+ ;;end generating code for assignation assign:APointer(*AVar(p))=(INT:4)
+ ;; generating code for IShow
+ ;;generating code for access
+ ;;generating code for APointer AVar(p)
+ i32.const 32
+ local.get $localsStart
+ i32.add
+i32.load
+ i32.load
+ ;;end generating code for access
+ call $show
+ ;;generating code for declaration dec:p2(type:INT*)=new INT
+ i32.const 36
+ local.get $localsStart
+ i32.add
+ i32.const 4
+ call $reserveHeap 
+ global.get $NP
+ i32.store
+ ;;end generating code for declaration
+ ;;generating code for assignation assign:APointer(*AVar(p2))=(INT:5)
+ ;;generating code for APointer AVar(p2)
+ i32.const 36
+ local.get $localsStart
+ i32.add
+i32.load
+ ;;generating code for EConst
+ i32.const 5
+ i32.store
+ ;;end generating code for assignation assign:APointer(*AVar(p2))=(INT:5)
+ ;;generating code for declaration dec:lista2(type:List<INT*>[(INT:2)])=[AVar(p), AVar(p2)]
+ i32.const 40
+ local.get $localsStart
+ i32.add
+ i32.const 0
+ i32.add
+ ;;generating code for access
+ i32.const 32
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ i32.store
+ i32.const 40
+ local.get $localsStart
+ i32.add
+ i32.const 4
+ i32.add
+ ;;generating code for access
+ i32.const 36
+ local.get $localsStart
+ i32.add
+ i32.load
+ ;;end generating code for access
+ i32.store
+ ;;end generating code for declaration
+ ;; generating code for IShow
+ ;;generating code for access
+ ;;generating code for APointer AArray (AVar(lista2)[(INT:0)])
+ ;;generating code for index of array(INT:0) to see if it's correct
+ ;;generating code for EConst
+ i32.const 0
+i32.const 2
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for EConst
+ i32.const 0
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
+ ;;generating code for index of array(INT:0)
+ ;;generating code for EConst
+ i32.const 0
+ i32.const 4
+ i32.mul
+ ;;generating code for access arrayAVar(lista2)
+ i32.const 40
+ local.get $localsStart
+ i32.add
+ i32.add
+ ;;end of generating code for access to array
+i32.load
+ i32.load
+ ;;end generating code for access
+ call $show
+ ;; generating code for IShow
+ ;;generating code for access
+ ;;generating code for APointer AArray (AVar(lista2)[(INT:1)])
+ ;;generating code for index of array(INT:1) to see if it's correct
+ ;;generating code for EConst
+ i32.const 1
+i32.const 2
+i32.ge_s
+if
+i32.const 3
+call $exception
+end
+i32.const 0
+ ;;generating code for EConst
+ i32.const 1
+i32.gt_s
+if
+i32.const 3
+call $exception
+end
+ ;;generating code for index of array(INT:1)
+ ;;generating code for EConst
+ i32.const 1
+ i32.const 4
+ i32.mul
+ ;;generating code for access arrayAVar(lista2)
+ i32.const 40
+ local.get $localsStart
+ i32.add
+ i32.add
+ ;;end of generating code for access to array
+i32.load
+ i32.load
+ ;;end generating code for access
+ call $show
+ ;;generating code for declaration dec:aux(type:tInfo)
+ ;;end generating code for declaration
+ ;;generating code for assignation assign:AStruct(AVar(aux).a)=(INT:2)
+ ;;generating code for struct accessAVar(aux)
+ i32.const 48
+ local.get $localsStart
+ i32.add
+ i32.const 0
+ i32.add
+ ;;end of generating code for struct accessAVar(aux)
+ ;;generating code for EConst
+ i32.const 2
+ i32.store
+ ;;end generating code for assignation assign:AStruct(AVar(aux).a)=(INT:2)
+ ;; generating code for IShow
+ ;;generating code for access
+ ;;generating code for struct accessAVar(aux)
+ i32.const 48
+ local.get $localsStart
+ i32.add
+ i32.const 0
+ i32.add
+ ;;end of generating code for struct accessAVar(aux)
  i32.load
  ;;end generating code for access
  call $show

@@ -25,6 +25,11 @@ public class Main {
 				p.imports();
 				// simplicamos los typedefs
 				p.typedef(null);
+
+				System.out.println("*********************TREE AST ALIAS*********************");
+
+				System.out.println(p);
+
 				try {
 					System.out.println("*********************BINDING********************");
 					p.bind(); // vinculacion

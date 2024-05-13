@@ -5,6 +5,12 @@ typedef Listita = List<Int>[5];
 typedef Punterito = Int*;
 typedef ListitasdePunteritos = List<Punterito>[2];
 
+Struct tInfo {
+    Int a;
+};
+
+typedef structito = tInfo;
+
 suma(a:Enterito, b:Enterito2) -> Enterito2 {
     return a + b;
 }
@@ -16,13 +22,18 @@ main() -> Int{
     show(suma(a,b) + suma(b,c)); //debe imprimir 7 + 7 = 14
     Listita lista = {1,2,3,4,5};
     show(lista[0]);
-    Punterito p;
+    Punterito p = new Int;
     *p = 4;
     show(*p);
-    Int* p2;
+    Int* p2 = new Int;
     *p2 = 5;
     ListitasdePunteritos lista2 = {p, p2};
     show(*lista2[0]);
     show(*lista2[1]);
+
+    structito aux;
+    aux.a = 2;
+    show(aux.a);
+
     return 0;
 } 

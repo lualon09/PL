@@ -14,6 +14,8 @@ import ast.NodeKind;
 import ast.Program;
 import ast.Types.TStruct;
 import ast.Expressions.Accesses.AStruct;
+import ast.Types.KindT;
+import ast.Types.T;
 
 public class DefinitionList {
 
@@ -139,10 +141,20 @@ public class DefinitionList {
 
     public void simplifyTypedefs(int p){
         for(int j = p - 1; j >= 0; j--){
-            if(typedefs.get(p).getTypedefType().toString().equals(typedefs.get(j).getName())){ //Es igual a uno de los alias definido anteriormente
-                simplifyTypedefs(j);
-                typedefs.get(p).setType(typedefs.get(j).getType()); //le damos el mismo tipo que al anterior
-                return ;
+            if(typedefs.get(p).getTypedefType().kind().equals(KindT.ARRAY)){ //si es de tipo array
+                if(typedefs.get(p).getTypedefType().getT().toString().equals(typedefs.get(j).getName())){
+                    simplifyTypedefs(j);
+                    typedefs.get(p).getTypedefType().setT(typedefs.get(j).getType());
+                    typedefs.get(p).setType(typedefs.get(p).getTypedefType());
+                    return ;
+                }
+            }
+            else{
+                if(typedefs.get(p).getTypedefType().toString().equals(typedefs.get(j).getName())){ //Es igual a uno de los alias definido anteriormente
+                    simplifyTypedefs(j);
+                    typedefs.get(p).setType(typedefs.get(j).getType()); //le damos el mismo tipo que al anterior
+                    return ;
+                }
             }
         }
         //si estamos aqui es porque es un tipo basico. no otro alias.
