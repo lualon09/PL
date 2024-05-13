@@ -69,7 +69,7 @@
  (result i32)
  (local $temp i32)
  (local $localsStart i32)
- i32.const 60
+ i32.const 68
  call $reserveStack
  local.set $temp
  global.get $MP
@@ -396,6 +396,30 @@ i32.load
  i32.const 2
  i32.store
  ;;end generating code for assignation assign:AStruct(AVar(aux).a)=(INT:2)
+ ;;generating code for assignation assign:AStruct(AVar(aux).b)=(INT:3)
+ ;;generating code for struct accessAVar(aux)
+ i32.const 48
+ local.get $localsStart
+ i32.add
+ i32.const 4
+ i32.add
+ ;;end of generating code for struct accessAVar(aux)
+ ;;generating code for EConst
+ i32.const 3
+ i32.store
+ ;;end generating code for assignation assign:AStruct(AVar(aux).b)=(INT:3)
+ ;;generating code for assignation assign:AStruct(AVar(aux).c)=(INT:4)
+ ;;generating code for struct accessAVar(aux)
+ i32.const 48
+ local.get $localsStart
+ i32.add
+ i32.const 8
+ i32.add
+ ;;end of generating code for struct accessAVar(aux)
+ ;;generating code for EConst
+ i32.const 4
+ i32.store
+ ;;end generating code for assignation assign:AStruct(AVar(aux).c)=(INT:4)
  ;; generating code for IShow
  ;;generating code for access
  ;;generating code for struct accessAVar(aux)
@@ -403,6 +427,30 @@ i32.load
  local.get $localsStart
  i32.add
  i32.const 0
+ i32.add
+ ;;end of generating code for struct accessAVar(aux)
+ i32.load
+ ;;end generating code for access
+ call $show
+ ;; generating code for IShow
+ ;;generating code for access
+ ;;generating code for struct accessAVar(aux)
+ i32.const 48
+ local.get $localsStart
+ i32.add
+ i32.const 4
+ i32.add
+ ;;end of generating code for struct accessAVar(aux)
+ i32.load
+ ;;end generating code for access
+ call $show
+ ;; generating code for IShow
+ ;;generating code for access
+ ;;generating code for struct accessAVar(aux)
+ i32.const 48
+ local.get $localsStart
+ i32.add
+ i32.const 8
  i32.add
  ;;end of generating code for struct accessAVar(aux)
  i32.load

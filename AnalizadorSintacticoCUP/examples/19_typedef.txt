@@ -7,6 +7,8 @@ typedef ListitasdePunteritos = List<Punterito>[2];
 
 Struct tInfo {
     Int a;
+    Enterito b;
+    Enterito2 c;
 };
 
 typedef structito = tInfo;
@@ -33,7 +35,11 @@ main() -> Int{
 
     structito aux;
     aux.a = 2;
+    aux.b = 3;
+    aux.c = 4;
     show(aux.a);
+    show(aux.b);
+    show(aux.c);
 
     return 0;
 } 
