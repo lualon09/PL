@@ -68,7 +68,7 @@ return = return
 letra  = ([A-Z]|[a-z])
 identificador = {letra}({letra}|{digito})*
 
-archivo = ({identificador}{\/})*{identificador}{punto}{identificador}
+archivo = ({identificador}\/)+{identificador}{punto}{identificador}
 
 digitoPositivo = [1-9]
 digito = ({digitoPositivo}|0)
